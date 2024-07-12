@@ -1,0 +1,47 @@
+import 'package:business_tools/core/errors/exceptions.dart';
+import 'package:business_tools/core/errors/failure.dart';
+import 'package:business_tools/features/video_translator/data/datasources/vd_remote_dara_source.dart';
+import 'package:business_tools/features/video_translator/domain/entities/vd_translate_entities.dart';
+import 'package:business_tools/features/video_translator/domain/repositories/vd_translate_repo.dart';
+import 'package:dartz/dartz.dart';
+
+class VdTranslateRepoImp extends VdTranslateRepo {
+  final VdRemoteDaraSource vdRemoteDataSource;
+
+  VdTranslateRepoImp({required this.vdRemoteDataSource});
+  @override
+  Future<Either<Failure, List<VdTranslateEntities>>> vdTranslate(
+      String videoId, String translateFrom, String translateTo, String translateFromCode ) async {
+    try {
+      return right(
+          await vdRemoteDataSource.vdTranslate(videoId, translateFrom, translateTo, translateFromCode));
+    } catch (e) {
+      if (e is TransScriptVdException) {
+        return left(TransScriptVdFailure());
+      }
+      if (e is TranslateVdException) {
+        return left(TranslateVdFailure());
+      }
+      return left(EmptyFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> downloadTranslation(List<VdTranslateEntities> translation, String videoUrl) async {
+    try {
+      return right(await vdRemoteDataSource.downloadTranslation(translation, videoUrl));
+    } catch (e) {
+      print(e);
+      if (e is CreateFileException) {
+        return left(CreateFileFailure());
+      }
+      if (e is EmptyPathException) {
+        return left(EmptyPathFailure());
+      }
+      if (e is PermissionException) {
+        return left(PermissionFailure());
+      }
+      return left(EmptyFailure());
+    }
+  }
+}

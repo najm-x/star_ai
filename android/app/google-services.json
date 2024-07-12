@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "383134760795",
+    "project_id": "bissniss-tools",
+    "storage_bucket": "bissniss-tools.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:383134760795:android:38dcee57e4bab83d6d247e",
+        "android_client_info": {
+          "package_name": "com.example.business_tools"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "383134760795-so995peid27vttkdejts3csi4ndupvd7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYh3pDiRETYdcqXHlg3g-1AjZz0a53-pg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "383134760795-so995peid27vttkdejts3csi4ndupvd7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
