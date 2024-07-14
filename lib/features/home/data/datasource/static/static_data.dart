@@ -19,5 +19,9 @@ class StaticData {
         title: AppStrings.textTranslator,
         iconData: Icons.translate_rounded,
         route: AppRouteName.textTranslatorPage),
+    DrawerModel(
+        title: AppStrings.spellChecker,
+        iconData: Icons.spellcheck_rounded,
+        route: AppRouteName.spellCheckerPage),
   ];
 }

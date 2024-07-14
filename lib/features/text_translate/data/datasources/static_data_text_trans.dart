@@ -9,6 +9,8 @@ You will translate the input text from the [source language] to the [target lang
    Example: When translating "The CPU is the brain of the computer." to Arabic, the translation should be: "تُعد وحدة المعالجة المركزية (CPU) بمثابة عقل الحاسوب."
 3. Maintaining language fluency: Make your translation smooth and natural in the target language, avoiding literal translations that may result in incomprehensible text.
 4. Considering cultural aspects: Take into account cultural differences between the two languages when translating, and adapt the text to fit the culture of the target language.
+5. if the text have code insert the code in ``` the code ```
+6. When the text is long and contains several parts, it is preferable to use Markdown tags to make it easier for the user to read.
 
 
 You will receive:
@@ -34,7 +36,7 @@ Result:
   "يعمل فريق تطوير البرمجيات على خوارزمية (algorithm) جديدة للتعرف على الصور."
 
 Note:
-All the above-mentioned conditions must be considered
+All the above-mentioned conditions must be considered , When the text is long and contains several parts, it is preferable to use Markdown tags to make it easier for the user to read.
 
 """;
 }

@@ -1,4 +1,4 @@
-import 'package:business_tools/core/functions/check_permission.dart';
+import 'package:business_tools/core/public/custom_snak_bar.dart';
 import 'package:business_tools/core/public/widgets/go_widget.dart';
 import 'package:business_tools/features/extract/presentation/widgets/loading.dart';
 import 'package:business_tools/features/text_translate/presentation/bloc/cubit/text_trans_cubit.dart';
@@ -15,18 +15,25 @@ class FloatingActionButtonWidget extends StatelessWidget {
       listener: (context, state) {
         if (state.status == TextTransStatus.successTransleate) {
           showModalBottomSheet(
+            isDismissible: false,
             context: context,
             builder: (context2) {
-              return BlocProvider.value(value: BlocProvider.of<TextTransCubit>(context) , child: TextTransBottomSheet(
-                value: state.value,
-                onPressed: () async {
-                  await checkPermission(context);
-                  // ignore: use_build_context_synchronously
-                  context.read<TextTransCubit>().savetranslate(state.value);
-                },
-              ),);
+              return BlocProvider.value(
+                  value: BlocProvider.of<TextTransCubit>(context),
+                  child: TextTransBottomSheet(
+                    value: state.value,
+                  ));
             },
           );
+        }
+        if (state.status == TextTransStatus.successOther) {
+          CustomSnakBar().snackBarSuccess(context, state.messageSuccess, 4);
+        }
+        if (state.status == TextTransStatus.emptyOptins) {
+          CustomSnakBar().snackBarError(context, state.messageError, 3);
+        }
+        if (state.status == TextTransStatus.error) {
+          CustomSnakBar().snackBarError(context, state.messageError, 3);
         }
       },
       builder: (context, state) {

@@ -8,7 +8,6 @@ String messageErrorHandel(Failure failure) {
     case CreateFileFailure:
       return AppStrings.fileCreateFailed;
     case EmptyFailure:
-      // Use a more specific message if available, otherwise fallback to generic
       return AppStrings.unknownError;
     case TransScriptVdFailure:
       return AppStrings.noVideoCaptions;
@@ -18,6 +17,8 @@ String messageErrorHandel(Failure failure) {
       return AppStrings.insufficientPermissions;
     case SaveFailure:
       return AppStrings.fileSaveFailed;
+    case AIFailure():
+      return AppStrings.aIFailure;
     default:
       return AppStrings.genericError;
   }

@@ -4,10 +4,12 @@ class AppStrings {
   static String extract = "extract";
   static String videoTranslator = "video translator";
   static String textTranslator = "text translator";
+  static String spellChecker = "Spell checker";
   static String mailSender = "mail sender";
   static String smsSender = "sms sender";
   static String descreption =
       "To Business toll the best toll for help you in your business Click on Drawer Icon and shoes any tool ";
+  //Failure
   static String doneSaveFile = "Done Saving File in this directory";
   static const String genericError = "An unexpected error has occurred.";
   static const String unknownError = "Unknown error.";
@@ -18,6 +20,9 @@ class AppStrings {
   static const String videoTranslationFailed = "An error occurred while translating the video. Please try again later.";
   static const String insufficientPermissions =
       "The app doesn't have the necessary permissions. Please grant the required permissions.";
+  static const String aIFailure=
+      "Error on connect with Gemini Ai Try Again later";
+  //
   static const String pasteUrlHere = "Past the url here";
   static const String vdurl = "Video url";
   static const String translateFrom = "From";
@@ -38,6 +43,16 @@ class AppStrings {
   static String cancel = "cancel";
   static String accessRequired = "Access required";
   static String gO = "GO";
+  static String doneCopy = "Done Copy";
+  static String editeDirection = "Edite text direction";
+  static String save = "save";
+  static String doneTranslate = "Done Translate";
+  static String doneSaveTrans = "Done save Translate";
+  static String entertext = "Enter text, select From and To languages to translate";
+  static String pasteTextHere = "Paste Text Here";
+  static String infoText = "mroe info about this text";
+  static String info = "info";
+
   ///
   static String csv = "cvg";
   static String json = "json";

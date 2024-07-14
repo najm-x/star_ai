@@ -8,7 +8,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
 abstract class TextTransRemoteDataSource {
-  Future<TextTransModel> translateText(String text, String translateFrom, String translateTo ,  String info);
+  Future<TextTransModel> translateText(String text, String translateFrom, String translateTo, String info);
   Future<Unit> saveText(String text);
 }
 
@@ -31,17 +31,24 @@ class TextTransRemoteDataSourceImp extends TextTransRemoteDataSource {
   }
 
   @override
-  Future<TextTransModel> translateText(String text, String translateFrom, String translateTo ,  String info) async {
-    final model = GenerativeModel(
-        model: "gemini-1.5-flash-latest",
-        apiKey: "AIzaSyA_4XW31z90lGuOtueo3919IFdEpHMxQWI",
-        systemInstruction: Content.system(StaticDataTextTrans.prompt));
-    final response = await model.generateContent([Content.text("""
+  Future<TextTransModel> translateText(String text, String translateFrom, String translateTo, String info) async {
+    try {
+      final model = GenerativeModel(
+          model: "gemini-1.5-flash-latest",
+          apiKey: "AIzaSyA_4XW31z90lGuOtueo3919IFdEpHMxQWI",
+          systemInstruction: Content.system(StaticDataTextTrans.prompt));
+      final response = await model.generateContent([
+        Content.text("""
 Translate this text from $translateFrom to $translateTo, $info following all the mentioned rules:
- "${text.replaceAll('"', ' ')..replaceAll('*', " ")..replaceAll('#', " ")}"
-""")]);
-  
-      
-    return TextTransModel(text:  response.text!);
+ "${text.replaceAll('"', ' ')
+              ..replaceAll('*', " ")
+              ..replaceAll('#', " ")}"
+""")
+      ]);
+
+      return TextTransModel(text: response.text!);
+    } catch (e) {
+      throw AIException() ;
+    }
   }
 }

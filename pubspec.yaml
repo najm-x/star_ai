@@ -53,8 +53,8 @@ dependencies:
   google_generative_ai: ^0.4.3
   youtube_player_flutter: ^9.0.1
   device_info_plus: ^10.1.0
-  page_transition: ^2.1.0
   flutter_markdown: ^0.7.3
+  animate_do: ^3.3.4
 
 dependency_overrides:
   flutter_inappwebview_android:

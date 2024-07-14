@@ -18,11 +18,11 @@ class DownloadWidget extends StatelessWidget {
     return BlocConsumer<VdDownloadBloc, VdDownloadState>(
       listener: (context, state) async {
         if (state.status == VdDownloadStatus.error) {
-          CustomSnakBar.snackBarError(context, state.messageError, 5);
+          CustomSnakBar().snackBarError(context, state.messageError, 5);
         }
 
         if (state.status == VdDownloadStatus.success) {
-          CustomSnakBar.snackBarSuccess(context, state.messageSuccess, 5);
+          CustomSnakBar().snackBarSuccess(context, state.messageSuccess, 5);
         }
         if (state.status == VdDownloadStatus.errorPermission) {
           String permissionMessage = await messagePremissionHandel();
@@ -31,9 +31,11 @@ class DownloadWidget extends StatelessWidget {
             context: context,
             builder: (context) {
               return DialogPermission(
-                  title: AppStrings.accessRequired,
-                  permissionMessage: permissionMessage,
-                  iconData: Icons.folder_rounded , onPressed: () =>  requsetPremission(),);
+                title: AppStrings.accessRequired,
+                permissionMessage: permissionMessage,
+                iconData: Icons.folder_rounded,
+                onPressed: () => requsetPremission(),
+              );
             },
           );
         }

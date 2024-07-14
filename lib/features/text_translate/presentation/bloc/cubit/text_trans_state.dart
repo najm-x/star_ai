@@ -4,11 +4,10 @@ enum TextTransStatus {
   init,
   loading,
   successTransleate,
-  successCopy,
-  successSave,
-  errorTransleate,
-  errorCopy,
-  errorSave,
+  successOther ,
+  error ,
+  changeLtR ,
+  emptyOptins 
 }
 
 final class TextTransState extends Equatable {

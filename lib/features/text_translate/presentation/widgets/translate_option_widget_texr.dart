@@ -11,41 +11,49 @@ class TranslateOptionWidgetTexr extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        flex: 3,
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            children: [
-              TextFormFieldCu(hint: "mroe info about this", labelText: "info" ,textEditingController: BlocProvider.of<TextTransCubit>(context).infoCo,),
-              const SizedBox(
-                height: 8,
-              ),
-              const Add(
-                height: 70,
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  DropDownlangWidget(
-                    title: AppStrings.translateFrom,
-                    onSelected: (langSelected) {
-                      BlocProvider.of<TextTransCubit>(context).onSelectedLang(langSelected, AppStrings.translateFrom);
-                    },
-                  ),
-                  DropDownlangWidget(
-                    title: AppStrings.translateTo,
-                    onSelected: (langSelected) {
-                      BlocProvider.of<TextTransCubit>(context).onSelectedLang(langSelected, AppStrings.translateTo);
-                    },
-                  )
-                ],
-              )
-            ],
-          ),
-        ));
+    return Container(
+      margin: const EdgeInsets.only(bottom: 160),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextFormFieldCu(
+              hint: AppStrings.infoText,
+              labelText: AppStrings.info,
+              onTap: () => BlocProvider.of<TextTransCubit>(context).scrollDown(),
+              onFieldSubmitted: (dd) => BlocProvider.of<TextTransCubit>(context).scrollUp(),
+              textEditingController: BlocProvider.of<TextTransCubit>(context).infoCo,
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            const Add(
+              height: 70,
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                DropDownlangWidget(
+                  title: AppStrings.translateFrom,
+                  onSelected: (langSelected) {
+                    BlocProvider.of<TextTransCubit>(context).onSelectedLang(langSelected, AppStrings.translateFrom);
+                  },
+                ),
+                DropDownlangWidget(
+                  title: AppStrings.translateTo,
+                  onSelected: (langSelected) {
+                    BlocProvider.of<TextTransCubit>(context).onSelectedLang(langSelected, AppStrings.translateTo);
+                  },
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:business_tools/core/constant/app_strings.dart';
 import 'package:business_tools/features/text_translate/presentation/bloc/cubit/text_trans_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,8 +8,9 @@ class TextFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 3,
+    final size = MediaQuery.sizeOf(context);
+    return SizedBox(
+      height: size.height / 2,
       child: ClipRRect(
         borderRadius: const BorderRadius.vertical(bottom: Radius.circular(40)),
         child: SizedBox(
@@ -17,7 +19,7 @@ class TextFieldWidget extends StatelessWidget {
             maxLines: 200,
             decoration: InputDecoration(
                 filled: true,
-                hintText: "Paste Text Here",
+                hintText: AppStrings.pasteTextHere,
                 fillColor: Theme.of(context).colorScheme.surfaceContainerLow,
                 border: const UnderlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
                 enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),

@@ -4,6 +4,8 @@ import 'package:business_tools/features/extract/presentation/bloc/extract_bloc/e
 import 'package:business_tools/features/extract/presentation/bloc/save_data_bloc/save_data_bloc.dart';
 import 'package:business_tools/features/extract/presentation/pages/extract_page.dart';
 import 'package:business_tools/features/home/presentation/pages/home_page.dart';
+import 'package:business_tools/features/spell_checker/presentation/bloc/cubit/spell_checker_cubit.dart';
+import 'package:business_tools/features/spell_checker/presentation/pages/spell_checker_page.dart';
 import 'package:business_tools/features/text_translate/presentation/bloc/cubit/text_trans_cubit.dart';
 import 'package:business_tools/features/text_translate/presentation/pages/text_translate_page.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_download_bloc/vd_download_bloc.dart';
@@ -42,6 +44,7 @@ final goRouter = GoRouter(initialLocation: "/", routes: [
   GoRoute(
     path: AppRouteName.extract,
     builder: (context, state) => MultiBlocProvider(providers: [
+
       BlocProvider(create: (context) => id.sl<ExtractBloc>()),
       BlocProvider(create: (context) => id.sl<SaveDataBloc>()),
     ], child: const ExtractPage()),
@@ -60,6 +63,9 @@ final goRouter = GoRouter(initialLocation: "/", routes: [
       child: VdView(
         data: state.extra as Map,
       ),
+
+
+
     ),
   ),
   GoRoute(
@@ -67,6 +73,13 @@ final goRouter = GoRouter(initialLocation: "/", routes: [
     builder: (context, state) => BlocProvider(
       create: (context) => id.sl<TextTransCubit>(),
       child: const TextTranslatePage(),
+    ),
+  ) ,
+  GoRoute(
+    path: AppRouteName.spellCheckerPage,
+    builder: (context, state) => BlocProvider(
+      create: (context) => id.sl<SpellCheckerCubit>(),
+      child: const SpellCheckerPage(),
     ),
   )
 ]);

@@ -6,6 +6,12 @@ import 'package:business_tools/features/extract/domain/usecases/ex_numbers_uc.da
 import 'package:business_tools/features/extract/domain/usecases/save_data_uc.dart';
 import 'package:business_tools/features/extract/presentation/bloc/extract_bloc/extract_bloc.dart';
 import 'package:business_tools/features/extract/presentation/bloc/save_data_bloc/save_data_bloc.dart';
+import 'package:business_tools/features/spell_checker/data/datasources/spell_checker_remote_data.dart';
+import 'package:business_tools/features/spell_checker/data/repositories/spell_checker_repo_imp.dart';
+import 'package:business_tools/features/spell_checker/domain/repositories/spell_checker_repo.dart';
+import 'package:business_tools/features/spell_checker/domain/usecases/save_text_spelled.dart';
+import 'package:business_tools/features/spell_checker/domain/usecases/spell_text_checker_uc.dart';
+import 'package:business_tools/features/spell_checker/presentation/bloc/cubit/spell_checker_cubit.dart';
 import 'package:business_tools/features/text_translate/data/datasources/text_trans_remote_data_source.dart';
 import 'package:business_tools/features/text_translate/data/repositories/text_trans_repo_imp.dart';
 import 'package:business_tools/features/text_translate/domain/repositories/text_trans_repo.dart';
@@ -62,4 +68,14 @@ Future<void> init() async {
   sl.registerLazySingleton<TextTransRepo>(() => TextTransRepoImp(textTransRemoteDataSource: sl()));
 //?dataSource
   sl.registerLazySingleton<TextTransRemoteDataSource>(() => TextTransRemoteDataSourceImp());
+//!SpellChecker
+//?Bloc
+  sl.registerFactory(() => SpellCheckerCubit(saveTextSpelled: sl(), spellTextCheckerUc: sl()));
+//?UseCases
+  sl.registerLazySingleton(() => SaveTextSpelled(spellCheckerRepo: sl()));
+  sl.registerLazySingleton(() => SpellTextCheckerUc(spellCheckerRepo: sl()));
+//?repo
+  sl.registerLazySingleton<SpellCheckerRepo>(() => SpellCheckerRepoImp(spellCheckerRemoteData: sl()));
+//?dataSource
+  sl.registerLazySingleton<SpellCheckerRemoteData>(() => SpellCheckerRemoteDataImp());
 }

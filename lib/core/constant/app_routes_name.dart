@@ -4,4 +4,5 @@ class AppRouteName {
  static String vdView = '/vdView' ;
  static String videoTranslatorPage = '/VideoTranslatorPage' ;
  static String textTranslatorPage = '/textTranslatorPage' ;
+ static String spellCheckerPage = '/spellCheckerPage' ;
 }

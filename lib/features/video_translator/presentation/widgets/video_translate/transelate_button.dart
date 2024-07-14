@@ -25,7 +25,7 @@ class TranselateButton extends StatelessWidget {
         }
         if (state is ErrorVdTranslate) {
           // ignore: use_build_context_synchronously
-          CustomSnakBar.snackBarError(context, state.messageError, 5);
+          CustomSnakBar().snackBarError(context, state.messageError, 5);
           debugPrint(state.messageError.toString());
         }
       },

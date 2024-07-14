@@ -6,9 +6,10 @@ import 'package:business_tools/core/functions/premission_request.dart';
 import 'package:business_tools/core/public/widgets/dialog_permission.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-Future checkPermission(BuildContext context) async {
+Future<bool> checkPermission(BuildContext context) async {
   bool isGranted;
   final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
   AndroidDeviceInfo androidDeviceInfo = await deviceInfoPlugin.androidInfo;
@@ -19,7 +20,7 @@ Future checkPermission(BuildContext context) async {
   }
 
   if (isGranted) {
-    return;
+    return isGranted;
   }
   String permissionMessage = await messagePremissionHandel();
   showDialog(
@@ -30,8 +31,12 @@ Future checkPermission(BuildContext context) async {
         title: AppStrings.accessRequired,
         permissionMessage: permissionMessage,
         iconData: Icons.folder_rounded,
-        onPressed: () => requsetPremission(),
+        onPressed: () async {
+          context.pop();
+          await requsetPremission();
+        },
       );
     },
   );
+ return false ;
 }
