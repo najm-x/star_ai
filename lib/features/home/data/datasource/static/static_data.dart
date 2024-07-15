@@ -16,12 +16,10 @@ class StaticData {
         iconData: UIcons.regularRounded.magic_wand,
         route: AppRouteName.videoTranslatorPage),
     DrawerModel(
-        title: AppStrings.textTranslator,
-        iconData: Icons.translate_rounded,
-        route: AppRouteName.textTranslatorPage),
+        title: AppStrings.textTranslator, iconData: Icons.translate_rounded, route: AppRouteName.textTranslatorPage),
     DrawerModel(
-        title: AppStrings.spellChecker,
-        iconData: Icons.spellcheck_rounded,
-        route: AppRouteName.spellCheckerPage),
+        title: AppStrings.spellChecker, iconData: Icons.spellcheck_rounded, route: AppRouteName.spellCheckerPage),
+    DrawerModel(
+        title: AppStrings.textextract, iconData: Icons.image_search_rounded, route: AppRouteName.textExtractPage),
   ];
 }

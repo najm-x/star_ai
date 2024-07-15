@@ -1,3 +1,4 @@
+import 'package:business_tools/core/public/custom_snak_bar.dart';
 import 'package:business_tools/features/extract/data/datasources/loacal_data_source.dart';
 import 'package:business_tools/features/extract/data/repositories/extract_repo_imp.dart';
 import 'package:business_tools/features/extract/domain/repositories/extract_repo.dart';
@@ -6,12 +7,20 @@ import 'package:business_tools/features/extract/domain/usecases/ex_numbers_uc.da
 import 'package:business_tools/features/extract/domain/usecases/save_data_uc.dart';
 import 'package:business_tools/features/extract/presentation/bloc/extract_bloc/extract_bloc.dart';
 import 'package:business_tools/features/extract/presentation/bloc/save_data_bloc/save_data_bloc.dart';
+import 'package:business_tools/features/onboarding/presentation/bloc/cubit/onboarding_cubit.dart';
 import 'package:business_tools/features/spell_checker/data/datasources/spell_checker_remote_data.dart';
 import 'package:business_tools/features/spell_checker/data/repositories/spell_checker_repo_imp.dart';
 import 'package:business_tools/features/spell_checker/domain/repositories/spell_checker_repo.dart';
 import 'package:business_tools/features/spell_checker/domain/usecases/save_text_spelled.dart';
 import 'package:business_tools/features/spell_checker/domain/usecases/spell_text_checker_uc.dart';
 import 'package:business_tools/features/spell_checker/presentation/bloc/cubit/spell_checker_cubit.dart';
+import 'package:business_tools/features/text_extract/data/datasources/text_extract_remote_data.dart';
+import 'package:business_tools/features/text_extract/data/repositories/text_extract_repo_imp.dart';
+import 'package:business_tools/features/text_extract/domain/repositories/text_extract_repo.dart';
+import 'package:business_tools/features/text_extract/domain/usecases/crop_image_uc.dart';
+import 'package:business_tools/features/text_extract/domain/usecases/extract_text_uc.dart';
+import 'package:business_tools/features/text_extract/domain/usecases/pick_image_uc.dart';
+import 'package:business_tools/features/text_extract/presentation/bloc/bloc/text_extract_bloc.dart';
 import 'package:business_tools/features/text_translate/data/datasources/text_trans_remote_data_source.dart';
 import 'package:business_tools/features/text_translate/data/repositories/text_trans_repo_imp.dart';
 import 'package:business_tools/features/text_translate/domain/repositories/text_trans_repo.dart';
@@ -34,6 +43,7 @@ Future<void> init() async {
 //features
 
 //!extract
+ sl.registerLazySingleton(() => CustomSnakBar()) ;
 //?Bloc
   sl.registerFactory(() => ExtractBloc(exNumbersUc: sl(), exEmailsUc: sl(), saveDatasUc: sl()));
   sl.registerFactory(() => SaveDataBloc(saveDatasUc: sl()));
@@ -78,4 +88,18 @@ Future<void> init() async {
   sl.registerLazySingleton<SpellCheckerRepo>(() => SpellCheckerRepoImp(spellCheckerRemoteData: sl()));
 //?dataSource
   sl.registerLazySingleton<SpellCheckerRemoteData>(() => SpellCheckerRemoteDataImp());
+//!TextExtracr
+//?Bloc
+  sl.registerFactory(() => TextExtractBloc(cropImageUc: sl() , extractTextUc: sl() , pickImageUc: sl()));
+//?UseCases
+  sl.registerLazySingleton(() => CropImageUc(textExtractRepo: sl()));
+  sl.registerLazySingleton(() => ExtractTextUc(textExtractRepo: sl())); 
+  sl.registerLazySingleton(() => PickImageUc(textExtractRepo: sl())); 
+//?repo
+  sl.registerLazySingleton<TextExtractRepo>(() => TextExtractRepoImp(textExtractRemoteData: sl()));
+//?dataSource
+  sl.registerLazySingleton<TextExtractRemoteData>(() => TextExtractRemoteDataImp());
+  //!OnBoarding
+//?Bloc
+  sl.registerFactory(() => OnboardingCubit());
 }

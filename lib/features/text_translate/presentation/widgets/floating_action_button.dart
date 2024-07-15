@@ -1,6 +1,6 @@
 import 'package:business_tools/core/public/custom_snak_bar.dart';
 import 'package:business_tools/core/public/widgets/go_widget.dart';
-import 'package:business_tools/features/extract/presentation/widgets/loading.dart';
+import 'package:business_tools/core/public/widgets/loading.dart';
 import 'package:business_tools/features/text_translate/presentation/bloc/cubit/text_trans_cubit.dart';
 import 'package:business_tools/features/text_translate/presentation/widgets/text_trans_bottom_sheet.dart';
 import 'package:flutter/material.dart';

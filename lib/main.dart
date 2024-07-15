@@ -4,8 +4,12 @@ import 'package:business_tools/features/extract/presentation/bloc/extract_bloc/e
 import 'package:business_tools/features/extract/presentation/bloc/save_data_bloc/save_data_bloc.dart';
 import 'package:business_tools/features/extract/presentation/pages/extract_page.dart';
 import 'package:business_tools/features/home/presentation/pages/home_page.dart';
+import 'package:business_tools/features/onboarding/presentation/bloc/cubit/onboarding_cubit.dart';
+import 'package:business_tools/features/onboarding/presentation/pages/onboarding_page.dart';
 import 'package:business_tools/features/spell_checker/presentation/bloc/cubit/spell_checker_cubit.dart';
 import 'package:business_tools/features/spell_checker/presentation/pages/spell_checker_page.dart';
+import 'package:business_tools/features/text_extract/presentation/bloc/bloc/text_extract_bloc.dart';
+import 'package:business_tools/features/text_extract/presentation/pages/text_extract_page.dart';
 import 'package:business_tools/features/text_translate/presentation/bloc/cubit/text_trans_cubit.dart';
 import 'package:business_tools/features/text_translate/presentation/pages/text_translate_page.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_download_bloc/vd_download_bloc.dart';
@@ -29,10 +33,10 @@ void main() async {
   runApp(const MyApp());
 }
 
-final goRouter = GoRouter(initialLocation: "/", routes: [
+final goRouter = GoRouter(initialLocation: AppRouteName.onBoarding, routes: [
   GoRoute(
     path: '/',
-    builder: (context, state) => const HomePage(),
+    builder: (context, state) => HomePage(),
   ),
   GoRoute(
     path: AppRouteName.videoTranslatorPage,
@@ -44,7 +48,6 @@ final goRouter = GoRouter(initialLocation: "/", routes: [
   GoRoute(
     path: AppRouteName.extract,
     builder: (context, state) => MultiBlocProvider(providers: [
-
       BlocProvider(create: (context) => id.sl<ExtractBloc>()),
       BlocProvider(create: (context) => id.sl<SaveDataBloc>()),
     ], child: const ExtractPage()),
@@ -63,9 +66,6 @@ final goRouter = GoRouter(initialLocation: "/", routes: [
       child: VdView(
         data: state.extra as Map,
       ),
-
-
-
     ),
   ),
   GoRoute(
@@ -74,14 +74,28 @@ final goRouter = GoRouter(initialLocation: "/", routes: [
       create: (context) => id.sl<TextTransCubit>(),
       child: const TextTranslatePage(),
     ),
-  ) ,
+  ),
   GoRoute(
     path: AppRouteName.spellCheckerPage,
     builder: (context, state) => BlocProvider(
       create: (context) => id.sl<SpellCheckerCubit>(),
       child: const SpellCheckerPage(),
     ),
-  )
+  ),
+  GoRoute(
+    path: AppRouteName.textExtractPage,
+    builder: (context, state) => BlocProvider(
+      create: (context) => id.sl<TextExtractBloc>(),
+      child: const TextExtractPage(),
+    ),
+  ),
+  GoRoute(
+    path: AppRouteName.onBoarding,
+    builder: (context, state) => BlocProvider(
+      create: (context) => id.sl<OnboardingCubit>(),
+      child: const OnboardingPage(),
+    ),
+  ),
 ]);
 
 class MyApp extends StatelessWidget {
@@ -95,6 +109,7 @@ class MyApp extends StatelessWidget {
       routeInformationParser: goRouter.routeInformationParser,
       title: 'Flutter Demo',
       theme: ThemeData(
+        fontFamily: "Cairo",
         colorScheme: ColorScheme.fromSeed(
           seedColor: AppColors.primary,
         ),

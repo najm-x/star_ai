@@ -1,8 +1,8 @@
 import 'package:business_tools/core/public/widgets/go_widget.dart';
+import 'package:business_tools/core/public/widgets/loading.dart';
 import 'package:business_tools/features/extract/presentation/bloc/extract_bloc/extract_bloc.dart';
 import 'package:business_tools/features/extract/presentation/bloc/save_data_bloc/save_data_bloc.dart';
 import 'package:business_tools/features/extract/presentation/widgets/dialog_widget.dart';
-import 'package:business_tools/features/extract/presentation/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

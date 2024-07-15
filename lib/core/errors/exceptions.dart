@@ -13,4 +13,8 @@ class PermissionException implements Exception {}
 class CreateFileException implements Exception {}
 
 class CopyException implements Exception {}
+
 class AIException implements Exception {}
+
+class CropImageException implements Exception {}
+class EmptyCropImageException implements Exception {}
