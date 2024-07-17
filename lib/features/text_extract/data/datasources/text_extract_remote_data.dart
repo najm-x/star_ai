@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:business_tools/core/errors/exceptions.dart';
+import 'package:business_tools/core/functions/handel_api_key.dart';
 import 'package:business_tools/features/text_extract/data/datasources/static_data_text_extract.dart';
 import 'package:business_tools/features/text_extract/data/models/text_extract_model.dart';
 import 'package:dartz/dartz.dart';
@@ -21,7 +22,7 @@ class TextExtractRemoteDataImp extends TextExtractRemoteData {
     try {
       final model = GenerativeModel(
           model: 'gemini-1.5-flash',
-          apiKey: "AIzaSyA_4XW31z90lGuOtueo3919IFdEpHMxQWI",
+          apiKey: await handelApiKey(),
           generationConfig: GenerationConfig(),
           systemInstruction: Content.system(StaticDataTextExtract.prompt));
       final image = await File(path).readAsBytes();

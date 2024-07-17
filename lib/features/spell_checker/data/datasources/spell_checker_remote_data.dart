@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:business_tools/core/errors/exceptions.dart';
+import 'package:business_tools/core/functions/handel_api_key.dart';
 import 'package:business_tools/features/spell_checker/data/datasources/static_data_spell_checker.dart';
 import 'package:business_tools/features/spell_checker/data/models/spell_checker_model.dart';
 import 'package:dartz/dartz.dart';
@@ -36,7 +37,7 @@ class SpellCheckerRemoteDataImp extends SpellCheckerRemoteData {
     try {
       final model = GenerativeModel(
           model: "gemini-1.5-flash-latest",
-          apiKey: "AIzaSyA_4XW31z90lGuOtueo3919IFdEpHMxQWI",
+          apiKey: await handelApiKey(),
           systemInstruction: Content.system(StaticDataSpellChecker.prompt));
       final response = await model.generateContent([
         Content.text("""

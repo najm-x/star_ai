@@ -1,5 +1,11 @@
 import 'package:business_tools/core/constant/app_colors.dart';
 import 'package:business_tools/core/constant/app_routes_name.dart';
+import 'package:business_tools/core/constant/shared_key.dart';
+import 'package:business_tools/features/check/presentation/bloc/add_api_key/add_api_key_cubit.dart';
+import 'package:business_tools/features/check/presentation/bloc/check/check_cubit.dart';
+import 'package:business_tools/features/check/presentation/pages/add_api_key_page.dart';
+import 'package:business_tools/features/check/presentation/pages/check_page.dart';
+import 'package:business_tools/features/check/presentation/pages/no_internet_page.dart';
 import 'package:business_tools/features/extract/presentation/bloc/extract_bloc/extract_bloc.dart';
 import 'package:business_tools/features/extract/presentation/bloc/save_data_bloc/save_data_bloc.dart';
 import 'package:business_tools/features/extract/presentation/pages/extract_page.dart';
@@ -22,22 +28,29 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:upgrader/upgrader.dart';
 import 'core/services/app_services.dart' as id;
 
 void main() async {
-  await id.init();
   WidgetsFlutterBinding.ensureInitialized();
+  await id.init();
+  Upgrader.clearSavedSettings();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const MyApp());
 }
 
-final goRouter = GoRouter(initialLocation: AppRouteName.onBoarding, routes: [
+final goRouter = GoRouter(initialLocation: '/', routes: [
   GoRoute(
     path: '/',
-    builder: (context, state) => HomePage(),
+    builder: (context, state) => BlocProvider(
+      create: (context) => id.sl<CheckCubit>()..check(),
+      child: const CheckPage(),
+    ),
   ),
+  GoRoute(path: AppRouteName.home, builder: (context, state) => const HomePage()),
   GoRoute(
     path: AppRouteName.videoTranslatorPage,
     builder: (context, state) => BlocProvider(
@@ -90,10 +103,27 @@ final goRouter = GoRouter(initialLocation: AppRouteName.onBoarding, routes: [
     ),
   ),
   GoRoute(
+    path: AppRouteName.noInternetPageg,
+    builder: (context, state) => const NoInternetPage(),
+  ),
+  GoRoute(
     path: AppRouteName.onBoarding,
     builder: (context, state) => BlocProvider(
       create: (context) => id.sl<OnboardingCubit>(),
       child: const OnboardingPage(),
+    ),
+    redirect: (context, state) async {
+      if (id.sl<SharedPreferences>().getBool(SharedKey.onBoardingStatus) != null) {
+        return AppRouteName.home;
+      }
+      return null;
+    },
+  ),
+  GoRoute(
+    path: AppRouteName.addApiKeyPage,
+    builder: (context, state) => BlocProvider(
+      create: (context) => AddApiKeyCubit(),
+      child: const AddApiKeyPage(),
     ),
   ),
 ]);
@@ -108,6 +138,20 @@ class MyApp extends StatelessWidget {
       routeInformationProvider: goRouter.routeInformationProvider,
       routeInformationParser: goRouter.routeInformationParser,
       title: 'Flutter Demo',
+      builder: (context, child) {
+        return UpgradeAlert(
+          navigatorKey: goRouter.routerDelegate.navigatorKey,
+          upgrader: Upgrader(
+              minAppVersion: "1.0.0",
+              debugLogging: true,
+              
+              durationUntilAlertAgain: Duration(seconds: 3),
+              storeController: UpgraderStoreController(
+                  onAndroid: () =>
+                      UpgraderAppcastStore(appcastURL: "https://najm-flutter.github.io/Todo-flutter/new.xml"))),
+          child: child,
+        );
+      },
       theme: ThemeData(
         fontFamily: "Cairo",
         colorScheme: ColorScheme.fromSeed(

@@ -1,5 +1,5 @@
 class AppRouteName {
-  static String home = '/';
+  static String home = '/home';
   static String extract = '/extract';
   static String vdView = '/vdView';
   static String videoTranslatorPage = '/VideoTranslatorPage';
@@ -7,4 +7,6 @@ class AppRouteName {
   static String spellCheckerPage = '/spellCheckerPage';
   static String textExtractPage = '/textExtractPage';
   static String onBoarding = '/onBoarding';
+  static String noInternetPageg = '/noInternetPage';
+  static String addApiKeyPage = '/addApiKeyPage';
 }

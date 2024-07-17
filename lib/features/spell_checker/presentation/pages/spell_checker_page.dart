@@ -12,12 +12,12 @@ class SpellCheckerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      floatingActionButton: _floatingActionButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      appBar: _appBar(),
-      body: _buildWidget(context),
-    );
+    resizeToAvoidBottomInset: false,
+    floatingActionButton: _floatingActionButton(),
+    floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    appBar: _appBar(),
+    body: _buildWidget(context),
+        );
   }
 
   Widget _buildWidget(BuildContext context) {

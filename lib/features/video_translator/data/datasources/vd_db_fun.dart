@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:business_tools/core/functions/handel_api_key.dart';
 import 'package:business_tools/features/video_translator/data/datasources/static_data_vd_trans.dart';
 import 'package:business_tools/features/video_translator/data/models/vd_translate_model.dart';
 import 'package:flutter/material.dart';
@@ -30,13 +31,19 @@ abstract class VdDbFunHelpings {
 }
 
 class VdDbFunHelping {
+  VdDbFunHelping() {
+    initModel();
+  }
   static var translationProgressCo = StreamController<double>();
   static const int itemsSelectedBySend = 50;
-  final model = GenerativeModel(
-      systemInstruction: Content.text(StaticDataVdTrans.fghfgh),
-      model: 'gemini-1.5-flash',
-      apiKey: "AIzaSyA_4XW31z90lGuOtueo3919IFdEpHMxQWI",
-      generationConfig: GenerationConfig());
+  late GenerativeModel model;
+  void initModel() async {
+    model = GenerativeModel(
+        systemInstruction: Content.text(StaticDataVdTrans.fghfgh),
+        model: 'gemini-1.5-flash',
+        apiKey: await handelApiKey(),
+        generationConfig: GenerationConfig());
+  }
 
   // [transCriptVd] for get the subTitles From Video By id
   Future<List<VdTranslateModel>> transCriptVd(String videoId, String translateFromCode) async {
@@ -118,12 +125,14 @@ class VdDbFunHelping {
     // second add to text list items from 400 --479 and send this to ai and add to totala response
     // return the total respnse ;
     List totalRespnse = []; //? fot create list Start by <[> and end by <]>
-    for (var index= 0; index < lingths.length; index++) {
+    for (var index = 0; index < lingths.length; index++) {
       translationProgress(index, lingths.length);
       // ? if the totlal length is 479 the start is 0 -- itemsSelectedBySend -- 200 -- itemsSelectedBySend0 -- 400
       int startFrom = (index == 0 ? 0 : lingths[index - 1]);
       int endto = (lingths.length - 1 == index /*on last value*/
-          ? (lingths[index] % itemsSelectedBySend != 0 ? lingths[index] + lingths[index - 1] /*get totlal like 400 + 79 = 497 the */: lingths[index])
+          ? (lingths[index] % itemsSelectedBySend != 0
+              ? lingths[index] + lingths[index - 1] /*get totlal like 400 + 79 = 497 the */
+              : lingths[index])
           : lingths[
               index]); // ? if the totlal length is 479 the end is itemsSelectedBySend -- 200 -- itemsSelectedBySend0 -- 400 -- 497
       print("$startFrom -- $endto");
@@ -188,7 +197,6 @@ class VdDbFunHelping {
     }
     return responseFixed.isEmpty ? responeToList : responseFixed;
   }
-
 
   String prompt(
       int count, String translateFrom, String translateTo, String videoInfo, String listToString, String more) {

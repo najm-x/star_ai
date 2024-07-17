@@ -1,4 +1,5 @@
 import 'package:business_tools/core/public/custom_snak_bar.dart';
+import 'package:business_tools/features/check/presentation/bloc/check/check_cubit.dart';
 import 'package:business_tools/features/extract/data/datasources/loacal_data_source.dart';
 import 'package:business_tools/features/extract/data/repositories/extract_repo_imp.dart';
 import 'package:business_tools/features/extract/domain/repositories/extract_repo.dart';
@@ -37,13 +38,15 @@ import 'package:business_tools/features/video_translator/presentation/bloc/vd_do
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_translate_bloc/vd_translate_bloc.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_view_cubit/vd_view_cubit.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 GetIt sl = GetIt.instance;
 Future<void> init() async {
 //features
-
+SharedPreferences sharedPreferences = await SharedPreferences.getInstance() ;
+  sl.registerLazySingleton(() => CustomSnakBar());
+  sl.registerLazySingleton(() => sharedPreferences);
 //!extract
- sl.registerLazySingleton(() => CustomSnakBar()) ;
 //?Bloc
   sl.registerFactory(() => ExtractBloc(exNumbersUc: sl(), exEmailsUc: sl(), saveDatasUc: sl()));
   sl.registerFactory(() => SaveDataBloc(saveDatasUc: sl()));
@@ -90,11 +93,11 @@ Future<void> init() async {
   sl.registerLazySingleton<SpellCheckerRemoteData>(() => SpellCheckerRemoteDataImp());
 //!TextExtracr
 //?Bloc
-  sl.registerFactory(() => TextExtractBloc(cropImageUc: sl() , extractTextUc: sl() , pickImageUc: sl()));
+  sl.registerFactory(() => TextExtractBloc(cropImageUc: sl(), extractTextUc: sl(), pickImageUc: sl()));
 //?UseCases
   sl.registerLazySingleton(() => CropImageUc(textExtractRepo: sl()));
-  sl.registerLazySingleton(() => ExtractTextUc(textExtractRepo: sl())); 
-  sl.registerLazySingleton(() => PickImageUc(textExtractRepo: sl())); 
+  sl.registerLazySingleton(() => ExtractTextUc(textExtractRepo: sl()));
+  sl.registerLazySingleton(() => PickImageUc(textExtractRepo: sl()));
 //?repo
   sl.registerLazySingleton<TextExtractRepo>(() => TextExtractRepoImp(textExtractRemoteData: sl()));
 //?dataSource
@@ -102,4 +105,7 @@ Future<void> init() async {
   //!OnBoarding
 //?Bloc
   sl.registerFactory(() => OnboardingCubit());
+  //!Check
+//?Bloc
+  sl.registerFactory(() => CheckCubit());
 }

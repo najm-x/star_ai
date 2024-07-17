@@ -6,4 +6,5 @@ class AppImages {
   static String textExtract = "$imageRoute/text_extract.png";
   static String spellchecker = "$imageRoute/spell_checker.png";
   static String logo = "$imageRoute/logo.png";
+  static String gif = "$imageRoute/gif.gif";
 }

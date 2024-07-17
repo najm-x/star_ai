@@ -1,4 +1,6 @@
 import 'package:business_tools/core/constant/app_routes_name.dart';
+import 'package:business_tools/core/constant/shared_key.dart';
+import 'package:business_tools/core/services/app_services.dart';
 import 'package:business_tools/features/onboarding/data/datasources/satatic_data_onboarding.dart';
 import 'package:business_tools/features/onboarding/data/models/on_boarding_model.dart';
 import 'package:business_tools/features/onboarding/presentation/bloc/cubit/onboarding_cubit.dart';
@@ -7,6 +9,7 @@ import 'package:business_tools/features/onboarding/presentation/widgets/page_ind
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
@@ -17,8 +20,9 @@ class OnboardingPage extends StatelessWidget {
 
   Widget _buildBody(BuildContext context) {
     return BlocListener<OnboardingCubit, OnboardingState>(
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state.status == OnboardingStatus.finsh) {
+          sl<SharedPreferences>().setBool(SharedKey.onBoardingStatus, true);
           context.pushReplacement(AppRouteName.home);
         }
       },

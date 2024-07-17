@@ -1,17 +1,17 @@
 class AppStrings {
-  static String businessTools = 'BUSINESS TOOLS';
-  static String home = "home";
-  static String extract = "extract";
-  static String videoTranslator = "video translator";
-  static String textTranslator = "text translator";
-  static String spellChecker = "Spell checker";
-  static String textextract = "Text extract";
-  static String mailSender = "mail sender";
-  static String smsSender = "sms sender";
-  static String descreption =
+  static const String businessTools = 'BUSINESS TOOLS';
+  static const String home = "home";
+  static const String extract = "extract";
+  static const String videoTranslator = "video translator";
+  static const String textTranslator = "text translator";
+  static const String spellChecker = "Spell checker";
+  static const String textextract = "Text extract";
+  static const String mailSender = "mail sender";
+  static const String smsSender = "sms sender";
+  static const String descreption =
       "To Business toll the best toll for help you in your business Click on Drawer Icon and shoes any tool ";
   //Failure
-  static String doneSaveFile = "Done Saving File in this directory";
+  static const String doneSaveFile = "Done Saving File in this directory";
   static const String genericError = "An unexpected error has occurred.";
   static const String unknownError = "Unknown error.";
   static const String emptyFilePath = "Please select a valid file path.";
@@ -40,20 +40,20 @@ class AppStrings {
       "Business Tools requires \"all file access\" permission to create and store files in the specified path on your device due to changes in the security policy in Android 11 and later versions.";
   static const String permissionRequires =
       "Business Tools requires \"Storage\" permission to create and store files in the specified path on your device";
-  static String ok = "ok";
-  static String cancel = "cancel";
-  static String accessRequired = "Access required";
-  static String gO = "GO";
-  static String doneCopy = "Done Copy";
-  static String editeDirection = "Edite text direction";
-  static String save = "save";
-  static String doneTranslate = "Done Translate";
-  static String doneSaveTrans = "Done save Translate";
-  static String entertext = "Enter text, select From and To languages to translate";
-  static String pasteTextHere = "Paste Text Here";
-  static String infoText = "mroe info about this text";
-  static String info = "info";
-  static String uploadImage = "Upload Image";
+  static const String ok = "ok";
+  static const String cancel = "cancel";
+  static const String accessRequired = "Access required";
+  static const String gO = "GO";
+  static const String doneCopy = "Done Copy";
+  static const String editeDirection = "Edite text direction";
+  static const String save = "save";
+  static const String doneTranslate = "Done Translate";
+  static const String doneSaveTrans = "Done save Translate";
+  static const String entertext = "Enter text, select From and To languages to translate";
+  static const String pasteTextHere = "Paste Text Here";
+  static const String infoText = "mroe info about this text";
+  static const String info = "info";
+  static const String uploadImage = "Upload Image";
   ///
    static const String titleWelcomOnBoarding = "Welcome to [STAR AI]!" ;
    static const String desWelcomOnBoarding = "Discover how our smart tools can help you accomplish your tasks easily and efficiently." ;
@@ -65,11 +65,14 @@ class AppStrings {
    static const String desSpellChecking = " Leverage the power of AI to effortlessly ensure your text is free from spelling mistakes." ;
    static const String titleTextExtract= "Text Extraction from Images" ;
    static const String desTextExtract = " Accurately extract text from images for quick editing and manipulation." ;
-
+  ///
+  
+  static const String noInternet = "No Internet Connected";
+  static const String tryAgain = "Try again";
 
   ///
-  static String csv = "cvg";
-  static String json = "json";
-  static String text = "txt";
-  static String markDown = "markDown";
+  static const String csv = "cvg";
+  static const String json = "json";
+  static const String text = "txt";
+  static const String markDown = "markDown";
 }

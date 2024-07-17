@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:math';
 import 'package:business_tools/core/errors/exceptions.dart';
+import 'package:business_tools/core/functions/handel_api_key.dart';
 import 'package:business_tools/features/text_translate/data/datasources/static_data_text_trans.dart';
 import 'package:business_tools/features/text_translate/data/models/text_trans_model.dart';
 import 'package:dartz/dartz.dart';
@@ -35,7 +36,7 @@ class TextTransRemoteDataSourceImp extends TextTransRemoteDataSource {
     try {
       final model = GenerativeModel(
           model: "gemini-1.5-flash-latest",
-          apiKey: "AIzaSyA_4XW31z90lGuOtueo3919IFdEpHMxQWI",
+          apiKey: await handelApiKey(),
           systemInstruction: Content.system(StaticDataTextTrans.prompt));
       final response = await model.generateContent([
         Content.text("""

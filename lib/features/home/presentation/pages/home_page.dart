@@ -6,6 +6,7 @@ import 'package:business_tools/features/home/presentation/widgets/drawer_widget.
 import 'package:business_tools/features/home/presentation/widgets/lange_widget.dart';
 import 'package:business_tools/features/home/presentation/widgets/welcome_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:upgrader/upgrader.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -13,11 +14,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primaryContainer,
-      appBar: _appBar(),
-      drawer: _drawer(),
-      body: _buildWidget(context),
-    );
+        backgroundColor: AppColors.primaryContainer,
+        appBar: _appBar(),
+        drawer: _drawer(),
+        body: _buildWidget(context),
+      ) ;
   }
 
   Widget _buildWidget(BuildContext context) {
