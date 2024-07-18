@@ -10,17 +10,36 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:showcaseview/showcaseview.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  BuildContext? mycontext;
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Durations.extralong1 , () {
+      BlocProvider.of<HomeCubit>(context).showCaseInit(mycontext!) ;
+    },) ;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: BlocProvider.of<HomeCubit>(context).scaffols,
-      backgroundColor: AppColors.primaryContainer,
-      appBar: _appBar(context),
-      drawer: _drawer(),
-      body: _buildWidget(context),
+    return ShowCaseWidget(
+      builder: (context) {
+        mycontext = context ;
+        return Scaffold(
+          key: BlocProvider.of<HomeCubit>(context).scaffols,
+          backgroundColor: AppColors.primaryContainer,
+          appBar: _appBar(context),
+          drawer: _drawer(),
+          body: _buildWidget(context),
+        );
+      },
     );
   }
 
@@ -52,7 +71,7 @@ class HomePage extends StatelessWidget {
       title: Text(AppLocalizations.of(context)!.businessTools),
       leading: Showcase(
           key: BlocProvider.of<HomeCubit>(context).one,
-          description: "اختر الأدواة التي تريدها من هنا ",
+          description: AppLocalizations.of(context)!.businessTools,
           child: IconButton(
               onPressed: () {
                 BlocProvider.of<HomeCubit>(context).scaffols.currentState!.openDrawer();

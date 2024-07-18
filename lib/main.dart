@@ -1,8 +1,6 @@
 import 'package:business_tools/core/app_routes.dart';
 import 'package:business_tools/core/constant/app_colors.dart';
 import 'package:business_tools/core/functions/handel_supported_locales.dart';
-import 'package:business_tools/firebase_options.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:upgrader/upgrader.dart';
 import 'core/services/app_services.dart' as id;
@@ -12,9 +10,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await id.init();
   Upgrader.clearSavedSettings();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
   runApp(const MyApp());
 }
 

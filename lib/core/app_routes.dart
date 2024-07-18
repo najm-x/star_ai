@@ -39,7 +39,7 @@ final goRouter = GoRouter(initialLocation: '/', routes: [
   GoRoute(
       path: AppRouteName.home,
       builder: (context, state) => BlocProvider(
-            create: (context) => id.sl<HomeCubit>()..showCaseInit(context),
+            create: (context) => id.sl<HomeCubit>(),
             child: const HomePage(),
           )),
   GoRoute(

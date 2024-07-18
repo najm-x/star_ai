@@ -4,11 +4,14 @@ import 'package:intl/intl.dart';
 
 Locale handelSupportedLocales() {
   Locale? locale;
+   print(AppLocalizations.supportedLocales) ;
+       print(Intl.systemLocale) ;
   for (var locales in AppLocalizations.supportedLocales) {
-    if (locales.languageCode == Intl.systemLocale) {
+    if ( Intl.systemLocale.contains(locales.languageCode)) {
+      
       locale = Locale(Intl.systemLocale);
       break;
     }
   }
-  return locale ?? Locale(Intl.defaultLocale!);
+  return locale ?? Locale("en");
 }

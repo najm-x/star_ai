@@ -15,7 +15,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   showCaseInit(BuildContext context) {
     if (sl<SharedPreferences>().getBool(SharedKey.isShowed) == null) {
-      // sl<SharedPreferences>().setBool(SharedKey.isShowed, true);
+      sl<SharedPreferences>().setBool(SharedKey.isShowed, true);
       WidgetsBinding.instance.addPostFrameCallback(
         (_) => Future.delayed(const Duration(milliseconds: 200), () {
           ShowCaseWidget.of(context).startShowCase([one]);

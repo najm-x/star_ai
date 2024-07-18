@@ -299,5 +299,9 @@
     "tools":  "Tools",
     "@tools": {
         "description": "Tools in the Drawer"
+    } ,
+    "showStart":  "اختر الأدواة التي تريدها من هنا ",
+    "@showStart": {
+        "description": "Show message on app start"
     }
 }

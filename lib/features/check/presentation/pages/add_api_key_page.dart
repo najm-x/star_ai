@@ -12,19 +12,19 @@ class AddApiKeyPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body:  Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
             InfoWidget(text: AppLocalizations.of(context)!.unableToConnect),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Text(
               AppLocalizations.of(context)!.enterApiKey,
               textAlign: TextAlign.center,
             ),
-            Expanded(child: StepWidget())
+            const Expanded(child:  StepWidget())
           ],
         ),
       ),
