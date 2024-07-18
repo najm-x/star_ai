@@ -68,10 +68,10 @@ class _HomePageState extends State<HomePage> {
     return AppBar(
       backgroundColor: Colors.transparent,
       centerTitle: true,
-      title: Text(AppLocalizations.of(context)!.businessTools),
+      title: Text(AppLocalizations.of(context)!.appName),
       leading: Showcase(
           key: BlocProvider.of<HomeCubit>(context).one,
-          description: AppLocalizations.of(context)!.businessTools,
+          description: AppLocalizations.of(context)!.showStart,
           child: IconButton(
               onPressed: () {
                 BlocProvider.of<HomeCubit>(context).scaffols.currentState!.openDrawer();

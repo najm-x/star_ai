@@ -1,8 +1,8 @@
 {
     "@@locale": "en",
-    "businessTools": "START AI",
+    "appName": "STAR AI",
     "@businessTools": {
-        "description": "The name of the business tools app"
+        "description": "The name of the Star Ai  app"
     },
     "home": "home",
     "@home": {
@@ -38,7 +38,7 @@
     },
     "descreption": "Welcome to STAR AI! \nWe offer a suite of free AI tools to help you in your everyday life. \nChoose the tool that suits your needs by clicking on the menu icon at the top. \nEnjoy the STAR AI experience!",
     "@descreption": {
-        "description": "The description of the business tools app"
+        "description": "The description of the Star Ai  app"
     },
     "doneSaveFile": "Done Saving File in this directory",
     "@doneSaveFile": {
@@ -128,11 +128,11 @@
     "@subtitleDelay": {
         "description": "The label for the subtitle delay setting"
     },
-    "permissionRequiresA11": "Business Tools requires \"all file access\" permission to create and store files in the specified path on your device due to changes in the security policy in Android 11 and later versions.",
+    "permissionRequiresA11": "Star Ai  requires \"all file access\" permission to create , explore and store files in the specified path on your device due to changes in the security policy in Android 11 and later versions.",
     "@permissionRequiresA11": {
         "description": "The message displayed when asking for permissions on Android 11+"
     },
-    "permissionRequires": "Business Tools requires \"Storage\" permission to create and store files in the specified path on your device",
+    "permissionRequires": "Star Ai  requires \"Storage\" permission to create , explore and store files in the specified path on your device",
     "@permissionRequires": {
         "description": "The message displayed when asking for permissions"
     },
@@ -287,21 +287,25 @@
     "chooseImage": "Please choose an image",
     "@chooseImage": {
         "description": "Please choose an image"
-    } ,
+    },
     "enterTheApiKey": "enter the api key ",
     "@enterTheApiKey": {
         "description": "enter the api key"
     },
-    "apikeyDontWork":  "api key dont work try agian",
+    "apikeyDontWork": "api key dont work try agian",
     "@apikeyDontWork": {
         "description": "api key dont work try agian"
-    } ,
-    "tools":  "Tools",
+    },
+    "tools": "Tools",
     "@tools": {
         "description": "Tools in the Drawer"
-    } ,
-    "showStart":  "اختر الأدواة التي تريدها من هنا ",
+    },
+    "showStart": "Choose the tools from here ",
     "@showStart": {
         "description": "Show message on app start"
+    },
+    "lang": "Language",
+    "@lang": {
+        "description": "Language"
     }
 }

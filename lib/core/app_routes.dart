@@ -10,6 +10,7 @@ import 'package:business_tools/features/extract/presentation/bloc/save_data_bloc
 import 'package:business_tools/features/extract/presentation/pages/extract_page.dart';
 import 'package:business_tools/features/home/presentation/bloc/cubit/home_cubit.dart';
 import 'package:business_tools/features/home/presentation/pages/home_page.dart';
+import 'package:business_tools/features/language/presentation/pages/language_page.dart';
 import 'package:business_tools/features/onboarding/presentation/bloc/cubit/onboarding_cubit.dart';
 import 'package:business_tools/features/onboarding/presentation/pages/onboarding_page.dart';
 import 'package:business_tools/features/spell_checker/presentation/bloc/cubit/spell_checker_cubit.dart';
@@ -116,5 +117,9 @@ final goRouter = GoRouter(initialLocation: '/', routes: [
       create: (context) => AddApiKeyCubit(),
       child: const AddApiKeyPage(),
     ),
+  ),
+  GoRoute(
+    path: AppRouteName.languagePage,
+    builder: (context, state) => const LanguagePage(),
   ),
 ]);

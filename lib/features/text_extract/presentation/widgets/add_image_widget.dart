@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:business_tools/core/functions/check_permission.dart';
 import 'package:business_tools/core/public/custom_snak_bar.dart';
 import 'package:business_tools/core/services/app_services.dart';
 import 'package:business_tools/features/text_extract/presentation/bloc/bloc/text_extract_bloc.dart';
@@ -36,7 +37,12 @@ class AddImageWidget extends StatelessWidget {
               ? SingleChildScrollView(child: Image.file(File(context.read<TextExtractBloc>().path)))
               : Center(
                   child: TextButton.icon(
-                  onPressed: () => context.read<TextExtractBloc>().add(const PickImagEvent()),
+                  onPressed: () async{
+                     if (await checkPermission(context)) {
+                       // ignore: use_build_context_synchronously
+                       context.read<TextExtractBloc>().add(const PickImagEvent()) ;
+                     }
+                  },
                   label: Text("\n${AppLocalizations.of(context)!.uploadImage}\n"),
                   icon: const Icon(Icons.upload),
                 ));

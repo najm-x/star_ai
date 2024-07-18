@@ -1,4 +1,5 @@
 import 'package:business_tools/core/constant/app_colors.dart';
+import 'package:business_tools/core/functions/check_permission.dart';
 import 'package:business_tools/features/extract/domain/entities/emails_numbera_entite.dart';
 import 'package:business_tools/features/extract/presentation/bloc/save_data_bloc/save_data_bloc.dart';
 import 'package:business_tools/features/extract/presentation/widgets/dialog_widget/file_types.dart';
@@ -29,7 +30,12 @@ class DialogWidget extends StatelessWidget {
               listener: (context, state) {
               },
               child: InkWell(
-                  onTap: () => BlocProvider.of<SaveDataBloc>(context).add(SaveDataEvent(data: data, type: type)),
+                  onTap: () async{
+                      if (await checkPermission(context)) {
+                        // ignore: use_build_context_synchronously
+                        BlocProvider.of<SaveDataBloc>(context).add(SaveDataEvent(data: data, type: type));
+                      }
+                  } ,
                   child: _export()),
             )
           ],

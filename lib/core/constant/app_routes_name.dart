@@ -9,4 +9,5 @@ class AppRouteName {
   static String onBoarding = '/onBoarding';
   static String noInternetPageg = '/noInternetPage';
   static String addApiKeyPage = '/addApiKeyPage';
+  static String languagePage = '/languagePage';
 }

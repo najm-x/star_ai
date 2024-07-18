@@ -8,7 +8,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class StaticData {
   static BuildContext context = goRouter.routerDelegate.navigatorKey.currentContext!;
 
-  static List<DrawerModel> drawerData = [
+   List<DrawerModel> drawerData = [
     DrawerModel(
       title: AppLocalizations.of(context)!.home,
       iconData: UIcons.regularRounded.home,

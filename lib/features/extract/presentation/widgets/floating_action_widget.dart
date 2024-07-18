@@ -19,9 +19,9 @@ class FloatingActionWidget extends StatelessWidget {
             context: context,
             builder: (bottomSheetContext) {
               return BlocProvider.value(
-                value: context.read<SaveDataBloc>(),
+                value: BlocProvider.of<SaveDataBloc>(context),
                 child: BlocProvider.value(
-                  value: context.read<ExtractBloc>(),
+                  value: BlocProvider.of<ExtractBloc>(context),
                   child: DialogWidget(
                     type: context.read<ExtractBloc>().typeFileSelexted,
                     data: state.data,
