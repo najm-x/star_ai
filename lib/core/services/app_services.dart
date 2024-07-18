@@ -8,6 +8,7 @@ import 'package:business_tools/features/extract/domain/usecases/ex_numbers_uc.da
 import 'package:business_tools/features/extract/domain/usecases/save_data_uc.dart';
 import 'package:business_tools/features/extract/presentation/bloc/extract_bloc/extract_bloc.dart';
 import 'package:business_tools/features/extract/presentation/bloc/save_data_bloc/save_data_bloc.dart';
+import 'package:business_tools/features/home/presentation/bloc/cubit/home_cubit.dart';
 import 'package:business_tools/features/onboarding/presentation/bloc/cubit/onboarding_cubit.dart';
 import 'package:business_tools/features/spell_checker/data/datasources/spell_checker_remote_data.dart';
 import 'package:business_tools/features/spell_checker/data/repositories/spell_checker_repo_imp.dart';
@@ -49,6 +50,9 @@ Future<void> init() async {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   sl.registerLazySingleton(() => navigatorKey);
   sl.registerLazySingleton(() => sharedPreferences);
+  //!extract
+//?Bloc
+  sl.registerFactory(() => HomeCubit());
 //!extract
 //?Bloc
   sl.registerFactory(() => ExtractBloc(exNumbersUc: sl(), exEmailsUc: sl(), saveDatasUc: sl()));

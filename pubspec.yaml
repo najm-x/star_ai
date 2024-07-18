@@ -64,6 +64,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any
+  rename: ^3.0.2
+  showcaseview: ^3.0.0
 
 
 dependency_overrides:

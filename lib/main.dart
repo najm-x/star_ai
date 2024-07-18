@@ -1,5 +1,6 @@
 import 'package:business_tools/core/app_routes.dart';
 import 'package:business_tools/core/constant/app_colors.dart';
+import 'package:business_tools/core/functions/handel_supported_locales.dart';
 import 'package:business_tools/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -17,19 +18,15 @@ void main() async {
   runApp(const MyApp());
 }
 
-
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    
     return MaterialApp.router(
-      
-      localizationsDelegates:  AppLocalizations.localizationsDelegates,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      locale: Locale("ar"),
+      locale: handelSupportedLocales(),
       routerDelegate: goRouter.routerDelegate,
       routeInformationProvider: goRouter.routeInformationProvider,
       routeInformationParser: goRouter.routeInformationParser,
@@ -49,10 +46,7 @@ class MyApp extends StatelessWidget {
       },
       theme: ThemeData(
         fontFamily: "Cairo",
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: AppColors.primary,
-          primary: AppColors.primary
-        ),
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary, primary: AppColors.primary),
         useMaterial3: true,
       ),
     );

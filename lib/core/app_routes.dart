@@ -8,6 +8,7 @@ import 'package:business_tools/features/check/presentation/pages/no_internet_pag
 import 'package:business_tools/features/extract/presentation/bloc/extract_bloc/extract_bloc.dart';
 import 'package:business_tools/features/extract/presentation/bloc/save_data_bloc/save_data_bloc.dart';
 import 'package:business_tools/features/extract/presentation/pages/extract_page.dart';
+import 'package:business_tools/features/home/presentation/bloc/cubit/home_cubit.dart';
 import 'package:business_tools/features/home/presentation/pages/home_page.dart';
 import 'package:business_tools/features/onboarding/presentation/bloc/cubit/onboarding_cubit.dart';
 import 'package:business_tools/features/onboarding/presentation/pages/onboarding_page.dart';
@@ -27,7 +28,6 @@ import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:business_tools/core/services/app_services.dart' as id;
 
-
 final goRouter = GoRouter(initialLocation: '/', routes: [
   GoRoute(
     path: '/',
@@ -36,7 +36,12 @@ final goRouter = GoRouter(initialLocation: '/', routes: [
       child: const CheckPage(),
     ),
   ),
-  GoRoute(path: AppRouteName.home, builder: (context, state) => const HomePage()),
+  GoRoute(
+      path: AppRouteName.home,
+      builder: (context, state) => BlocProvider(
+            create: (context) => id.sl<HomeCubit>()..showCaseInit(context),
+            child: const HomePage(),
+          )),
   GoRoute(
     path: AppRouteName.videoTranslatorPage,
     builder: (context, state) => BlocProvider(
