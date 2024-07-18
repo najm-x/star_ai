@@ -1,4 +1,3 @@
-import 'package:business_tools/core/constant/app_strings.dart';
 import 'package:business_tools/core/functions/check_permission.dart';
 import 'package:business_tools/core/functions/copy_text.dart';
 import 'package:business_tools/core/public/custom_snak_bar.dart';
@@ -7,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SpellCheckerBottomSheet extends StatelessWidget {
   final String value;
@@ -65,7 +65,7 @@ class SpellCheckerBottomSheet extends StatelessWidget {
               IconButton(
                   onPressed: () async {
                     copyText(value);
-                    CustomSnakBar().snackBarSuccess(context, AppStrings.doneCopy, 2);
+                    CustomSnakBar().snackBarSuccess(context, AppLocalizations.of(context)!.doneCopy, 2);
                   },
                   icon: const Icon(Icons.copy_rounded))
             ],
@@ -77,7 +77,7 @@ class SpellCheckerBottomSheet extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(AppStrings.editeDirection),
+        Text(AppLocalizations.of(context)!.editeDirection),
         Switch(
           value: context.read<SpellCheckerCubit>().isLtR,
           onChanged: (value) => context.read<SpellCheckerCubit>().changeLtR(value),
@@ -98,9 +98,9 @@ class SpellCheckerBottomSheet extends StatelessWidget {
               }
             },
             child: Text(
-              AppStrings.save,
+              AppLocalizations.of(context)!.save,
             )),
-        OutlinedButton(onPressed: () => context.pop(), child: Text(AppStrings.cancel))
+        OutlinedButton(onPressed: () => context.pop(), child: Text(AppLocalizations.of(context)!.cancel))
       ],
     );
   }

@@ -1,10 +1,10 @@
-import 'package:business_tools/core/constant/app_strings.dart';
 import 'package:business_tools/core/public/widgets/add.dart';
 import 'package:business_tools/core/public/widgets/text_form_filed_cu.dart';
 import 'package:business_tools/features/extract/presentation/widgets/drop_down_widget.dart';
 import 'package:business_tools/features/text_translate/presentation/bloc/cubit/text_trans_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TranslateOptionWidgetTexr extends StatelessWidget {
   const TranslateOptionWidgetTexr({Key? key}) : super(key: key);
@@ -19,8 +19,8 @@ class TranslateOptionWidgetTexr extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             TextFormFieldCu(
-              hint: AppStrings.infoText,
-              labelText: AppStrings.info,
+              hint: AppLocalizations.of(context)!.infoText,
+              labelText: AppLocalizations.of(context)!.info,
               onTap: () => BlocProvider.of<TextTransCubit>(context).scrollDown(),
               onFieldSubmitted: (dd) => BlocProvider.of<TextTransCubit>(context).scrollUp(),
               textEditingController: BlocProvider.of<TextTransCubit>(context).infoCo,
@@ -38,15 +38,17 @@ class TranslateOptionWidgetTexr extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 DropDownlangWidget(
-                  title: AppStrings.translateFrom,
+                  title: AppLocalizations.of(context)!.translateFrom,
                   onSelected: (langSelected) {
-                    BlocProvider.of<TextTransCubit>(context).onSelectedLang(langSelected, AppStrings.translateFrom);
+                    BlocProvider.of<TextTransCubit>(context)
+                        .onSelectedLang(langSelected, AppLocalizations.of(context)!.translateFrom);
                   },
                 ),
                 DropDownlangWidget(
-                  title: AppStrings.translateTo,
+                  title: AppLocalizations.of(context)!.translateTo,
                   onSelected: (langSelected) {
-                    BlocProvider.of<TextTransCubit>(context).onSelectedLang(langSelected, AppStrings.translateTo);
+                    BlocProvider.of<TextTransCubit>(context)
+                        .onSelectedLang(langSelected, AppLocalizations.of(context)!.translateTo);
                   },
                 )
               ],

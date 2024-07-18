@@ -1,0 +1,303 @@
+{
+    "@@locale": "en",
+    "businessTools": "START AI",
+    "@businessTools": {
+        "description": "The name of the business tools app"
+    },
+    "home": "home",
+    "@home": {
+        "description": "The label for the home screen"
+    },
+    "extract": "extract",
+    "@extract": {
+        "description": "The label for the extract feature"
+    },
+    "videoTranslator": "video translator",
+    "@videoTranslator": {
+        "description": "The label for the video translator feature"
+    },
+    "textTranslator": "text translator",
+    "@textTranslator": {
+        "description": "The label for the text translator feature"
+    },
+    "spellChecker": "Spell checker",
+    "@spellChecker": {
+        "description": "The label for the spell checker feature"
+    },
+    "textextract": "Text extract",
+    "@textextract": {
+        "description": "The label for the text extract feature"
+    },
+    "mailSender": "mail sender",
+    "@mailSender": {
+        "description": "The label for the mail sender feature"
+    },
+    "smsSender": "sms sender",
+    "@smsSender": {
+        "description": "The label for the sms sender feature"
+    },
+    "descreption": "Welcome to STAR AI! \nWe offer a suite of free AI tools to help you in your everyday life. \nChoose the tool that suits your needs by clicking on the menu icon at the top. \nEnjoy the STAR AI experience!",
+    "@descreption": {
+        "description": "The description of the business tools app"
+    },
+    "doneSaveFile": "Done Saving File in this directory",
+    "@doneSaveFile": {
+        "description": "The message displayed after saving a file"
+    },
+    "genericError": "An unexpected error has occurred.",
+    "@genericError": {
+        "description": "A generic error message"
+    },
+    "unknownError": "Unknown error.",
+    "@unknownError": {
+        "description": "An error message for an unknown error"
+    },
+    "emptyFilePath": "Please select a valid file path.",
+    "@emptyFilePath": {
+        "description": "The message displayed when the file path is empty"
+    },
+    "fileCreateFailed": "Failed to create the file. Please try again.",
+    "@fileCreateFailed": {
+        "description": "The message displayed when file creation fails"
+    },
+    "fileSaveFailed": "Failed to save the file. Please try again.",
+    "@fileSaveFailed": {
+        "description": "The message displayed when file saving fails"
+    },
+    "noVideoCaptions": "This video doesn't have captions. Please choose a different video.",
+    "@noVideoCaptions": {
+        "description": "The message displayed when a video has no captions"
+    },
+    "videoTranslationFailed": "An error occurred while translating the video. Please try again later.",
+    "@videoTranslationFailed": {
+        "description": "The message displayed when video translation fails"
+    },
+    "insufficientPermissions": "The app doesn't have the necessary permissions. Please grant the required permissions.",
+    "@insufficientPermissions": {
+        "description": "The message displayed when insufficient permissions are granted"
+    },
+    "aIFailure": "Error on connect with Gemini Ai Try Again later",
+    "@aIFailure": {
+        "description": "The message displayed when the AI connection fails"
+    },
+    "pasteUrlHere": "Past the url here",
+    "@pasteUrlHere": {
+        "description": "The label for the URL input field"
+    },
+    "vdurl": "Video url",
+    "@vdurl": {
+        "description": "The label for the video URL field"
+    },
+    "translateFrom": "From",
+    "@translateFrom": {
+        "description": "The label for the source language selection"
+    },
+    "translateTo": "to",
+    "@translateTo": {
+        "description": "The label for the target language selection"
+    },
+    "translateOption": "Translate Option",
+    "@translateOption": {
+        "description": "The label for the translation options"
+    },
+    "saveTranslation": "Save Translation",
+    "@saveTranslation": {
+        "description": "The label for the save translation button"
+    },
+    "fontSize": "Font Size",
+    "@fontSize": {
+        "description": "The label for the font size setting"
+    },
+    "backGround": "BackGround",
+    "@backGround": {
+        "description": "The label for the background color setting"
+    },
+    "textColor": "Text Color",
+    "@textColor": {
+        "description": "The label for the text color setting"
+    },
+    "bottomSpace": "Bottom Space",
+    "@bottomSpace": {
+        "description": "The label for the bottom space setting"
+    },
+    "textDirection": "Text Direction",
+    "@textDirection": {
+        "description": "The label for the text direction setting"
+    },
+    "subtitleDelay": "Subtitle Delay",
+    "@subtitleDelay": {
+        "description": "The label for the subtitle delay setting"
+    },
+    "permissionRequiresA11": "Business Tools requires \"all file access\" permission to create and store files in the specified path on your device due to changes in the security policy in Android 11 and later versions.",
+    "@permissionRequiresA11": {
+        "description": "The message displayed when asking for permissions on Android 11+"
+    },
+    "permissionRequires": "Business Tools requires \"Storage\" permission to create and store files in the specified path on your device",
+    "@permissionRequires": {
+        "description": "The message displayed when asking for permissions"
+    },
+    "ok": "ok",
+    "@ok": {
+        "description": "The label for the OK button"
+    },
+    "cancel": "cancel",
+    "@cancel": {
+        "description": "The label for the cancel button"
+    },
+    "accessRequired": "Access required",
+    "@accessRequired": {
+        "description": "The message displayed when access is required"
+    },
+    "gO": "GO",
+    "@gO": {
+        "description": "The label for the GO button"
+    },
+    "doneCopy": "Done Copy",
+    "@doneCopy": {
+        "description": "The message displayed after copying text"
+    },
+    "editeDirection": "Edite text direction",
+    "@editeDirection": {
+        "description": "The label for the text direction editing option"
+    },
+    "save": "save",
+    "@save": {
+        "description": "The label for the save button"
+    },
+    "doneTranslate": "Done Translate",
+    "@doneTranslate": {
+        "description": "The message displayed after translating text"
+    },
+    "doneSaveTrans": "Done save Translate",
+    "@doneSaveTrans": {
+        "description": "The message displayed after saving translated text"
+    },
+    "entertext": "Enter text, select From and To languages to translate",
+    "@entertext": {
+        "description": "The placeholder text for the text input field"
+    },
+    "pasteTextHere": "Paste Text Here",
+    "@pasteTextHere": {
+        "description": "The label for the text input field"
+    },
+    "infoText": "mroe info about this text",
+    "@infoText": {
+        "description": "The label for the information about the text"
+    },
+    "info": "info",
+    "@info": {
+        "description": "The label for the information button"
+    },
+    "uploadImage": "Upload Image",
+    "@uploadImage": {
+        "description": "The label for the image upload button"
+    },
+    "titleWelcomOnBoarding": "Welcome to [STAR AI]!",
+    "@titleWelcomOnBoarding": {
+        "description": "The title for the welcome onboarding screen"
+    },
+    "desWelcomOnBoarding": "Discover how our smart tools can help you accomplish your tasks easily and efficiently.",
+    "@desWelcomOnBoarding": {
+        "description": "The description for the welcome onboarding screen"
+    },
+    "titleYtTrans": "YouTube Video Translation",
+    "@titleYtTrans": {
+        "description": "The title for the YouTube video translation section"
+    },
+    "desYtTrans": "Break down the language barrier and translate YouTube videos with subtitles generated by artificial intelligence.",
+    "@desYtTrans": {
+        "description": "The description for the YouTube video translation section"
+    },
+    "titletextTrans": "Text Translation",
+    "@titletextTrans": {
+        "description": "The title for the text translation section"
+    },
+    "destextTrans": "Translate your texts into multiple languages quickly and accurately using our AI-powered tools",
+    "@destextTrans": {
+        "description": "The description for the text translation section"
+    },
+    "titleSpellChecking": "Spell Checking",
+    "@titleSpellChecking": {
+        "description": "The title for the spell checking section"
+    },
+    "desSpellChecking": "Leverage the power of AI to effortlessly ensure your text is free from spelling mistakes.",
+    "@desSpellChecking": {
+        "description": "The description for the spell checking section"
+    },
+    "titleTextExtract": "Text Extraction from Images",
+    "@titleTextExtract": {
+        "description": "The title for the text extraction from images section"
+    },
+    "desTextExtract": "Accurately extract text from images for quick editing and manipulation.",
+    "@desTextExtract": {
+        "description": "The description for the text extraction from images section"
+    },
+    "noInternet": "No Internet Connected",
+    "@noInternet": {
+        "description": "The message displayed when there's no internet connection"
+    },
+    "tryAgain": "Try again",
+    "@tryAgain": {
+        "description": "The message displayed when asking to try again"
+    },
+    "unableToConnect": "We are currently unable to connect to our service provider.",
+    "@unableToConnect": {
+        "description": "Error message displayed when unable to connect to the service provider."
+    },
+    "enterApiKey": "In this case, please enter your API key to continue using the application. This will take no more than a minute.",
+    "@enterApiKey": {
+        "description": "Prompt to enter API key when connection fails."
+    },
+    "firstStep": "First",
+    "@firstStep": {
+        "description": "Label for the first step in a process."
+    },
+    "visitWebsite": "Visit the website",
+    "@visitWebsite": {
+        "description": "Instruction to visit the website for obtaining the API key."
+    },
+    "secondStep": "Second",
+    "@secondStep": {
+        "description": "Label for the second step in a process."
+    },
+    "obtainApiKey": "Follow the steps to obtain the API key",
+    "@obtainApiKey": {
+        "description": "Instruction to obtain the API key by following steps."
+    },
+    "thirdStep": "Third",
+    "@thirdStep": {
+        "description": "Label for the third step in a process."
+    },
+    "pasteApiKey": "Paste the API key you have obtained",
+    "@pasteApiKey": {
+        "description": "Instruction to paste the obtained API key."
+    },
+    "apiKey": "Api Key",
+    "@apiKey": {
+        "description": " API key."
+    },
+    "pasteApiKeyHere": "Paste Api key Here",
+    "@pasteApiKeyHere": {
+        "description": "Instruction to paste the obtained API key."
+    },
+    "fromHere": "from here ",
+    "@fromHere": {
+        "description": "go to the web site from here "
+    },
+    "chooseImage": "Please choose an image",
+    "@chooseImage": {
+        "description": "Please choose an image"
+    } ,
+    "enterTheApiKey": "enter the api key ",
+    "@enterTheApiKey": {
+        "description": "enter the api key"
+    },
+    "apikeyDontWork":  "api key dont work try agian",
+    "@apikeyDontWork": {
+        "description": "api key dont work try agian"
+    } ,
+    "tools":  "Tools",
+    "@tools": {
+        "description": "Tools in the Drawer"
+    }
+}

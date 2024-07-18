@@ -2,7 +2,7 @@ import 'package:business_tools/features/home/data/datasource/static/static_data.
 import 'package:business_tools/features/home/data/models/drawer_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({Key? key}) : super(key: key);
 
@@ -11,12 +11,12 @@ class DrawerWidget extends StatelessWidget {
     return NavigationDrawer(
         onDestinationSelected: (value) async {
           context.pop();
-         await  Future.delayed(Durations.medium1) ;
+          await Future.delayed(Durations.medium1);
           // ignore: use_build_context_synchronously
           value == 0 ? null : context.push(StaticData.drawerData[value].route!);
         },
         children: [
-          _title(),
+          _title(context),
           ...List.generate(
             StaticData.drawerData.length,
             (index) {
@@ -43,11 +43,11 @@ class DrawerWidget extends StatelessWidget {
     // );
   }
 
-  Widget _title() {
+  Widget _title(BuildContext context ) {
     return Container(
       width: double.maxFinite,
-      margin: const EdgeInsets.only(top: 20, left: 10, bottom: 20),
-      child: const Text("TOOLS"),
+      margin: const EdgeInsets.only(top: 20, left: 10, right: 20, bottom: 20),
+      child:  Text(AppLocalizations.of(context)!.tools),
     );
   }
 }

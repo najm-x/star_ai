@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:business_tools/core/constant/app_strings.dart';
+import 'package:business_tools/core/app_routes.dart';
 import 'package:business_tools/core/errors/failure.dart';
 import 'package:business_tools/core/functions/message_error_handel.dart';
 import 'package:business_tools/features/text_translate/domain/entities/text_trans_entities.dart';
@@ -8,7 +8,7 @@ import 'package:business_tools/features/text_translate/domain/usecases/trans_tex
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 part 'text_trans_state.dart';
 
 class TextTransCubit extends Cubit<TextTransState> {
@@ -17,6 +17,8 @@ class TextTransCubit extends Cubit<TextTransState> {
   String translateFrom = '';
   String translateTo = '';
   bool isLtR = false;
+  BuildContext context = goRouter.routerDelegate.navigatorKey.currentContext!;
+
   final TextEditingController textCo = TextEditingController();
   final TextEditingController infoCo = TextEditingController();
   final ScrollController scrollController = ScrollController();
@@ -29,7 +31,7 @@ class TextTransCubit extends Cubit<TextTransState> {
       emit(_translateTextstate(failurOrDone));
     } else {
       emit(state.copyWith(status: TextTransStatus.init));
-      emit(state.copyWith(status: TextTransStatus.emptyOptins, messageError: AppStrings.entertext));
+      emit(state.copyWith(status: TextTransStatus.emptyOptins, messageError: AppLocalizations.of(context)!.entertext));
     }
   }
 
@@ -42,7 +44,7 @@ class TextTransCubit extends Cubit<TextTransState> {
   }
 
   onSelectedLang(String value, String type) {
-    if (type == AppStrings.translateFrom) {
+    if (type == AppLocalizations.of(context)!.translateFrom) {
       translateFrom = value;
       return;
     }
@@ -51,14 +53,15 @@ class TextTransCubit extends Cubit<TextTransState> {
 
   TextTransState _translateTextstate(Either<Failure, TextTransEntities> failurOrDone) {
     return failurOrDone.fold(
-        (failure) => state.copyWith(status: TextTransStatus.error, messageError: messageErrorHandel(failure)),
+        (failure) => state.copyWith(status: TextTransStatus.error, messageError: messageErrorHandel(failure, context)),
         (done) => state.copyWith(status: TextTransStatus.successTransleate, messageSuccess: "", value: done.text));
   }
 
   TextTransState _savetranslatestate(Either<Failure, Unit> failurOrDone) {
     return failurOrDone.fold(
-        (failure) => state.copyWith(status: TextTransStatus.error, messageError: messageErrorHandel(failure)),
-        (done) => state.copyWith(status: TextTransStatus.successOther, messageSuccess: AppStrings.doneSaveTrans));
+        (failure) => state.copyWith(status: TextTransStatus.error, messageError: messageErrorHandel(failure, context)),
+        (done) => state.copyWith(
+            status: TextTransStatus.successOther, messageSuccess: AppLocalizations.of(context)!.doneSaveTrans));
   }
 
   void scrollDown() {

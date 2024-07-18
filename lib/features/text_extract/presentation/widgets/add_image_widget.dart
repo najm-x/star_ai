@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:business_tools/core/constant/app_strings.dart';
 import 'package:business_tools/core/public/custom_snak_bar.dart';
 import 'package:business_tools/core/services/app_services.dart';
 import 'package:business_tools/features/text_extract/presentation/bloc/bloc/text_extract_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddImageWidget extends StatelessWidget {
   const AddImageWidget({Key? key}) : super(key: key);
@@ -37,7 +37,7 @@ class AddImageWidget extends StatelessWidget {
               : Center(
                   child: TextButton.icon(
                   onPressed: () => context.read<TextExtractBloc>().add(const PickImagEvent()),
-                  label: Text("\n${AppStrings.uploadImage}\n"),
+                  label: Text("\n${AppLocalizations.of(context)!.uploadImage}\n"),
                   icon: const Icon(Icons.upload),
                 ));
         },

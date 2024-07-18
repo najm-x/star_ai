@@ -1,3 +1,4 @@
+import 'package:business_tools/core/functions/handel_icon_direction.dart';
 import 'package:business_tools/features/onboarding/data/datasources/satatic_data_onboarding.dart';
 import 'package:business_tools/features/onboarding/presentation/bloc/cubit/onboarding_cubit.dart';
 import 'package:flutter/material.dart';
@@ -33,9 +34,9 @@ class PageIndicatorWidget extends StatelessWidget {
       width: 50,
       child: CircleAvatar(
         child: IconButton(
-            onPressed: ()=>BlocProvider.of<OnboardingCubit>(context).nextPage(),
+            onPressed: () => BlocProvider.of<OnboardingCubit>(context).nextPage(),
             icon: Icon(
-              UIcons.regularRounded.angle_right,
+              handelIconDirection(context, UIcons.regularRounded.angle_right, UIcons.regularRounded.angle_left),
               color: Theme.of(context).colorScheme.onPrimaryContainer,
             )),
       ),

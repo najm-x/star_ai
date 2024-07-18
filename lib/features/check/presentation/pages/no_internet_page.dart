@@ -1,6 +1,6 @@
-import 'package:business_tools/core/constant/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NoInternetPage extends StatelessWidget {
   const NoInternetPage({super.key});
@@ -21,13 +21,14 @@ class NoInternetPage extends StatelessWidget {
             height: 20,
           ),
           Text(
-            AppStrings.noInternet,
+            AppLocalizations.of(context)!.noInternet,
             style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(
             height: 20,
           ),
-          OutlinedButton(onPressed: () => context.pushReplacement('/'), child: const Text(AppStrings.tryAgain))
+          OutlinedButton(
+              onPressed: () => context.pushReplacement('/'), child: Text(AppLocalizations.of(context)!.tryAgain))
         ],
       ),
     );

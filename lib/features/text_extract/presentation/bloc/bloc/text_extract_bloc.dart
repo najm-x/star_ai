@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:business_tools/core/app_routes.dart';
 import 'package:business_tools/core/errors/failure.dart';
 import 'package:business_tools/core/functions/message_error_handel.dart';
 import 'package:business_tools/features/text_extract/domain/entities/text_extract_entities.dart';
@@ -7,7 +8,8 @@ import 'package:business_tools/features/text_extract/domain/usecases/extract_tex
 import 'package:business_tools/features/text_extract/domain/usecases/pick_image_uc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 part 'text_extract_event.dart';
 part 'text_extract_state.dart';
 
@@ -16,6 +18,8 @@ class TextExtractBloc extends Bloc<TextExtractEvent, TextExtractState> {
   final PickImageUc pickImageUc;
   final CropImageUc cropImageUc;
   String path = '';
+  BuildContext context = goRouter.routerDelegate.navigatorKey.currentContext!;
+
   TextExtractBloc({
     required this.extractTextUc,
     required this.pickImageUc,
@@ -35,7 +39,7 @@ class TextExtractBloc extends Bloc<TextExtractEvent, TextExtractState> {
       emit(_extractTextFromImagestate(failurOrDone));
     } else {
       emit(state.copyWith(status: TextExtractStatus.init));
-      emit(state.copyWith(status: TextExtractStatus.errorPickImage, messageError: "plz chsoe image "));
+      emit(state.copyWith(status: TextExtractStatus.errorPickImage, messageError: AppLocalizations.of(context)!.chooseImage));
     }
   }
 
@@ -59,25 +63,25 @@ class TextExtractBloc extends Bloc<TextExtractEvent, TextExtractState> {
 //status
   TextExtractState _extractTextFromImagestate(Either<Failure, TextExtractEntities> failurOrDone) {
     return failurOrDone.fold(
-        (failure) =>
-            state.copyWith(status: TextExtractStatus.errorTextExtract, messageError: messageErrorHandel(failure)),
+        (failure) => state.copyWith(
+            status: TextExtractStatus.errorTextExtract, messageError: messageErrorHandel(failure, context)),
         (done) =>
-            state.copyWith(status: TextExtractStatus.successTextExtract, messageSuccess: "done", value: done.text));
+            state.copyWith(status: TextExtractStatus.successTextExtract, value: done.text));
   }
 
   TextExtractState _pickImageState(Either<Failure, String> failurOrDone) {
     return failurOrDone.fold(
-        (failure) =>
-            state.copyWith(status: TextExtractStatus.errorPickImage, messageError: messageErrorHandel(failure)),
+        (failure) => state.copyWith(
+            status: TextExtractStatus.errorPickImage, messageError: messageErrorHandel(failure, context)),
         (done) => state.copyWith(
-            status: TextExtractStatus.successPickImage, messageSuccess: "done", value: done /*image Path*/));
+            status: TextExtractStatus.successPickImage, value: done /*image Path*/));
   }
 
   TextExtractState _cropImageEventState(Either<Failure, String> failurOrDone) {
     return failurOrDone.fold(
-        (failure) =>
-            state.copyWith(status: TextExtractStatus.errorCropImage, messageError: messageErrorHandel(failure)),
+        (failure) => state.copyWith(
+            status: TextExtractStatus.errorCropImage, messageError: messageErrorHandel(failure, context)),
         (done) => state.copyWith(
-            status: TextExtractStatus.successCropImage, messageSuccess: "done", value: done /*image Path*/));
+            status: TextExtractStatus.successCropImage, value: done /*image Path*/));
   }
 }

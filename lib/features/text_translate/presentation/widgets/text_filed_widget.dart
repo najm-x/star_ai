@@ -1,7 +1,7 @@
-import 'package:business_tools/core/constant/app_strings.dart';
 import 'package:business_tools/features/text_translate/presentation/bloc/cubit/text_trans_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TextFieldWidget extends StatelessWidget {
   const TextFieldWidget({super.key});
@@ -19,7 +19,7 @@ class TextFieldWidget extends StatelessWidget {
             maxLines: 200,
             decoration: InputDecoration(
                 filled: true,
-                hintText: AppStrings.pasteTextHere,
+                hintText: AppLocalizations.of(context)!.pasteTextHere,
                 fillColor: Theme.of(context).colorScheme.surfaceContainerLow,
                 border: const UnderlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
                 enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),

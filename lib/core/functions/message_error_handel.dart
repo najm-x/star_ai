@@ -1,25 +1,26 @@
-import 'package:business_tools/core/constant/app_strings.dart';
 import 'package:business_tools/core/errors/failure.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-String messageErrorHandel(Failure failure) {
+String messageErrorHandel(Failure failure , BuildContext context) {
   switch (failure.runtimeType) {
     case EmptyPathFailure:
-      return AppStrings.emptyFilePath;
+      return AppLocalizations.of(context)!.emptyFilePath;
     case CreateFileFailure:
-      return AppStrings.fileCreateFailed;
+      return AppLocalizations.of(context)!.fileCreateFailed;
     case EmptyFailure:
-      return AppStrings.unknownError;
+      return AppLocalizations.of(context)!.unknownError;
     case TransScriptVdFailure:
-      return AppStrings.noVideoCaptions;
+      return AppLocalizations.of(context)!.noVideoCaptions;
     case TranslateVdFailure:
-      return AppStrings.videoTranslationFailed;
+      return AppLocalizations.of(context)!.videoTranslationFailed;
     case PermissionFailure:
-      return AppStrings.insufficientPermissions;
+      return AppLocalizations.of(context)!.insufficientPermissions;
     case SaveFailure:
-      return AppStrings.fileSaveFailed;
+      return AppLocalizations.of(context)!.fileSaveFailed;
     case AIFailure():
-      return AppStrings.aIFailure;
+      return AppLocalizations.of(context)!.aIFailure;
     default:
-      return AppStrings.genericError;
+      return AppLocalizations.of(context)!.genericError;
   }
 }

@@ -1,4 +1,3 @@
-import 'package:business_tools/core/constant/app_strings.dart';
 import 'package:business_tools/core/constant/types_validate.dart';
 import 'package:business_tools/core/functions/validat_input.dart';
 import 'package:business_tools/core/public/widgets/text_form_filed_cu.dart';
@@ -6,6 +5,7 @@ import 'package:business_tools/features/video_translator/presentation/bloc/vd_tr
 import 'package:business_tools/features/video_translator/presentation/widgets/translate_option_widget.dart';
 import 'package:business_tools/features/video_translator/presentation/widgets/video_translate/transelate_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class VideoTranslatorPage extends StatelessWidget {
@@ -27,8 +27,8 @@ class VideoTranslatorPage extends StatelessWidget {
                   SizedBox(
                     width: double.maxFinite,
                     child: TextFormFieldCu(
-                        hint: AppStrings.pasteUrlHere,
-                        labelText: AppStrings.vdurl,
+                        hint: AppLocalizations.of(context)!.pasteUrlHere,
+                        labelText: AppLocalizations.of(context)!.vdurl,
                         textEditingController: BlocProvider.of<VdTranslateBloc>(context).videoUrlCo,
                         validator: (p0) => validateInput(p0!, TypesValidate.videoId, 300, 5)),
                   ),

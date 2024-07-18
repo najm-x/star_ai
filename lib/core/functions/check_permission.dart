@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:business_tools/core/constant/app_strings.dart';
 import 'package:business_tools/core/functions/message_permission_handel.dart';
 import 'package:business_tools/core/functions/premission_request.dart';
 import 'package:business_tools/core/public/widgets/dialog_permission.dart';
@@ -8,6 +7,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Future<bool> checkPermission(BuildContext context) async {
   bool isGranted;
@@ -22,13 +22,14 @@ Future<bool> checkPermission(BuildContext context) async {
   if (isGranted) {
     return isGranted;
   }
-  String permissionMessage = await messagePremissionHandel();
+  // ignore: use_build_context_synchronously
+  String permissionMessage = await messagePremissionHandel(context);
   showDialog(
     // ignore: use_build_context_synchronously
     context: context,
     builder: (context) {
       return DialogPermission(
-        title: AppStrings.accessRequired,
+        title: AppLocalizations.of(context)!.accessRequired,
         permissionMessage: permissionMessage,
         iconData: Icons.folder_rounded,
         onPressed: () async {
@@ -38,5 +39,5 @@ Future<bool> checkPermission(BuildContext context) async {
       );
     },
   );
- return false ;
+  return false;
 }

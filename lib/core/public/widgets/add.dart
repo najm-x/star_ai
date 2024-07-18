@@ -12,9 +12,21 @@ class Add extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(16), border: Border.all(color: AppColors.secondary)),
       child: Center(
-          child: Text(
-        "ADD",
-        style: Theme.of(context).textTheme.titleMedium,
+          child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            "AD",
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 5),
+            width: 70,
+            child: LinearProgressIndicator(
+              borderRadius: BorderRadius.circular(30),
+            ),
+          )
+        ],
       )),
     );
   }

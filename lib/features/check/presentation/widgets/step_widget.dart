@@ -8,6 +8,7 @@ import 'package:business_tools/features/check/presentation/bloc/add_api_key/add_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class StepWidget extends StatelessWidget {
   const StepWidget({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class StepWidget extends StatelessWidget {
           context.read<AddApiKeyCubit>().checkingApiKey();
         }
         if (state.status == AddApiKeyStatus.success) {
-          context.pushReplacement(AppRouteName.home);
+          context.pushReplacement(AppRouteName.onBoarding);
         }
         if (state.status == AddApiKeyStatus.error) {
           sl<CustomSnakBar>().snackBarError(context, state.messageError, 2);
@@ -39,49 +40,49 @@ class StepWidget extends StatelessWidget {
                 onStepCancel: () {
                   context.read<AddApiKeyCubit>().cancelStep();
                 },
-                steps: [_stepOne(), _stepTow(), _stepThree(context)]);
+                steps: [_stepOne(context), _stepTow(context), _stepThree(context)]);
       },
     );
   }
 
-  Step _stepOne() {
+  Step _stepOne(BuildContext context) {
     return Step(
-        title: const Text("أولا "),
+        title: Text(AppLocalizations.of(context)!.firstStep),
         content: Row(
           children: [
-            const Text(
-              'قم بالدخول على الموقع  ',
+            Text(
+              AppLocalizations.of(context)!.visitWebsite,
               textAlign: TextAlign.center,
             ),
-            TextButton(onPressed: () {}, child: const Text("من هنا  "))
+            TextButton(onPressed: () {}, child: Text(AppLocalizations.of(context)!.fromHere))
           ],
         ));
   }
 
-  Step _stepTow() {
+  Step _stepTow(BuildContext context) {
     return Step(
-        title: const Text("ثانيا"),
+        title: Text(AppLocalizations.of(context)!.secondStep),
         content: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
-          children: [const Text("اتبع الخطوات للحصول على ال api key"), Image.asset(AppImages.gif)],
+          children: [Text(AppLocalizations.of(context)!.obtainApiKey), Image.asset(AppImages.gif)],
         ));
   }
 
   Step _stepThree(BuildContext context) {
     return Step(
-        title: Text("ثالثا"),
+        title: Text(AppLocalizations.of(context)!.thirdStep),
         content: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text("قم بلصق ال api key الذي حصلت عليه"),
-            SizedBox(
+            Text(AppLocalizations.of(context)!.pasteApiKey),
+            const SizedBox(
               height: 10,
             ),
             TextFormFieldCu(
-              hint: "paste the api key here ",
-              labelText: "api key",
+              hint: AppLocalizations.of(context)!.pasteApiKeyHere,
+              labelText: AppLocalizations.of(context)!.apiKey,
               textEditingController: BlocProvider.of<AddApiKeyCubit>(context).textEditingCO,
             )
           ],

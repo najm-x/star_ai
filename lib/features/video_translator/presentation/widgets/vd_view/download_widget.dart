@@ -1,4 +1,3 @@
-import 'package:business_tools/core/constant/app_strings.dart';
 import 'package:business_tools/core/functions/message_permission_handel.dart';
 import 'package:business_tools/core/functions/premission_request.dart';
 import 'package:business_tools/core/public/custom_snak_bar.dart';
@@ -7,6 +6,7 @@ import 'package:business_tools/features/video_translator/domain/entities/vd_tran
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_download_bloc/vd_download_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DownloadWidget extends StatelessWidget {
   const DownloadWidget({super.key, required this.translation, required this.videoUrl});
@@ -25,13 +25,13 @@ class DownloadWidget extends StatelessWidget {
           CustomSnakBar().snackBarSuccess(context, state.messageSuccess, 5);
         }
         if (state.status == VdDownloadStatus.errorPermission) {
-          String permissionMessage = await messagePremissionHandel();
+          String permissionMessage = await messagePremissionHandel(context);
           showDialog(
             // ignore: use_build_context_synchronously
             context: context,
             builder: (context) {
               return DialogPermission(
-                title: AppStrings.accessRequired,
+                title: AppLocalizations.of(context)!.accessRequired,
                 permissionMessage: permissionMessage,
                 iconData: Icons.folder_rounded,
                 onPressed: () => requsetPremission(),
@@ -47,7 +47,7 @@ class DownloadWidget extends StatelessWidget {
               firstChild: ElevatedButton(
                 onPressed: () =>
                     context.read<VdDownloadBloc>().add(VdDownloadEvent(translation: translation, videoUrl: videoUrl)),
-                child: const Text(AppStrings.saveTranslation),
+                child: Text(AppLocalizations.of(context)!.saveTranslation),
               ),
               secondChild: const Padding(
                 padding: EdgeInsets.all(2.0),

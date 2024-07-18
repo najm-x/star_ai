@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:business_tools/core/app_routes.dart';
 import 'package:business_tools/core/constant/types_validate.dart';
 import 'package:business_tools/core/errors/failure.dart';
 import 'package:business_tools/core/functions/message_error_handel.dart';
@@ -18,6 +19,8 @@ part 'vd_translate_state.dart';
 class VdTranslateBloc extends Bloc<VdTranslateEvent, VdTranslateState> {
   final VdTranslateUc vdTranslateUc;
   //
+    BuildContext context = goRouter.routerDelegate.navigatorKey.currentContext! ;
+
   final GlobalKey<FormState> formState = GlobalKey<FormState>();
   final TextEditingController videoUrlCo = TextEditingController();
   String translateFrom = "";
@@ -48,7 +51,7 @@ class VdTranslateBloc extends Bloc<VdTranslateEvent, VdTranslateState> {
 
   VdTranslateState _vdTranslateState(Either<Failure, List<VdTranslateEntities>> failureOrDone) {
     return failureOrDone.fold((failure) {
-      return ErrorVdTranslate(messageError: messageErrorHandel(failure));
+      return ErrorVdTranslate(messageError: messageErrorHandel(failure , context));
     }, (done) {
       return SuccessVdTranslate(data: done);
     });

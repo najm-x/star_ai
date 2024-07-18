@@ -53,8 +53,6 @@ class CustomSnakBar {
     Future.delayed(Duration(seconds: seconds), () {
       overlayEntry.remove();
     });
-    closes(){
-      overlayEntry.remove() ;
-    }
+   
   }
 }

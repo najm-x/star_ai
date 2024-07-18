@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:business_tools/core/app_routes.dart';
 import 'package:business_tools/core/errors/failure.dart';
 import 'package:business_tools/core/functions/message_error_handel.dart';
 import 'package:business_tools/features/spell_checker/domain/entities/spell_checker_entities.dart';
@@ -14,6 +15,8 @@ class SpellCheckerCubit extends Cubit<SpellCheckerState> {
   final SpellTextCheckerUc spellTextCheckerUc;
   final SaveTextSpelled saveTextSpelled;
   final TextEditingController textCo = TextEditingController();
+    BuildContext context = goRouter.routerDelegate.navigatorKey.currentContext! ;
+
   bool isLtR = false;
   // List moreInfo = [] ;
   SpellCheckerCubit({required this.spellTextCheckerUc, required this.saveTextSpelled})
@@ -39,13 +42,13 @@ class SpellCheckerCubit extends Cubit<SpellCheckerState> {
   SpellCheckerState _spellTextCheckerStatus(Either<Failure, SpellCheckerEntities> failureOrDone) {
     return failureOrDone.fold(
         (failure) =>
-            state.copyWith(status: SpellCheckerStatus.errorSpellChecker, messageError: messageErrorHandel(failure)),
+            state.copyWith(status: SpellCheckerStatus.errorSpellChecker, messageError: messageErrorHandel(failure , context)),
         (done) => state.copyWith(status: SpellCheckerStatus.successSpellChecker, value: done.text));
   }
 
   SpellCheckerState _saveTextStatus(Either<Failure, Unit> failureOrDone) {
     return failureOrDone.fold(
-        (failure) => state.copyWith(status: SpellCheckerStatus.errorOther, messageError: messageErrorHandel(failure)),
+        (failure) => state.copyWith(status: SpellCheckerStatus.errorOther, messageError: messageErrorHandel(failure , context)),
         (done) => state.copyWith(status: SpellCheckerStatus.successSave, messageSuccess: "done Save It"));
   }
 

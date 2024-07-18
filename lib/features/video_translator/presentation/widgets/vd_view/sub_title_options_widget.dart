@@ -1,8 +1,8 @@
-import 'package:business_tools/core/constant/app_strings.dart';
 import 'package:business_tools/features/video_translator/domain/entities/vd_translate_entities.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_view_cubit/vd_view_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SubTitleOptionsWidget extends StatelessWidget {
   const SubTitleOptionsWidget({super.key, required this.subTitles});
@@ -19,7 +19,7 @@ class SubTitleOptionsWidget extends StatelessWidget {
               children: [
                 _partOptin(
                   context: context,
-                  title: AppStrings.fontSize,
+                  title: AppLocalizations.of(context)!.fontSize,
                   value: context.read<VdViewCubit>().currentFontSize,
                   min: 10,
                   max: 32,
@@ -29,7 +29,7 @@ class SubTitleOptionsWidget extends StatelessWidget {
                 ),
                 _partOptin(
                   context: context,
-                  title: AppStrings.backGround,
+                  title: AppLocalizations.of(context)!.backGround,
                   value: context.read<VdViewCubit>().currentBgOpacity,
                   min: 0,
                   max: 1,
@@ -40,7 +40,7 @@ class SubTitleOptionsWidget extends StatelessWidget {
                 ),
                 _partOptin(
                   context: context,
-                  title: AppStrings.textColor,
+                  title: AppLocalizations.of(context)!.textColor,
                   value: context.read<VdViewCubit>().currentTextColor,
                   min: 0,
                   max: 5,
@@ -50,7 +50,7 @@ class SubTitleOptionsWidget extends StatelessWidget {
                 ),
                 _partOptin(
                   context: context,
-                  title: AppStrings.backGround,
+                  title: AppLocalizations.of(context)!.bottomSpace,
                   value: context.read<VdViewCubit>().currentBottomSpace,
                   min: 0,
                   max: 70,
@@ -60,7 +60,7 @@ class SubTitleOptionsWidget extends StatelessWidget {
                 ),
                 _partOptin(
                   context: context,
-                  title: AppStrings.textDirection,
+                  title: AppLocalizations.of(context)!.textDirection,
                   value: context.read<VdViewCubit>().currentisLtoR ? 0 : 1,
                   min: 0,
                   max: 1,
@@ -70,7 +70,7 @@ class SubTitleOptionsWidget extends StatelessWidget {
                 ),
                 _partOptin(
                   context: context,
-                  title: AppStrings.subtitleDelay,
+                  title: AppLocalizations.of(context)!.subtitleDelay,
                   value: context.read<VdViewCubit>().currentSubtitleDelay.toDouble(),
                   min: -30,
                   max: 30,

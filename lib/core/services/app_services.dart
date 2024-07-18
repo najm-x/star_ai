@@ -37,14 +37,17 @@ import 'package:business_tools/features/video_translator/domain/usecases/vd_tran
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_download_bloc/vd_download_bloc.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_translate_bloc/vd_translate_bloc.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_view_cubit/vd_view_cubit.dart';
+import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 GetIt sl = GetIt.instance;
 Future<void> init() async {
 //features
-SharedPreferences sharedPreferences = await SharedPreferences.getInstance() ;
+  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => CustomSnakBar());
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  sl.registerLazySingleton(() => navigatorKey);
   sl.registerLazySingleton(() => sharedPreferences);
 //!extract
 //?Bloc

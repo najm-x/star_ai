@@ -1,5 +1,5 @@
-import 'package:business_tools/core/constant/app_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DecWidget extends StatelessWidget {
   const DecWidget({Key? key}) : super(key: key);
@@ -10,7 +10,7 @@ class DecWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: width / 10),
       child: Text(
-          AppStrings.descreption ,
+        AppLocalizations.of(context)!.descreption,
         textAlign: TextAlign.center,
       ),
     );

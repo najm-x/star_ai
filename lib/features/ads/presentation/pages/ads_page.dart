@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 
 class AdsPage extends StatefulWidget {
+  const AdsPage({super.key});
+
 	@override
 	createState() => _AdsPage();
 }

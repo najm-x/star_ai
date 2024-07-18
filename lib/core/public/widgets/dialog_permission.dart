@@ -1,6 +1,6 @@
-import 'package:business_tools/core/constant/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DialogPermission extends StatelessWidget {
   const DialogPermission(
@@ -20,8 +20,8 @@ class DialogPermission extends StatelessWidget {
       title: Text(title),
       content: Text(permissionMessage),
       actions: [
-        TextButton(onPressed: onPressed, child: Text(AppStrings.ok)),
-        TextButton(onPressed: () => context.pop(), child: Text(AppStrings.cancel)),
+        TextButton(onPressed: onPressed, child: Text(AppLocalizations.of(context)!.ok)),
+        TextButton(onPressed: () => context.pop(), child: Text(AppLocalizations.of(context)!.cancel)),
       ],
     );
   }

@@ -10,7 +10,7 @@ import 'package:business_tools/features/extract/domain/entities/emails_numbera_e
 import 'package:dartz/dartz.dart';
 import "package:file_picker/file_picker.dart";
 import "package:csv/csv.dart";
-import "package:path/path.dart";
+import "package:path/path.dart" as pathlib;
 import 'package:permission_handler/permission_handler.dart';
 
 abstract class LocalDataSource {
@@ -46,7 +46,7 @@ class LocalDataSourceImp extends LocalDataSource {
     if (path == null) {
       throw EmptyPathException();
     }
-    String pathh = join(path, "$random.$type");
+    String pathh = pathlib.join(path, "$random.$type");
     File file = File(pathh);
     try {
       if (type == AppStrings.csv) {
