@@ -36,6 +36,12 @@ class TextTransRemoteDataSourceImp extends TextTransRemoteDataSource {
     try {
       final model = GenerativeModel(
           model: "gemini-1.5-flash-latest",
+          safetySettings: [
+            SafetySetting(HarmCategory.dangerousContent, HarmBlockThreshold.none) ,
+            SafetySetting(HarmCategory.harassment, HarmBlockThreshold.none) ,
+            SafetySetting(HarmCategory.hateSpeech, HarmBlockThreshold.none) ,
+            SafetySetting(HarmCategory.sexuallyExplicit, HarmBlockThreshold.none) ,
+          ],
           apiKey: await handelApiKey(),
           systemInstruction: Content.system(StaticDataTextTrans.prompt));
       final response = await model.generateContent([
@@ -49,7 +55,7 @@ Translate this text from $translateFrom to $translateTo, $info following all the
 
       return TextTransModel(text: response.text!);
     } catch (e) {
-      throw AIException() ;
+      throw AIException();
     }
   }
 }

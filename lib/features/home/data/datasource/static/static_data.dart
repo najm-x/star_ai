@@ -13,10 +13,10 @@ class StaticData {
       title: AppLocalizations.of(context)!.home,
       iconData: UIcons.regularRounded.home,
     ),
-    DrawerModel(
-        title: AppLocalizations.of(context)!.extract,
-        iconData: UIcons.regularRounded.document,
-        route: AppRouteName.extract),
+    // DrawerModel(
+    //     title: AppLocalizations.of(context)!.extract,
+    //     iconData: UIcons.regularRounded.document,
+    //     route: AppRouteName.extract),
     DrawerModel(
         title: AppLocalizations.of(context)!.videoTranslator,
         iconData: UIcons.regularRounded.magic_wand,

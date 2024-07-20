@@ -8,6 +8,7 @@ import 'package:business_tools/features/spell_checker/domain/usecases/spell_text
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 part 'spell_checker_state.dart';
 
@@ -29,7 +30,7 @@ class SpellCheckerCubit extends Cubit<SpellCheckerState> {
       emit(_spellTextCheckerStatus(failureOrDone));
     } else {
       emit(state.copyWith(status: SpellCheckerStatus.init));
-      emit(state.copyWith(status: SpellCheckerStatus.emptyOption, messageError: "add text"));
+      emit(state.copyWith(status: SpellCheckerStatus.emptyOption, messageError:AppLocalizations.of(context)!.addText));
     }
   }
 
@@ -49,7 +50,7 @@ class SpellCheckerCubit extends Cubit<SpellCheckerState> {
   SpellCheckerState _saveTextStatus(Either<Failure, Unit> failureOrDone) {
     return failureOrDone.fold(
         (failure) => state.copyWith(status: SpellCheckerStatus.errorOther, messageError: messageErrorHandel(failure , context)),
-        (done) => state.copyWith(status: SpellCheckerStatus.successSave, messageSuccess: "done Save It"));
+        (done) => state.copyWith(status: SpellCheckerStatus.successSave, messageSuccess: AppLocalizations.of(context)!.doneSaveFile));
   }
 
   void changeLtR(bool value) {

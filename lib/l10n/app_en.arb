@@ -36,7 +36,7 @@
     "@smsSender": {
         "description": "The label for the sms sender feature"
     },
-    "descreption": "Welcome to STAR AI! \nWe offer a suite of free AI tools to help you in your everyday life. \nChoose the tool that suits your needs by clicking on the menu icon at the top. \nEnjoy the STAR AI experience!",
+    "descreption": "Welcome to STAR AI! 🎉\nWe offer you a set of free AI tools to assist you in your daily life. 🤩\nChoose the tool that suits your needs by clicking on the drawer icon at the top. ⬆️\nEnjoy the STAR AI experience! 🚀",
     "@descreption": {
         "description": "The description of the Star Ai  app"
     },
@@ -307,5 +307,9 @@
     "lang": "Language",
     "@lang": {
         "description": "Language"
+    },
+    "addText": "Enter the Text",
+    "@addText": {
+        "description": "Add Text"
     }
 }

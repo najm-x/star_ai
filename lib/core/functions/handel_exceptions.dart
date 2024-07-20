@@ -21,6 +21,8 @@ Failure mapExceptionToFailure(Object exception) {
       return AIFailure();
     case CopyException:
       return CopyFailure();
+    case AdLoadException():
+      return AdLoadFailure();
     default:
       return EmptyFailure();
   }

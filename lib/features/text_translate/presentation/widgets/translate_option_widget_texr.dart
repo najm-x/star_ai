@@ -1,4 +1,3 @@
-import 'package:business_tools/core/public/widgets/add.dart';
 import 'package:business_tools/core/public/widgets/text_form_filed_cu.dart';
 import 'package:business_tools/features/extract/presentation/widgets/drop_down_widget.dart';
 import 'package:business_tools/features/text_translate/presentation/bloc/cubit/text_trans_cubit.dart';
@@ -25,37 +24,51 @@ class TranslateOptionWidgetTexr extends StatelessWidget {
               onFieldSubmitted: (dd) => BlocProvider.of<TextTransCubit>(context).scrollUp(),
               textEditingController: BlocProvider.of<TextTransCubit>(context).infoCo,
             ),
-            const SizedBox(
-              height: 8,
+            SizedBox(
+              height: 10,
             ),
-            const Add(
-              height: 70,
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                DropDownlangWidget(
-                  title: AppLocalizations.of(context)!.translateFrom,
-                  onSelected: (langSelected) {
-                    BlocProvider.of<TextTransCubit>(context)
-                        .onSelectedLang(langSelected, AppLocalizations.of(context)!.translateFrom);
-                  },
-                ),
-                DropDownlangWidget(
-                  title: AppLocalizations.of(context)!.translateTo,
-                  onSelected: (langSelected) {
-                    BlocProvider.of<TextTransCubit>(context)
-                        .onSelectedLang(langSelected, AppLocalizations.of(context)!.translateTo);
-                  },
-                )
-              ],
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  border: Border.all(color: Theme.of(context).colorScheme.secondary)),
+              child: Column(
+                children: [
+                  _title(context),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      DropDownlangWidget(
+                        title: AppLocalizations.of(context)!.translateFrom,
+                        onSelected: (langSelected) {
+                          BlocProvider.of<TextTransCubit>(context)
+                              .onSelectedLang(langSelected, AppLocalizations.of(context)!.translateFrom);
+                        },
+                      ),
+                      DropDownlangWidget(
+                        title: AppLocalizations.of(context)!.translateTo,
+                        onSelected: (langSelected) {
+                          BlocProvider.of<TextTransCubit>(context)
+                              .onSelectedLang(langSelected, AppLocalizations.of(context)!.translateTo);
+                        },
+                      )
+                    ],
+                  ),
+                ],
+              ),
             )
           ],
         ),
       ),
     );
+  }
+
+  Widget _title(BuildContext context) {
+    return Container(
+        margin: const EdgeInsets.only(bottom: 10),
+        child: Text(
+          AppLocalizations.of(context)!.translateOption,
+          style: Theme.of(context).textTheme.titleMedium,
+        ));
   }
 }

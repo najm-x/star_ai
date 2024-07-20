@@ -1,5 +1,5 @@
-import 'package:business_tools/core/public/widgets/add.dart';
 import 'package:business_tools/core/public/widgets/text_form_filed_larg.dart';
+import 'package:business_tools/features/ads/presentation/widgets/ads_banner_widget.dart';
 import 'package:business_tools/features/spell_checker/presentation/bloc/cubit/spell_checker_cubit.dart';
 import 'package:business_tools/features/spell_checker/presentation/widgets/float_action_spell_checker.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +33,7 @@ class SpellCheckerPage extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          const Add(height: 70)
+          const AdsBannerWidget()
         ],
       ),
     );

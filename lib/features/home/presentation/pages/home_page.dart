@@ -1,5 +1,4 @@
 import 'package:business_tools/core/constant/app_colors.dart';
-import 'package:business_tools/core/public/widgets/add.dart';
 import 'package:business_tools/features/home/presentation/bloc/cubit/home_cubit.dart';
 import 'package:business_tools/features/home/presentation/widgets/dec_widget.dart';
 import 'package:business_tools/features/home/presentation/widgets/drawer_widget.dart';
@@ -22,16 +21,19 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Durations.extralong1 , () {
-      BlocProvider.of<HomeCubit>(context).showCaseInit(mycontext!) ;
-    },) ;
+    Future.delayed(
+      Durations.short1,
+      () {
+        BlocProvider.of<HomeCubit>(context).showCaseInit(mycontext!);
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return ShowCaseWidget(
       builder: (context) {
-        mycontext = context ;
+        mycontext = context;
         return Scaffold(
           key: BlocProvider.of<HomeCubit>(context).scaffols,
           backgroundColor: AppColors.primaryContainer,
@@ -48,9 +50,6 @@ class _HomePageState extends State<HomePage> {
       padding: EdgeInsets.all(13),
       child: Column(
         children: [
-          Add(
-            height: 70,
-          ),
           Spacer(),
           WelcomeWidget(),
           DecWidget(),

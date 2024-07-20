@@ -1,5 +1,6 @@
 import 'package:business_tools/core/constant/app_routes_name.dart';
 import 'package:business_tools/core/constant/shared_key.dart';
+import 'package:business_tools/features/ads/presentation/bloc/bloc/ads_bloc.dart';
 import 'package:business_tools/features/check/presentation/bloc/add_api_key/add_api_key_cubit.dart';
 import 'package:business_tools/features/check/presentation/bloc/check/check_cubit.dart';
 import 'package:business_tools/features/check/presentation/pages/add_api_key_page.dart';
@@ -26,6 +27,7 @@ import 'package:business_tools/features/video_translator/presentation/pages/vd_v
 import 'package:business_tools/features/video_translator/presentation/pages/video_translator_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:business_tools/core/services/app_services.dart' as id;
 
@@ -45,8 +47,15 @@ final goRouter = GoRouter(initialLocation: '/', routes: [
           )),
   GoRoute(
     path: AppRouteName.videoTranslatorPage,
-    builder: (context, state) => BlocProvider(
-      create: (context) => id.sl<VdTranslateBloc>(),
+    builder: (context, state) => MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => id.sl<VdTranslateBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => id.sl<AdsBloc>()..add(const BannerAdEvent(size: AdSize.largeBanner)),
+        ),
+      ],
       child: const VideoTranslatorPage(),
     ),
   ),
@@ -62,6 +71,9 @@ final goRouter = GoRouter(initialLocation: '/', routes: [
     builder: (context, state) => MultiBlocProvider(
       providers: [
         BlocProvider(
+          create: (context) => id.sl<AdsBloc>(),
+        ),
+        BlocProvider(
           create: (context) => id.sl<VdViewCubit>(),
         ),
         BlocProvider(
@@ -75,22 +87,43 @@ final goRouter = GoRouter(initialLocation: '/', routes: [
   ),
   GoRoute(
     path: AppRouteName.textTranslatorPage,
-    builder: (context, state) => BlocProvider(
-      create: (context) => id.sl<TextTransCubit>(),
+    builder: (context, state) => MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => id.sl<TextTransCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => id.sl<AdsBloc>()..add(const BannerAdEvent()),
+        ),
+      ],
       child: const TextTranslatePage(),
     ),
   ),
   GoRoute(
     path: AppRouteName.spellCheckerPage,
-    builder: (context, state) => BlocProvider(
-      create: (context) => id.sl<SpellCheckerCubit>(),
+    builder: (context, state) => MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => id.sl<SpellCheckerCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => id.sl<AdsBloc>()..add(const BannerAdEvent()),
+        ),
+      ],
       child: const SpellCheckerPage(),
     ),
   ),
   GoRoute(
     path: AppRouteName.textExtractPage,
-    builder: (context, state) => BlocProvider(
-      create: (context) => id.sl<TextExtractBloc>(),
+    builder: (context, state) => MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => id.sl<TextExtractBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => id.sl<AdsBloc>()..add(const BannerAdEvent(size: AdSize.largeBanner)),
+        ),
+      ],
       child: const TextExtractPage(),
     ),
   ),

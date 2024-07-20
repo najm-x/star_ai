@@ -1,4 +1,5 @@
 import 'package:business_tools/core/constant/app_colors.dart';
+import 'package:business_tools/features/ads/presentation/widgets/ads_banner_widget.dart';
 import 'package:business_tools/features/text_translate/presentation/bloc/cubit/text_trans_cubit.dart';
 import 'package:business_tools/features/text_translate/presentation/widgets/floating_action_button.dart';
 import 'package:business_tools/features/text_translate/presentation/widgets/text_filed_widget.dart';
@@ -24,11 +25,12 @@ class TextTranslatePage extends StatelessWidget {
   Widget _buildWidget(BuildContext context) {
     return SingleChildScrollView(
       controller: BlocProvider.of<TextTransCubit>(context).scrollController,
-      child: const Column(
+      child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          TextFieldWidget(),
-          TranslateOptionWidgetTexr(),
+          const TextFieldWidget(),
+          Container(margin: const EdgeInsets.only(bottom: 0, top: 15), child: const AdsBannerWidget()),
+          const TranslateOptionWidgetTexr(),
         ],
       ),
     );

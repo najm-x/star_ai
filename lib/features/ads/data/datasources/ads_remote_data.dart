@@ -1,18 +1,56 @@
-import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 abstract class AdsRemoteData {
-  Future<Unit> bannerAd () ;
+  Future<BannerAd> bannerAd(AdSize size);
+  Future<InterstitialAd> interstitialAd();
 }
 
 class AdsRemoteDataImp implements AdsRemoteData {
   @override
-  Future<Unit> bannerAd() {
-    try {
-      
-    } catch (e) {
-      
+  Future<BannerAd> bannerAd(AdSize size) async {
+    BannerAd? bannerAd ;
+    await BannerAd(
+      adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+      request: const AdRequest(),
+      size: size,
+      listener: BannerAdListener(
+        // Called when an ad is successfully received.
+        onAdLoaded: (ad) async {
+         bannerAd = ad as BannerAd ;
+        },
+        // Called when an ad request failed.
+        onAdFailedToLoad: (ad, err) {
+          print("object");
+          ad.dispose();
+        },
+      ),
+    ).load() ;
+    while (bannerAd == null) {
+      await Future.delayed(Durations.extralong1) ;
     }
-    throw UnimplementedError();
+    return bannerAd!;
   }
-  
+
+  @override
+  Future<InterstitialAd> interstitialAd() async {
+    InterstitialAd? interstitialAd;
+     InterstitialAd.load(
+        adUnitId: "ca-app-pub-3940256099942544/1033173712",
+        request: const AdRequest(),
+        adLoadCallback: InterstitialAdLoadCallback(
+          // Called when an ad is successfully received.
+          onAdLoaded: (ad) {
+            // Keep a reference to the ad so you can show it later.
+            interstitialAd = ad;
+          },
+          // Called when an ad request failed.
+          onAdFailedToLoad: (LoadAdError error) {},
+        ));
+
+    while (interstitialAd == null) {
+      await Future.delayed(Durations.extralong4);
+    }
+    return interstitialAd!;
+  }
 }

@@ -5,6 +5,5 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 Future<String> handelApiKey() async {
   String key = sl<SharedPreferences>().getString(SharedKey.addApiKey) ?? apiKey ;
-  print(key) ; 
   return  key;
 }

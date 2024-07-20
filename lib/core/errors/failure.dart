@@ -16,4 +16,5 @@ class CreateFileFailure extends Failure {}
 
 class CopyFailure extends Failure {}
 class AIFailure extends Failure {}
+class AdLoadFailure extends Failure {}
 //? Vd == Video

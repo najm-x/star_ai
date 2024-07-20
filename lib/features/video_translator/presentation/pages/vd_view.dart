@@ -1,4 +1,4 @@
-import 'package:business_tools/core/public/widgets/add.dart';
+import 'package:business_tools/features/ads/presentation/bloc/bloc/ads_bloc.dart';
 import 'package:business_tools/features/video_translator/domain/entities/vd_translate_entities.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_view_cubit/vd_view_cubit.dart';
 import 'package:business_tools/features/video_translator/presentation/widgets/vd_view/download_widget.dart';
@@ -24,6 +24,8 @@ class _VdViewState extends State<VdView> {
   @override
   void initState() {
     super.initState();
+    BlocProvider.of<AdsBloc>(context).add(InterstitialAdEvent());
+    print(widget.data["id"]);
     subTitles = widget.data["data"];
     controller = YoutubePlayerController(
       initialVideoId: widget.data["id"],
@@ -63,7 +65,6 @@ class _VdViewState extends State<VdView> {
                         const SubTitleWidget(),
                       ],
                     ),
-                    const Add(height: 70),
                     Expanded(
                       child: SubTitleOptionsWidget(
                         subTitles: subTitles,

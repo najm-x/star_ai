@@ -1,12 +1,14 @@
 import 'package:business_tools/core/constant/types_validate.dart';
 import 'package:business_tools/core/functions/validat_input.dart';
 import 'package:business_tools/core/public/widgets/text_form_filed_cu.dart';
+import 'package:business_tools/features/ads/presentation/widgets/ads_banner_widget.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_translate_bloc/vd_translate_bloc.dart';
 import 'package:business_tools/features/video_translator/presentation/widgets/translate_option_widget.dart';
 import 'package:business_tools/features/video_translator/presentation/widgets/video_translate/transelate_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class VideoTranslatorPage extends StatelessWidget {
   const VideoTranslatorPage({super.key});
@@ -24,7 +26,9 @@ class VideoTranslatorPage extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  SizedBox(
+                  const AdsBannerWidget( adSize: AdSize.largeBanner,),
+                  Container(
+                    margin: const EdgeInsets.only(top: 15),
                     width: double.maxFinite,
                     child: TextFormFieldCu(
                         hint: AppLocalizations.of(context)!.pasteUrlHere,

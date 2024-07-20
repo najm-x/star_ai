@@ -1,10 +1,11 @@
-import 'package:business_tools/core/public/widgets/add.dart';
+import 'package:business_tools/features/ads/presentation/widgets/ads_banner_widget.dart';
 import 'package:business_tools/features/text_extract/presentation/bloc/bloc/text_extract_bloc.dart';
 import 'package:business_tools/features/text_extract/presentation/widgets/add_image_widget.dart';
 import 'package:business_tools/features/text_extract/presentation/widgets/text_extract_floating_button.dart';
 import 'package:business_tools/features/text_extract/presentation/widgets/view_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class TextExtractPage extends StatelessWidget {
   const TextExtractPage({super.key});
@@ -43,7 +44,7 @@ class TextExtractPage extends StatelessWidget {
               height: double.maxFinite,
               width: double.maxFinite,
               alignment: Alignment.bottomCenter,
-              child: const Add(height: 70))
+              child: const AdsBannerWidget(adSize: AdSize.largeBanner,))
         ],
       ),
     );

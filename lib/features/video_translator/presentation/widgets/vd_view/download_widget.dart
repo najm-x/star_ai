@@ -2,6 +2,7 @@ import 'package:business_tools/core/functions/message_permission_handel.dart';
 import 'package:business_tools/core/functions/premission_request.dart';
 import 'package:business_tools/core/public/custom_snak_bar.dart';
 import 'package:business_tools/core/public/widgets/dialog_permission.dart';
+import 'package:business_tools/features/ads/presentation/bloc/bloc/ads_bloc.dart';
 import 'package:business_tools/features/video_translator/domain/entities/vd_translate_entities.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_download_bloc/vd_download_bloc.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ class DownloadWidget extends StatelessWidget {
         }
 
         if (state.status == VdDownloadStatus.success) {
+          context.read<AdsBloc>().interstitialAd?.show();
           CustomSnakBar().snackBarSuccess(context, state.messageSuccess, 5);
         }
         if (state.status == VdDownloadStatus.errorPermission) {

@@ -65,9 +65,11 @@ dependencies:
   intl: any
   rename: ^3.0.2
   showcaseview: ^3.0.0
+  google_mobile_ads: ^5.1.0
 
 
 dependency_overrides:
+  webview_flutter_android: 3.16.1
   flutter_inappwebview_android:
     git:
       url: https://github.com/holzgeist/flutter_inappwebview

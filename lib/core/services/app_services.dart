@@ -1,4 +1,10 @@
 import 'package:business_tools/core/public/custom_snak_bar.dart';
+import 'package:business_tools/features/ads/data/datasources/ads_remote_data.dart';
+import 'package:business_tools/features/ads/data/repositories/ads_repo_imp.dart';
+import 'package:business_tools/features/ads/domain/repositories/ads_repo.dart';
+import 'package:business_tools/features/ads/domain/usecases/ads_uc.dart';
+import 'package:business_tools/features/ads/domain/usecases/lnterstitial_ad_uc.dart';
+import 'package:business_tools/features/ads/presentation/bloc/bloc/ads_bloc.dart';
 import 'package:business_tools/features/check/presentation/bloc/check/check_cubit.dart';
 import 'package:business_tools/features/extract/data/datasources/loacal_data_source.dart';
 import 'package:business_tools/features/extract/data/repositories/extract_repo_imp.dart';
@@ -50,7 +56,7 @@ Future<void> init() async {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   sl.registerLazySingleton(() => navigatorKey);
   sl.registerLazySingleton(() => sharedPreferences);
-  //!extract
+  //!home
 //?Bloc
   sl.registerFactory(() => HomeCubit());
 //!extract
@@ -115,4 +121,14 @@ Future<void> init() async {
   //!Check
 //?Bloc
   sl.registerFactory(() => CheckCubit());
+  //!TextExtracr
+//?Bloc
+  sl.registerFactory(() => AdsBloc(adsUc: sl(), interstitialAdUc: sl()));
+//?UseCases
+  sl.registerLazySingleton(() => AdsUc(adsRepo: sl()));
+  sl.registerLazySingleton(() => InterstitialAdUc(adsRepo: sl()));
+//?repo
+  sl.registerLazySingleton<AdsRepo>(() => AdsRepoImp(adsRemoteData: sl()));
+//?dataSource
+  sl.registerLazySingleton<AdsRemoteData>(() => AdsRemoteDataImp());
 }

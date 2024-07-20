@@ -5,7 +5,7 @@
     "extract": "استخراج",
     "videoTranslator": "مترجم الفيديو",
     "textTranslator": "مترجم النص",
-    "spellChecker": "مصحح الأخطاء الإملائية",
+    "spellChecker": "مدقق الإملاء",
     "textextract": "استخراج النص",
     "mailSender": "مُرسِل البريد",
     "smsSender": "مُرسِل الرسائل النصية",
@@ -75,7 +75,7 @@
     "enterTheApiKey": "أدخل ال api key ",
     "apikeyDontWork": "api key لا يعمل حاول مرة أخرى" ,
     "tools":  "الأدوات",
-    "showStart":  "اختر الأدواة التي تريدها من هنا " ,
-    "lang": "اللغة"
-
+    "showStart":  "اختر الأدوات التي تريدها من هنا " ,
+    "lang": "اللغة" ,
+    "addText": "يرجى إدخال النص"
 }
