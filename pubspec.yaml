@@ -66,6 +66,8 @@ dependencies:
   rename: ^3.0.2
   showcaseview: ^3.0.0
   google_mobile_ads: ^5.1.0
+  flutter_native_splash: ^2.4.1
+  flutter_launcher_icons: ^0.13.1
 
 
 dependency_overrides:
