@@ -1,3 +1,4 @@
+import 'package:business_tools/core/constant/ad_unit_ids.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
@@ -11,7 +12,7 @@ class AdsRemoteDataImp implements AdsRemoteData {
   Future<BannerAd> bannerAd(AdSize size) async {
     BannerAd? bannerAd ;
     await BannerAd(
-      adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+      adUnitId: AdUnitIds.bannerAdId,
       request: const AdRequest(),
       size: size,
       listener: BannerAdListener(
@@ -36,7 +37,7 @@ class AdsRemoteDataImp implements AdsRemoteData {
   Future<InterstitialAd> interstitialAd() async {
     InterstitialAd? interstitialAd;
      InterstitialAd.load(
-        adUnitId: "ca-app-pub-3940256099942544/1033173712",
+        adUnitId: AdUnitIds.interstitialAdId,
         request: const AdRequest(),
         adLoadCallback: InterstitialAdLoadCallback(
           // Called when an ad is successfully received.
