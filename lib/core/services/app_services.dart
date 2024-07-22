@@ -47,9 +47,11 @@ import 'package:business_tools/features/video_translator/presentation/bloc/vd_vi
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 GetIt sl = GetIt.instance;
 Future<void> init() async {
+await dotenv.load(fileName: ".env");
+
 //features
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => CustomSnakBar());

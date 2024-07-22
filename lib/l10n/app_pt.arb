@@ -77,5 +77,16 @@
     "tools": "Ferramentas",
     "showStart": "Escolha as ferramentas que você quer daqui",
     "lang": "Idioma",
-    "addText": "Por favor, insira o texto"
+    "addText": "Por favor, insira o texto",
+    "chooseImageShow": "Escolha a imagem aqui",
+    "clickTOExtract": "Clique aqui para extrair texto",
+    "addVideoUrl": "Insira o link do vídeo do YouTube que você copiou aqui",
+    "chooselangToTransVd": "Escolha o idioma para o qual deseja traduzir o vídeo",
+    "clickToStartTransVd": "Clique aqui para iniciar a tradução",
+    "addTextToSpellCheck": "Digite o texto que deseja verificar ortograficamente aqui",
+    "clickToStartSpell": "Clique aqui para iniciar a verificação ortográfica",
+    "enterTextToTransHere": "Digite o texto que deseja traduzir aqui",
+    "addmoreInfoText": "Você pode inserir informações sobre o texto para obter uma tradução melhor",
+    "chooselangToTransText": "Ao inserir o texto, escolha o idioma para o qual deseja traduzir o texto",
+    "clickToStartTransText": "Clique aqui para iniciar a tradução do texto"
 }

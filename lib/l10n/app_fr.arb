@@ -77,5 +77,16 @@
     "tools": "Outils",
     "showStart": "Choisissez les outils que vous voulez ici",
     "lang": "Langue",
-    "addText": "Veuillez saisir le texte"
+    "addText": "Veuillez saisir le texte",
+    "chooseImageShow": "Choisir une image ici",
+    "clickTOExtract": "Cliquez ici pour extraire le texte",
+    "addVideoUrl": "Collez ici le lien de la vidéo YouTube que vous avez copiée",
+    "chooselangToTransVd": "Choisissez la langue de traduction de la vidéo",
+    "clickToStartTransVd": "Cliquez ici pour lancer la traduction",
+    "addTextToSpellCheck": "Saisissez ici le texte dont vous souhaitez vérifier l'orthographe",
+    "clickToStartSpell": "Cliquez ici pour lancer la vérification orthographique",
+    "enterTextToTransHere": "Saisissez ici le texte que vous souhaitez traduire",
+    "addmoreInfoText": "Vous pouvez saisir des informations sur le texte pour obtenir une meilleure traduction",
+    "chooselangToTransText": "Lorsque vous saisissez du texte, choisissez la langue dans laquelle vous souhaitez le traduire",
+    "clickToStartTransText": "Cliquez ici pour lancer la traduction du texte"
 }

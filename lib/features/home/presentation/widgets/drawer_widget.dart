@@ -14,7 +14,8 @@ class DrawerWidget extends StatelessWidget {
     return NavigationDrawer(
         onDestinationSelected: (value) async {
           BlocProvider.of<HomeCubit>(context).scaffols.currentState!.closeDrawer();
-          value == 0 ? null : context.push(StaticData().drawerData[value].route!);
+          value == 0 ? null : context.push(StaticData().drawerData[value].route!); 
+          
         },
         children: [
           _title(context),

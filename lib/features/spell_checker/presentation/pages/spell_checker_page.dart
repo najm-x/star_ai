@@ -5,18 +5,38 @@ import 'package:business_tools/features/spell_checker/presentation/widgets/float
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:showcaseview/showcaseview.dart';
 
-class SpellCheckerPage extends StatelessWidget {
+class SpellCheckerPage extends StatefulWidget {
   const SpellCheckerPage({super.key});
 
   @override
+  State<SpellCheckerPage> createState() => _SpellCheckerPageState();
+}
+
+class _SpellCheckerPageState extends State<SpellCheckerPage> {
+  BuildContext? myContext;
+  @override
+  void initState() {
+    Future.delayed(Durations.short1, () {
+      BlocProvider.of<SpellCheckerCubit>(context).showCase(myContext!);
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      floatingActionButton: _floatingActionButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      appBar: _appBar(),
-      body: _buildWidget(context),
+    return ShowCaseWidget(
+      builder: (context) {
+        myContext = context;
+        return Scaffold(
+          resizeToAvoidBottomInset: false,
+          floatingActionButton: _floatingActionButton(),
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+          appBar: _appBar(),
+          body: _buildWidget(context),
+        );
+      },
     );
   }
 
@@ -25,10 +45,14 @@ class SpellCheckerPage extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          TextFormFiledLarg(
-            hint: AppLocalizations.of(context)!.pasteTextHere,
-            circular: 30,
-            textEditingController: BlocProvider.of<SpellCheckerCubit>(context).textCo,
+          Showcase(
+            key: BlocProvider.of<SpellCheckerCubit>(context).one,
+            description: AppLocalizations.of(context)!.addTextToSpellCheck,
+            child: TextFormFiledLarg(
+              hint: AppLocalizations.of(context)!.pasteTextHere,
+              circular: 30,
+              textEditingController: BlocProvider.of<SpellCheckerCubit>(context).textCo,
+            ),
           ),
           const SizedBox(
             height: 10,
@@ -44,6 +68,9 @@ class SpellCheckerPage extends StatelessWidget {
   }
 
   Widget _floatingActionButton() {
-    return const FloatActionSpellChecker();
+    return Showcase(
+        key: BlocProvider.of<SpellCheckerCubit>(context).tow,
+        description: AppLocalizations.of(context)!.clickToStartSpell,
+        child: const FloatActionSpellChecker());
   }
 }

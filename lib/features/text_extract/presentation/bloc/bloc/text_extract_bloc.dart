@@ -1,7 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:business_tools/core/app_routes.dart';
+import 'package:business_tools/core/constant/shared_key.dart';
 import 'package:business_tools/core/errors/failure.dart';
 import 'package:business_tools/core/functions/message_error_handel.dart';
+import 'package:business_tools/core/functions/show_case_init.dart';
 import 'package:business_tools/features/text_extract/domain/entities/text_extract_entities.dart';
 import 'package:business_tools/features/text_extract/domain/usecases/crop_image_uc.dart';
 import 'package:business_tools/features/text_extract/domain/usecases/extract_text_uc.dart';
@@ -19,7 +21,8 @@ class TextExtractBloc extends Bloc<TextExtractEvent, TextExtractState> {
   final CropImageUc cropImageUc;
   String path = '';
   BuildContext context = goRouter.routerDelegate.navigatorKey.currentContext!;
-
+ final one =GlobalKey() ;
+ final tow =GlobalKey() ;
   TextExtractBloc({
     required this.extractTextUc,
     required this.pickImageUc,
@@ -83,5 +86,10 @@ class TextExtractBloc extends Bloc<TextExtractEvent, TextExtractState> {
             status: TextExtractStatus.errorCropImage, messageError: messageErrorHandel(failure, context)),
         (done) => state.copyWith(
             status: TextExtractStatus.successCropImage, value: done /*image Path*/));
+  }
+
+  //
+  showCase (BuildContext myContext){
+    showCaseInit(myContext, SharedKey.isTextExtractShowed, [one , tow]) ;
   }
 }

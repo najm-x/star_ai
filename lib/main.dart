@@ -11,8 +11,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  MobileAds.instance.updateRequestConfiguration(
-  RequestConfiguration(testDeviceIds: ['72F4F610FF0BE40189FFBA2889E51B99']));
+  MobileAds.instance.initialize();
   await id.init();
   Upgrader.clearSavedSettings();
 

@@ -1,7 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:business_tools/core/app_routes.dart';
+import 'package:business_tools/core/constant/shared_key.dart';
 import 'package:business_tools/core/errors/failure.dart';
 import 'package:business_tools/core/functions/message_error_handel.dart';
+import 'package:business_tools/core/functions/show_case_init.dart';
 import 'package:business_tools/features/text_translate/domain/entities/text_trans_entities.dart';
 import 'package:business_tools/features/text_translate/domain/usecases/save_text_uc.dart';
 import 'package:business_tools/features/text_translate/domain/usecases/trans_text_uc.dart';
@@ -12,6 +14,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 part 'text_trans_state.dart';
 
 class TextTransCubit extends Cubit<TextTransState> {
+  final one = GlobalKey();
+  final tow = GlobalKey();
+  final three = GlobalKey();
+  final four = GlobalKey();
   final TransTextUc transTextUc;
   final SaveTextUc saveTextUc;
   String translateFrom = '';
@@ -92,6 +98,10 @@ class TextTransCubit extends Cubit<TextTransState> {
     isLtR = value;
     emit(state.copyWith(status: TextTransStatus.init));
     emit(state.copyWith(status: TextTransStatus.changeLtR));
+  }
+
+  showCase(BuildContext mycontext) {
+    showCaseInit(mycontext, SharedKey.isTextTransShowed,[one , tow , three , four]) ;
   }
 
   @override

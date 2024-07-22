@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:business_tools/core/app_routes.dart';
+import 'package:business_tools/core/constant/shared_key.dart';
 import 'package:business_tools/core/constant/types_validate.dart';
 import 'package:business_tools/core/errors/failure.dart';
 import 'package:business_tools/core/functions/message_error_handel.dart';
+import 'package:business_tools/core/functions/show_case_init.dart';
 import 'package:business_tools/core/public/data/language_data.dart';
 import 'package:business_tools/features/video_translator/data/datasources/vd_db_fun.dart';
 import 'package:business_tools/features/video_translator/domain/entities/vd_translate_entities.dart';
@@ -19,29 +21,32 @@ part 'vd_translate_state.dart';
 class VdTranslateBloc extends Bloc<VdTranslateEvent, VdTranslateState> {
   final VdTranslateUc vdTranslateUc;
   //
-    BuildContext context = goRouter.routerDelegate.navigatorKey.currentContext! ;
+  BuildContext context = goRouter.routerDelegate.navigatorKey.currentContext!;
 
   final GlobalKey<FormState> formState = GlobalKey<FormState>();
   final TextEditingController videoUrlCo = TextEditingController();
   String translateFrom = "";
   String translateTo = "";
   String translateFromCode = "";
+  final one = GlobalKey();
+  final tow = GlobalKey();
+  final three = GlobalKey();
 
   //
   VdTranslateBloc({required this.vdTranslateUc}) : super(VdTranslateInitial()) {
     on<VdTranslateEvent>((event, emit) {});
     on<VdTranslate>(_vdTranslate);
   }
-  
+
   Future<void> _vdTranslate(VdTranslate event, Emitter<VdTranslateState> emit) async {
-    VdDbFunHelping.translationProgressCo = StreamController<double>() ;
+    VdDbFunHelping.translationProgressCo = StreamController<double>();
     final translationProgress = VdDbFunHelping.translationProgressCo.stream;
     emit(const LoadingVdTranslate(translationProgress: 0));
     final sub = translationProgress.listen((onData) {
-      emit(LoadingVdTranslate(translationProgress: onData)) ;
+      emit(LoadingVdTranslate(translationProgress: onData));
     });
     await Future.delayed(Durations.extralong4);
-    
+
     var failureOrDone =
         await vdTranslateUc.call(event.videoId, event.translateFrom, event.translateTo, event.translateFromCode);
     await VdDbFunHelping.translationProgressCo.close();
@@ -51,7 +56,7 @@ class VdTranslateBloc extends Bloc<VdTranslateEvent, VdTranslateState> {
 
   VdTranslateState _vdTranslateState(Either<Failure, List<VdTranslateEntities>> failureOrDone) {
     return failureOrDone.fold((failure) {
-      return ErrorVdTranslate(messageError: messageErrorHandel(failure , context));
+      return ErrorVdTranslate(messageError: messageErrorHandel(failure, context));
     }, (done) {
       return SuccessVdTranslate(data: done);
     });
@@ -70,6 +75,7 @@ class VdTranslateBloc extends Bloc<VdTranslateEvent, VdTranslateState> {
           translateFromCode: translateFromCode));
     }
   }
+
   onSelectOption(String type, String langName) {
     if (type == TypesValidate.from) {
       for (var i in languages) {
@@ -92,6 +98,10 @@ class VdTranslateBloc extends Bloc<VdTranslateEvent, VdTranslateState> {
     );
     final match = regExp.firstMatch(url);
     return match?.group(1) ?? '';
+  }
+
+  showcase(BuildContext? myContext) {
+   showCaseInit(myContext!, SharedKey.isVdTransShowed, [one, tow, three]);
   }
 
   @override

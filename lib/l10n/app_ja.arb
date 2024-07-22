@@ -77,5 +77,16 @@
     "tools": "ツール",
     "showStart": "ここから必要なツールを選択してください",
     "lang": "言語",
-    "addText": "テキストを入力してください"
+    "addText": "テキストを入力してください" ,
+    "chooseImageShow": "ここから画像を選択",
+  "clickTOExtract": "ここをクリックしてテキストを抽出",
+  "addVideoUrl": "コピーした YouTube 動画のリンクをここに入力してください",
+  "chooselangToTransVd": "動画の翻訳元と翻訳先の言語を選択してください",
+  "clickToStartTransVd": "ここをクリックして翻訳を開始",
+  "addTextToSpellCheck": "スペルチェックするテキストをここに入力してください",
+  "clickToStartSpell": "ここをクリックしてスペルチェックを開始",
+  "enterTextToTransHere": "翻訳するテキストをここに入力してください",
+  "addmoreInfoText": "より良い翻訳結果を得るために、テキストに関する情報を入力できます",
+  "chooselangToTransText": "テキストを入力する際、翻訳元と翻訳先の言語を選択してください",
+  "clickToStartTransText": "ここをクリックしてテキストの翻訳を開始"
 }

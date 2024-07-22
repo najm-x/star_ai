@@ -6,21 +6,41 @@ import 'package:business_tools/features/text_extract/presentation/widgets/view_t
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:showcaseview/showcaseview.dart';
 
-class TextExtractPage extends StatelessWidget {
+class TextExtractPage extends StatefulWidget {
   const TextExtractPage({super.key});
 
   @override
+  State<TextExtractPage> createState() => _TextExtractPageState();
+}
+
+class _TextExtractPageState extends State<TextExtractPage> {
+  BuildContext? myContext;
+  @override
+  void initState() {
+    Future.delayed(Durations.short1, () {
+      BlocProvider.of<TextExtractBloc>(context).showCase(myContext!);
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return PopScope(
-        onPopInvoked: (didPop) {
-          BlocProvider.of<TextExtractBloc>(context).add(const RestEvent());
-        },
-        child: Scaffold(
-          floatingActionButton: _floatingActionButton(),
-          appBar: AppBar(),
-          body: _buildBody(),
-        ));
+    return ShowCaseWidget(
+      builder: (context) {
+        myContext = context;
+        return PopScope(
+            onPopInvoked: (didPop) {
+              BlocProvider.of<TextExtractBloc>(context).add(const RestEvent());
+            },
+            child: Scaffold(
+              floatingActionButton: _floatingActionButton(),
+              appBar: AppBar(),
+              body: _buildBody(),
+            ));
+      },
+    );
   }
 
   Widget _buildBody() {
@@ -44,7 +64,9 @@ class TextExtractPage extends StatelessWidget {
               height: double.maxFinite,
               width: double.maxFinite,
               alignment: Alignment.bottomCenter,
-              child: const AdsBannerWidget(adSize: AdSize.largeBanner,))
+              child: const AdsBannerWidget(
+                adSize: AdSize.largeBanner,
+              ))
         ],
       ),
     );

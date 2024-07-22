@@ -311,5 +311,49 @@
     "addText": "Enter the Text",
     "@addText": {
         "description": "Add Text"
-    }
+    } ,
+    "chooseImageShow": "Choose Image From Here",
+  "@chooseImageShow": {
+    "description": "Label for the button to choose an image"
+  },
+  "clickTOExtract": "Click Here To Extract Text",
+  "@clickTOExtract": {
+    "description": "Label for the button to extract text from image"
+  },
+  "addVideoUrl": "Enter The YouTube Video Link You Copied Here",
+  "@addVideoUrl": {
+    "description": "Label for the text field to enter a YouTube video URL"
+  },
+  "chooselangToTransVd": "Choose The Language To Translate The Video From And To",
+  "@chooselangToTransVd": {
+    "description": "Label for the dropdown to choose language for video translation"
+  },
+  "clickToStartTransVd": "Click Here To Start Translation",
+  "@clickToStartTransVd": {
+    "description": "Label for the button to start video translation"
+  },
+  "addTextToSpellCheck": "Enter The Text You Want To Spell Check Here",
+  "@addTextToSpellCheck": {
+    "description": "Label for the text field to enter text for spell check"
+  },
+  "clickToStartSpell": "Click Here To Start Spell Checking",
+  "@clickToStartSpell": {
+    "description": "Label for the button to start spell checking"
+  },
+  "enterTextToTransHere": "Enter The Text You Want To Translate Here",
+  "@enterTextToTransHere": {
+    "description": "Label for the text field to enter text for translation"
+  },
+  "addmoreInfoText": "You Can Enter Information About The Text To Get A Better Translation",
+  "@addmoreInfoText": {
+    "description": "Label to encourage users to add more context for better translation"
+  },
+  "chooselangToTransText": "When Entering Text, Choose The Language To Translate The Text From And To",
+  "@chooselangToTransText": {
+    "description": "Label for the dropdown to choose language for text translation"
+  },
+  "clickToStartTransText": "Click Here To Start Text Translation",
+  "@clickToStartTransText": {
+    "description": "Label for the button to start text translation"
+  }
 }

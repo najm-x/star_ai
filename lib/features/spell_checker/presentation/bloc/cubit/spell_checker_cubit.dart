@@ -1,7 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:business_tools/core/app_routes.dart';
+import 'package:business_tools/core/constant/shared_key.dart';
 import 'package:business_tools/core/errors/failure.dart';
 import 'package:business_tools/core/functions/message_error_handel.dart';
+import 'package:business_tools/core/functions/show_case_init.dart';
 import 'package:business_tools/features/spell_checker/domain/entities/spell_checker_entities.dart';
 import 'package:business_tools/features/spell_checker/domain/usecases/save_text_spelled.dart';
 import 'package:business_tools/features/spell_checker/domain/usecases/spell_text_checker_uc.dart';
@@ -16,8 +18,9 @@ class SpellCheckerCubit extends Cubit<SpellCheckerState> {
   final SpellTextCheckerUc spellTextCheckerUc;
   final SaveTextSpelled saveTextSpelled;
   final TextEditingController textCo = TextEditingController();
-    BuildContext context = goRouter.routerDelegate.navigatorKey.currentContext! ;
-
+  BuildContext context = goRouter.routerDelegate.navigatorKey.currentContext!;
+  final one = GlobalKey();
+  final tow = GlobalKey();
   bool isLtR = false;
   // List moreInfo = [] ;
   SpellCheckerCubit({required this.spellTextCheckerUc, required this.saveTextSpelled})
@@ -30,7 +33,7 @@ class SpellCheckerCubit extends Cubit<SpellCheckerState> {
       emit(_spellTextCheckerStatus(failureOrDone));
     } else {
       emit(state.copyWith(status: SpellCheckerStatus.init));
-      emit(state.copyWith(status: SpellCheckerStatus.emptyOption, messageError:AppLocalizations.of(context)!.addText));
+      emit(state.copyWith(status: SpellCheckerStatus.emptyOption, messageError: AppLocalizations.of(context)!.addText));
     }
   }
 
@@ -42,21 +45,27 @@ class SpellCheckerCubit extends Cubit<SpellCheckerState> {
 
   SpellCheckerState _spellTextCheckerStatus(Either<Failure, SpellCheckerEntities> failureOrDone) {
     return failureOrDone.fold(
-        (failure) =>
-            state.copyWith(status: SpellCheckerStatus.errorSpellChecker, messageError: messageErrorHandel(failure , context)),
+        (failure) => state.copyWith(
+            status: SpellCheckerStatus.errorSpellChecker, messageError: messageErrorHandel(failure, context)),
         (done) => state.copyWith(status: SpellCheckerStatus.successSpellChecker, value: done.text));
   }
 
   SpellCheckerState _saveTextStatus(Either<Failure, Unit> failureOrDone) {
     return failureOrDone.fold(
-        (failure) => state.copyWith(status: SpellCheckerStatus.errorOther, messageError: messageErrorHandel(failure , context)),
-        (done) => state.copyWith(status: SpellCheckerStatus.successSave, messageSuccess: AppLocalizations.of(context)!.doneSaveFile));
+        (failure) =>
+            state.copyWith(status: SpellCheckerStatus.errorOther, messageError: messageErrorHandel(failure, context)),
+        (done) => state.copyWith(
+            status: SpellCheckerStatus.successSave, messageSuccess: AppLocalizations.of(context)!.doneSaveFile));
   }
 
   void changeLtR(bool value) {
     isLtR = value;
     emit(state.copyWith(status: SpellCheckerStatus.init));
     emit(state.copyWith(status: SpellCheckerStatus.changeLtR));
+  }
+
+  showCase(BuildContext myContext){
+    showCaseInit(myContext, SharedKey.isSpellCheckerShowed, [one, tow]);
   }
 
   @override

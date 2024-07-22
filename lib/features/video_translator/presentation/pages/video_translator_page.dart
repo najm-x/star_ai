@@ -9,43 +9,78 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:showcaseview/showcaseview.dart';
 
-class VideoTranslatorPage extends StatelessWidget {
+class VideoTranslatorPage extends StatefulWidget {
   const VideoTranslatorPage({super.key});
+
+  @override
+  State<VideoTranslatorPage> createState() => _VideoTranslatorPageState();
+}
+
+class _VideoTranslatorPageState extends State<VideoTranslatorPage> {
+  BuildContext? myContext;
+
+  @override
+  void initState() {
+    Future.delayed(Durations.short1, () {
+      BlocProvider.of<VdTranslateBloc>(context).showcase(myContext);
+    });
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Center(
-          child: SingleChildScrollView(
-            child: Form(
-              key: BlocProvider.of<VdTranslateBloc>(context).formState,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const AdsBannerWidget( adSize: AdSize.largeBanner,),
-                  Container(
-                    margin: const EdgeInsets.only(top: 15),
-                    width: double.maxFinite,
-                    child: TextFormFieldCu(
-                        hint: AppLocalizations.of(context)!.pasteUrlHere,
-                        labelText: AppLocalizations.of(context)!.vdurl,
-                        textEditingController: BlocProvider.of<VdTranslateBloc>(context).videoUrlCo,
-                        validator: (p0) => validateInput(p0!, TypesValidate.videoId, 300, 5)),
+    return ShowCaseWidget(
+      builder: (context) {
+        myContext = context;
+        return Scaffold(
+          resizeToAvoidBottomInset: false,
+          appBar: AppBar(),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Center(
+              child: SingleChildScrollView(
+                child: Form(
+                  key: BlocProvider.of<VdTranslateBloc>(context).formState,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const AdsBannerWidget(
+                        adSize: AdSize.largeBanner,
+                      ),
+                      Showcase(
+                        key: BlocProvider.of<VdTranslateBloc>(context).one,
+                        description: AppLocalizations.of(context)!.addVideoUrl,
+                        child: Container(
+                          margin: const EdgeInsets.only(top: 15),
+                          width: double.maxFinite,
+                          child: TextFormFieldCu(
+                              hint: AppLocalizations.of(context)!.pasteUrlHere,
+                              labelText: AppLocalizations.of(context)!.vdurl,
+                              textEditingController: BlocProvider.of<VdTranslateBloc>(context).videoUrlCo,
+                              validator: (p0) => validateInput(p0!, TypesValidate.videoId, 300, 5)),
+                        ),
+                      ),
+                      _space(),
+                      Showcase(
+                          key: BlocProvider.of<VdTranslateBloc>(context).tow,
+                          description: AppLocalizations.of(context)!.chooselangToTransVd,
+                          child: const TranslateOptionWidget()),
+                      _space(),
+                      Showcase(
+                          key: BlocProvider.of<VdTranslateBloc>(context).three,
+                          description: AppLocalizations.of(context)!.clickToStartTransVd,
+                          child: const TranselateButton())
+                    ],
                   ),
-                  _space(),
-                  const TranslateOptionWidget(),
-                  _space(),
-                  const TranselateButton()
-                ],
+                ),
               ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 

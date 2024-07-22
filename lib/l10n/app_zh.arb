@@ -77,5 +77,16 @@
     "tools": "工具",
     "showStart": "从此处选择您想要的工具",
     "lang": "语言",
-    "addText": "请输入文本"
+    "addText": "请输入文本",
+    "chooseImageShow": "从此处选择图片",
+    "clickTOExtract": "点击此处提取文本",
+    "addVideoUrl": "在此处输入您复制的 YouTube 视频链接",
+    "chooselangToTransVd": "选择要将视频翻译成的语言",
+    "clickToStartTransVd": "点击此处开始翻译",
+    "addTextToSpellCheck": "在此处输入您要拼写检查的文本",
+    "clickToStartSpell": "点击此处开始拼写检查",
+    "enterTextToTransHere": "在此处输入您要翻译的文本",
+    "addmoreInfoText": "您可以输入有关文本的信息以获得更好的翻译",
+    "chooselangToTransText": "输入文本时，请选择要将文本翻译成的语言",
+    "clickToStartTransText": "点击此处开始文本翻译"
 }

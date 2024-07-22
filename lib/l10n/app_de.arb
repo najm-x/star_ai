@@ -77,5 +77,16 @@
     "tools": "Werkzeuge",
     "showStart": "Wählen Sie hier Ihre gewünschten Tools aus",
     "lang": "Sprache",
-    "addText": "Bitte Text eingeben"
+    "addText": "Bitte Text eingeben",
+    "chooseImageShow": "Bild von hier auswählen",
+    "clickTOExtract": "Klicken Sie hier, um Text zu extrahieren",
+    "addVideoUrl": "Geben Sie hier den kopierten YouTube-Videolink ein",
+    "chooselangToTransVd": "Wählen Sie die Sprache, in die das Video übersetzt werden soll",
+    "clickToStartTransVd": "Klicken Sie hier, um die Übersetzung zu starten",
+    "addTextToSpellCheck": "Geben Sie hier den Text ein, den Sie auf Rechtschreibung überprüfen möchten",
+    "clickToStartSpell": "Klicken Sie hier, um die Rechtschreibprüfung zu starten",
+    "enterTextToTransHere": "Geben Sie hier den Text ein, den Sie übersetzen möchten",
+    "addmoreInfoText": "Sie können Informationen zum Text eingeben, um eine bessere Übersetzung zu erhalten",
+    "chooselangToTransText": "Wählen Sie beim Eingeben von Text die Sprache, in die der Text übersetzt werden soll",
+    "clickToStartTransText": "Klicken Sie hier, um die Textübersetzung zu starten"
 }

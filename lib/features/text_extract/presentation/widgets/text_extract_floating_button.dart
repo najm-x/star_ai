@@ -1,6 +1,8 @@
 import 'package:business_tools/features/text_extract/presentation/bloc/bloc/text_extract_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:showcaseview/showcaseview.dart';
+import'package:flutter_gen/gen_l10n/app_localizations.dart' ;
 
 class TextExtractFloatingButton extends StatelessWidget {
   const TextExtractFloatingButton({super.key});
@@ -49,12 +51,17 @@ class TextExtractFloatingButton extends StatelessWidget {
   }
 
   Widget _iconSend(BuildContext context) {
-    return IconButton(
-        onPressed: () =>
-            context.read<TextExtractBloc>().add(ExtractTextFromImageEvent(path: context.read<TextExtractBloc>().path)),
-        icon: const Icon(
-          Icons.image_search,
-          size: 28,
-        ));
+    return Showcase(
+      key: BlocProvider.of<TextExtractBloc>(context).tow,
+      description: AppLocalizations.of(context)!.clickTOExtract,
+      child: IconButton(
+          onPressed: () => context
+              .read<TextExtractBloc>()
+              .add(ExtractTextFromImageEvent(path: context.read<TextExtractBloc>().path)),
+          icon: const Icon(
+            Icons.image_search,
+            size: 28,
+          )),
+    );
   }
 }

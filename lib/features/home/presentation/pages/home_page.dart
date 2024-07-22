@@ -1,4 +1,3 @@
-import 'package:business_tools/core/constant/app_colors.dart';
 import 'package:business_tools/features/home/presentation/bloc/cubit/home_cubit.dart';
 import 'package:business_tools/features/home/presentation/widgets/dec_widget.dart';
 import 'package:business_tools/features/home/presentation/widgets/drawer_widget.dart';
@@ -36,7 +35,6 @@ class _HomePageState extends State<HomePage> {
         mycontext = context;
         return Scaffold(
           key: BlocProvider.of<HomeCubit>(context).scaffols,
-          backgroundColor: AppColors.primaryContainer,
           appBar: _appBar(context),
           drawer: _drawer(),
           body: _buildWidget(context),
@@ -65,7 +63,6 @@ class _HomePageState extends State<HomePage> {
 
   AppBar _appBar(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.transparent,
       centerTitle: true,
       title: Text(AppLocalizations.of(context)!.appName),
       leading: Showcase(
