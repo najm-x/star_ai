@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
       create: (context) => LanguageCubit(),
       child: BlocBuilder<LanguageCubit, LanguageState>(
         builder: (context, state) {
+          print("hello") ;
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
