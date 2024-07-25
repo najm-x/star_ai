@@ -88,5 +88,6 @@
   "enterTextToTransHere": "翻訳するテキストをここに入力してください",
   "addmoreInfoText": "より良い翻訳結果を得るために、テキストに関する情報を入力できます",
   "chooselangToTransText": "テキストを入力する際、翻訳元と翻訳先の言語を選択してください",
-  "clickToStartTransText": "ここをクリックしてテキストの翻訳を開始"
+  "clickToStartTransText": "ここをクリックしてテキストの翻訳を開始",
+    "privacyPolicy": "privacy policy"
 }

@@ -88,5 +88,6 @@
     "enterTextToTransHere": "Geben Sie hier den Text ein, den Sie übersetzen möchten",
     "addmoreInfoText": "Sie können Informationen zum Text eingeben, um eine bessere Übersetzung zu erhalten",
     "chooselangToTransText": "Wählen Sie beim Eingeben von Text die Sprache, in die der Text übersetzt werden soll",
-    "clickToStartTransText": "Klicken Sie hier, um die Textübersetzung zu starten"
+    "clickToStartTransText": "Klicken Sie hier, um die Textübersetzung zu starten",
+    "privacyPolicy": "privacy policy"
 }

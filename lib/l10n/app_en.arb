@@ -355,5 +355,9 @@
   "clickToStartTransText": "Click Here To Start Text Translation",
   "@clickToStartTransText": {
     "description": "Label for the button to start text translation"
+  },
+  "privacyPolicy": "privacy policy",
+  "@privacyPolicy": {
+    "description": "privacy policy"
   }
 }

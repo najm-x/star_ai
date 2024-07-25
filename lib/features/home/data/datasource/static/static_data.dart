@@ -33,5 +33,9 @@ class StaticData {
         title: AppLocalizations.of(context)!.textextract,
         iconData: Icons.image_search_rounded,
         route: AppRouteName.textExtractPage),
+    DrawerModel(
+        title: AppLocalizations.of(context)!.privacyPolicy,
+        iconData: Icons.privacy_tip_rounded,
+        ),
   ];
 }

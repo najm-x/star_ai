@@ -88,5 +88,6 @@
     "enterTextToTransHere": "Въведете текста, който искате да преведете, тук",
     "addmoreInfoText": "Можете да въведете информация за текста, за да получите по-добър превод",
     "chooselangToTransText": "Когато въвеждате текст, изберете език, на който да го преведете",
-    "clickToStartTransText": "Щракнете тук, за да започнете превода на текста"
+    "clickToStartTransText": "Щракнете тук, за да започнете превода на текста",
+    "privacyPolicy": "privacy policy"
 }

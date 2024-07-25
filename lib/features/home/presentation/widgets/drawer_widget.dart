@@ -1,3 +1,4 @@
+import 'package:business_tools/core/functions/open_url.dart';
 import 'package:business_tools/features/home/data/datasource/static/static_data.dart';
 import 'package:business_tools/features/home/data/models/drawer_model.dart';
 import 'package:business_tools/features/home/presentation/bloc/cubit/home_cubit.dart';
@@ -14,8 +15,12 @@ class DrawerWidget extends StatelessWidget {
     return NavigationDrawer(
         onDestinationSelected: (value) async {
           BlocProvider.of<HomeCubit>(context).scaffols.currentState!.closeDrawer();
-          value == 0 ? null : context.push(StaticData().drawerData[value].route!); 
-          
+          if (value == 0) return;
+          if (value == StaticData().drawerData.length - 1) {
+            openUrl("https://star-ai1.blogspot.com/2024/07/privacy-policy.html");
+            return;
+          }
+          value == 0 ? null : context.push(StaticData().drawerData[value].route!);
         },
         children: [
           _title(context),
@@ -25,24 +30,8 @@ class DrawerWidget extends StatelessWidget {
               DrawerModel drawerModel = StaticData().drawerData[index];
               return NavigationDrawerDestination(icon: Icon(drawerModel.iconData), label: Text(drawerModel.title));
             },
-          )
+          ),
         ]);
-    // Drawer(
-    //   child: Padding(
-    //     padding: const EdgeInsets.all(18.0),
-    //     child: Column(children: [
-    //       _title(),
-    //       ...List.generate(StaticData.drawerData.length, (index) {
-    //         DrawerModel drawerModel = StaticData.drawerData[index];
-    //         return _itemDesing(
-    //             drawerModel: drawerModel,
-    //             onTap: () {
-    //               drawerModel.route != null ? Navigator.of(context).pushNamed(drawerModel.route!) : {};
-    //             });
-    //       })
-    //     ]),
-    //   ),
-    // );
   }
 
   Widget _title(BuildContext context) {

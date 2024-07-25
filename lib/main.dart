@@ -13,7 +13,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
   await id.init();
-  Upgrader.clearSavedSettings();
 
   runApp(const MyApp());
 }
@@ -28,6 +27,7 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<LanguageCubit, LanguageState>(
         builder: (context, state) {
           return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             locale: state.status == LanguageStatus.success ? Locale(state.value) : handelSupportedLocales(),
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
               return UpgradeAlert(
                 navigatorKey: goRouter.routerDelegate.navigatorKey,
                 upgrader: Upgrader(
-                    minAppVersion: "1.0.0",
+                    minAppVersion: "2.0.0",
                     durationUntilAlertAgain: const Duration(seconds: 3),
                     storeController: UpgraderStoreController(
                         onAndroid: () =>

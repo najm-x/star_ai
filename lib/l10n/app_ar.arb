@@ -88,5 +88,7 @@
     "enterTextToTransHere": "أدخل النص الذي تريد ترجمته هنا",
     "addmoreInfoText": "يمكنك إدخال معلومات حول النص للحصول على ترجمة أفضل",
     "chooselangToTransText": "عند إدخال نص ، اختر اللغة لترجمة النص منها وإليها",
-    "clickToStartTransText": "انقر هنا لبدء ترجمة النص"
+    "clickToStartTransText": "انقر هنا لبدء ترجمة النص" ,
+    "privacyPolicy": "privacy policy"
+
 }

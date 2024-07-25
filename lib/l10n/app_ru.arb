@@ -88,5 +88,6 @@
     "enterTextToTransHere": "Введите текст, который нужно перевести, сюда",
     "addmoreInfoText": "Вы можете добавить информацию о тексте, чтобы получить более точный перевод",
     "chooselangToTransText": "При вводе текста выберите язык, на который нужно его перевести",
-    "clickToStartTransText": "Нажмите сюда, чтобы начать перевод текста"
+    "clickToStartTransText": "Нажмите сюда, чтобы начать перевод текста",
+    "privacyPolicy": "privacy policy"
 }
