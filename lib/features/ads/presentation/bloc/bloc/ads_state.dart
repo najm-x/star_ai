@@ -20,3 +20,9 @@ final class InterstitialAdoading extends AdsState {}
 final class InterstitialAdError extends AdsState {}
 
 final class InterstitialAdSuccess extends AdsState {}
+
+final class RewardedAdLoading extends AdsState {}
+
+final class RewardedAdError extends AdsState {}
+
+final class RewardedAdSuccess extends AdsState {}

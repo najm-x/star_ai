@@ -1,13 +1,14 @@
 import 'package:business_tools/core/constant/app_routes_name.dart';
 import 'package:business_tools/core/public/custom_snak_bar.dart';
 import 'package:business_tools/core/public/widgets/info_widget.dart';
+import 'package:business_tools/features/video_translator/data/models/data_vd_model.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_translate_bloc/vd_translate_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class TranselateButton extends StatelessWidget {
-  const TranselateButton({Key? key}) : super(key: key);
+  const TranselateButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +18,12 @@ class TranselateButton extends StatelessWidget {
           debugPrint(state.data.toString());
           await Future.delayed(Durations.medium1);
           // ignore: use_build_context_synchronously
-          context.replace(AppRouteName.vdView, extra: {
-            "data": state.data,
-            // ignore: use_build_context_synchronously
-            "id": context.read<VdTranslateBloc>().extractYouTubeId(context.read<VdTranslateBloc>().videoUrlCo.text)
-          });
+          context.replace(AppRouteName.vdView,
+              extra: DataVdModel(
+                  idVideo:
+                      // ignore: use_build_context_synchronously
+                      context.read<VdTranslateBloc>().extractYouTubeId(context.read<VdTranslateBloc>().videoUrlCo.text),
+                  data: state.data));
         }
         if (state is ErrorVdTranslate) {
           // ignore: use_build_context_synchronously

@@ -359,5 +359,33 @@
   "privacyPolicy": "privacy policy",
   "@privacyPolicy": {
     "description": "privacy policy"
+  } ,
+  "vdTransTypeOneTitle": "Video Translation with Download",
+  "@vdTransTypeOneTitle": {
+    "description": "Title for the first video translation type"
+  },
+  "vdTransTypeOneDes": "You'll need to wait for the video translation to complete before watching it. This may take some time depending on the video length.",
+  "@vdTransTypeOneDes": {
+    "description": "Description for the first video translation type"
+  },
+  "vdTransTypeTowTitle": "Direct Video Translation",
+  "@vdTransTypeTowTitle": {
+    "description": "Title for the second video translation type"
+  },
+  "vdTransTypeTowDes": "The video will be translated directly and quickly, but you won't be able to download the translation.",
+  "@vdTransTypeTowDes": {
+    "description": "Description for the second video translation type"
+  },
+  "vdTransTypeThreeTitle": "Video Translation from a Translation File",
+  "@vdTransTypeThreeTitle": {
+    "description": "Title for the third video translation type"
+  },
+  "vdTransTypeThreeDes": "The video will be translated based on the translation file you chose.",
+  "@vdTransTypeThreeDes": {
+    "description": "Description for the third video translation type"
+  },
+  "showToStart": "Watch a short ad to start",
+  "@showToStart": {
+    "description": "Message to encourage watching an ad to start"
   }
 }

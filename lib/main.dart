@@ -11,7 +11,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  MobileAds.instance.initialize();
+  MobileAds.instance
+      .updateRequestConfiguration(RequestConfiguration(testDeviceIds: ["AB106765A9E7B33AC428228C1372CEFE"]));
   await id.init();
 
   runApp(const MyApp());
@@ -26,7 +27,6 @@ class MyApp extends StatelessWidget {
       create: (context) => LanguageCubit(),
       child: BlocBuilder<LanguageCubit, LanguageState>(
         builder: (context, state) {
-          print("hello") ;
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
             localizationsDelegates: AppLocalizations.localizationsDelegates,

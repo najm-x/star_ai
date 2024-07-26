@@ -1,4 +1,3 @@
-import 'package:business_tools/core/constant/app_strings.dart';
 import 'package:business_tools/core/public/widgets/text_form_filed_cu.dart';
 import 'package:business_tools/features/extract/presentation/widgets/drop_down_widget.dart';
 import 'package:business_tools/features/text_translate/presentation/bloc/cubit/text_trans_cubit.dart';
@@ -21,7 +20,7 @@ class TranslateOptionWidgetTexr extends StatelessWidget {
           children: [
             Showcase(
               key: BlocProvider.of<TextTransCubit>(context).three,
-              description: AppStrings.addmoreInfoText,
+              description: AppLocalizations.of(context)!.addmoreInfoText,
               child: TextFormFieldCu(
                 hint: AppLocalizations.of(context)!.infoText,
                 labelText: AppLocalizations.of(context)!.info,
@@ -30,12 +29,12 @@ class TranslateOptionWidgetTexr extends StatelessWidget {
                 textEditingController: BlocProvider.of<TextTransCubit>(context).infoCo,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Showcase(
               key: BlocProvider.of<TextTransCubit>(context).tow,
-              description: AppStrings.chooselangToTransText,
+              description: AppLocalizations.of(context)!.chooselangToTransText,
               
               child: Container(
                 padding: const EdgeInsets.all(10),

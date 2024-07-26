@@ -1,7 +1,10 @@
+import 'package:business_tools/core/app_routes.dart';
+import 'package:business_tools/core/constant/app_routes_name.dart';
+import 'package:business_tools/features/video_translator/data/models/vd_type_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class StaticDataVdTrans {
-
   static String fghfgh = '''
 Hello,
 
@@ -69,8 +72,8 @@ The translated text must contain the same number of sentences as the original te
 I will translate each sentence from the original text independently.
 I will not merge or split any sentences during the translation.
 I will ensure that each element in the original list corresponds to exactly one element in the translated list.
-''' ;
-  
+''';
+
   static List<Color> colorList = [
     Colors.white,
     Colors.blue,
@@ -79,5 +82,14 @@ I will ensure that each element in the original list corresponds to exactly one 
     Colors.pink,
     Colors.red,
     Colors.black,
+  ];
+    static BuildContext context = goRouter.routerDelegate.navigatorKey.currentContext! ;
+   List<VdTypeModel> vdTypeData = [
+    VdTypeModel(
+        title:  AppLocalizations.of(context)!.vdTransTypeOneTitle,
+        body: AppLocalizations.of(context)!.vdTransTypeOneDes,
+        pageRoute: AppRouteName.videoTranslatorPage),
+    VdTypeModel(title: AppLocalizations.of(context)!.vdTransTypeTowTitle, body: AppLocalizations.of(context)!.vdTransTypeTowDes, pageRoute: ""),
+    VdTypeModel(title: AppLocalizations.of(context)!.vdTransTypeThreeTitle, body: AppLocalizations.of(context)!.vdTransTypeThreeDes, pageRoute: ""),
   ];
 }

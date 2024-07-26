@@ -20,7 +20,7 @@ class StaticData {
     DrawerModel(
         title: AppLocalizations.of(context)!.videoTranslator,
         iconData: UIcons.regularRounded.magic_wand,
-        route: AppRouteName.videoTranslatorPage),
+        route: AppRouteName.chooseTransTypePage),
     DrawerModel(
         title: AppLocalizations.of(context)!.textTranslator,
         iconData: Icons.translate_rounded,

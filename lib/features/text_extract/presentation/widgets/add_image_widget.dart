@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:business_tools/core/constant/app_strings.dart';
 import 'package:business_tools/core/functions/check_permission.dart';
 import 'package:business_tools/core/public/custom_snak_bar.dart';
 import 'package:business_tools/core/services/app_services.dart';
@@ -45,7 +44,7 @@ class AddImageWidget extends StatelessWidget {
               : Center(
                   child: Showcase(
                     key: BlocProvider.of<TextExtractBloc>(context).one,
-                    description: AppStrings.chooseImage,
+                    description: AppLocalizations.of(context)!.chooseImage,
                     child: TextButton.icon(
                     onPressed: () async {
                       if (await checkPermission(context)) {

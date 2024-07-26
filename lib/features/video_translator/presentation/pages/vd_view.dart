@@ -1,4 +1,5 @@
 import 'package:business_tools/features/ads/presentation/bloc/bloc/ads_bloc.dart';
+import 'package:business_tools/features/video_translator/data/models/data_vd_model.dart';
 import 'package:business_tools/features/video_translator/domain/entities/vd_translate_entities.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_view_cubit/vd_view_cubit.dart';
 import 'package:business_tools/features/video_translator/presentation/widgets/vd_view/download_widget.dart';
@@ -11,7 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VdView extends StatefulWidget {
-  final Map data;
+  final DataVdModel data;
   const VdView({super.key, required this.data});
 
   @override
@@ -25,10 +26,10 @@ class _VdViewState extends State<VdView> {
   void initState() {
     super.initState();
     BlocProvider.of<AdsBloc>(context).add(InterstitialAdEvent());
-    print(widget.data["id"]);
-    subTitles = widget.data["data"];
+    print(widget.data.data);
+    subTitles = widget.data.data;
     controller = YoutubePlayerController(
-      initialVideoId: widget.data["id"],
+      initialVideoId: widget.data.idVideo,
       flags: const YoutubePlayerFlags(
         hideThumbnail: true,
         forceHD: true,
@@ -70,7 +71,7 @@ class _VdViewState extends State<VdView> {
                         subTitles: subTitles,
                       ),
                     ),
-                    DownloadWidget(translation: widget.data["data"], videoUrl: widget.data["id"])
+                    DownloadWidget(translation: widget.data.data, videoUrl: widget.data.idVideo)
                   ],
                 );
               } else {

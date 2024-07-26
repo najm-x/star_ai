@@ -20,9 +20,12 @@ import 'package:business_tools/features/text_extract/presentation/bloc/bloc/text
 import 'package:business_tools/features/text_extract/presentation/pages/text_extract_page.dart';
 import 'package:business_tools/features/text_translate/presentation/bloc/cubit/text_trans_cubit.dart';
 import 'package:business_tools/features/text_translate/presentation/pages/text_translate_page.dart';
+import 'package:business_tools/features/video_translator/data/models/data_vd_model.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_download_bloc/vd_download_bloc.dart';
+import 'package:business_tools/features/video_translator/presentation/bloc/vd_trans_type_cubit/vd_trans_type_cubit.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_translate_bloc/vd_translate_bloc.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_view_cubit/vd_view_cubit.dart';
+import 'package:business_tools/features/video_translator/presentation/pages/choose_type_trans_page.dart';
 import 'package:business_tools/features/video_translator/presentation/pages/vd_view.dart';
 import 'package:business_tools/features/video_translator/presentation/pages/video_translator_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,6 +40,20 @@ final goRouter = GoRouter(initialLocation: '/', routes: [
     builder: (context, state) => BlocProvider(
       create: (context) => id.sl<CheckCubit>()..check(),
       child: const CheckPage(),
+    ),
+  ),
+  GoRoute(
+    path: AppRouteName.chooseTransTypePage,
+    builder: (context, state) => MultiRepositoryProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => id.sl<AdsBloc>()..add(RewardedAdEvent()),
+        ),
+        BlocProvider(
+          create: (context) => VdTransTypeCubit(),
+        ),
+      ],
+      child: const ChooseTypeTransPage(),
     ),
   ),
   GoRoute(
@@ -81,7 +98,7 @@ final goRouter = GoRouter(initialLocation: '/', routes: [
         ),
       ],
       child: VdView(
-        data: state.extra as Map,
+        data: state.extra as DataVdModel,
       ),
     ),
   ),

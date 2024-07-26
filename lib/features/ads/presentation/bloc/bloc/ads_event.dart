@@ -15,5 +15,6 @@ final class BannerAdEvent extends AdsEvent {
   List<Object> get props => [];
 }
 
-final class InterstitialAdEvent extends AdsEvent {
-  }
+final class InterstitialAdEvent extends AdsEvent {}
+
+final class RewardedAdEvent extends AdsEvent {}

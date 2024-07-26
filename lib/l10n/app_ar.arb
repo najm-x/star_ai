@@ -89,6 +89,13 @@
     "addmoreInfoText": "يمكنك إدخال معلومات حول النص للحصول على ترجمة أفضل",
     "chooselangToTransText": "عند إدخال نص ، اختر اللغة لترجمة النص منها وإليها",
     "clickToStartTransText": "انقر هنا لبدء ترجمة النص" ,
-    "privacyPolicy": "privacy policy"
+    "privacyPolicy": "privacy policy" ,
+    "vdTransTypeOneTitle": "ترجمة الفيديو مع التحميل",
+    "vdTransTypeOneDes": "سيتعين عليك الانتظار حتى اكتمال ترجمة الفيديو قبل مشاهدته. قد يستغرق ذلك بعض الوقت اعتمادًا على طول الفيديو.",
+    "vdTransTypeTowTitle": "ترجمة الفيديو المباشرة",
+    "vdTransTypeTowDes": "سيتم ترجمة الفيديو مباشرة وبسرعة، لكن لن تتمكن من تنزيل الترجمة.",
+    "vdTransTypeThreeTitle": "ترجمة الفيديو من ملف ترجمة",
+    "vdTransTypeThreeDes": "سيتم ترجمة الفيديو بناءً على ملف الترجمة الذي اخترته.",
+    "showToStart": "شاهد إعلانًا قصيرًا للبدء"
 
 }

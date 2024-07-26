@@ -89,5 +89,12 @@
     "addmoreInfoText": "Sie können Informationen zum Text eingeben, um eine bessere Übersetzung zu erhalten",
     "chooselangToTransText": "Wählen Sie beim Eingeben von Text die Sprache, in die der Text übersetzt werden soll",
     "clickToStartTransText": "Klicken Sie hier, um die Textübersetzung zu starten",
-    "privacyPolicy": "privacy policy"
+    "privacyPolicy": "privacy policy" , 
+    "vdTransTypeOneTitle": "Videoübersetzung mit Download",
+  "vdTransTypeOneDes": "Sie müssen warten, bis die Videoübersetzung abgeschlossen ist, bevor Sie sie ansehen können. Dies kann je nach Videolänge einige Zeit dauern.",
+  "vdTransTypeTowTitle": "Direkte Videoübersetzung",
+  "vdTransTypeTowDes": "Das Video wird direkt und schnell übersetzt, aber Sie können die Übersetzung nicht herunterladen.",
+  "vdTransTypeThreeTitle": "Videoübersetzung aus einer Übersetzungsdatei",
+  "vdTransTypeThreeDes": "Das Video wird basierend auf der von Ihnen gewählten Übersetzungsdatei übersetzt.",
+  "showToStart": "Sehen Sie sich einen kurzen Werbespot an, um zu beginnen"
 }

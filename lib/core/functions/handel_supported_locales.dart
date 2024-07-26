@@ -11,12 +11,13 @@ Locale handelSupportedLocales() {
   if (localLang == null) {
     for (var locales in AppLocalizations.supportedLocales) {
       if (Intl.systemLocale.contains(locales.languageCode)) {
-        locale = Locale(Intl.systemLocale);
+        locale = Locale(locales.languageCode);
         break;
       }
     }
   } else {
     locale = Locale(localLang);
   }
-  return locale ?? Locale("en");
+  print(locale?.languageCode) ;
+  return locale ?? const Locale("en");
 }

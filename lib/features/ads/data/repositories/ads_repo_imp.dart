@@ -26,4 +26,13 @@ class AdsRepoImp extends AdsRepo {
       return left(mapExceptionToFailure(e));
     }
   }
+
+  @override
+  Future<Either<Failure, RewardedAd>> rewardedAd() async {
+    try {
+      return right(await adsRemoteData.rewardedAd());
+    } catch (e) {
+      return left(mapExceptionToFailure(e));
+    }
+  }
 }

@@ -89,5 +89,12 @@
     "addmoreInfoText": "Você pode inserir informações sobre o texto para obter uma tradução melhor",
     "chooselangToTransText": "Ao inserir o texto, escolha o idioma para o qual deseja traduzir o texto",
     "clickToStartTransText": "Clique aqui para iniciar a tradução do texto",
-    "privacyPolicy": "privacy policy"
+    "privacyPolicy": "privacy policy" , 
+    "vdTransTypeOneTitle": "Tradução de Vídeo com Download",
+  "vdTransTypeOneDes": "Você precisará aguardar a conclusão da tradução do vídeo antes de assisti-lo. Isso pode levar algum tempo, dependendo da duração do vídeo.",
+  "vdTransTypeTowTitle": "Tradução Direta de Vídeo",
+  "vdTransTypeTowDes": "O vídeo será traduzido diretamente e rapidamente, mas você não poderá baixar a tradução.",
+  "vdTransTypeThreeTitle": "Tradução de Vídeo a partir de um Arquivo de Tradução",
+  "vdTransTypeThreeDes": "O vídeo será traduzido com base no arquivo de tradução que você escolheu.",
+  "showToStart": "Assistir a um anúncio curto para começar"
 }

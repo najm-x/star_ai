@@ -10,4 +10,5 @@ class AppRouteName {
   static String noInternetPageg = '/noInternetPage';
   static String addApiKeyPage = '/addApiKeyPage';
   static String languagePage = '/languagePage';
+  static String chooseTransTypePage = '/chooseTransTypePage';
 }

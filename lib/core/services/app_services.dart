@@ -4,6 +4,7 @@ import 'package:business_tools/features/ads/data/repositories/ads_repo_imp.dart'
 import 'package:business_tools/features/ads/domain/repositories/ads_repo.dart';
 import 'package:business_tools/features/ads/domain/usecases/ads_uc.dart';
 import 'package:business_tools/features/ads/domain/usecases/lnterstitial_ad_uc.dart';
+import 'package:business_tools/features/ads/domain/usecases/rewarded_ad_uc.dart';
 import 'package:business_tools/features/ads/presentation/bloc/bloc/ads_bloc.dart';
 import 'package:business_tools/features/check/presentation/bloc/check/check_cubit.dart';
 import 'package:business_tools/features/extract/data/datasources/loacal_data_source.dart';
@@ -125,10 +126,11 @@ await dotenv.load(fileName: ".env");
   sl.registerFactory(() => CheckCubit());
   //!TextExtracr
 //?Bloc
-  sl.registerFactory(() => AdsBloc(adsUc: sl(), interstitialAdUc: sl()));
+  sl.registerFactory(() => AdsBloc(adsUc: sl(), interstitialAdUc: sl()  ,rewardedAdUc:sl() ));
 //?UseCases
   sl.registerLazySingleton(() => AdsUc(adsRepo: sl()));
   sl.registerLazySingleton(() => InterstitialAdUc(adsRepo: sl()));
+  sl.registerLazySingleton(() => RewardedAdUc(adsRepo: sl()));
 //?repo
   sl.registerLazySingleton<AdsRepo>(() => AdsRepoImp(adsRemoteData: sl()));
 //?dataSource
