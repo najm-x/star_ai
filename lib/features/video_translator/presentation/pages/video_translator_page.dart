@@ -12,7 +12,8 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:showcaseview/showcaseview.dart';
 
 class VideoTranslatorPage extends StatefulWidget {
-  const VideoTranslatorPage({super.key});
+final String typeTrans ;
+  const VideoTranslatorPage({super.key, required this.typeTrans});
 
   @override
   State<VideoTranslatorPage> createState() => _VideoTranslatorPageState();

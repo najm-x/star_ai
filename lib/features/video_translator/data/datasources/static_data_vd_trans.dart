@@ -1,5 +1,6 @@
 import 'package:business_tools/core/app_routes.dart';
 import 'package:business_tools/core/constant/app_routes_name.dart';
+import 'package:business_tools/core/constant/types_validate.dart';
 import 'package:business_tools/features/video_translator/data/models/vd_type_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -83,13 +84,22 @@ I will ensure that each element in the original list corresponds to exactly one 
     Colors.red,
     Colors.black,
   ];
-    static BuildContext context = goRouter.routerDelegate.navigatorKey.currentContext! ;
-   List<VdTypeModel> vdTypeData = [
+  static BuildContext context = goRouter.routerDelegate.navigatorKey.currentContext!;
+  List<VdTypeModel> vdTypeData = [
     VdTypeModel(
-        title:  AppLocalizations.of(context)!.vdTransTypeOneTitle,
+        title: AppLocalizations.of(context)!.vdTransTypeOneTitle,
         body: AppLocalizations.of(context)!.vdTransTypeOneDes,
-        pageRoute: AppRouteName.videoTranslatorPage),
-    VdTypeModel(title: AppLocalizations.of(context)!.vdTransTypeTowTitle, body: AppLocalizations.of(context)!.vdTransTypeTowDes, pageRoute: ""),
-    VdTypeModel(title: AppLocalizations.of(context)!.vdTransTypeThreeTitle, body: AppLocalizations.of(context)!.vdTransTypeThreeDes, pageRoute: ""),
+        pageRoute: AppRouteName.videoTranslatorPage,
+        type: TypesValidate.tarnsWithDownload),
+    VdTypeModel(
+        title: AppLocalizations.of(context)!.vdTransTypeTowTitle,
+        body: AppLocalizations.of(context)!.vdTransTypeTowDes,
+        pageRoute: AppRouteName.videoTranslatorPage,
+        type: TypesValidate.transDirect),
+    VdTypeModel(
+        title: AppLocalizations.of(context)!.vdTransTypeThreeTitle,
+        body: AppLocalizations.of(context)!.vdTransTypeThreeDes,
+        pageRoute: AppRouteName.videoTranslatorPage,
+        type: ""),
   ];
 }

@@ -9,7 +9,9 @@ import 'package:business_tools/core/functions/message_error_handel.dart';
 import 'package:business_tools/core/functions/show_case_init.dart';
 import 'package:business_tools/core/public/data/language_data.dart';
 import 'package:business_tools/features/video_translator/data/datasources/vd_db_fun.dart';
+import 'package:business_tools/features/video_translator/data/models/data_vd_model.dart';
 import 'package:business_tools/features/video_translator/domain/entities/vd_translate_entities.dart';
+import 'package:business_tools/features/video_translator/domain/usecases/get_trans_cript.dart';
 import 'package:business_tools/features/video_translator/domain/usecases/vd_translate_uc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
@@ -20,6 +22,7 @@ part 'vd_translate_state.dart';
 
 class VdTranslateBloc extends Bloc<VdTranslateEvent, VdTranslateState> {
   final VdTranslateUc vdTranslateUc;
+  final GetTransCriptUc getTransCriptUc;
   //
   BuildContext context = goRouter.routerDelegate.navigatorKey.currentContext!;
 
@@ -28,22 +31,27 @@ class VdTranslateBloc extends Bloc<VdTranslateEvent, VdTranslateState> {
   String translateFrom = "";
   String translateTo = "";
   String translateFromCode = "";
+  String typeTrans = ""; //
   final one = GlobalKey();
   final tow = GlobalKey();
   final three = GlobalKey();
 
   //
-  VdTranslateBloc({required this.vdTranslateUc}) : super(VdTranslateInitial()) {
+  VdTranslateBloc({
+    required this.vdTranslateUc,
+    required this.getTransCriptUc,
+  }) : super(const VdTranslateState()) {
     on<VdTranslateEvent>((event, emit) {});
     on<VdTranslate>(_vdTranslate);
+    on<GetTransCriptEvent>(_getTransCriptEvent);
   }
 
   Future<void> _vdTranslate(VdTranslate event, Emitter<VdTranslateState> emit) async {
     VdDbFunHelping.translationProgressCo = StreamController<double>();
     final translationProgress = VdDbFunHelping.translationProgressCo.stream;
-    emit(const LoadingVdTranslate(translationProgress: 0));
+    emit(state.copyWith(status: VdTranslateStatus.loading, translationProgress: 0));
     final sub = translationProgress.listen((onData) {
-      emit(LoadingVdTranslate(translationProgress: onData));
+      emit(state.copyWith(status: VdTranslateStatus.loading, translationProgress: 0));
     });
     await Future.delayed(Durations.extralong4);
 
@@ -54,11 +62,30 @@ class VdTranslateBloc extends Bloc<VdTranslateEvent, VdTranslateState> {
     emit(_vdTranslateState(failureOrDone));
   }
 
+  Future<void> _getTransCriptEvent(GetTransCriptEvent event, Emitter<VdTranslateState> emit) async {
+    emit(state.copyWith(
+        status: VdTranslateStatus.loading, translationProgress: 0, infoLoading: "لن يستغرق ذلك أكثر من دقيقة"));
+    await Future.delayed(Durations.extralong4);
+    var failureOrDone =
+        await getTransCriptUc.call(event.videoId, event.translateFrom, event.translateTo, event.translateFromCode);
+    await VdDbFunHelping.translationProgressCo.close();
+
+    emit(_getTransCriptEventState(failureOrDone));
+  }
+
   VdTranslateState _vdTranslateState(Either<Failure, List<VdTranslateEntities>> failureOrDone) {
     return failureOrDone.fold((failure) {
-      return ErrorVdTranslate(messageError: messageErrorHandel(failure, context));
+      return state.copyWith(status: VdTranslateStatus.error, messageError: messageErrorHandel(failure, context));
     }, (done) {
-      return SuccessVdTranslate(data: done);
+      return state.copyWith(status: VdTranslateStatus.successVdTranslate, onSuccessVdTranslate: done);
+    });
+  }
+
+  VdTranslateState _getTransCriptEventState(Either<Failure, DataVdModel> failureOrDone) {
+    return failureOrDone.fold((failure) {
+      return state.copyWith(status: VdTranslateStatus.error, messageError: messageErrorHandel(failure, context));
+    }, (done) {
+      return state.copyWith(status: VdTranslateStatus.successTransCript, onSuccessTransCript: done);
     });
   }
 
@@ -101,7 +128,7 @@ class VdTranslateBloc extends Bloc<VdTranslateEvent, VdTranslateState> {
   }
 
   showcase(BuildContext? myContext) {
-   showCaseInit(myContext!, SharedKey.isVdTransShowed, [one, tow, three]);
+    showCaseInit(myContext!, SharedKey.isVdTransShowed, [one, tow, three]);
   }
 
   @override

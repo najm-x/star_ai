@@ -5,6 +5,10 @@ import 'package:equatable/equatable.dart';
 part 'vd_view_state.dart';
 
 class VdViewCubit extends Cubit<VdViewState> {
+  int stratSendToAI = 0;
+  int itemsBySend = 20;
+  List<VdTranslateEntities> translateToShow = [];
+  List<VdTranslateEntities> allsubtitle = [];
   String currentSubTitle = "";
   double currentFontSize = 14;
   double currentBgOpacity = 0.2;
@@ -59,5 +63,16 @@ class VdViewCubit extends Cubit<VdViewState> {
         textColor: currentTextColor,
         bottomSpace: currentBottomSpace,
         currentSubtitleDelay: currentSubtitleDelay));
+  }
+
+  //
+  void sendToTranslte(Duration currentTime) {
+    for (var i = 0; i < allsubtitle.length; i++) {
+      if (allsubtitle[i].start >= currentTime) {
+        stratSendToAI = i;
+        break;
+      }
+    }
+    
   }
 }

@@ -14,8 +14,8 @@ class TranselateButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<VdTranslateBloc, VdTranslateState>(
       listener: (context, state) async {
-        if (state is SuccessVdTranslate) {
-          debugPrint(state.data.toString());
+        if (state.status == VdTranslateStatus.successVdTranslate) {
+          // debugPrint(state.data.toString());
           await Future.delayed(Durations.medium1);
           // ignore: use_build_context_synchronously
           context.replace(AppRouteName.vdView,
@@ -23,9 +23,9 @@ class TranselateButton extends StatelessWidget {
                   idVideo:
                       // ignore: use_build_context_synchronously
                       context.read<VdTranslateBloc>().extractYouTubeId(context.read<VdTranslateBloc>().videoUrlCo.text),
-                  data: state.data));
+                  data: state.onSuccessVdTranslate!));
         }
-        if (state is ErrorVdTranslate) {
+        if (state.status == VdTranslateStatus.error) {
           // ignore: use_build_context_synchronously
           CustomSnakBar().snackBarError(context, state.messageError, 5);
           debugPrint(state.messageError.toString());
@@ -45,7 +45,7 @@ class TranselateButton extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                _progressWidget(state is LoadingVdTranslate ? state.translationProgress : 0),
+                _progressWidget(state.status == VdTranslateStatus.loading ? state.translationProgress : 0),
                 const SizedBox(
                   height: 10,
                 ),
@@ -55,7 +55,7 @@ class TranselateButton extends StatelessWidget {
                 )
               ],
             ),
-            crossFadeState: state is LoadingVdTranslate ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+            crossFadeState: state.status == VdTranslateStatus.loading ? CrossFadeState.showSecond : CrossFadeState.showFirst,
             duration: Durations.medium1);
       },
     );

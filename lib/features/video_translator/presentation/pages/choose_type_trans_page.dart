@@ -36,7 +36,6 @@ class _ChooseTypeTransPageState extends State<ChooseTypeTransPage> {
       padding: const EdgeInsets.all(15.0),
       child: BlocBuilder<VdTransTypeCubit, VdTransTypeState>(
         builder: (context, state) {
-          print("object");
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(

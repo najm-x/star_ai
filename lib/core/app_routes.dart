@@ -73,7 +73,9 @@ final goRouter = GoRouter(initialLocation: '/', routes: [
           create: (context) => id.sl<AdsBloc>()..add(const BannerAdEvent(size: AdSize.largeBanner)),
         ),
       ],
-      child: const VideoTranslatorPage(),
+      child: VideoTranslatorPage(
+        typeTrans: state.extra as String,
+      ),
     ),
   ),
   GoRoute(

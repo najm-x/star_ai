@@ -3,6 +3,7 @@ import 'dart:math' show Random;
 
 import 'package:business_tools/core/errors/exceptions.dart';
 import 'package:business_tools/features/video_translator/data/datasources/vd_db_fun.dart';
+import 'package:business_tools/features/video_translator/data/models/data_vd_model.dart';
 import 'package:business_tools/features/video_translator/data/models/vd_translate_model.dart';
 import 'package:business_tools/features/video_translator/domain/entities/vd_translate_entities.dart';
 import 'package:dartz/dartz.dart' show Unit, unit;
@@ -10,8 +11,13 @@ import 'package:file_picker/file_picker.dart';
 
 abstract class VdRemoteDaraSource {
   Future<List<VdTranslateModel>> vdTranslate(
-      String videoId, String translateFrom, String translateTo, String translateFromCode , );
+    String videoId,
+    String translateFrom,
+    String translateTo,
+    String translateFromCode,
+  );
   Future<Unit> downloadTranslation(List<VdTranslateEntities> translation, String videoUrl);
+  Future<DataVdModel> getTransCript(String videoId, String translateFrom, String translateTo, String translateFromCode);
 }
 
 class VdRemoteDaraSourceImp implements VdRemoteDaraSource {
@@ -29,16 +35,12 @@ class VdRemoteDaraSourceImp implements VdRemoteDaraSource {
     }
     //
     List translate = await handelingTranslate(translateFrom, translateTo, videoInfo, transScript);
-    // List? listSubTilte = vdDbFunHelping.decodeTheTranslate(translate);
-    // if (listSubTilte == null) {
-    //   throw TranslateVdException();
-    // }
     return vdDbFunHelping.theTranslate(translate, transScript);
   }
+//
 
   @override
   Future<Unit> downloadTranslation(List<VdTranslateEntities> translation, String videoUrl) async {
-  
     String? path = await FilePicker.platform.getDirectoryPath();
     int random = Random().nextInt(10000);
     String folderName = '${random}_${DateTime.now().year}_${DateTime.now().month}_${DateTime.now().day}';
@@ -56,6 +58,23 @@ class VdRemoteDaraSourceImp implements VdRemoteDaraSource {
     } catch (e) {
       throw CreateFileException();
     }
+  }
+
+  @override
+  Future<DataVdModel> getTransCript(
+      String videoId, String translateFrom, String translateTo, String translateFromCode) async {
+    List<VdTranslateModel> transScript = await vdDbFunHelping.transCriptVd(videoId, translateFromCode);
+    String videoInfo = await vdDbFunHelping.videoInfo(videoId);
+
+    if (transScript.isEmpty || videoInfo.isEmpty) {
+      throw TransScriptVdException();
+    }
+    return DataVdModel(
+        idVideo: videoId,
+        data: transScript,
+        translateFrom: translateFrom,
+        translateTo: translateTo,
+        videoInfo: videoInfo);
   }
 
   String convertListToSubFormat(List<VdTranslateEntities> translation) {

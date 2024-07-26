@@ -1,6 +1,7 @@
 import 'package:business_tools/core/public/widgets/loading.dart';
 import 'package:business_tools/features/ads/presentation/bloc/bloc/ads_bloc.dart';
 import 'package:business_tools/features/video_translator/data/datasources/static_data_vd_trans.dart';
+import 'package:business_tools/features/video_translator/data/models/vd_type_model.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_trans_type_cubit/vd_trans_type_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,10 +20,9 @@ class ButtonShowAddWidget extends StatelessWidget {
             : FilledButton.icon(
                 onPressed: () => context.read<AdsBloc>().rewardedAd?.show(
                   onUserEarnedReward: (ad, reward) {
-                    String pageRoute = StaticDataVdTrans()
-                        .vdTypeData[BlocProvider.of<VdTransTypeCubit>(context).currentVdType]
-                        .pageRoute;
-                    context.pushReplacement(pageRoute);
+                    VdTypeModel vdTypeModel =
+                        StaticDataVdTrans().vdTypeData[BlocProvider.of<VdTransTypeCubit>(context).currentVdType];
+                    context.pushReplacement(vdTypeModel.pageRoute, extra: vdTypeModel.type);
                   },
                 ),
                 label: Text(

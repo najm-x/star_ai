@@ -1,6 +1,8 @@
 import 'package:business_tools/core/errors/exceptions.dart';
 import 'package:business_tools/core/errors/failure.dart';
+import 'package:business_tools/core/functions/handel_exceptions.dart';
 import 'package:business_tools/features/video_translator/data/datasources/vd_remote_dara_source.dart';
+import 'package:business_tools/features/video_translator/data/models/data_vd_model.dart';
 import 'package:business_tools/features/video_translator/domain/entities/vd_translate_entities.dart';
 import 'package:business_tools/features/video_translator/domain/repositories/vd_translate_repo.dart';
 import 'package:dartz/dartz.dart';
@@ -11,10 +13,9 @@ class VdTranslateRepoImp extends VdTranslateRepo {
   VdTranslateRepoImp({required this.vdRemoteDataSource});
   @override
   Future<Either<Failure, List<VdTranslateEntities>>> vdTranslate(
-      String videoId, String translateFrom, String translateTo, String translateFromCode ) async {
+      String videoId, String translateFrom, String translateTo, String translateFromCode) async {
     try {
-      return right(
-          await vdRemoteDataSource.vdTranslate(videoId, translateFrom, translateTo, translateFromCode));
+      return right(await vdRemoteDataSource.vdTranslate(videoId, translateFrom, translateTo, translateFromCode));
     } catch (e) {
       if (e is TransScriptVdException) {
         return left(TransScriptVdFailure());
@@ -42,6 +43,16 @@ class VdTranslateRepoImp extends VdTranslateRepo {
         return left(PermissionFailure());
       }
       return left(EmptyFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, DataVdModel>> getTransCript(
+      String videoId, String translateFrom, String translateTo, String translateFromCode) async {
+    try {
+      return right(await vdRemoteDataSource.getTransCript(videoId, translateFrom, translateTo, translateFromCode));
+    } catch (e) {
+      return left(mapExceptionToFailure(e));
     }
   }
 }

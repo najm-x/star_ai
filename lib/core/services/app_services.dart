@@ -41,6 +41,7 @@ import 'package:business_tools/features/video_translator/data/datasources/vd_rem
 import 'package:business_tools/features/video_translator/data/repositories/vd_translate_imp.dart';
 import 'package:business_tools/features/video_translator/domain/repositories/vd_translate_repo.dart';
 import 'package:business_tools/features/video_translator/domain/usecases/download_trans_uc.dart';
+import 'package:business_tools/features/video_translator/domain/usecases/get_trans_cript.dart';
 import 'package:business_tools/features/video_translator/domain/usecases/vd_translate_uc.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_download_bloc/vd_download_bloc.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_translate_bloc/vd_translate_bloc.dart';
@@ -49,9 +50,10 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 GetIt sl = GetIt.instance;
 Future<void> init() async {
-await dotenv.load(fileName: ".env");
+  await dotenv.load(fileName: ".env");
 
 //features
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
@@ -76,12 +78,13 @@ await dotenv.load(fileName: ".env");
   sl.registerLazySingleton<LocalDataSource>(() => LocalDataSourceImp());
 //!vdTranslate
 //?Bloc
-  sl.registerFactory(() => VdTranslateBloc(vdTranslateUc: sl()));
+  sl.registerFactory(() => VdTranslateBloc(vdTranslateUc: sl(), getTransCriptUc: sl()));
   sl.registerFactory(() => VdViewCubit());
   sl.registerFactory(() => VdDownloadBloc(downloadTransUc: sl()));
 //?UseCases
   sl.registerLazySingleton(() => VdTranslateUc(vdTranslateRepo: sl()));
   sl.registerLazySingleton(() => DownloadTransUc(vdTranslateRepo: sl()));
+  sl.registerLazySingleton(() => GetTransCriptUc(vdTranslateRepo: sl()));
 //?repo
   sl.registerLazySingleton<VdTranslateRepo>(() => VdTranslateRepoImp(vdRemoteDataSource: sl()));
 //?dataSource
@@ -126,7 +129,7 @@ await dotenv.load(fileName: ".env");
   sl.registerFactory(() => CheckCubit());
   //!TextExtracr
 //?Bloc
-  sl.registerFactory(() => AdsBloc(adsUc: sl(), interstitialAdUc: sl()  ,rewardedAdUc:sl() ));
+  sl.registerFactory(() => AdsBloc(adsUc: sl(), interstitialAdUc: sl(), rewardedAdUc: sl()));
 //?UseCases
   sl.registerLazySingleton(() => AdsUc(adsRepo: sl()));
   sl.registerLazySingleton(() => InterstitialAdUc(adsRepo: sl()));
