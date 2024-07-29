@@ -43,3 +43,13 @@ final class ChangeWidgetView extends VdViewState {
   @override
   List<Object> get props => [show];
 }
+final class LoadingVdTranslate extends VdViewState {} 
+final class ErrorVdTranslate extends VdViewState {} 
+final class SuccessVdTranslate extends VdViewState {
+  final List<VdTranslateEntities> data ;
+
+  const SuccessVdTranslate({required this.data});
+    @override
+  List<Object> get props => [data];
+  
+} 

@@ -20,18 +20,20 @@ class RadioChooseWidget extends StatelessWidget {
                   ? Theme.of(context).colorScheme.primary
                   : Theme.of(context).colorScheme.secondary)),
       margin: const EdgeInsets.only(top: 10),
-      child: RadioListTile(
-        value: index,
-        groupValue: currentVdType,
-        onChanged: (newValue) => BlocProvider.of<VdTransTypeCubit>(context).change(newValue!),
-        dense: false,
-        title: Text(
-          vdTypeModel.title,
-        ),
-        subtitle: Text(
-          vdTypeModel.body,
-          maxLines: 3,
-          overflow: TextOverflow.ellipsis,
+      child: SizedBox(
+        child: RadioListTile(
+          value: index,
+          groupValue: currentVdType,
+          onChanged: (newValue) => BlocProvider.of<VdTransTypeCubit>(context).change(newValue!),
+          dense: true,
+          title: Text(
+            vdTypeModel.title,
+          ),
+          subtitle: Text(
+            vdTypeModel.body,
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
       ),
     );

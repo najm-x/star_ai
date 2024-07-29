@@ -68,7 +68,6 @@ class VdTranslateBloc extends Bloc<VdTranslateEvent, VdTranslateState> {
     await Future.delayed(Durations.extralong4);
     var failureOrDone =
         await getTransCriptUc.call(event.videoId, event.translateFrom, event.translateTo, event.translateFromCode);
-    await VdDbFunHelping.translationProgressCo.close();
 
     emit(_getTransCriptEventState(failureOrDone));
   }
@@ -91,15 +90,27 @@ class VdTranslateBloc extends Bloc<VdTranslateEvent, VdTranslateState> {
 
   //Other
   onTapTranslate() {
+    print(typeTrans + '++++++++++++++++++');
+
     if (formState.currentState!.validate() &&
         translateFrom.isNotEmpty &&
         translateTo.isNotEmpty &&
         translateFromCode.isNotEmpty) {
-      add(VdTranslate(
-          videoId: extractYouTubeId(videoUrlCo.text.trim()),
-          translateFrom: translateFrom,
-          translateTo: translateTo,
-          translateFromCode: translateFromCode));
+      if (typeTrans == TypesValidate.transDirect) {
+        print(typeTrans + '++++++++++++++++++');
+        add(GetTransCriptEvent(
+            videoId: extractYouTubeId(videoUrlCo.text.trim()),
+            translateFrom: translateFrom,
+            translateTo: translateTo,
+            translateFromCode: translateFromCode));
+      } else {
+        print(typeTrans + '----------');
+        add(VdTranslate(
+            videoId: extractYouTubeId(videoUrlCo.text.trim()),
+            translateFrom: translateFrom,
+            translateTo: translateTo,
+            translateFromCode: translateFromCode));
+      }
     }
   }
 

@@ -25,6 +25,12 @@ class TranselateButton extends StatelessWidget {
                       context.read<VdTranslateBloc>().extractYouTubeId(context.read<VdTranslateBloc>().videoUrlCo.text),
                   data: state.onSuccessVdTranslate!));
         }
+        if (state.status == VdTranslateStatus.successTransCript) {
+          // debugPrint(state.data.toString());
+          await Future.delayed(Durations.medium1);
+          // ignore: use_build_context_synchronously
+          context.replace(AppRouteName.vdView, extra: state.onSuccessTransCript);
+        }
         if (state.status == VdTranslateStatus.error) {
           // ignore: use_build_context_synchronously
           CustomSnakBar().snackBarError(context, state.messageError, 5);
@@ -55,7 +61,8 @@ class TranselateButton extends StatelessWidget {
                 )
               ],
             ),
-            crossFadeState: state.status == VdTranslateStatus.loading ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+            crossFadeState:
+                state.status == VdTranslateStatus.loading ? CrossFadeState.showSecond : CrossFadeState.showFirst,
             duration: Durations.medium1);
       },
     );

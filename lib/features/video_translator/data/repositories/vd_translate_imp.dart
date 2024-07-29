@@ -3,6 +3,7 @@ import 'package:business_tools/core/errors/failure.dart';
 import 'package:business_tools/core/functions/handel_exceptions.dart';
 import 'package:business_tools/features/video_translator/data/datasources/vd_remote_dara_source.dart';
 import 'package:business_tools/features/video_translator/data/models/data_vd_model.dart';
+import 'package:business_tools/features/video_translator/data/models/vd_translate_model.dart';
 import 'package:business_tools/features/video_translator/domain/entities/vd_translate_entities.dart';
 import 'package:business_tools/features/video_translator/domain/repositories/vd_translate_repo.dart';
 import 'package:dartz/dartz.dart';
@@ -51,6 +52,22 @@ class VdTranslateRepoImp extends VdTranslateRepo {
       String videoId, String translateFrom, String translateTo, String translateFromCode) async {
     try {
       return right(await vdRemoteDataSource.getTransCript(videoId, translateFrom, translateTo, translateFromCode));
+    } catch (e) {
+      return left(mapExceptionToFailure(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<VdTranslateEntities>>> vdTransRealTime(
+      String translateFrom, String translateTo, String videoInfo, List<VdTranslateEntities> subTitles) async {
+    try {
+      return right(await vdRemoteDataSource.vdTransRealTime(
+          translateFrom,
+          translateTo,
+          videoInfo,
+          subTitles
+              .map((data) => VdTranslateModel(subTitle: data.subTitle, start: data.start, end: data.end))
+              .toList()));
     } catch (e) {
       return left(mapExceptionToFailure(e));
     }

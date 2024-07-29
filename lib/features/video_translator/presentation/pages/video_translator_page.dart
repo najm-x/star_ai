@@ -12,7 +12,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:showcaseview/showcaseview.dart';
 
 class VideoTranslatorPage extends StatefulWidget {
-final String typeTrans ;
+  final String typeTrans;
   const VideoTranslatorPage({super.key, required this.typeTrans});
 
   @override
@@ -24,6 +24,8 @@ class _VideoTranslatorPageState extends State<VideoTranslatorPage> {
 
   @override
   void initState() {
+    print(widget.typeTrans +'=====+++++++++++++++============+++++++++++++===========');
+    BlocProvider.of<VdTranslateBloc>(context).typeTrans = widget.typeTrans;
     Future.delayed(Durations.short1, () {
       BlocProvider.of<VdTranslateBloc>(context).showcase(myContext);
     });

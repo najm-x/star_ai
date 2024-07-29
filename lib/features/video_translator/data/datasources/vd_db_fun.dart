@@ -72,14 +72,40 @@ class VdDbFunHelping {
       Content.text(prompt(caption.length, translateFrom, translateTo, videoInfo, convertListToString(caption), ""))
     ]);
     debugPrint(response.text);
+    List responeToList = [];
+    List responseFixed = [];
 
-    return json.decode(response.text!);
+    try {
+      responeToList = [];
+      responeToList = json.decode(response.text!);
+      responseFixed = fixResponse(responeToList, caption.length);
+    } catch (e) {
+      responeToList = [];
+      responseFixed = [];
+    }
+
+    while (responeToList.isEmpty) {
+      response = await model.generateContent([
+        Content.text(prompt(caption.length, translateFrom, translateTo, videoInfo, convertListToString(caption),
+            "Return the translation response as a list consisting of only ${caption.length} elements"))
+      ]);
+
+      try {
+        responeToList = [];
+        responeToList = json.decode(response.text!);
+      } catch (e) {
+        responseFixed = [];
+        responeToList = [];
+      }
+    }
+
+    return responseFixed.isEmpty ? responeToList : responseFixed;
   }
 
   List<VdTranslateModel> theTranslate(List listSubTilte, List<VdTranslateModel> transScript) {
     List<VdTranslateModel> toModel = [];
-    print("${listSubTilte.length} ---------- ${transScript.length}");
-    for (var i = 0; i < listSubTilte.length; i++) {
+    print(" object ${listSubTilte.length} ---------- ${transScript.length}");
+    for (var i = 0; i < transScript.length; i++) {
       toModel.add(VdTranslateModel(subTitle: listSubTilte[i], start: transScript[i].start, end: transScript[i].end));
     }
     return toModel;

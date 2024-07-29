@@ -42,6 +42,7 @@ import 'package:business_tools/features/video_translator/data/repositories/vd_tr
 import 'package:business_tools/features/video_translator/domain/repositories/vd_translate_repo.dart';
 import 'package:business_tools/features/video_translator/domain/usecases/download_trans_uc.dart';
 import 'package:business_tools/features/video_translator/domain/usecases/get_trans_cript.dart';
+import 'package:business_tools/features/video_translator/domain/usecases/vd_trans_real_time.dart';
 import 'package:business_tools/features/video_translator/domain/usecases/vd_translate_uc.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_download_bloc/vd_download_bloc.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_translate_bloc/vd_translate_bloc.dart';
@@ -58,8 +59,8 @@ Future<void> init() async {
 //features
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => CustomSnakBar());
-  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-  sl.registerLazySingleton(() => navigatorKey);
+  // final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  // sl.registerLazySingleton(() => navigatorKey);
   sl.registerLazySingleton(() => sharedPreferences);
   //!home
 //?Bloc
@@ -79,12 +80,13 @@ Future<void> init() async {
 //!vdTranslate
 //?Bloc
   sl.registerFactory(() => VdTranslateBloc(vdTranslateUc: sl(), getTransCriptUc: sl()));
-  sl.registerFactory(() => VdViewCubit());
+  sl.registerFactory(() => VdViewCubit(vdTransRealTimeUc: sl()));
   sl.registerFactory(() => VdDownloadBloc(downloadTransUc: sl()));
 //?UseCases
   sl.registerLazySingleton(() => VdTranslateUc(vdTranslateRepo: sl()));
   sl.registerLazySingleton(() => DownloadTransUc(vdTranslateRepo: sl()));
   sl.registerLazySingleton(() => GetTransCriptUc(vdTranslateRepo: sl()));
+  sl.registerLazySingleton(() => VdTransRealTimeUc(vdTranslateRepo: sl()));
 //?repo
   sl.registerLazySingleton<VdTranslateRepo>(() => VdTranslateRepoImp(vdRemoteDataSource: sl()));
 //?dataSource

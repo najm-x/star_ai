@@ -1,3 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:business_tools/core/functions/date_format.dart';
 import 'package:business_tools/features/ads/presentation/bloc/bloc/ads_bloc.dart';
 import 'package:business_tools/features/video_translator/data/models/data_vd_model.dart';
 import 'package:business_tools/features/video_translator/domain/entities/vd_translate_entities.dart';
@@ -26,19 +29,30 @@ class _VdViewState extends State<VdView> {
   void initState() {
     super.initState();
     BlocProvider.of<AdsBloc>(context).add(InterstitialAdEvent());
-    print(widget.data.data);
+    BlocProvider.of<VdViewCubit>(context).dataVdModel = widget.data;
     subTitles = widget.data.data;
     controller = YoutubePlayerController(
       initialVideoId: widget.data.idVideo,
       flags: const YoutubePlayerFlags(
         hideThumbnail: true,
-        forceHD: true,
+        forceHD: false,
         autoPlay: true,
         enableCaption: false,
       ),
     )..addListener(() {
         BlocProvider.of<VdViewCubit>(context).currentPosition = controller.value.position;
-        BlocProvider.of<VdViewCubit>(context).changSubTitle(subTitles);
+
+        if (widget.data.translateFrom != null) {
+          if (controller.value.position.inMicroseconds == 0) {
+            controller.seekTo(Durations.short1);
+            controller.pause();
+            BlocProvider.of<VdViewCubit>(context).transalteOnVdStart();
+          } else if (BlocProvider.of<VdViewCubit>(context).translateToShow.isNotEmpty) {
+            BlocProvider.of<VdViewCubit>(context).vdIsRunnig();
+          }
+        } else {
+          BlocProvider.of<VdViewCubit>(context).changSubTitle(subTitles);
+        }
       });
   }
 
@@ -52,43 +66,101 @@ class _VdViewState extends State<VdView> {
           }
         },
         child: Scaffold(
-          body: OrientationBuilder(
-            builder: (context, orientation) {
-              if (orientation == Orientation.portrait) {
-                return Column(
-                  children: [
-                    Stack(
-                      children: [
-                        YoutubePlayer(
-                          controller: controller,
-                          showVideoProgressIndicator: true,
-                        ),
-                        const SubTitleWidget(),
-                      ],
-                    ),
-                    Expanded(
-                      child: SubTitleOptionsWidget(
-                        subTitles: subTitles,
-                      ),
-                    ),
-                    DownloadWidget(translation: widget.data.data, videoUrl: widget.data.idVideo)
-                  ],
-                );
-              } else {
-                return Stack(
-                  children: [
-                    YoutubePlayer(
-                      controller: controller,
-                      showVideoProgressIndicator: true,
-                    ),
-                    const SubTitleWidget(),
-                    SubTitleOptionLandscape(subTitles: subTitles)
-                  ],
-                );
+          body: BlocListener<VdViewCubit, VdViewState>(
+            listener: (context, state) {
+              if (state is LoadingVdTranslate) {
+                controller.pause();
+              }
+              if (state is SuccessVdTranslate) {
+                controller.play();
               }
             },
+            child: OrientationBuilder(
+              builder: (context, orientation) {
+                if (orientation == Orientation.portrait) {
+                  return Column(
+                    children: [
+                      Stack(
+                        children: [
+                          _player(),
+                          const SubTitleWidget(),
+                        ],
+                      ),
+                      Expanded(
+                        child: SubTitleOptionsWidget(
+                          subTitles: subTitles,
+                        ),
+                      ),
+                      DownloadWidget(translation: widget.data.data, videoUrl: widget.data.idVideo)
+                    ],
+                  );
+                } else {
+                  return Stack(
+                    children: [_player(), const SubTitleWidget(), SubTitleOptionLandscape(subTitles: subTitles)],
+                  );
+                }
+              },
+            ),
           ),
         ));
+  }
+
+  Widget _player() {
+    return YoutubePlayer(
+      controller: controller,
+      showVideoProgressIndicator: true,
+      bottomActions: [
+        BlocBuilder<VdViewCubit, VdViewState>(
+          builder: (context, state) {
+            return Expanded(
+              child: Row(
+                children: [
+                  Text(
+                    dateFormat(controller.metadata.duration.toString()),
+                    style: TextStyle(color: Theme.of(context).colorScheme.surface),
+                  ),
+                  Expanded(
+                    child: Slider(
+                      min: 0,
+                      max: controller.metadata.duration.inSeconds.toDouble(),
+                      value: context.read<VdViewCubit>().currentPosition.inSeconds.toDouble(),
+                      onChanged: (value) async {},
+                      onChangeEnd: (value) async {
+                        controller.pause();
+                        await Future.delayed(Durations.short4);
+                        context.read<VdViewCubit>().translateToShow.clear();
+                        context.read<VdViewCubit>().nextTranslateToShow.clear();
+                        controller.seekTo(Duration(seconds: value.toInt()));
+                        context.read<VdViewCubit>().translateWithLoading(context.read<VdViewCubit>().currentPosition);
+                      },
+                    ),
+                  ),
+                  Text(
+                    dateFormat(context.read<VdViewCubit>().currentPosition.toString()),
+                    style: TextStyle(color: Theme.of(context).colorScheme.surface),
+                  ),
+                  IconButton(
+                      onPressed: () async {
+                        controller.pause();
+                        await Future.delayed(Durations.short4);
+                        context.read<VdViewCubit>().translateToShow.clear();
+                        context.read<VdViewCubit>().nextTranslateToShow.clear();
+                        controller.seekTo(const Duration(seconds: 0));
+                        context.read<VdViewCubit>().translateWithLoading(context.read<VdViewCubit>().currentPosition);
+                        if (MediaQuery.of(context).orientation == Orientation.landscape) {
+                          SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+                        } else {
+                          SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
+                        }
+                      },
+                      icon: Icon(Icons.screen_rotation))
+                ],
+              ),
+            );
+          },
+        ),
+      ],
+    );
   }
 
   @override

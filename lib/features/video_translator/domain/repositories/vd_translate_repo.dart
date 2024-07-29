@@ -8,4 +8,5 @@ abstract class VdTranslateRepo {
       String videoId, String translateFrom, String translateTo, String translateFromCode);
   Future<Either<Failure, Unit>> downloadTranslation(List<VdTranslateEntities> translation , String videoUrl);
   Future<Either<Failure, DataVdModel>> getTransCript(String videoId, String translateFrom, String translateTo, String translateFromCode);
+  Future<Either<Failure, List<VdTranslateEntities>>> vdTransRealTime(String translateFrom, String translateTo,  String videoInfo , List<VdTranslateEntities> subTitles);
 }

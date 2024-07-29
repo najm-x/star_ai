@@ -18,6 +18,8 @@ abstract class VdRemoteDaraSource {
   );
   Future<Unit> downloadTranslation(List<VdTranslateEntities> translation, String videoUrl);
   Future<DataVdModel> getTransCript(String videoId, String translateFrom, String translateTo, String translateFromCode);
+  Future<List<VdTranslateEntities>> vdTransRealTime(
+      String translateFrom, String translateTo, String videoInfo, List<VdTranslateModel> subTitles);
 }
 
 class VdRemoteDaraSourceImp implements VdRemoteDaraSource {
@@ -65,7 +67,7 @@ class VdRemoteDaraSourceImp implements VdRemoteDaraSource {
       String videoId, String translateFrom, String translateTo, String translateFromCode) async {
     List<VdTranslateModel> transScript = await vdDbFunHelping.transCriptVd(videoId, translateFromCode);
     String videoInfo = await vdDbFunHelping.videoInfo(videoId);
-
+     
     if (transScript.isEmpty || videoInfo.isEmpty) {
       throw TransScriptVdException();
     }
@@ -75,6 +77,18 @@ class VdRemoteDaraSourceImp implements VdRemoteDaraSource {
         translateFrom: translateFrom,
         translateTo: translateTo,
         videoInfo: videoInfo);
+  }
+
+  //
+  @override
+  Future<List<VdTranslateEntities>> vdTransRealTime(
+      String translateFrom, String translateTo, String videoInfo, List<VdTranslateModel> subTitles) async {
+    try {
+      List translate = await handelingTranslate(translateFrom, translateTo, videoInfo, subTitles);
+    return vdDbFunHelping.theTranslate(translate, subTitles);
+    } catch (e) {
+      throw TranslateVdException();
+    }
   }
 
   String convertListToSubFormat(List<VdTranslateEntities> translation) {
