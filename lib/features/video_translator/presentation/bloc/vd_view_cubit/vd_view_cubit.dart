@@ -5,6 +5,8 @@ import 'package:business_tools/features/video_translator/domain/entities/vd_tran
 import 'package:business_tools/features/video_translator/domain/usecases/vd_trans_real_time.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 part 'vd_view_state.dart';
@@ -25,20 +27,26 @@ class VdViewCubit extends Cubit<VdViewState> {
   double currentBottomSpace = 50;
   int currentSubtitleDelay = 0;
   bool currentisLtoR = false;
-  Duration currentPosition = const Duration(seconds: 0);
+  // Duration currentPosition = const Duration(seconds: 0);
   bool currentShow = false;
 
   //
   String currentVdSubtitleValue = "";
   bool isnextTranslateToShow = true;
   late YoutubePlayerController controller;
-
   //
+  @override
+  Future<void> close() {
+    controller.dispose();
+    return super.close();
+  }
+
   void changSubTitle(List<VdTranslateEntities> subTitles) {
     String newSubTitle = "";
     Duration subtitleDelay = Duration(seconds: currentSubtitleDelay);
     for (var subTitle in subTitles) {
-      if (subTitle.start <= currentPosition + subtitleDelay && subTitle.end >= currentPosition + subtitleDelay) {
+      if (subTitle.start <= controller.value.position + subtitleDelay &&
+          subTitle.end >= controller.value.position + subtitleDelay) {
         newSubTitle = subTitle.subTitle;
         break;
       }
@@ -143,7 +151,7 @@ class VdViewCubit extends Cubit<VdViewState> {
     });
   }
 
-  handelSendToAiWithOutLoading(Either<Failure, List<VdTranslateEntities>> failureOrDone) {
+  void handelSendToAiWithOutLoading(Either<Failure, List<VdTranslateEntities>> failureOrDone) {
     return failureOrDone.fold((failur) {}, (done) {
       print("object its doooooooooone getting of translte");
       nextTranslateToShow.addAll(done);
@@ -154,17 +162,19 @@ class VdViewCubit extends Cubit<VdViewState> {
   }
 
   //if video progress == 0
-  transalteOnVdStart() {
+  void transalteOnVdStart() {
+    controller.seekTo(Durations.short1);
+    controller.pause();
     translateWithLoading(Duration.zero);
   }
 
   //if video is running
-  vdIsRunnig() {
+  void vdIsRunnig() {
     int islam = 0;
     String newSubTitle = "";
     for (var i = 0; i < translateToShow.length; i++) {
-      if (translateToShow[i].start <= currentPosition + Duration.zero &&
-          translateToShow[i].end >= currentPosition + Duration.zero) {
+      if (translateToShow[i].start <= controller.value.position + Duration.zero &&
+          translateToShow[i].end >= controller.value.position + Duration.zero) {
         newSubTitle = translateToShow[i].subTitle;
         islam = i + 1;
         break;
@@ -192,10 +202,34 @@ class VdViewCubit extends Cubit<VdViewState> {
         }
       } else if (islam == translateToShow.length / 4) {
         print("object islam == translateToShow.length / 4 ${translateToShow.length}");
-        translateWithOutLoading(currentPosition);
+        translateWithOutLoading(controller.value.position);
       }
     }
     changSubTitle(translateToShow);
+  }
+
+  void onChangeVdProggress(int value) async {
+    controller.pause();
+    await Future.delayed(Durations.short4);
+    translateToShow.clear();
+    nextTranslateToShow.clear();
+    controller.seekTo(Duration(seconds: value.toInt()));
+    translateWithLoading(controller.value.position);
+  }
+
+  void onScreenRotation(BuildContext context) async {
+    controller.pause();
+    await Future.delayed(Durations.short4);
+    translateToShow.clear();
+    nextTranslateToShow.clear();
+    controller.seekTo(const Duration(seconds: 0));
+    translateWithLoading(controller.value.position);
+    // ignore: use_build_context_synchronously
+    if (MediaQuery.of(context).orientation == Orientation.landscape) {
+      SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    } else {
+      SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
+    }
   }
 }
 //on video runnig

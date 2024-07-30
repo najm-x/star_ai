@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:business_tools/core/constant/app_routes_name.dart';
 import 'package:business_tools/core/public/custom_snak_bar.dart';
 import 'package:business_tools/core/public/widgets/info_widget.dart';
@@ -6,6 +8,7 @@ import 'package:business_tools/features/video_translator/presentation/bloc/vd_tr
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TranselateButton extends StatelessWidget {
   const TranselateButton({super.key});
@@ -15,24 +18,18 @@ class TranselateButton extends StatelessWidget {
     return BlocConsumer<VdTranslateBloc, VdTranslateState>(
       listener: (context, state) async {
         if (state.status == VdTranslateStatus.successVdTranslate) {
-          // debugPrint(state.data.toString());
           await Future.delayed(Durations.medium1);
-          // ignore: use_build_context_synchronously
           context.replace(AppRouteName.vdView,
               extra: DataVdModel(
                   idVideo:
-                      // ignore: use_build_context_synchronously
                       context.read<VdTranslateBloc>().extractYouTubeId(context.read<VdTranslateBloc>().videoUrlCo.text),
                   data: state.onSuccessVdTranslate!));
         }
         if (state.status == VdTranslateStatus.successTransCript) {
-          // debugPrint(state.data.toString());
           await Future.delayed(Durations.medium1);
-          // ignore: use_build_context_synchronously
           context.replace(AppRouteName.vdView, extra: state.onSuccessTransCript);
         }
         if (state.status == VdTranslateStatus.error) {
-          // ignore: use_build_context_synchronously
           CustomSnakBar().snackBarError(context, state.messageError, 5);
           debugPrint(state.messageError.toString());
         }
@@ -41,17 +38,16 @@ class TranselateButton extends StatelessWidget {
         return AnimatedCrossFade(
             firstChild: ElevatedButton(
               onPressed: () => context.read<VdTranslateBloc>().onTapTranslate(),
-              child: const Text("Translate"),
+              child: Text(AppLocalizations.of(context)!.translate),
             ),
             secondChild: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const InfoWidget(
-                    text: "The translation time ranges from 0.1 to 7 minutes, depending on the length of the video."),
+                InfoWidget(text: state.infoLoading),
                 const SizedBox(
                   height: 10,
                 ),
-                _progressWidget(state.status == VdTranslateStatus.loading ? state.translationProgress : 0),
+                _progressWidget(state.translationProgress),
                 const SizedBox(
                   height: 10,
                 ),

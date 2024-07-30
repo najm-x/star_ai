@@ -67,7 +67,7 @@ class VdRemoteDaraSourceImp implements VdRemoteDaraSource {
       String videoId, String translateFrom, String translateTo, String translateFromCode) async {
     List<VdTranslateModel> transScript = await vdDbFunHelping.transCriptVd(videoId, translateFromCode);
     String videoInfo = await vdDbFunHelping.videoInfo(videoId);
-     
+
     if (transScript.isEmpty || videoInfo.isEmpty) {
       throw TransScriptVdException();
     }
@@ -84,8 +84,8 @@ class VdRemoteDaraSourceImp implements VdRemoteDaraSource {
   Future<List<VdTranslateEntities>> vdTransRealTime(
       String translateFrom, String translateTo, String videoInfo, List<VdTranslateModel> subTitles) async {
     try {
-      List translate = await handelingTranslate(translateFrom, translateTo, videoInfo, subTitles);
-    return vdDbFunHelping.theTranslate(translate, subTitles);
+      List translate = await handelingTranslate(translateFrom, translateTo, "part of $videoInfo", subTitles);
+      return vdDbFunHelping.theTranslate(translate, subTitles);
     } catch (e) {
       throw TranslateVdException();
     }

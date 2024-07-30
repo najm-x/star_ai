@@ -16,7 +16,7 @@ import 'package:business_tools/features/video_translator/domain/usecases/vd_tran
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 part 'vd_translate_event.dart';
 part 'vd_translate_state.dart';
 
@@ -49,9 +49,15 @@ class VdTranslateBloc extends Bloc<VdTranslateEvent, VdTranslateState> {
   Future<void> _vdTranslate(VdTranslate event, Emitter<VdTranslateState> emit) async {
     VdDbFunHelping.translationProgressCo = StreamController<double>();
     final translationProgress = VdDbFunHelping.translationProgressCo.stream;
-    emit(state.copyWith(status: VdTranslateStatus.loading, translationProgress: 0));
+    emit(state.copyWith(
+        status: VdTranslateStatus.loading,
+        translationProgress: 0,
+        infoLoading: AppLocalizations.of(context)!.translateLoadingInfoNoe));
     final sub = translationProgress.listen((onData) {
-      emit(state.copyWith(status: VdTranslateStatus.loading, translationProgress: 0));
+      emit(state.copyWith(
+          status: VdTranslateStatus.loading,
+          translationProgress: onData,
+          infoLoading: AppLocalizations.of(context)!.translateLoadingInfoNoe));
     });
     await Future.delayed(Durations.extralong4);
 
@@ -64,7 +70,9 @@ class VdTranslateBloc extends Bloc<VdTranslateEvent, VdTranslateState> {
 
   Future<void> _getTransCriptEvent(GetTransCriptEvent event, Emitter<VdTranslateState> emit) async {
     emit(state.copyWith(
-        status: VdTranslateStatus.loading, translationProgress: 0, infoLoading: "لن يستغرق ذلك أكثر من دقيقة"));
+        status: VdTranslateStatus.loading,
+        translationProgress: 0,
+        infoLoading: AppLocalizations.of(context)!.translateLoadingInfoTow));
     await Future.delayed(Durations.extralong4);
     var failureOrDone =
         await getTransCriptUc.call(event.videoId, event.translateFrom, event.translateTo, event.translateFromCode);
@@ -90,21 +98,17 @@ class VdTranslateBloc extends Bloc<VdTranslateEvent, VdTranslateState> {
 
   //Other
   onTapTranslate() {
-    print(typeTrans + '++++++++++++++++++');
-
     if (formState.currentState!.validate() &&
         translateFrom.isNotEmpty &&
         translateTo.isNotEmpty &&
         translateFromCode.isNotEmpty) {
       if (typeTrans == TypesValidate.transDirect) {
-        print(typeTrans + '++++++++++++++++++');
         add(GetTransCriptEvent(
             videoId: extractYouTubeId(videoUrlCo.text.trim()),
             translateFrom: translateFrom,
             translateTo: translateTo,
             translateFromCode: translateFromCode));
       } else {
-        print(typeTrans + '----------');
         add(VdTranslate(
             videoId: extractYouTubeId(videoUrlCo.text.trim()),
             translateFrom: translateFrom,
@@ -130,7 +134,7 @@ class VdTranslateBloc extends Bloc<VdTranslateEvent, VdTranslateState> {
 
   String extractYouTubeId(String url) {
     RegExp regExp = RegExp(
-      r"^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})",
+      r'(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?|live)\/|.*[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})',
       caseSensitive: false,
       multiLine: false,
     );

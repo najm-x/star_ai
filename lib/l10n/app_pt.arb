@@ -96,5 +96,8 @@
   "vdTransTypeTowDes": "O vídeo será traduzido diretamente e rapidamente, mas você não poderá baixar a tradução.",
   "vdTransTypeThreeTitle": "Tradução de Vídeo a partir de um Arquivo de Tradução",
   "vdTransTypeThreeDes": "O vídeo será traduzido com base no arquivo de tradução que você escolheu.",
-  "showToStart": "Assistir a um anúncio curto para começar"
+  "showToStart": "Assistir a um anúncio curto para começar" ,
+  "translateLoadingInfoNoe": "O tempo de tradução varia de 0,1 a 7 minutos, dependendo da duração do vídeo.",
+  "translateLoadingInfoTow": "A extração do texto do vídeo está em andamento. Não levará mais de um minuto.",
+  "translate": "Traduzir"
 }
