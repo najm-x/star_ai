@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:business_tools/core/functions/handel_api_key.dart';
 import 'package:business_tools/features/video_translator/data/datasources/static_data_vd_trans.dart';
 import 'package:business_tools/features/video_translator/data/models/vd_translate_model.dart';
+import 'package:business_tools/features/video_translator/domain/entities/vd_translate_entities.dart';
 import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
@@ -298,5 +299,59 @@ $listToString
   translationProgress(int index, int total) async {
     translationProgressCo.sink.add((100 * index / total).toDouble());
     index == total - 1 ? await translationProgressCo.close() : null;
+  }
+
+  String convertListToSubFormat(List<VdTranslateEntities> translation) {
+    String listToSubFormat = "";
+    for (var index = 0; index < translation.length; index++) {
+      listToSubFormat += """
+${index + 1}
+${translation[index].start} --> ${translation[index].end}
+${translation[index].subTitle}
+
+""";
+    }
+    return listToSubFormat;
+  }
+
+  ///
+
+  Future<List> handelingTranslate(
+      String translateFrom, String translateTo, String videoInfo, List<VdTranslateModel> caption) async {
+    if (caption.length <= 60) {
+      return await tarnslateSmallCaption(translateFrom, translateTo, videoInfo, caption);
+    } else {
+      return await tarnslateLargCapthion(translateFrom, translateTo, videoInfo, caption);
+    }
+  }
+
+  List<VdTranslateEntities> parseSrt(String srtContent) {
+    // تقسيم المحتوى إلى أجزاء بناءً على الأسطر الفارغة
+    final subtitles = srtContent.split('\n\n');
+    // تحويل الأجزاء إلى قائمة من الخرائط
+    final List<VdTranslateEntities> subtitleList = [];
+    for (var i = 0; i < subtitles.length - 1; i++) {
+      final lines = subtitles[i].split('\n');
+      // print(lines);
+      final time = lines[1].split(' --> ');
+      // print(time);
+      final start = time[0];
+      final end = time[1];
+      final subTitle = lines.sublist(2).join('\n');
+
+      subtitleList.add(VdTranslateEntities(subTitle: subTitle, start: parseDuration(start), end: parseDuration(end)));
+    }
+    return subtitleList;
+  }
+
+  Duration parseDuration(String timeString) {
+    final parts = timeString.split(':');
+
+    final hours = int.parse(parts[0]);
+    final minutes = int.parse(parts[1]);
+    final seconds = int.parse(parts[2].split('.')[0]);
+    final microseconds = int.parse(parts[2].split('.')[1]);
+
+    return Duration(hours: hours, minutes: minutes, seconds: seconds, microseconds: microseconds);
   }
 }

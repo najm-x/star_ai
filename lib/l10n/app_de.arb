@@ -99,5 +99,8 @@
   "showToStart": "Sehen Sie sich einen kurzen Werbespot an, um zu beginnen",
   "translateLoadingInfoNoe": "Die Übersetzungszeit beträgt je nach Videolänge zwischen 0,1 und 7 Minuten.",
   "translateLoadingInfoTow": "Der Text wird gerade aus dem Video extrahiert. Dies dauert nicht länger als eine Minute.",
-  "translate": "Übersetzen"
+  "translate": "Übersetzen",
+  "errorShowAds": "Beim Laden der Anzeige ist ein Fehler aufgetreten. Bitte laden Sie die Seite neu.",
+  "uploadFile": "Datei hochladen",
+  "translateExtracted": "Die Übersetzung wird aus der Datei extrahiert"
 }

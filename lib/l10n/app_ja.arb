@@ -99,5 +99,8 @@
   "showToStart": "開始するには短い広告をご覧ください",
   "translateLoadingInfoNoe": "翻訳時間はビデオの長さによって異なりますが、0.1分から7分です。",
   "translateLoadingInfoTow": "ビデオからのテキスト抽出が進行中です。1分以内にかかります。",
-  "translate": "翻訳する"
+  "translate": "翻訳する" ,
+  "errorShowAds": "広告の読み込み中にエラーが発生しました。ページをリロードしてください。",
+  "uploadFile": "ファイルのアップロード",
+  "translateExtracted": "ファイルから翻訳を抽出しています"
 }

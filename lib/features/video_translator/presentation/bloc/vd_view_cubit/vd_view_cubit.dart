@@ -27,7 +27,6 @@ class VdViewCubit extends Cubit<VdViewState> {
   double currentBottomSpace = 50;
   int currentSubtitleDelay = 0;
   bool currentisLtoR = false;
-  // Duration currentPosition = const Duration(seconds: 0);
   bool currentShow = false;
 
   //
@@ -183,7 +182,6 @@ class VdViewCubit extends Cubit<VdViewState> {
     print("object $islam || ${translateToShow.length}");
 
     if (newSubTitle != currentVdSubtitleValue) {
-      print("object FUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUck");
 
       currentVdSubtitleValue = newSubTitle;
       if (islam == translateToShow.length) {
@@ -191,14 +189,11 @@ class VdViewCubit extends Cubit<VdViewState> {
           print("object ${nextTranslateToShow == []}");
           isnextTranslateToShow = false;
         } else {
-          print("object ${nextTranslateToShow.first}");
-          print("object ${nextTranslateToShow.isEmpty}");
           isnextTranslateToShow = true;
-          print("object rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrck");
           translateToShow.clear();
           translateToShow = nextTranslateToShow;
-          print("object $translateToShow");
-          print("object $nextTranslateToShow");
+          // print("object $translateToShow");
+          // print("object $nextTranslateToShow");
         }
       } else if (islam == translateToShow.length / 4) {
         print("object islam == translateToShow.length / 4 ${translateToShow.length}");

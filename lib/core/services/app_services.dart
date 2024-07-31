@@ -42,12 +42,13 @@ import 'package:business_tools/features/video_translator/data/repositories/vd_tr
 import 'package:business_tools/features/video_translator/domain/repositories/vd_translate_repo.dart';
 import 'package:business_tools/features/video_translator/domain/usecases/download_trans_uc.dart';
 import 'package:business_tools/features/video_translator/domain/usecases/get_trans_cript.dart';
+import 'package:business_tools/features/video_translator/domain/usecases/get_trans_from_file_uc.dart';
 import 'package:business_tools/features/video_translator/domain/usecases/vd_trans_real_time.dart';
 import 'package:business_tools/features/video_translator/domain/usecases/vd_translate_uc.dart';
+import 'package:business_tools/features/video_translator/presentation/bloc/pick_file_cubit/pick_file_cubit.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_download_bloc/vd_download_bloc.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_translate_bloc/vd_translate_bloc.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_view_cubit/vd_view_cubit.dart';
-import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -79,14 +80,16 @@ Future<void> init() async {
   sl.registerLazySingleton<LocalDataSource>(() => LocalDataSourceImp());
 //!vdTranslate
 //?Bloc
-  sl.registerFactory(() => VdTranslateBloc(vdTranslateUc: sl(), getTransCriptUc: sl()));
+  sl.registerFactory(() => VdTranslateBloc(vdTranslateUc: sl(), getTransCriptUc: sl(), getTransFromFileUc: sl()));
   sl.registerFactory(() => VdViewCubit(vdTransRealTimeUc: sl()));
   sl.registerFactory(() => VdDownloadBloc(downloadTransUc: sl()));
+  sl.registerFactory(() => PickFileCubit());
 //?UseCases
   sl.registerLazySingleton(() => VdTranslateUc(vdTranslateRepo: sl()));
   sl.registerLazySingleton(() => DownloadTransUc(vdTranslateRepo: sl()));
   sl.registerLazySingleton(() => GetTransCriptUc(vdTranslateRepo: sl()));
   sl.registerLazySingleton(() => VdTransRealTimeUc(vdTranslateRepo: sl()));
+  sl.registerLazySingleton(() => GetTransFromFileUc(vdTranslateRepo: sl()));
 //?repo
   sl.registerLazySingleton<VdTranslateRepo>(() => VdTranslateRepoImp(vdRemoteDataSource: sl()));
 //?dataSource

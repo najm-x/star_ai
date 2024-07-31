@@ -1,4 +1,6 @@
+import 'package:business_tools/core/public/custom_snak_bar.dart';
 import 'package:business_tools/core/public/widgets/loading.dart';
+import 'package:business_tools/core/services/app_services.dart';
 import 'package:business_tools/features/ads/presentation/bloc/bloc/ads_bloc.dart';
 import 'package:business_tools/features/video_translator/data/datasources/static_data_vd_trans.dart';
 import 'package:business_tools/features/video_translator/data/models/vd_type_model.dart';
@@ -13,18 +15,29 @@ class ButtonShowAddWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AdsBloc, AdsState>(
+    return BlocConsumer<AdsBloc, AdsState>(
+      listener: (context, state) {
+        if (state is RewardedAdError) {
+          sl<CustomSnakBar>().snackBarError(context, AppLocalizations.of(context)!.errorShowAds, 2);
+        }
+      },
       builder: (context, state) {
         return state is RewardedAdLoading
             ? const Loading()
             : FilledButton.icon(
-                onPressed: () => context.read<AdsBloc>().rewardedAd?.show(
-                  onUserEarnedReward: (ad, reward) {
-                    VdTypeModel vdTypeModel =
-                        StaticDataVdTrans().vdTypeData[BlocProvider.of<VdTransTypeCubit>(context).currentVdType];
+                onPressed: () {
+                  VdTypeModel vdTypeModel =
+                      StaticDataVdTrans().vdTypeData[BlocProvider.of<VdTransTypeCubit>(context).currentVdType];
+                  if (context.read<AdsBloc>().rewardedAd == null) {
                     context.pushReplacement(vdTypeModel.pageRoute, extra: vdTypeModel.type);
-                  },
-                ),
+                  } else {
+                    context.read<AdsBloc>().rewardedAd?.show(
+                      onUserEarnedReward: (ad, reward) {
+                        context.pushReplacement(vdTypeModel.pageRoute, extra: vdTypeModel.type);
+                      },
+                    );
+                  }
+                },
                 label: Text(
                   AppLocalizations.of(context)!.showToStart,
                 ),

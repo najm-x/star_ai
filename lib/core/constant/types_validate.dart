@@ -5,4 +5,5 @@ class TypesValidate {
   static const String to= "to" ;
   static const String tarnsWithDownload= "tarnsWithDownload" ;
   static const String transDirect= "transDirect" ;
+  static const String transFromFile= "transFromFile" ;
 }

@@ -21,6 +21,7 @@ import 'package:business_tools/features/text_extract/presentation/pages/text_ext
 import 'package:business_tools/features/text_translate/presentation/bloc/cubit/text_trans_cubit.dart';
 import 'package:business_tools/features/text_translate/presentation/pages/text_translate_page.dart';
 import 'package:business_tools/features/video_translator/data/models/data_vd_model.dart';
+import 'package:business_tools/features/video_translator/presentation/bloc/pick_file_cubit/pick_file_cubit.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_download_bloc/vd_download_bloc.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_trans_type_cubit/vd_trans_type_cubit.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_translate_bloc/vd_translate_bloc.dart';
@@ -35,13 +36,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:business_tools/core/services/app_services.dart' as id;
 
 final goRouter = GoRouter(initialLocation: '/', routes: [
-  GoRoute(
-    path: '/',
-    builder: (context, state) => BlocProvider(
-      create: (context) => id.sl<CheckCubit>()..check(),
-      child: const CheckPage(),
-    ),
-  ),
+  _mainGoRoute(),
   GoRoute(
     path: AppRouteName.chooseTransTypePage,
     builder: (context, state) => MultiRepositoryProvider(
@@ -68,6 +63,9 @@ final goRouter = GoRouter(initialLocation: '/', routes: [
       providers: [
         BlocProvider(
           create: (context) => id.sl<VdTranslateBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => id.sl<PickFileCubit>(),
         ),
         BlocProvider(
           create: (context) => id.sl<AdsBloc>()..add(const BannerAdEvent(size: AdSize.largeBanner)),
@@ -175,3 +173,13 @@ final goRouter = GoRouter(initialLocation: '/', routes: [
     builder: (context, state) => const LanguagePage(),
   ),
 ]);
+
+GoRoute _mainGoRoute() {
+  return GoRoute(
+    path: '/',
+    builder: (context, state) => BlocProvider(
+      create: (context) => id.sl<CheckCubit>()..check(),
+      child: const CheckPage(),
+    ),
+  );
+}

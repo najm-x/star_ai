@@ -20,6 +20,7 @@ abstract class VdRemoteDaraSource {
   Future<DataVdModel> getTransCript(String videoId, String translateFrom, String translateTo, String translateFromCode);
   Future<List<VdTranslateEntities>> vdTransRealTime(
       String translateFrom, String translateTo, String videoInfo, List<VdTranslateModel> subTitles);
+  Future<List<VdTranslateEntities>> getTransFromFile(String filePath);
 }
 
 class VdRemoteDaraSourceImp implements VdRemoteDaraSource {
@@ -36,7 +37,7 @@ class VdRemoteDaraSourceImp implements VdRemoteDaraSource {
       throw TransScriptVdException();
     }
     //
-    List translate = await handelingTranslate(translateFrom, translateTo, videoInfo, transScript);
+    List translate = await vdDbFunHelping.handelingTranslate(translateFrom, translateTo, videoInfo, transScript);
     return vdDbFunHelping.theTranslate(translate, transScript);
   }
 //
@@ -55,7 +56,7 @@ class VdRemoteDaraSourceImp implements VdRemoteDaraSource {
     File vdUrl = File("${directory.path}/videoUrl.txt");
     try {
       await vdUrl.writeAsString(videoUrl);
-      await translationFile.writeAsString(convertListToSubFormat(translation));
+      await translationFile.writeAsString(vdDbFunHelping.convertListToSubFormat(translation));
       return unit;
     } catch (e) {
       throw CreateFileException();
@@ -84,34 +85,27 @@ class VdRemoteDaraSourceImp implements VdRemoteDaraSource {
   Future<List<VdTranslateEntities>> vdTransRealTime(
       String translateFrom, String translateTo, String videoInfo, List<VdTranslateModel> subTitles) async {
     try {
-      List translate = await handelingTranslate(translateFrom, translateTo, "part of $videoInfo", subTitles);
+      List translate =
+          await vdDbFunHelping.handelingTranslate(translateFrom, translateTo, "part of $videoInfo", subTitles);
       return vdDbFunHelping.theTranslate(translate, subTitles);
     } catch (e) {
       throw TranslateVdException();
     }
   }
 
-  String convertListToSubFormat(List<VdTranslateEntities> translation) {
-    String listToSubFormat = "";
-    for (var index = 0; index < translation.length; index++) {
-      listToSubFormat += """
-${index + 1}
-${translation[index].start} --> ${translation[index].end}
-${translation[index].subTitle}
-
-""";
-    }
-    return listToSubFormat;
-  }
-
-  ///
-
-  Future<List> handelingTranslate(
-      String translateFrom, String translateTo, String videoInfo, List<VdTranslateModel> caption) async {
-    if (caption.length <= 60) {
-      return await vdDbFunHelping.tarnslateSmallCaption(translateFrom, translateTo, videoInfo, caption);
-    } else {
-      return await vdDbFunHelping.tarnslateLargCapthion(translateFrom, translateTo, videoInfo, caption);
+  @override
+  Future<List<VdTranslateEntities>> getTransFromFile(String filePath) async {
+    try {
+      File file = File(filePath);
+      String srtContent = await file.readAsString();
+      return vdDbFunHelping.parseSrt(srtContent);
+    } catch (e) {
+      throw GetTransFroFileException();
     }
   }
 }
+/*
+1
+00:05:00,400 --> 00:05:15,300
+This is an example of a subtitle.
+*/

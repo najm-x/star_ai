@@ -399,5 +399,17 @@
     "translate": "Translate",
     "@translate": {
         "description": "Button label for translation"
+    },
+    "errorShowAds": "An error occurred while loading the AD please reload the page.",
+    "@errorShowAds": {
+        "description": "Error message shown when an AD cannot be loaded."
+    },
+    "uploadFile": "Upload File",
+    "@uploadFile": {
+        "description": "Label for the upload file button."
+    },
+    "translateExtracted": "Translation is being extracted from the file",
+    "@translateExtracted": {
+        "description": "Message indicating that the translation is being extracted."
     }
 }

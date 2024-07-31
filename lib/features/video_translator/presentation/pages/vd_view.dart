@@ -40,8 +40,6 @@ class _VdViewState extends State<VdView> {
         enableCaption: false,
       ),
     )..addListener(() {
-        // BlocProvider.of<VdViewCubit>(context).currentPosition = controller.value.position;
-
         if (widget.data.translateFrom != null) {
           if (BlocProvider.of<VdViewCubit>(context).controller.value.position.inMicroseconds == 0) {
             BlocProvider.of<VdViewCubit>(context).transalteOnVdStart();

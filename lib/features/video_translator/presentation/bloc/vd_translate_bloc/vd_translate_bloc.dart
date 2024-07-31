@@ -12,6 +12,7 @@ import 'package:business_tools/features/video_translator/data/datasources/vd_db_
 import 'package:business_tools/features/video_translator/data/models/data_vd_model.dart';
 import 'package:business_tools/features/video_translator/domain/entities/vd_translate_entities.dart';
 import 'package:business_tools/features/video_translator/domain/usecases/get_trans_cript.dart';
+import 'package:business_tools/features/video_translator/domain/usecases/get_trans_from_file_uc.dart';
 import 'package:business_tools/features/video_translator/domain/usecases/vd_translate_uc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
@@ -23,6 +24,7 @@ part 'vd_translate_state.dart';
 class VdTranslateBloc extends Bloc<VdTranslateEvent, VdTranslateState> {
   final VdTranslateUc vdTranslateUc;
   final GetTransCriptUc getTransCriptUc;
+  final GetTransFromFileUc getTransFromFileUc;
   //
   BuildContext context = goRouter.routerDelegate.navigatorKey.currentContext!;
 
@@ -32,20 +34,21 @@ class VdTranslateBloc extends Bloc<VdTranslateEvent, VdTranslateState> {
   String translateTo = "";
   String translateFromCode = "";
   String typeTrans = ""; //
+  String? filePath;
   final one = GlobalKey();
   final tow = GlobalKey();
   final three = GlobalKey();
 
   //
-  VdTranslateBloc({
-    required this.vdTranslateUc,
-    required this.getTransCriptUc,
-  }) : super(const VdTranslateState()) {
+  VdTranslateBloc({required this.vdTranslateUc, required this.getTransCriptUc, required this.getTransFromFileUc})
+      : super(const VdTranslateState()) {
     on<VdTranslateEvent>((event, emit) {});
     on<VdTranslate>(_vdTranslate);
     on<GetTransCriptEvent>(_getTransCriptEvent);
+    on<GetTransFromFiletEvent>(_getTransFromFiletEvent);
   }
 
+//events
   Future<void> _vdTranslate(VdTranslate event, Emitter<VdTranslateState> emit) async {
     VdDbFunHelping.translationProgressCo = StreamController<double>();
     final translationProgress = VdDbFunHelping.translationProgressCo.stream;
@@ -80,6 +83,15 @@ class VdTranslateBloc extends Bloc<VdTranslateEvent, VdTranslateState> {
     emit(_getTransCriptEventState(failureOrDone));
   }
 
+  Future<void> _getTransFromFiletEvent(GetTransFromFiletEvent event, Emitter<VdTranslateState> emit) async {
+    emit(state.copyWith(status: VdTranslateStatus.loading, infoLoading: AppLocalizations.of(context)!.translateExtracted));
+    await Future.delayed(const Duration(seconds: 2));
+    var failureOrDone = await getTransFromFileUc.call(event.filePath);
+
+    emit(_getTransFromFiletEventtState(failureOrDone));
+  }
+
+//states
   VdTranslateState _vdTranslateState(Either<Failure, List<VdTranslateEntities>> failureOrDone) {
     return failureOrDone.fold((failure) {
       return state.copyWith(status: VdTranslateStatus.error, messageError: messageErrorHandel(failure, context));
@@ -96,8 +108,23 @@ class VdTranslateBloc extends Bloc<VdTranslateEvent, VdTranslateState> {
     });
   }
 
+  VdTranslateState _getTransFromFiletEventtState(Either<Failure, List<VdTranslateEntities>> failureOrDone) {
+    return failureOrDone.fold((failure) {
+      return state.copyWith(status: VdTranslateStatus.error, messageError: messageErrorHandel(failure, context));
+    }, (done) {
+      return state.copyWith(status: VdTranslateStatus.successGetTransFromFile, onSuccessGetTransFromFile: done);
+    });
+  }
+
   //Other
   onTapTranslate() {
+    if (typeTrans == TypesValidate.transFromFile) {
+      if (formState.currentState!.validate() && filePath != null) {
+        add(GetTransFromFiletEvent(filePath: filePath!));
+      }
+
+      return;
+    }
     if (formState.currentState!.validate() &&
         translateFrom.isNotEmpty &&
         translateTo.isNotEmpty &&
@@ -118,7 +145,7 @@ class VdTranslateBloc extends Bloc<VdTranslateEvent, VdTranslateState> {
     }
   }
 
-  onSelectOption(String type, String langName) {
+  void onSelectOption(String type, String langName) {
     if (type == TypesValidate.from) {
       for (var i in languages) {
         if (i["lang"].toString() == langName) {
@@ -142,7 +169,7 @@ class VdTranslateBloc extends Bloc<VdTranslateEvent, VdTranslateState> {
     return match?.group(1) ?? '';
   }
 
-  showcase(BuildContext? myContext) {
+  void showcase(BuildContext? myContext) {
     showCaseInit(myContext!, SharedKey.isVdTransShowed, [one, tow, three]);
   }
 

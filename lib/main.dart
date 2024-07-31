@@ -11,8 +11,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  MobileAds.instance
-      .updateRequestConfiguration(RequestConfiguration(testDeviceIds: ["AB106765A9E7B33AC428228C1372CEFE"]));
+  MobileAds.instance.initialize();
   await id.init();
 
   runApp(const MyApp());
@@ -39,7 +38,7 @@ class MyApp extends StatelessWidget {
               return UpgradeAlert(
                 navigatorKey: goRouter.routerDelegate.navigatorKey,
                 upgrader: Upgrader(
-                    minAppVersion: "2.0.0",
+                    minAppVersion: "1.0.0",
                     durationUntilAlertAgain: const Duration(seconds: 3),
                     storeController: UpgraderStoreController(
                         onAndroid: () =>

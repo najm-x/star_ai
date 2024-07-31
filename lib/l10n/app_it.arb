@@ -99,5 +99,8 @@
   "showToStart": "Guarda un breve annuncio per iniziare",
   "translateLoadingInfoNoe": "Il tempo di traduzione varia da 0,1 a 7 minuti, a seconda della durata del video.",
   "translateLoadingInfoTow": "L'estrazione del testo dal video è in corso. Non ci vorrà più di un minuto.",
-  "translate": "Traduci"
+  "translate": "Traduci",
+  "errorShowAds": "Si è verificato un errore durante il caricamento dell'annuncio. Ricarica la pagina.",
+  "uploadFile": "Carica file",
+  "translateExtracted": "La traduzione viene estratta dal file"
 }

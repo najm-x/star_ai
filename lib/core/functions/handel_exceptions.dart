@@ -23,6 +23,10 @@ Failure mapExceptionToFailure(Object exception) {
       return CopyFailure();
     case AdLoadException():
       return AdLoadFailure();
+    case GetTransFroFileException():
+      return GetTransFroFileFailure();
+    case EmptyFileException():
+      return EmptyFileFailure();
     default:
       return EmptyFailure();
   }

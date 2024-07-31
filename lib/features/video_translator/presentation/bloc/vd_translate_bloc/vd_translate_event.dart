@@ -30,3 +30,11 @@ final class GetTransCriptEvent extends VdTranslateEvent {
   @override
   List<Object> get props => [videoId, translateFrom, translateTo, translateFromCode];
 }
+
+final class GetTransFromFiletEvent extends VdTranslateEvent {
+  final String filePath;
+  const GetTransFromFiletEvent({required this.filePath});
+
+  @override
+  List<Object> get props => [filePath];
+}

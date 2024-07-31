@@ -4,6 +4,7 @@ import 'package:business_tools/core/public/widgets/text_form_filed_cu.dart';
 import 'package:business_tools/features/ads/presentation/widgets/ads_banner_widget.dart';
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_translate_bloc/vd_translate_bloc.dart';
 import 'package:business_tools/features/video_translator/presentation/widgets/translate_option_widget.dart';
+import 'package:business_tools/features/video_translator/presentation/widgets/video_translate/pick_file_widget.dart';
 import 'package:business_tools/features/video_translator/presentation/widgets/video_translate/transelate_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -24,7 +25,7 @@ class _VideoTranslatorPageState extends State<VideoTranslatorPage> {
 
   @override
   void initState() {
-    print(widget.typeTrans +'=====+++++++++++++++============+++++++++++++===========');
+    print(widget.typeTrans + '=====+++++++++++++++============+++++++++++++===========');
     BlocProvider.of<VdTranslateBloc>(context).typeTrans = widget.typeTrans;
     Future.delayed(Durations.short1, () {
       BlocProvider.of<VdTranslateBloc>(context).showcase(myContext);
@@ -53,11 +54,11 @@ class _VideoTranslatorPageState extends State<VideoTranslatorPage> {
                       const AdsBannerWidget(
                         adSize: AdSize.largeBanner,
                       ),
+                      _space(),
                       Showcase(
                         key: BlocProvider.of<VdTranslateBloc>(context).one,
                         description: AppLocalizations.of(context)!.addVideoUrl,
-                        child: Container(
-                          margin: const EdgeInsets.only(top: 15),
+                        child: SizedBox(
                           width: double.maxFinite,
                           child: TextFormFieldCu(
                               hint: AppLocalizations.of(context)!.pasteUrlHere,
@@ -67,10 +68,7 @@ class _VideoTranslatorPageState extends State<VideoTranslatorPage> {
                         ),
                       ),
                       _space(),
-                      Showcase(
-                          key: BlocProvider.of<VdTranslateBloc>(context).tow,
-                          description: AppLocalizations.of(context)!.chooselangToTransVd,
-                          child: const TranslateOptionWidget()),
+                      widget.typeTrans == TypesValidate.transFromFile ? _onTransFromFileWidget() : _defultWidget(),
                       _space(),
                       Showcase(
                           key: BlocProvider.of<VdTranslateBloc>(context).three,
@@ -91,5 +89,16 @@ class _VideoTranslatorPageState extends State<VideoTranslatorPage> {
     return const SizedBox(
       height: 15,
     );
+  }
+
+  Widget _defultWidget() {
+    return Showcase(
+        key: BlocProvider.of<VdTranslateBloc>(context).tow,
+        description: AppLocalizations.of(context)!.chooselangToTransVd,
+        child: const TranslateOptionWidget());
+  }
+
+  Widget _onTransFromFileWidget() {
+    return const PickFileWidget();
   }
 }

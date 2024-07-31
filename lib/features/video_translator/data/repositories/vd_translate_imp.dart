@@ -72,4 +72,13 @@ class VdTranslateRepoImp extends VdTranslateRepo {
       return left(mapExceptionToFailure(e));
     }
   }
+
+  @override
+  Future<Either<Failure, List<VdTranslateEntities>>> getTransFromFile(String filePath) async {
+    try {
+      return right(await vdRemoteDataSource.getTransFromFile(filePath));
+    } catch (e) {
+      return left(mapExceptionToFailure(e));
+    }
+  }
 }

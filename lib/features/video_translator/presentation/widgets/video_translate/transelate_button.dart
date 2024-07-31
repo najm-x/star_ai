@@ -29,6 +29,14 @@ class TranselateButton extends StatelessWidget {
           await Future.delayed(Durations.medium1);
           context.replace(AppRouteName.vdView, extra: state.onSuccessTransCript);
         }
+        if (state.status == VdTranslateStatus.successGetTransFromFile) {
+          await Future.delayed(Durations.medium1);
+          context.replace(AppRouteName.vdView,
+              extra: DataVdModel(
+                  idVideo:
+                      context.read<VdTranslateBloc>().extractYouTubeId(context.read<VdTranslateBloc>().videoUrlCo.text),
+                  data: state.onSuccessGetTransFromFile!));
+        }
         if (state.status == VdTranslateStatus.error) {
           CustomSnakBar().snackBarError(context, state.messageError, 5);
           debugPrint(state.messageError.toString());

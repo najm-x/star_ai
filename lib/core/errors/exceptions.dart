@@ -15,7 +15,12 @@ class CreateFileException implements Exception {}
 class CopyException implements Exception {}
 
 class AIException implements Exception {}
+
 class AdLoadException implements Exception {}
 
 class CropImageException implements Exception {}
+
 class EmptyCropImageException implements Exception {}
+
+class GetTransFroFileException implements Exception {}
+class EmptyFileException implements Exception {}

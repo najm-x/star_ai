@@ -1,9 +1,7 @@
 class AppStrings {
-  static const String translateLoadingInfoNoe =
-      "The translation time ranges from 0.1 to 7 minutes, depending on the length of the video.";
-  static const String translateLoadingInfoTow =
-      "Extracting the text from the video is in progress. It won't take more than a minute." ;
-  static const String translate = "Translate" ;
+  static const String errorShowAds = "An error occurred while loading the AD please reload the page.";
+  static const String uploadFile = "Upload File";
+  static const String translateExtracted = "Translation is being extracted from the file";
 
   ///
   static String csv = "cvg";

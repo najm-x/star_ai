@@ -100,6 +100,6 @@ I will ensure that each element in the original list corresponds to exactly one 
         title: AppLocalizations.of(context)!.vdTransTypeThreeTitle,
         body: AppLocalizations.of(context)!.vdTransTypeThreeDes,
         pageRoute: AppRouteName.videoTranslatorPage,
-        type: ""),
+        type: TypesValidate.transFromFile),
   ];
 }

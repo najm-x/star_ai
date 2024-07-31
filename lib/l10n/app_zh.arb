@@ -99,5 +99,8 @@
     "showToStart": "观看简短的广告以开始",
     "translateLoadingInfoNoe": "翻译时间范围为 0.1 到 7 分钟，具体取决于视频的长度。",
     "translateLoadingInfoTow": "正在从视频中提取文本。不会超过一分钟。",
-    "translate": "翻译"
+    "translate": "翻译",
+    "errorShowAds": "加载广告时出错，请重新加载页面。",
+    "uploadFile": "上传文件",
+    "translateExtracted": "正在从文件中提取翻译"
 }
