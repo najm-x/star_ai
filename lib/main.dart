@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
-            locale: state.status == LanguageStatus.success ? Locale(state.value) : handelSupportedLocales(),
+            locale: state.status == LanguageStatus.success ? Locale(state.value) : handelSupportedLocales(context),
             routerDelegate: goRouter.routerDelegate,
             routeInformationProvider: goRouter.routeInformationProvider,
             routeInformationParser: goRouter.routeInformationParser,
