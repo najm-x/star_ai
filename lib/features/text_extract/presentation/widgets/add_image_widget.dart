@@ -24,9 +24,10 @@ class AddImageWidget extends StatelessWidget {
         listener: (context, state) {
           if (state.status == TextExtractStatus.successPickImage) {
             context.read<TextExtractBloc>().add(CropImageEvent(path: state.value));
+            context.read<AdsBloc>().add(InterstitialAdEvent());
           }
           if (state.status == TextExtractStatus.successCropImage) {
-            context.read<AdsBloc>().add(InterstitialAdEvent());
+            
             context.read<TextExtractBloc>().path = state.value;
           }
           if (state.status == TextExtractStatus.successTextExtract) {

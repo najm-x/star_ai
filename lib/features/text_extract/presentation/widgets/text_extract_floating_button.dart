@@ -10,7 +10,7 @@ class TextExtractFloatingButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 120),
+      margin: const EdgeInsets.only(bottom: 10),
       child: BlocBuilder<TextExtractBloc, TextExtractState>(
         builder: (context, state) {
           return Column(

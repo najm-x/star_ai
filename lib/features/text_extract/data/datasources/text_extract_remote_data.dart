@@ -1,11 +1,13 @@
 import 'dart:io';
 
+import 'package:business_tools/core/app_routes.dart' show goRouter;
 import 'package:business_tools/core/errors/exceptions.dart';
 import 'package:business_tools/core/functions/handel_api_key.dart';
 import 'package:business_tools/features/text_extract/data/datasources/static_data_text_extract.dart';
 import 'package:business_tools/features/text_extract/data/models/text_extract_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:image_cropper/image_cropper.dart';
 
@@ -61,7 +63,8 @@ class TextExtractRemoteDataImp extends TextExtractRemoteData {
           AndroidUiSettings(
             toolbarTitle: 'Cropper',
             // toolbarColor: Colors.deepOrange,
-            // toolbarWidgetColor: Colors.white,
+            activeControlsWidgetColor:
+                Theme.of(goRouter.routerDelegate.navigatorKey.currentContext!).colorScheme.primary,
             initAspectRatio: CropAspectRatioPreset.square,
             lockAspectRatio: false,
             aspectRatioPresets: [
