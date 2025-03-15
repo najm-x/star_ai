@@ -29,7 +29,7 @@ def keystoreProperties = new Properties()
 
 android {
     namespace "com.example.business_tools"
-    compileSdkVersion 34
+    compileSdkVersion 35
     ndkVersion "25.1.8937393"
 
     compileOptions {

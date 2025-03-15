@@ -1,0 +1,1 @@
+final geminiKey = "AIzaSyA_QSc4XW31z90lGuOtueo3919IFdEpHMxQWI";

@@ -19,6 +19,5 @@ Locale handelSupportedLocales(BuildContext context) {
     
   }
    
-  print(locale?.languageCode) ;
   return locale ?? const Locale("en");
 }

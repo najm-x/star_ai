@@ -35,120 +35,147 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:business_tools/core/services/app_services.dart' as id;
 
-final goRouter = GoRouter(initialLocation: '/', routes: [
-  _mainGoRoute(),
-  GoRoute(
+final goRouter = GoRouter(
+  initialLocation: '/',
+  routes: [
+    _mainGoRoute(),
+    _chooseTransTypeRoute(),
+    _homeRoute(),
+    _videoTranslatorRoute(),
+    _extractRoute(),
+    _vdViewRoute(),
+    _textTranslatorRoute(),
+    _spellCheckerRoute(),
+    _textExtractRoute(),
+    _noInternetRoute(),
+    _onBoardingRoute(),
+    _addApiKeyRoute(),
+    _languageRoute(),
+  ],
+);
+
+GoRoute _mainGoRoute() {
+  return GoRoute(
+    path: '/',
+    builder: (context, state) => BlocProvider(
+      create: (context) => id.sl<CheckCubit>()..check(),
+      child: const CheckPage(),
+    ),
+  );
+}
+
+GoRoute _chooseTransTypeRoute() {
+  return GoRoute(
     path: AppRouteName.chooseTransTypePage,
     builder: (context, state) => MultiRepositoryProvider(
       providers: [
-        BlocProvider(
-          create: (context) => id.sl<AdsBloc>()..add(RewardedAdEvent()),
-        ),
-        BlocProvider(
-          create: (context) => VdTransTypeCubit(),
-        ),
+        BlocProvider(create: (context) => id.sl<AdsBloc>()..add(RewardedAdEvent())),
+        BlocProvider(create: (context) => VdTransTypeCubit()),
       ],
       child: const ChooseTypeTransPage(),
     ),
-  ),
-  GoRoute(
-      path: AppRouteName.home,
-      builder: (context, state) => BlocProvider(
-            create: (context) => id.sl<HomeCubit>(),
-            child: const HomePage(),
-          )),
-  GoRoute(
+  );
+}
+
+GoRoute _homeRoute() {
+  return GoRoute(
+    path: AppRouteName.home,
+    builder: (context, state) => BlocProvider(
+      create: (context) => id.sl<HomeCubit>(),
+      child: const HomePage(),
+    ),
+  );
+}
+
+GoRoute _videoTranslatorRoute() {
+  return GoRoute(
     path: AppRouteName.videoTranslatorPage,
     builder: (context, state) => MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => id.sl<VdTranslateBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => id.sl<PickFileCubit>(),
-        ),
-        BlocProvider(
-          create: (context) => id.sl<AdsBloc>()..add(const BannerAdEvent(size: AdSize.largeBanner)),
-        ),
+        BlocProvider(create: (context) => id.sl<VdTranslateBloc>()),
+        BlocProvider(create: (context) => id.sl<PickFileCubit>()),
+        BlocProvider(create: (context) => id.sl<AdsBloc>()..add(const BannerAdEvent(size: AdSize.largeBanner))),
       ],
-      child: VideoTranslatorPage(
-        typeTrans: state.extra as String,
-      ),
+      child: VideoTranslatorPage(typeTrans: state.extra as String),
     ),
-  ),
-  GoRoute(
+  );
+}
+
+GoRoute _extractRoute() {
+  return GoRoute(
     path: AppRouteName.extract,
-    builder: (context, state) => MultiBlocProvider(providers: [
-      BlocProvider(create: (context) => id.sl<ExtractBloc>()),
-      BlocProvider(create: (context) => id.sl<SaveDataBloc>()),
-    ], child: const ExtractPage()),
-  ),
-  GoRoute(
+    builder: (context, state) => MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => id.sl<ExtractBloc>()),
+        BlocProvider(create: (context) => id.sl<SaveDataBloc>()),
+      ],
+      child: const ExtractPage(),
+    ),
+  );
+}
+
+GoRoute _vdViewRoute() {
+  return GoRoute(
     path: AppRouteName.vdView,
     builder: (context, state) => MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => id.sl<AdsBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => id.sl<VdViewCubit>(),
-        ),
-        BlocProvider(
-          create: (context) => id.sl<VdDownloadBloc>(),
-        ),
+        BlocProvider(create: (context) => id.sl<AdsBloc>()),
+        BlocProvider(create: (context) => id.sl<VdViewCubit>()),
+        BlocProvider(create: (context) => id.sl<VdDownloadBloc>()),
       ],
-      child: VdView(
-        data: state.extra as DataVdModel,
-      ),
+      child: VdView(data: state.extra as DataVdModel),
     ),
-  ),
-  GoRoute(
+  );
+}
+
+GoRoute _textTranslatorRoute() {
+  return GoRoute(
     path: AppRouteName.textTranslatorPage,
     builder: (context, state) => MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => id.sl<TextTransCubit>(),
-        ),
-        BlocProvider(
-          create: (context) => id.sl<AdsBloc>()..add(const BannerAdEvent()),
-        ),
+        BlocProvider(create: (context) => id.sl<TextTransCubit>()),
+        BlocProvider(create: (context) => id.sl<AdsBloc>()..add(const BannerAdEvent())),
       ],
       child: const TextTranslatePage(),
     ),
-  ),
-  GoRoute(
+  );
+}
+
+GoRoute _spellCheckerRoute() {
+  return GoRoute(
     path: AppRouteName.spellCheckerPage,
     builder: (context, state) => MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => id.sl<SpellCheckerCubit>(),
-        ),
-        BlocProvider(
-          create: (context) => id.sl<AdsBloc>()..add(const BannerAdEvent()),
-        ),
+        BlocProvider(create: (context) => id.sl<SpellCheckerCubit>()),
+        BlocProvider(create: (context) => id.sl<AdsBloc>()..add(const BannerAdEvent())),
       ],
       child: const SpellCheckerPage(),
     ),
-  ),
-  GoRoute(
+  );
+}
+
+GoRoute _textExtractRoute() {
+  return GoRoute(
     path: AppRouteName.textExtractPage,
     builder: (context, state) => MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => id.sl<TextExtractBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => id.sl<AdsBloc>()..add(const BannerAdEvent(size: AdSize.largeBanner)),
-        ),
+        BlocProvider(create: (context) => id.sl<TextExtractBloc>()),
+        BlocProvider(create: (context) => id.sl<AdsBloc>()..add(const BannerAdEvent(size: AdSize.largeBanner))),
       ],
       child: const TextExtractPage(),
     ),
-  ),
-  GoRoute(
+  );
+}
+
+GoRoute _noInternetRoute() {
+  return GoRoute(
     path: AppRouteName.noInternetPageg,
     builder: (context, state) => const NoInternetPage(),
-  ),
-  GoRoute(
+  );
+}
+
+GoRoute _onBoardingRoute() {
+  return GoRoute(
     path: AppRouteName.onBoarding,
     builder: (context, state) => BlocProvider(
       create: (context) => id.sl<OnboardingCubit>(),
@@ -160,26 +187,22 @@ final goRouter = GoRouter(initialLocation: '/', routes: [
       }
       return null;
     },
-  ),
-  GoRoute(
+  );
+}
+
+GoRoute _addApiKeyRoute() {
+  return GoRoute(
     path: AppRouteName.addApiKeyPage,
     builder: (context, state) => BlocProvider(
       create: (context) => AddApiKeyCubit(),
       child: const AddApiKeyPage(),
     ),
-  ),
-  GoRoute(
+  );
+}
+
+GoRoute _languageRoute() {
+  return GoRoute(
     path: AppRouteName.languagePage,
     builder: (context, state) => const LanguagePage(),
-  ),
-]);
-
-GoRoute _mainGoRoute() {
-  return GoRoute(
-    path: '/',
-    builder: (context, state) => BlocProvider(
-      create: (context) => id.sl<CheckCubit>()..check(),
-      child: const CheckPage(),
-    ),
   );
 }
