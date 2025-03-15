@@ -1,6 +1,13 @@
-abstract class Failure {}
+abstract class Failure {
+ final String? message ;
 
-class EmptyFailure extends Failure {}
+  Failure({ this.message}); 
+
+}
+
+class EmptyFailure extends Failure {
+  EmptyFailure({ super.message});
+}
 
 class SaveFailure extends Failure {}
 
@@ -16,7 +23,9 @@ class CreateFileFailure extends Failure {}
 
 class CopyFailure extends Failure {}
 
-class AIFailure extends Failure {}
+class AIFailure extends Failure {
+   AIFailure({ super.message});
+}
 
 class AdLoadFailure extends Failure {}
 
