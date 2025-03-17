@@ -11,4 +11,8 @@ class AppRouteName {
   static String addApiKeyPage = '/addApiKeyPage';
   static String languagePage = '/languagePage';
   static String chooseTransTypePage = '/chooseTransTypePage';
+  static String summaryHome = '/summaryHome';
+  static String summarySetup = '/summarySetup';
+
+
 }

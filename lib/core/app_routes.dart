@@ -16,6 +16,9 @@ import 'package:business_tools/features/onboarding/presentation/bloc/cubit/onboa
 import 'package:business_tools/features/onboarding/presentation/pages/onboarding_page.dart';
 import 'package:business_tools/features/spell_checker/presentation/bloc/cubit/spell_checker_cubit.dart';
 import 'package:business_tools/features/spell_checker/presentation/pages/spell_checker_page.dart';
+import 'package:business_tools/features/summary/presentation/bloc/cubit/summary_setup_cubit.dart';
+import 'package:business_tools/features/summary/presentation/view/summary_home.dart';
+import 'package:business_tools/features/summary/presentation/view/summary_setup.dart';
 import 'package:business_tools/features/text_extract/presentation/bloc/bloc/text_extract_bloc.dart';
 import 'package:business_tools/features/text_extract/presentation/pages/text_extract_page.dart';
 import 'package:business_tools/features/text_translate/presentation/bloc/cubit/text_trans_cubit.dart';
@@ -38,7 +41,7 @@ import 'package:business_tools/core/services/app_services.dart' as id;
 final goRouter = GoRouter(
   initialLocation: '/',
   routes: [
-    _mainGoRoute(),
+    // _mainGoRoute(),
     _chooseTransTypeRoute(),
     _homeRoute(),
     _videoTranslatorRoute(),
@@ -51,6 +54,8 @@ final goRouter = GoRouter(
     _onBoardingRoute(),
     _addApiKeyRoute(),
     _languageRoute(),
+    _summryHome(),
+    _summrySetup()
   ],
 );
 
@@ -204,5 +209,22 @@ GoRoute _languageRoute() {
   return GoRoute(
     path: AppRouteName.languagePage,
     builder: (context, state) => const LanguagePage(),
+  );
+}
+
+GoRoute _summryHome() {
+  return GoRoute(
+    path: '/',
+    builder: (context, state) => const SummaryHome(),
+  );
+}
+
+GoRoute _summrySetup() {
+  return GoRoute(
+    path: AppRouteName.summarySetup,
+    builder: (context, state) =>  BlocProvider(
+      create: (context) => id.sl<SummarySetupCubit>(),
+      child: const SummarySetup(),
+    ) 
   );
 }

@@ -23,6 +23,7 @@ import 'package:business_tools/features/spell_checker/domain/repositories/spell_
 import 'package:business_tools/features/spell_checker/domain/usecases/save_text_spelled.dart';
 import 'package:business_tools/features/spell_checker/domain/usecases/spell_text_checker_uc.dart';
 import 'package:business_tools/features/spell_checker/presentation/bloc/cubit/spell_checker_cubit.dart';
+import 'package:business_tools/features/summary/presentation/bloc/cubit/summary_setup_cubit.dart';
 import 'package:business_tools/features/text_extract/data/datasources/text_extract_remote_data.dart';
 import 'package:business_tools/features/text_extract/data/repositories/text_extract_repo_imp.dart';
 import 'package:business_tools/features/text_extract/domain/repositories/text_extract_repo.dart';
@@ -141,4 +142,8 @@ Future<void> init() async {
   sl.registerLazySingleton<AdsRepo>(() => AdsRepoImp(adsRemoteData: sl()));
 //?dataSource
   sl.registerLazySingleton<AdsRemoteData>(() => AdsRemoteDataImp());
+
+//!summarySetUp 
+//?bloc
+sl.registerFactory<SummarySetupCubit>(()=> SummarySetupCubit()) ;
 }

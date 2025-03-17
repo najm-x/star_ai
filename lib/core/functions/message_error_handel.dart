@@ -4,19 +4,19 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 String messageErrorHandel(Failure failure , BuildContext context) {
   switch (failure.runtimeType) {
-    case EmptyPathFailure:
+    case EmptyPathFailure():
       return AppLocalizations.of(context)!.emptyFilePath;
-    case CreateFileFailure:
+    case CreateFileFailure():
       return AppLocalizations.of(context)!.fileCreateFailed;
-    case EmptyFailure:
+    case EmptyFailure():
       return AppLocalizations.of(context)!.unknownError;
-    case TransScriptVdFailure:
+    case TransScriptVdFailure():
       return AppLocalizations.of(context)!.noVideoCaptions;
-    case TranslateVdFailure:
+    case TranslateVdFailure():
       return AppLocalizations.of(context)!.videoTranslationFailed;
-    case PermissionFailure:
+    case PermissionFailure():
       return AppLocalizations.of(context)!.insufficientPermissions;
-    case SaveFailure:
+    case SaveFailure():
       return AppLocalizations.of(context)!.fileSaveFailed;
     case AIFailure():
       return AppLocalizations.of(context)!.aIFailure;

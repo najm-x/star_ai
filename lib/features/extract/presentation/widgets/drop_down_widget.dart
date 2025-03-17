@@ -4,15 +4,19 @@ import 'package:flutter/material.dart';
 class DropDownlangWidget extends StatelessWidget {
   final String title;
   final Function(dynamic)? onSelected;
-  const DropDownlangWidget({super.key, required this.title, this.onSelected});
+  final double? width; 
+  final String? initVlaue ;
+  const DropDownlangWidget({super.key, required this.title, this.onSelected, this.width, this.initVlaue});
   @override
   Widget build(BuildContext context) {
     return DropdownMenu(
       hintText: title,
       enableFilter: true,
       menuHeight: 200,
-      width: 135,
+      initialSelection:  initVlaue??"" ,
+      width: width ?? 135,
       onSelected: onSelected,
+      enableSearch: true,
       dropdownMenuEntries: languages
           .map((langName) => DropdownMenuEntry<String>(
                 value: langName["lang"],
