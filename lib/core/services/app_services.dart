@@ -55,95 +55,137 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 GetIt sl = GetIt.instance;
 Future<void> init() async {
-
-//features
-  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  sl.registerLazySingleton(() => CustomSnakBar());
-  // final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-  // sl.registerLazySingleton(() => navigatorKey);
+  // ** Core Dependencies **
+  final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
-  //!home
-//?Bloc
+  sl.registerLazySingleton(() => CustomSnakBar());
+
+  // ** Home Feature **
   sl.registerFactory(() => HomeCubit());
-//!extract
-//?Bloc
+
+  // ** Extract Feature **
+  _initExtractFeature();
+
+  // ** Video Translation Feature **
+  _initVdTranslateFeature();
+
+  // ** Text Translation Feature **
+  _initTextTranslateFeature();
+
+  // ** Spell Checker Feature **
+  _initSpellCheckerFeature();
+
+  // ** Text Extraction Feature **
+  _initTextExtractFeature();
+
+  // ** Onboarding & Check **
+  sl.registerFactory(() => OnboardingCubit());
+  sl.registerFactory(() => CheckCubit());
+
+  // ** Ads Feature **
+  _initAdsFeature();
+
+  // ** Summary Setup Feature **
+  sl.registerFactory(() => SummarySetupCubit());
+}
+
+void _initExtractFeature() {
+  // Bloc
   sl.registerFactory(() => ExtractBloc(exNumbersUc: sl(), exEmailsUc: sl(), saveDatasUc: sl()));
   sl.registerFactory(() => SaveDataBloc(saveDatasUc: sl()));
-//?UseCases
+
+  // Use Cases
   sl.registerLazySingleton(() => ExNumbersUc(extractRepo: sl()));
   sl.registerLazySingleton(() => ExEmailsUc(extractRepo: sl()));
   sl.registerLazySingleton(() => SaveDatasUc(extractRepo: sl()));
-//?repo
+
+  // Repository
   sl.registerLazySingleton<ExtractRepo>(() => ExtractRepoImp(localDataSource: sl()));
-//?dataSource
+
+  // Data Source
   sl.registerLazySingleton<LocalDataSource>(() => LocalDataSourceImp());
-//!vdTranslate
-//?Bloc
+}
+
+void _initVdTranslateFeature() {
+  // Bloc
   sl.registerFactory(() => VdTranslateBloc(vdTranslateUc: sl(), getTransCriptUc: sl(), getTransFromFileUc: sl()));
   sl.registerFactory(() => VdViewCubit(vdTransRealTimeUc: sl()));
   sl.registerFactory(() => VdDownloadBloc(downloadTransUc: sl()));
   sl.registerFactory(() => PickFileCubit());
-//?UseCases
+
+  // Use Cases
   sl.registerLazySingleton(() => VdTranslateUc(vdTranslateRepo: sl()));
   sl.registerLazySingleton(() => DownloadTransUc(vdTranslateRepo: sl()));
   sl.registerLazySingleton(() => GetTransCriptUc(vdTranslateRepo: sl()));
   sl.registerLazySingleton(() => VdTransRealTimeUc(vdTranslateRepo: sl()));
   sl.registerLazySingleton(() => GetTransFromFileUc(vdTranslateRepo: sl()));
-//?repo
+
+  // Repository
   sl.registerLazySingleton<VdTranslateRepo>(() => VdTranslateRepoImp(vdRemoteDataSource: sl()));
-//?dataSource
+
+  // Data Source
   sl.registerLazySingleton<VdRemoteDaraSource>(() => VdRemoteDaraSourceImp(vdDbFunHelping: sl()));
   sl.registerLazySingleton(() => VdDbFunHelping());
-//!TextTranslate
-//?Bloc
+}
+
+void _initTextTranslateFeature() {
+  // Bloc
   sl.registerFactory(() => TextTransCubit(saveTextUc: sl(), transTextUc: sl()));
-//?UseCases
+
+  // Use Cases
   sl.registerLazySingleton(() => SaveTextUc(textTransRepo: sl()));
   sl.registerLazySingleton(() => TransTextUc(textTransRepo: sl()));
-//?repo
+
+  // Repository
   sl.registerLazySingleton<TextTransRepo>(() => TextTransRepoImp(textTransRemoteDataSource: sl()));
-//?dataSource
+
+  // Data Source
   sl.registerLazySingleton<TextTransRemoteDataSource>(() => TextTransRemoteDataSourceImp());
-//!SpellChecker
-//?Bloc
+}
+
+void _initSpellCheckerFeature() {
+  // Bloc
   sl.registerFactory(() => SpellCheckerCubit(saveTextSpelled: sl(), spellTextCheckerUc: sl()));
-//?UseCases
+
+  // Use Cases
   sl.registerLazySingleton(() => SaveTextSpelled(spellCheckerRepo: sl()));
   sl.registerLazySingleton(() => SpellTextCheckerUc(spellCheckerRepo: sl()));
-//?repo
+
+  // Repository
   sl.registerLazySingleton<SpellCheckerRepo>(() => SpellCheckerRepoImp(spellCheckerRemoteData: sl()));
-//?dataSource
+
+  // Data Source
   sl.registerLazySingleton<SpellCheckerRemoteData>(() => SpellCheckerRemoteDataImp());
-//!TextExtracr
-//?Bloc
+}
+
+void _initTextExtractFeature() {
+  // Bloc
   sl.registerFactory(() => TextExtractBloc(cropImageUc: sl(), extractTextUc: sl(), pickImageUc: sl()));
-//?UseCases
+
+  // Use Cases
   sl.registerLazySingleton(() => CropImageUc(textExtractRepo: sl()));
   sl.registerLazySingleton(() => ExtractTextUc(textExtractRepo: sl()));
   sl.registerLazySingleton(() => PickImageUc(textExtractRepo: sl()));
-//?repo
+
+  // Repository
   sl.registerLazySingleton<TextExtractRepo>(() => TextExtractRepoImp(textExtractRemoteData: sl()));
-//?dataSource
+
+  // Data Source
   sl.registerLazySingleton<TextExtractRemoteData>(() => TextExtractRemoteDataImp());
-  //!OnBoarding
-//?Bloc
-  sl.registerFactory(() => OnboardingCubit());
-  //!Check
-//?Bloc
-  sl.registerFactory(() => CheckCubit());
-  //!TextExtracr
-//?Bloc
+}
+
+void _initAdsFeature() {
+  // Bloc
   sl.registerFactory(() => AdsBloc(adsUc: sl(), interstitialAdUc: sl(), rewardedAdUc: sl()));
-//?UseCases
+
+  // Use Cases
   sl.registerLazySingleton(() => AdsUc(adsRepo: sl()));
   sl.registerLazySingleton(() => InterstitialAdUc(adsRepo: sl()));
   sl.registerLazySingleton(() => RewardedAdUc(adsRepo: sl()));
-//?repo
-  sl.registerLazySingleton<AdsRepo>(() => AdsRepoImp(adsRemoteData: sl()));
-//?dataSource
-  sl.registerLazySingleton<AdsRemoteData>(() => AdsRemoteDataImp());
 
-//!summarySetUp 
-//?bloc
-sl.registerFactory<SummarySetupCubit>(()=> SummarySetupCubit()) ;
+  // Repository
+  sl.registerLazySingleton<AdsRepo>(() => AdsRepoImp(adsRemoteData: sl()));
+
+  // Data Source
+  sl.registerLazySingleton<AdsRemoteData>(() => AdsRemoteDataImp());
 }

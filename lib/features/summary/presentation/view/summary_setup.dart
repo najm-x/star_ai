@@ -1,3 +1,4 @@
+import 'package:business_tools/core/constant/app_routes_name.dart';
 import 'package:business_tools/core/public/widgets/text_form_filed_cu.dart';
 import 'package:business_tools/features/extract/presentation/widgets/drop_down_widget.dart';
 import 'package:business_tools/features/summary/data/source/static/summary_static_data.dart';
@@ -6,6 +7,7 @@ import 'package:business_tools/features/summary/presentation/view/widgets/summar
 import 'package:business_tools/features/summary/presentation/view/widgets/summary_setup/title_setup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:uicons/uicons.dart';
 
 class SummarySetup extends StatelessWidget {
@@ -54,6 +56,9 @@ class SummarySetup extends StatelessWidget {
                     listener: (context, state) {
                       if (state.state == StateSetUp.error) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("data")));
+                      }
+                      if (state.state == StateSetUp.done) {
+                        context.push(AppRouteName.summaryView, extra: state);
                       }
                     },
                     child: Center(

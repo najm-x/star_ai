@@ -13,6 +13,8 @@ class AppRouteName {
   static String chooseTransTypePage = '/chooseTransTypePage';
   static String summaryHome = '/summaryHome';
   static String summarySetup = '/summarySetup';
+  static String summaryView = '/summaryView';
+
 
 
 }
