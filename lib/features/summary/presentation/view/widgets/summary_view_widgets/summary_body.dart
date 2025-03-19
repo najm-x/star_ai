@@ -1,0 +1,17 @@
+import 'package:business_tools/features/summary/presentation/bloc/summary_view_bloc/summary_view_bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
+
+class SummaryBody extends StatelessWidget {
+  const SummaryBody({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SummaryViewBloc, SummaryViewState>(
+      builder: (context, state) {
+        return MarkdownBody(data: state.summaryMod?.summary ?? "");
+      },
+    );
+  }
+}

@@ -1,15 +1,28 @@
+import 'package:business_tools/features/summary/presentation/bloc/cubit/summary_setup_cubit.dart';
+import 'package:business_tools/features/summary/presentation/bloc/summary_view_bloc/summary_view_bloc.dart';
+import 'package:business_tools/features/summary/presentation/view/widgets/summary_view_widgets/summary_body.dart';
+import 'package:business_tools/features/summary/presentation/view/widgets/summary_view_widgets/vd_title_widget.dart';
+import 'package:business_tools/features/summary/presentation/view/widgets/summary_view_widgets/video_view_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class SummaryView extends StatelessWidget {
   const SummaryView({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _appBar(),
-      body: _body(context),
+    final SummarySetupState data = GoRouterState.of(context).extra as SummarySetupState;
+    return BlocListener<SummaryViewBloc, SummaryViewState>(
+      listener: (context, state) {
+        if (state.state == ViewSummaryStates.successGetVdInfo) {
+          context.read<SummaryViewBloc>().add(GetSummaryEvent(data: data, textOfVd: state.vdInfoMod!.vdText , titleVd: state.vdInfoMod?.vdTitle??""));
+        }
+      },
+      child: Scaffold(
+        appBar: _appBar(),
+        body: _body(context),
+      ),
     );
   }
 
@@ -34,20 +47,8 @@ class SummaryView extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           LinearProgressIndicator(),
-          AspectRatio(
-            aspectRatio: 16 / 9,
-            child: Container(
-              color: Colors.black12,
-            ),
-          ),
-          Center(
-              child: Padding(
-            padding: EdgeInsets.only(top: 30),
-            child: Text(
-              "This title of video ",
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-          )),
+          VideoViewWidget(),
+          VdTitleWidget(),
           ListTile(
             title: Text("Text Direction"),
             trailing: Switch(
@@ -55,7 +56,7 @@ class SummaryView extends StatelessWidget {
               onChanged: (value) {},
             ),
           ),
-          MarkdownBody(data: "**hy**")
+          SummaryBody()
         ],
       ),
     );

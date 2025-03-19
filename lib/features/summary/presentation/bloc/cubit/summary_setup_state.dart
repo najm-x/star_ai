@@ -4,13 +4,13 @@ enum StateSetUp { init, loading, done, error, changeType, changSzie, changeLang 
 
 class SummarySetupState extends Equatable {
   final String vdUrl;
-  final int summarylen;
+  final String? summarylen;
   final String summaryType;
   final String lang;
   final StateSetUp state;
   const SummarySetupState(
-      {this.vdUrl = "", this.summarylen = 70, this.summaryType = "", this.lang = "ar", this.state = StateSetUp.init});
-  SummarySetupState copyWith({StateSetUp? state, String? vdUrl, int? summarylen, String? summaryType, String? lang}) {
+      {this.vdUrl = "", this.summarylen , this.summaryType = "", this.lang = "ar", this.state = StateSetUp.init});
+  SummarySetupState copyWith({StateSetUp? state, String? vdUrl, String? summarylen, String? summaryType, String? lang}) {
     return SummarySetupState(
         state: state ?? this.state,
         lang: lang ?? this.lang,
@@ -20,5 +20,5 @@ class SummarySetupState extends Equatable {
   }
 
   @override
-  List<Object> get props => [vdUrl, summaryType, summarylen, lang, state];
+  List<Object?> get props => [vdUrl, summaryType, summarylen, lang, state];
 }

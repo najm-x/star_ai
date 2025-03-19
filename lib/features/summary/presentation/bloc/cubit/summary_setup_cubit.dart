@@ -10,9 +10,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 part 'summary_setup_state.dart';
 
 class SummarySetupCubit extends Cubit<SummarySetupState> {
+  int currentLen = 2 ;
   SummarySetupCubit()
       : super(SummarySetupState(
           summaryType: SummaryStaticData.summaryTypes[0],
+          summarylen: SummaryStaticData.summaryLen[2],
           lang: languages.firstWhere(
                   (test) => test["code"] == sl<SharedPreferences>().getString(SharedKey.langCode))["lang"] ??
               "",
@@ -23,7 +25,8 @@ class SummarySetupCubit extends Cubit<SummarySetupState> {
   }
 
   void changeSize(double size) {
-    emit(state.copyWith(summarylen: size.toInt(), state: StateSetUp.changSzie));
+    currentLen = size.toInt() ;
+    emit(state.copyWith(summarylen: SummaryStaticData.summaryLen[size.toInt()], state: StateSetUp.changSzie));
   }
 
   void changeLang(String lang) {

@@ -8,11 +8,12 @@ sealed class SummaryViewEvent extends Equatable {
 }
 class GetSummaryEvent extends SummaryViewEvent {
   final SummarySetupState data;
-  final String textOfVd ; 
-  const GetSummaryEvent({required this.data , required this.textOfVd});
+  final String textOfVd ;
+  final String titleVd ; 
+  const GetSummaryEvent( {required this.data , required this.textOfVd , required this.titleVd});
 
   @override
-  List<Object> get props => [data];
+  List<Object> get props => [data,textOfVd , titleVd];
 }
 class GetVdInfoEvent extends SummaryViewEvent {
   final String vdUrl ; 

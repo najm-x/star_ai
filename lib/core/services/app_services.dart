@@ -23,7 +23,13 @@ import 'package:business_tools/features/spell_checker/domain/repositories/spell_
 import 'package:business_tools/features/spell_checker/domain/usecases/save_text_spelled.dart';
 import 'package:business_tools/features/spell_checker/domain/usecases/spell_text_checker_uc.dart';
 import 'package:business_tools/features/spell_checker/presentation/bloc/cubit/spell_checker_cubit.dart';
+import 'package:business_tools/features/summary/data/repositories/summary_repo_imp.dart';
+import 'package:business_tools/features/summary/data/source/summary_remote_source.dart';
+import 'package:business_tools/features/summary/domain/repositories/summary_repo.dart';
+import 'package:business_tools/features/summary/domain/usecase/summary_uc.dart';
+import 'package:business_tools/features/summary/domain/usecase/vd_info_exctract_us.dart';
 import 'package:business_tools/features/summary/presentation/bloc/cubit/summary_setup_cubit.dart';
+import 'package:business_tools/features/summary/presentation/bloc/summary_view_bloc/summary_view_bloc.dart';
 import 'package:business_tools/features/text_extract/data/datasources/text_extract_remote_data.dart';
 import 'package:business_tools/features/text_extract/data/repositories/text_extract_repo_imp.dart';
 import 'package:business_tools/features/text_extract/domain/repositories/text_extract_repo.dart';
@@ -85,8 +91,8 @@ Future<void> init() async {
   // ** Ads Feature **
   _initAdsFeature();
 
-  // ** Summary Setup Feature **
-  sl.registerFactory(() => SummarySetupCubit());
+  // ** Summary Feature **
+  _initSummaryFeature() ;
 }
 
 void _initExtractFeature() {
@@ -188,4 +194,18 @@ void _initAdsFeature() {
 
   // Data Source
   sl.registerLazySingleton<AdsRemoteData>(() => AdsRemoteDataImp());
+}
+void _initSummaryFeature() {
+  // Bloc
+sl.registerFactory(() => SummarySetupCubit());
+sl.registerFactory(()=> SummaryViewBloc(summaryUc: sl(), vdInfoExctractUs: sl()) ) ;
+  // Use Cases
+  sl.registerLazySingleton(() => SummaryUc(summaryRepo: sl()));
+  sl.registerLazySingleton(() => VdInfoExctractUs(summaryRepo: sl()));
+
+  // Repository
+  sl.registerLazySingleton<SummaryRepo>(() => SummaryRepoImp(remoteSource: sl()));
+
+  // Data Source
+  sl.registerLazySingleton<SummaryRemoteSource>(() => SummaryRemoteSourceImp());
 }

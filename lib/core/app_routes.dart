@@ -17,6 +17,7 @@ import 'package:business_tools/features/onboarding/presentation/pages/onboarding
 import 'package:business_tools/features/spell_checker/presentation/bloc/cubit/spell_checker_cubit.dart';
 import 'package:business_tools/features/spell_checker/presentation/pages/spell_checker_page.dart';
 import 'package:business_tools/features/summary/presentation/bloc/cubit/summary_setup_cubit.dart';
+import 'package:business_tools/features/summary/presentation/bloc/summary_view_bloc/summary_view_bloc.dart';
 import 'package:business_tools/features/summary/presentation/view/summary_home.dart';
 import 'package:business_tools/features/summary/presentation/view/summary_setup.dart';
 import 'package:business_tools/features/summary/presentation/view/summary_view.dart';
@@ -223,17 +224,18 @@ GoRoute _summryHomeRoute() {
 
 GoRoute _summrySetupRoute() {
   return GoRoute(
-    path: AppRouteName.summarySetup,
-    builder: (context, state) =>  BlocProvider(
-      create: (context) => id.sl<SummarySetupCubit>(),
-      child: const SummarySetup(),
-    ) 
-  );
+      path: AppRouteName.summarySetup,
+      builder: (context, state) => BlocProvider(
+            create: (context) => id.sl<SummarySetupCubit>(),
+            child: const SummarySetup(),
+          ));
 }
 
 GoRoute _summaryViewRoute() {
   return GoRoute(
-    path: AppRouteName.summaryView,
-    builder: (context, state) =>  const SummaryView() 
-  );
+      path: AppRouteName.summaryView,
+      builder: (context, state) => BlocProvider(
+            create: (context) => id.sl<SummaryViewBloc>()..add(GetVdInfoEvent(vdUrl: (state.extra as SummarySetupState).vdUrl)),
+            child: const SummaryView(),
+          ));
 }

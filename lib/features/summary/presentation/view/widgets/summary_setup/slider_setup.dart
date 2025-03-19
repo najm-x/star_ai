@@ -12,10 +12,10 @@ class SliderSetup extends StatelessWidget {
       buildWhen: (previous, current) => current.state == StateSetUp.changSzie,
       builder: (context, state) {
         return Slider(
-          divisions: 10,
-          value: state.summarylen.toDouble(),
-          min: 30,
-          max: 100,
+          divisions: 4,
+          value: context.read<SummarySetupCubit>().currentLen.toDouble(),
+          min: 0,
+          max: 3,
           onChanged: (value) {
             context.read<SummarySetupCubit>().changeSize(value);
           },

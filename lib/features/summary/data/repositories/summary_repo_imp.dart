@@ -12,9 +12,9 @@ class SummaryRepoImp implements SummaryRepo {
   const SummaryRepoImp({required this.remoteSource});
   @override
   Future<Either<Failure, SummaryEntity>> summary(
-      String text, String lang, String typeSummary, String lengthSummary) async {
+      String text, String lang, String typeSummary, String lengthSummary , String titleVd) async {
     try {
-      final response = await remoteSource.summary(text, lang, typeSummary, lengthSummary);
+      final response = await remoteSource.summary(text, lang, typeSummary, lengthSummary , titleVd);
       return right(response);
     } catch (e) {
       if (e is AIException) {

@@ -6,7 +6,7 @@ import 'package:dartz/dartz.dart';
 class SummaryUc {
   final SummaryRepo summaryRepo ; 
  SummaryUc({required this.summaryRepo}) ;
- Future<Either<Failure,SummaryEntity >> call(String text , String lang , String typeSummary, String lengthSummary){
-  return  summaryRepo.summary(text, lang, typeSummary, lengthSummary) ;
+ Future<Either<Failure,SummaryEntity >> call(String text , String lang , String typeSummary, String lengthSummary  , String titleVd){
+  return  summaryRepo.summary(text, lang, typeSummary, lengthSummary , titleVd ) ;
  } 
 }
