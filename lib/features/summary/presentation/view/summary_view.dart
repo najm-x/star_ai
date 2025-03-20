@@ -1,6 +1,7 @@
 import 'package:business_tools/features/summary/presentation/bloc/cubit/summary_setup_cubit.dart';
 import 'package:business_tools/features/summary/presentation/bloc/summary_view_bloc/summary_view_bloc.dart';
 import 'package:business_tools/features/summary/presentation/view/widgets/summary_view_widgets/app_bar_summary_view.dart';
+import 'package:business_tools/features/summary/presentation/view/widgets/summary_view_widgets/change_text_lt_r_widget.dart';
 import 'package:business_tools/features/summary/presentation/view/widgets/summary_view_widgets/summary_body.dart';
 import 'package:business_tools/features/summary/presentation/view/widgets/summary_view_widgets/vd_title_widget.dart';
 import 'package:business_tools/features/summary/presentation/view/widgets/summary_view_widgets/video_view_widget.dart';
@@ -51,15 +52,7 @@ class SummaryView extends StatelessWidget {
           ),
           VideoViewWidget(),
           VdTitleWidget(),
-          Divider(),
-          ListTile(
-            title: Text("Text Direction"),
-            trailing: Switch(
-              value: true,
-              onChanged: (value) {},
-            ),
-          ),
-          Divider(),
+          ChangeTextLtRWidget(),
           SummaryBody()
         ],
       ),

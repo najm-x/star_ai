@@ -5,4 +5,10 @@ part 'summary_view_state.dart';
 
 class SummaryViewCubit extends Cubit<SummaryViewCubitState> {
   SummaryViewCubit() : super(SummaryViewCubitState());
+  void changeLtR(bool textLtR){
+   emit(state.copyWith(state:  StateSummaryViewCubit.loading)) ;
+   emit(state.copyWith(textLtR: !textLtR , state:  StateSummaryViewCubit.changeTextLtR)) ;
+
+
+  }
 }
