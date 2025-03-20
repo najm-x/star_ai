@@ -16,7 +16,7 @@ part 'summary_view_state.dart';
 class SummaryViewBloc extends Bloc<SummaryViewEvent, SummaryViewState> {
   final SummaryUc summaryUc;
   final VdInfoExctractUs vdInfoExctractUs;
-    
+    String summary = "" ;
   SummaryViewBloc({required this.summaryUc, required this.vdInfoExctractUs }) : super(SummaryViewState()) {
     on<SummaryViewEvent>((event, emit) {});
     on<GetSummaryEvent>(_getSummaryEvent);
@@ -37,6 +37,7 @@ class SummaryViewBloc extends Bloc<SummaryViewEvent, SummaryViewState> {
   Future<void> _getSummaryEvent(GetSummaryEvent event, Emitter<SummaryViewState> emit) async {
     var fold = await summaryUc.call(event.textOfVd, event.data.lang, event.data.summaryType, event.data.summarylen.toString() ,event.titleVd );
     emit(_getSummaryHndeling(fold));
+    summary = state.summaryMod?.summary??"" ;
   }
 
   SummaryViewState _getSummaryHndeling(Either<Failure, SummaryEntity> fold) {

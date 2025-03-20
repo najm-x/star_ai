@@ -7,11 +7,17 @@ enum StateSummaryViewCubit {
 class SummaryViewCubitState extends Equatable {
   final StateSummaryViewCubit state;
   final bool textLtR ;
-  const SummaryViewCubitState({this.state = StateSummaryViewCubit.init , this.textLtR = true});
+  final String summary;
+  const SummaryViewCubitState({
+    this.state = StateSummaryViewCubit.init,
+    this.textLtR = true,
+    this.summary = '',
+  });
 
-  SummaryViewCubitState copyWith({StateSummaryViewCubit? state , bool? textLtR}) {
+  SummaryViewCubitState copyWith({StateSummaryViewCubit? state , bool? textLtR , String? summary}) {
     return SummaryViewCubitState(
       state: state ?? this.state,
+     summary: summary??this.summary,
       textLtR: textLtR??this.textLtR
     );
   }
