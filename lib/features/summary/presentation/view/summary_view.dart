@@ -1,5 +1,6 @@
 import 'package:business_tools/features/summary/presentation/bloc/cubit/summary_setup_cubit.dart';
 import 'package:business_tools/features/summary/presentation/bloc/summary_view_bloc/summary_view_bloc.dart';
+import 'package:business_tools/features/summary/presentation/view/widgets/summary_view_widgets/app_bar_summary_view.dart';
 import 'package:business_tools/features/summary/presentation/view/widgets/summary_view_widgets/summary_body.dart';
 import 'package:business_tools/features/summary/presentation/view/widgets/summary_view_widgets/vd_title_widget.dart';
 import 'package:business_tools/features/summary/presentation/view/widgets/summary_view_widgets/video_view_widget.dart';
@@ -16,7 +17,15 @@ class SummaryView extends StatelessWidget {
     return BlocListener<SummaryViewBloc, SummaryViewState>(
       listener: (context, state) {
         if (state.state == ViewSummaryStates.successGetVdInfo) {
-          context.read<SummaryViewBloc>().add(GetSummaryEvent(data: data, textOfVd: state.vdInfoMod!.vdText , titleVd: state.vdInfoMod?.vdTitle??""));
+          context.read<SummaryViewBloc>().add(
+              GetSummaryEvent(data: data, textOfVd: state.vdInfoMod!.vdText, titleVd: state.vdInfoMod?.vdTitle ?? ""));
+        }
+        if (state.state == ViewSummaryStates.errorGetVdInfo) {
+          ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
+            content: Text("ERROR: WE CAN'T CREATE SUNNARY FOR THIS VIDEO"),
+            backgroundColor: Theme.of(context).colorScheme.error,
+            duration: Duration(seconds: 5),
+          ));
         }
       },
       child: Scaffold(
@@ -27,18 +36,7 @@ class SummaryView extends StatelessWidget {
   }
 
   AppBar _appBar() {
-    return AppBar(
-      actions: [
-        IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.upload_rounded),
-          iconSize: 30,
-        ),
-        IconButton(onPressed: () {}, icon: Icon(Icons.star_outline_rounded), iconSize: 30),
-        IconButton(onPressed: () {}, icon: Icon(Icons.refresh_rounded), iconSize: 30),
-        IconButton(onPressed: () {}, icon: Icon(Icons.copy_rounded), iconSize: 30),
-      ],
-    );
+    return appBarSummaryView();
   }
 
   Widget _body(BuildContext context) {
@@ -46,9 +44,14 @@ class SummaryView extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          LinearProgressIndicator(),
+          BlocBuilder<SummaryViewBloc, SummaryViewState>(
+            builder: (context, state) {
+              return state.state == ViewSummaryStates.successGetSummary ? SizedBox() : LinearProgressIndicator();
+            },
+          ),
           VideoViewWidget(),
           VdTitleWidget(),
+          Divider(),
           ListTile(
             title: Text("Text Direction"),
             trailing: Switch(
@@ -56,6 +59,7 @@ class SummaryView extends StatelessWidget {
               onChanged: (value) {},
             ),
           ),
+          Divider(),
           SummaryBody()
         ],
       ),

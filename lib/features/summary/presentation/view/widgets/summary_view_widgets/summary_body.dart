@@ -8,9 +8,16 @@ class SummaryBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SummaryViewBloc, SummaryViewState>(
+    return 
+    
+    
+    BlocBuilder<SummaryViewBloc, SummaryViewState>(
+      
       builder: (context, state) {
-        return MarkdownBody(data: state.summaryMod?.summary ?? "");
+        return Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: MarkdownBody(selectable: true, data: state.summaryMod?.summary ?? ""),
+        );
       },
     );
   }
