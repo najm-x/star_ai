@@ -16,7 +16,7 @@ class SummarySetupCubit extends Cubit<SummarySetupState> {
           summaryType: SummaryStaticData.summaryTypes[0],
           summarylen: SummaryStaticData.summaryLen[2],
           lang: languages.firstWhere(
-                  (test) => test["code"] == sl<SharedPreferences>().getString(SharedKey.langCode))["lang"] ??
+                  (test) => test["code"] == (sl<SharedPreferences>().getString(SharedKey.langCode) ?? "ar"))["lang"] ??
               "",
         ));
   TextEditingController textco = TextEditingController();
