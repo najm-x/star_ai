@@ -1,5 +1,6 @@
 import 'package:business_tools/core/errors/exceptions.dart';
 import 'package:business_tools/core/errors/failure.dart';
+import 'package:business_tools/features/summary/data/models/export_type_mod.dart';
 import 'package:business_tools/features/summary/data/source/summary_remote_source.dart';
 import 'package:business_tools/features/summary/domain/entities/summary_entity.dart';
 import 'package:business_tools/features/summary/domain/entities/vd_info_entity.dart';
@@ -33,4 +34,15 @@ class SummaryRepoImp implements SummaryRepo {
       return left(TransScriptVdFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, Unit>> export(String summary, ExportTypeMod exportMod, String title, String lang) async {
+  try {
+     return right(await remoteSource.export(summary, exportMod, title, lang)) ; 
+  } catch (e) {
+    throw UnimplementedError() ; 
+  }
+  }
+  
+  
 }
