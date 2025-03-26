@@ -10,7 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 part 'summary_setup_state.dart';
 
 class SummarySetupCubit extends Cubit<SummarySetupState> {
-  int currentLen = 2 ;
+  int currentLen = 2;
   SummarySetupCubit()
       : super(SummarySetupState(
           summaryType: SummaryStaticData.summaryTypes[0],
@@ -25,7 +25,7 @@ class SummarySetupCubit extends Cubit<SummarySetupState> {
   }
 
   void changeSize(double size) {
-    currentLen = size.toInt() ;
+    currentLen = size.toInt();
     emit(state.copyWith(summarylen: SummaryStaticData.summaryLen[size.toInt()], state: StateSetUp.changSzie));
   }
 
@@ -41,5 +41,6 @@ class SummarySetupCubit extends Cubit<SummarySetupState> {
       return;
     }
     emit(state.copyWith(vdUrl: textco.text, state: StateSetUp.done));
+    emit(state.copyWith(vdUrl: textco.text, state: StateSetUp.init));
   }
 }

@@ -8,7 +8,6 @@ import 'package:business_tools/features/summary/presentation/view/widgets/summar
 import 'package:business_tools/features/summary/presentation/view/widgets/summary_view_widgets/vd_title_widget.dart';
 import 'package:business_tools/features/summary/presentation/view/widgets/summary_view_widgets/video_view_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -26,7 +25,7 @@ class SummaryView extends StatelessWidget {
               context.read<SummaryViewBloc>().add(GetSummaryEvent(
                   data: data, textOfVd: state.vdInfoMod!.vdText, titleVd: state.vdInfoMod?.vdTitle ?? ""));
             }
-            if (state.state == ViewSummaryStates.errorGetVdInfo) {
+            if (state.state == ViewSummaryStates.errorGetVdInfo || state.state == ViewSummaryStates.erroretSummary) {
               ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
                 content: Text("ERROR: WE CAN'T CREATE SUNNARY FOR THIS VIDEO"),
                 backgroundColor: Theme.of(context).colorScheme.error,
