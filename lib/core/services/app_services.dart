@@ -26,6 +26,7 @@ import 'package:business_tools/features/spell_checker/presentation/bloc/cubit/sp
 import 'package:business_tools/features/summary/data/repositories/summary_repo_imp.dart';
 import 'package:business_tools/features/summary/data/source/summary_remote_source.dart';
 import 'package:business_tools/features/summary/domain/repositories/summary_repo.dart';
+import 'package:business_tools/features/summary/domain/usecase/export_uc.dart';
 import 'package:business_tools/features/summary/domain/usecase/summary_uc.dart';
 import 'package:business_tools/features/summary/domain/usecase/vd_info_exctract_us.dart';
 import 'package:business_tools/features/summary/presentation/bloc/cubit/summary_setup_cubit.dart';
@@ -199,11 +200,13 @@ void _initAdsFeature() {
 void _initSummaryFeature() {
   // Bloc
 sl.registerFactory(() => SummarySetupCubit());
-sl.registerFactory(() => SummaryViewCubit());
+sl.registerFactory(() => SummaryViewCubit(exportUc: sl()));
 sl.registerFactory(()=> SummaryViewBloc(summaryUc: sl(), vdInfoExctractUs: sl()) ) ;
   // Use Cases
   sl.registerLazySingleton(() => SummaryUc(summaryRepo: sl()));
   sl.registerLazySingleton(() => VdInfoExctractUs(summaryRepo: sl()));
+  sl.registerLazySingleton(() => ExportUc(summaryRepo: sl()));
+
 
   // Repository
   sl.registerLazySingleton<SummaryRepo>(() => SummaryRepoImp(remoteSource: sl()));

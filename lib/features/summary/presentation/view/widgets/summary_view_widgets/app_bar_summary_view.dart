@@ -55,8 +55,8 @@ Widget _popButton(BuildContext context) {
             );
           }),
           onSelected: (value) {
-            context.read<SummaryViewCubit>().export(
-                context.read<SummaryViewBloc>().summary, SummaryStaticData.exportType[int.parse(value)]);
+            context.read<SummaryViewCubit>().export(state.summaryMod?.summary ?? "",
+                SummaryStaticData.exportType[int.parse(value)], state.vdInfoMod?.vdTitle ?? "", state.lang ?? "");
           },
           child: Icon(
             Icons.upload_rounded,

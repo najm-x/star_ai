@@ -64,8 +64,6 @@ class SummaryRemoteSourceImp implements SummaryRemoteSource {
 
   @override
   Future<Unit> export(String summary, ExportTypeMod exportMod, String title, String lang) async {
-    DateTime dateTime = DateTime.now();
-    String filename = dateTime.toString();
     try {
       if (exportMod.type == "pdf") {
         String path = await _createPdf(summary, title, lang);
@@ -73,7 +71,7 @@ class SummaryRemoteSourceImp implements SummaryRemoteSource {
         return Future.value(unit);
       }
       await Share.shareXFiles([XFile.fromData(utf8.encode(summary), mimeType: exportMod.mimeType)],
-          fileNameOverrides: ['$filename.${exportMod.type}']);
+          fileNameOverrides: ['$title.${exportMod.type}']);
       return Future.value(unit);
     } catch (e) {
       throw UnimplementedError();
@@ -83,7 +81,7 @@ class SummaryRemoteSourceImp implements SummaryRemoteSource {
   Future<String> _createPdf(String summary, String title, String lang) async {
     final Directory tempDir = await getTemporaryDirectory();
     final pdf = pw.Document();
-
+    print("+++++++++++++$lang");
     pdf.addPage(pw.Page(
         textDirection: lang.contains("عرب") ? pw.TextDirection.rtl : null,
         theme: pw.ThemeData.withFont(base: pw.Font.ttf(await rootBundle.load('assets/fonts/Cairo-Medium.ttf'))),

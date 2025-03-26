@@ -24,6 +24,9 @@ class SummaryView extends StatelessWidget {
             if (state.state == ViewSummaryStates.successGetVdInfo) {
               context.read<SummaryViewBloc>().add(GetSummaryEvent(
                   data: data, textOfVd: state.vdInfoMod!.vdText, titleVd: state.vdInfoMod?.vdTitle ?? ""));
+              
+              print(state.lang);
+              print("lang ${data.lang}");
             }
             if (state.state == ViewSummaryStates.errorGetVdInfo || state.state == ViewSummaryStates.erroretSummary) {
               ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
