@@ -25,8 +25,6 @@ class SummaryView extends StatelessWidget {
               context.read<SummaryViewBloc>().add(GetSummaryEvent(
                   data: data, textOfVd: state.vdInfoMod!.vdText, titleVd: state.vdInfoMod?.vdTitle ?? ""));
               
-              print(state.lang);
-              print("lang ${data.lang}");
             }
             if (state.state == ViewSummaryStates.errorGetVdInfo || state.state == ViewSummaryStates.erroretSummary) {
               ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
@@ -51,14 +49,14 @@ class SummaryView extends StatelessWidget {
         ),
       ],
       child: Scaffold(
-        appBar: _appBar(context),
+        appBar: PreferredSize(preferredSize: Size(double.maxFinite, 50), child: _appBar()) ,// _appBar(context), 
         body: _body(context),
       ),
     );
   }
 
-  AppBar _appBar(BuildContext context) {
-    return appBarSummaryView(context);
+  Widget _appBar() {
+    return AppBarSummaryView();
   }
 
   Widget _body(BuildContext context) {

@@ -71,6 +71,7 @@ dependencies:
   webview_flutter_android: ^3.16.1
   share_plus: ^10.1.4
   pdf: ^3.11.3
+  sqflite: ^2.4.1
 
 dependency_overrides:
   webview_flutter_android: 4.3.3

@@ -209,7 +209,7 @@ sl.registerFactory(()=> SummaryViewBloc(summaryUc: sl(), vdInfoExctractUs: sl())
 
 
   // Repository
-  sl.registerLazySingleton<SummaryRepo>(() => SummaryRepoImp(remoteSource: sl()));
+  sl.registerLazySingleton<SummaryRepo>(() => SummaryRepoImp(remoteSource: sl() , localSource: sl()));
 
   // Data Source
   sl.registerLazySingleton<SummaryRemoteSource>(() => SummaryRemoteSourceImp());
