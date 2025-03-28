@@ -1,3 +1,4 @@
+import 'package:business_tools/core/database/sq_lite_helper.dart';
 import 'package:business_tools/core/public/custom_snak_bar.dart';
 import 'package:business_tools/features/ads/data/datasources/ads_remote_data.dart';
 import 'package:business_tools/features/ads/data/repositories/ads_repo_imp.dart';
@@ -24,6 +25,7 @@ import 'package:business_tools/features/spell_checker/domain/usecases/save_text_
 import 'package:business_tools/features/spell_checker/domain/usecases/spell_text_checker_uc.dart';
 import 'package:business_tools/features/spell_checker/presentation/bloc/cubit/spell_checker_cubit.dart';
 import 'package:business_tools/features/summary/data/repositories/summary_repo_imp.dart';
+import 'package:business_tools/features/summary/data/source/local/summary_local_source.dart';
 import 'package:business_tools/features/summary/data/source/summary_remote_source.dart';
 import 'package:business_tools/features/summary/domain/repositories/summary_repo.dart';
 import 'package:business_tools/features/summary/domain/usecase/export_uc.dart';
@@ -94,7 +96,7 @@ Future<void> init() async {
   _initAdsFeature();
 
   // ** Summary Feature **
-  _initSummaryFeature() ;
+  _initSummaryFeature();
 }
 
 void _initExtractFeature() {
@@ -197,20 +199,23 @@ void _initAdsFeature() {
   // Data Source
   sl.registerLazySingleton<AdsRemoteData>(() => AdsRemoteDataImp());
 }
+
 void _initSummaryFeature() {
   // Bloc
-sl.registerFactory(() => SummarySetupCubit());
-sl.registerFactory(() => SummaryViewCubit(exportUc: sl()));
-sl.registerFactory(()=> SummaryViewBloc(summaryUc: sl(), vdInfoExctractUs: sl()) ) ;
+  sl.registerFactory(() => SummarySetupCubit());
+  sl.registerFactory(() => SummaryViewCubit(exportUc: sl()));
+  sl.registerFactory(() => SummaryViewBloc(summaryUc: sl(), vdInfoExctractUs: sl()));
   // Use Cases
   sl.registerLazySingleton(() => SummaryUc(summaryRepo: sl()));
   sl.registerLazySingleton(() => VdInfoExctractUs(summaryRepo: sl()));
   sl.registerLazySingleton(() => ExportUc(summaryRepo: sl()));
 
-
   // Repository
-  sl.registerLazySingleton<SummaryRepo>(() => SummaryRepoImp(remoteSource: sl() , localSource: sl()));
+  sl.registerLazySingleton<SummaryRepo>(() => SummaryRepoImp(remoteSource: sl(), localSource: sl()));
 
   // Data Source
   sl.registerLazySingleton<SummaryRemoteSource>(() => SummaryRemoteSourceImp());
+  sl.registerLazySingleton<SummaryLocalSource>(() => SummaryLocalSourceImp(sqLiteHelper: sl()));
+  //other
+  sl.registerLazySingleton<SQLiteHelper>(() => SQLiteHelper());
 }
