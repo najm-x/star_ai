@@ -1,12 +1,8 @@
+import 'package:business_tools/core/database/sql_keys.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 //tables
-const String summaryTable = 'summary';
-const String vdUrlColumn = 'vdUrl';
-const String vdTitleColumn = "vdTitle";
-const String vdLangColumn = "vdLang";
-const String summaryContentColumn = "summaryContent";
 
 class SQLiteHelper {
   static Database? _database;
@@ -23,7 +19,7 @@ class SQLiteHelper {
       path,
       onCreate: (db, version) async {
         await db.execute(
-            'CREATE TABLE $summaryTable (id INTEGER PRIMARY KEY  AUTOINCREMENT, $vdUrlColumn TXT , $vdTitleColumn TEXT , $vdLangColumn TXT , $summaryContentColumn TXT)');
+            'CREATE TABLE ${SqliteKeys.summary.summaryTable} (id INTEGER PRIMARY KEY  AUTOINCREMENT, ${SqliteKeys.summary.vdUrlColumn} TXT , ${SqliteKeys.summary.vdTitleColumn} TEXT , ${SqliteKeys.summary.vdLangColumn} TXT , ${SqliteKeys.summary.summaryContentColumn} TXT)');
       },
     );
   }
@@ -42,9 +38,9 @@ class SQLiteHelper {
     Database database = await db;
     await database.delete(table, where: where, whereArgs: whereArgs);
   }
+
   Future<List<Map<String, Object?>>> getQuery(String table, String where, List<Object?>? whereArgs) async {
     Database database = await db;
-   return await database.query(table, where: where, whereArgs: whereArgs);
-     
+    return await database.query(table, where: where, whereArgs: whereArgs);
   }
 }

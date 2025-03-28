@@ -12,5 +12,5 @@ abstract class SummaryRepo {
   Future<Either<Failure, Unit>> export(String summary, ExportTypeMod exportMod, String title, String lang);
   Future<Either<Failure, List<SummaryStoreEntity>>> fetchListSummaries();
   Future<Either<Failure, Unit>> addSummary(String vdTitle, String vdUrl, String vdLang, String summary);
-  Future<Either<Failure, Unit>> getSummaryStored(int id);
+  Future<Either<Failure, SummaryStoreEntity>> getSummaryStored(int id);
 }

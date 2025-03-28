@@ -60,7 +60,7 @@ class SummaryRepoImp implements SummaryRepo {
   }
 
   @override
-  Future<Either<Failure, Unit>> getSummaryStored(int id) {
+  Future<Either<Failure, SummaryStoreEntity>> getSummaryStored(int id) {
     // TODO: implement getSummaryStored
     throw UnimplementedError();
   }
