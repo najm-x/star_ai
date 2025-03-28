@@ -24,7 +24,6 @@ class SummaryView extends StatelessWidget {
             if (state.state == ViewSummaryStates.successGetVdInfo) {
               context.read<SummaryViewBloc>().add(GetSummaryEvent(
                   data: data, textOfVd: state.vdInfoMod!.vdText, titleVd: state.vdInfoMod?.vdTitle ?? ""));
-              
             }
             if (state.state == ViewSummaryStates.errorGetVdInfo || state.state == ViewSummaryStates.erroretSummary) {
               ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
@@ -45,11 +44,14 @@ class SummaryView extends StatelessWidget {
                 duration: Duration(seconds: 2),
               ));
             }
+            if (state.state == StateSummaryViewCubit.reSummary) {
+              context.pop();
+            }
           },
         ),
       ],
       child: Scaffold(
-        appBar: PreferredSize(preferredSize: Size(double.maxFinite, 50), child: _appBar()) ,// _appBar(context), 
+        appBar: PreferredSize(preferredSize: Size(double.maxFinite, 50), child: _appBar()), // _appBar(context),
         body: _body(context),
       ),
     );

@@ -1,7 +1,7 @@
 part of 'summary_view_cubit.dart';
 
 enum StateSummaryViewCubit { 
-  init, loading, copy, reSummary, save, export , changeTextLtR , errorExport
+  init, loading, copy, reSummary, save, export , changeTextLtR , errorExport , saveError
 }
 
 class SummaryViewCubitState extends Equatable {

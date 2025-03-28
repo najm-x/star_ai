@@ -42,7 +42,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:business_tools/core/services/app_services.dart' as id;
 
 final goRouter = GoRouter(
-  initialLocation: '/',
+  initialLocation: AppRouteName.summaryHome,
   routes: [
     // _mainGoRoute(),
     _chooseTransTypeRoute(),
@@ -218,7 +218,7 @@ GoRoute _languageRoute() {
 
 GoRoute _summryHomeRoute() {
   return GoRoute(
-    path: '/',
+    path: AppRouteName.summaryHome,
     builder: (context, state) => const SummaryHome(),
   );
 }
