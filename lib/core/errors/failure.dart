@@ -31,4 +31,5 @@ class AdLoadFailure extends Failure {}
 
 class GetTransFroFileFailure extends Failure {}
 class EmptyFileFailure extends Failure {}
+
 //? Vd == Video

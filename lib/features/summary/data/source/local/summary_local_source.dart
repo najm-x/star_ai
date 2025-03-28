@@ -5,6 +5,8 @@ import 'package:dartz/dartz.dart';
 
 abstract class SummaryLocalSource {
   Future<Unit> addSummary(String vdTitle, String vdUrl, String vdLang, String summary);
+  Future<List<SummaryStoreMod>> fetchListSummaries();
+  Future<SummaryStoreMod> getSummaryStored(int id);
 }
 
 class SummaryLocalSourceImp implements SummaryLocalSource {
@@ -17,6 +19,38 @@ class SummaryLocalSourceImp implements SummaryLocalSource {
       await sqLiteHelper.insert(SqliteKeys.summary.summaryTable,
           SummaryStoreMod(summary: summary, vdLang: vdLang, vdTitle: vdTitle, vdUrl: vdUrl, id: null).toMap());
       return unit;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
+
+  @override
+  Future<List<SummaryStoreMod>> fetchListSummaries() async {
+    try {
+      List<Map<String, Object?>> data = await sqLiteHelper.getQuery(SqliteKeys.summary.summaryTable, '1=?', [1]);
+      if ((data.isEmpty)) {
+        throw UnimplementedError();
+      }
+      List<SummaryStoreMod> listSummary = [];
+      for (var summary in data) {
+        listSummary.add(SummaryStoreMod.fromJson(summary));
+      }
+      return listSummary;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
+
+  @override
+  Future<SummaryStoreMod> getSummaryStored(int id) async {
+    try {
+      List<Map<String, Object?>> data =
+          await sqLiteHelper.getQuery(SqliteKeys.summary.summaryTable, '${SqliteKeys.summary.id}=?', [id]);
+      if ((data.isEmpty)) {
+        throw UnimplementedError();
+      }
+
+      return SummaryStoreMod.fromJson(data[0]);
     } catch (e) {
       throw UnimplementedError();
     }

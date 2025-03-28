@@ -11,14 +11,14 @@ import 'package:dartz/dartz.dart';
 
 class SummaryRepoImp implements SummaryRepo {
   final SummaryRemoteSource remoteSource;
-  final SummaryLocalSource localSource ;
+  final SummaryLocalSource localSource;
 
-  const SummaryRepoImp({required this.remoteSource , required this.localSource});
+  const SummaryRepoImp({required this.remoteSource, required this.localSource});
   @override
   Future<Either<Failure, SummaryEntity>> summary(
-      String text, String lang, String typeSummary, String lengthSummary , String titleVd) async {
+      String text, String lang, String typeSummary, String lengthSummary, String titleVd) async {
     try {
-      final response = await remoteSource.summary(text, lang, typeSummary, lengthSummary , titleVd);
+      final response = await remoteSource.summary(text, lang, typeSummary, lengthSummary, titleVd);
       return right(response);
     } catch (e) {
       if (e is AIException) {
@@ -40,30 +40,37 @@ class SummaryRepoImp implements SummaryRepo {
 
   @override
   Future<Either<Failure, Unit>> export(String summary, ExportTypeMod exportMod, String title, String lang) async {
-  try {
-     return right(await remoteSource.export(summary, exportMod, title, lang)) ; 
-  } catch (e) {
-    throw UnimplementedError() ; 
-  }
-  }
-
-  @override
-  Future<Either<Failure, Unit>> addSummary(String vdTitle, String vdUrl, String vdLang, String summary) {
-    // TODO: implement addSummary
-    throw UnimplementedError();
+    try {
+      return right(await remoteSource.export(summary, exportMod, title, lang));
+    } catch (e) {
+      throw UnimplementedError();
+    }
   }
 
   @override
-  Future<Either<Failure, List<SummaryStoreEntity>>> fetchListSummaries() {
-    // TODO: implement fetchListSummaries
-    throw UnimplementedError();
+  Future<Either<Failure, Unit>> addSummary(String vdTitle, String vdUrl, String vdLang, String summary) async {
+    try {
+      return right(await localSource.addSummary(vdTitle, vdUrl, vdLang, summary));
+    } catch (e) {
+      return left(SaveFailure());
+    }
   }
 
   @override
-  Future<Either<Failure, SummaryStoreEntity>> getSummaryStored(int id) {
-    // TODO: implement getSummaryStored
-    throw UnimplementedError();
+  Future<Either<Failure, List<SummaryStoreEntity>>> fetchListSummaries() async {
+    try {
+      return right(await localSource.fetchListSummaries());
+    } catch (e) {
+      return left(EmptyFailure());
+    }
   }
-  
-  
+
+  @override
+  Future<Either<Failure, SummaryStoreEntity>> getSummaryStored(int id) async {
+    try {
+      return right(await localSource.getSummaryStored(id));
+    } catch (e) {
+      return left(EmptyFailure());
+    }
+  }
 }
