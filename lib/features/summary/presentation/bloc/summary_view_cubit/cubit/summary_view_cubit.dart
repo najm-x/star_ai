@@ -11,6 +11,7 @@ part 'summary_view_state.dart';
 class SummaryViewCubit extends Cubit<SummaryViewCubitState> {
   final ExportUc exportUc;
   final AddSummaryUc addSummaryUc;
+  SummaryViewState? data;
   SummaryViewCubit({required this.exportUc, required this.addSummaryUc}) : super(SummaryViewCubitState());
   void changeLtR(bool textLtR) {
     emit(state.copyWith(state: StateSummaryViewCubit.loading));
@@ -33,16 +34,15 @@ class SummaryViewCubit extends Cubit<SummaryViewCubitState> {
     emit(_handelExport(fold));
   }
 
-  Future<void> save(SummaryViewState data) async {
+  Future<void> save() async {
     emit(state.copyWith(state: StateSummaryViewCubit.loading));
-    if (data.summaryMod == null) {
+    if (data == null || data?.summaryMod == null) {
       emit(state.copyWith(state: StateSummaryViewCubit.save));
-
       return;
     }
 
-    var fold = await addSummaryUc.call(
-        data.vdInfoMod?.vdTitle ?? "", data.vdInfoMod?.vdUrl ?? "", data.lang, data.summaryMod?.summary ?? "");
+    var fold = await addSummaryUc.call(data?.vdInfoMod?.vdTitle ?? "", data?.vdInfoMod?.vdUrl ?? "", data?.lang ?? "",
+        data?.summaryMod?.summary ?? "");
     emit(_handelSave(fold));
   }
 

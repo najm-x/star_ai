@@ -22,6 +22,7 @@ class SummaryView extends StatelessWidget {
       listeners: [
         BlocListener<SummaryViewBloc, SummaryViewState>(
           listener: (context, state) {
+            context.read<SummaryViewCubit>().data = state;
             if (state.state == ViewSummaryStates.successGetVdInfo) {
               context.read<SummaryViewBloc>().add(GetSummaryEvent(
                   data: data, textOfVd: state.vdInfoMod!.vdText, titleVd: state.vdInfoMod?.vdTitle ?? ""));
@@ -60,7 +61,7 @@ class SummaryView extends StatelessWidget {
           return PopScope(
               canPop: false,
               onPopInvokedWithResult: (didPop, result) {
-                context.read<SummaryViewCubit>().save(state);
+                context.read<SummaryViewCubit>().save();
               },
               child: Scaffold(
                 appBar: PreferredSize(preferredSize: Size(double.maxFinite, 50), child: _appBar()), // _appBar(context),

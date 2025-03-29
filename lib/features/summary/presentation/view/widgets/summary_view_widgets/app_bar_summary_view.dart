@@ -15,7 +15,7 @@ class AppBarSummaryView extends StatelessWidget {
       builder: (context, state) {
         bool isReady = state.state == ViewSummaryStates.successGetSummary;
         return AppBar(
-          leading: BackButton(onPressed: () => context.read<SummaryViewCubit>().save(state)),
+          leading: BackButton(onPressed: () => context.read<SummaryViewCubit>().save()),
           actions: [
             _popButton(context, isReady, state),
             _iconWidget(

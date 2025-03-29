@@ -30,9 +30,11 @@ import 'package:business_tools/features/summary/data/source/summary_remote_sourc
 import 'package:business_tools/features/summary/domain/repositories/summary_repo.dart';
 import 'package:business_tools/features/summary/domain/usecase/add_summary_uc.dart';
 import 'package:business_tools/features/summary/domain/usecase/export_uc.dart';
+import 'package:business_tools/features/summary/domain/usecase/fetch_summaries_us.dart';
 import 'package:business_tools/features/summary/domain/usecase/summary_uc.dart';
 import 'package:business_tools/features/summary/domain/usecase/vd_info_exctract_us.dart';
 import 'package:business_tools/features/summary/presentation/bloc/cubit/summary_setup_cubit.dart';
+import 'package:business_tools/features/summary/presentation/bloc/summary_home_cubit/summary_home_cubit.dart';
 import 'package:business_tools/features/summary/presentation/bloc/summary_view_bloc/summary_view_bloc.dart';
 import 'package:business_tools/features/summary/presentation/bloc/summary_view_cubit/cubit/summary_view_cubit.dart';
 import 'package:business_tools/features/text_extract/data/datasources/text_extract_remote_data.dart';
@@ -206,11 +208,14 @@ void _initSummaryFeature() {
   sl.registerFactory(() => SummarySetupCubit());
   sl.registerFactory(() => SummaryViewCubit(exportUc: sl(), addSummaryUc: sl()));
   sl.registerFactory(() => SummaryViewBloc(summaryUc: sl(), vdInfoExctractUs: sl()));
+  sl.registerFactory(() => SummaryHomeCubit(fetchSummariesUs: sl()));
+
   // Use Cases
   sl.registerLazySingleton(() => SummaryUc(summaryRepo: sl()));
   sl.registerLazySingleton(() => VdInfoExctractUs(summaryRepo: sl()));
   sl.registerLazySingleton(() => ExportUc(summaryRepo: sl()));
   sl.registerLazySingleton(() => AddSummaryUc(summaryRepo: sl()));
+  sl.registerLazySingleton(() => FetchSummariesUs(summaryRepo: sl()));
 
   // Repository
   sl.registerLazySingleton<SummaryRepo>(() => SummaryRepoImp(remoteSource: sl(), localSource: sl()));

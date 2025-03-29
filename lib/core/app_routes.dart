@@ -17,6 +17,7 @@ import 'package:business_tools/features/onboarding/presentation/pages/onboarding
 import 'package:business_tools/features/spell_checker/presentation/bloc/cubit/spell_checker_cubit.dart';
 import 'package:business_tools/features/spell_checker/presentation/pages/spell_checker_page.dart';
 import 'package:business_tools/features/summary/presentation/bloc/cubit/summary_setup_cubit.dart';
+import 'package:business_tools/features/summary/presentation/bloc/summary_home_cubit/summary_home_cubit.dart';
 import 'package:business_tools/features/summary/presentation/bloc/summary_view_bloc/summary_view_bloc.dart';
 import 'package:business_tools/features/summary/presentation/bloc/summary_view_cubit/cubit/summary_view_cubit.dart';
 import 'package:business_tools/features/summary/presentation/view/summary_home.dart';
@@ -219,7 +220,10 @@ GoRoute _languageRoute() {
 GoRoute _summryHomeRoute() {
   return GoRoute(
     path: AppRouteName.summaryHome,
-    builder: (context, state) => const SummaryHome(),
+    builder: (context, state) => BlocProvider(
+      create: (context) => id.sl<SummaryHomeCubit>()..fetch(),
+      child: const SummaryHome(),
+    ),
   );
 }
 

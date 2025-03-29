@@ -17,6 +17,7 @@ class SQLiteHelper {
     final path = join(await getDatabasesPath(), dbname);
     return openDatabase(
       path,
+      version: 1,
       onCreate: (db, version) async {
         await db.execute(
             'CREATE TABLE ${SqliteKeys.summary.summaryTable} (id INTEGER PRIMARY KEY  AUTOINCREMENT, ${SqliteKeys.summary.vdUrlColumn} TXT , ${SqliteKeys.summary.vdTitleColumn} TEXT , ${SqliteKeys.summary.vdLangColumn} TXT , ${SqliteKeys.summary.summaryContentColumn} TXT)');
