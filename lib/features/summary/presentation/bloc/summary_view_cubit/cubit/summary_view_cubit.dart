@@ -34,17 +34,27 @@ class SummaryViewCubit extends Cubit<SummaryViewCubitState> {
   }
 
   Future<void> save(SummaryViewState data) async {
+    emit(state.copyWith(state: StateSummaryViewCubit.loading));
     if (data.summaryMod == null) {
+      emit(state.copyWith(state: StateSummaryViewCubit.save));
+
       return;
     }
 
-    emit(state.copyWith(state: StateSummaryViewCubit.loading));
     var fold = await addSummaryUc.call(
         data.vdInfoMod?.vdTitle ?? "", data.vdInfoMod?.vdUrl ?? "", data.lang, data.summaryMod?.summary ?? "");
-    emit(_handelExport(fold));
+    emit(_handelSave(fold));
   }
 
   SummaryViewCubitState _handelExport(Either<Failure, Unit> fold) {
+    return fold.fold((ifLeft) {
+      return state.copyWith(state: StateSummaryViewCubit.errorExport);
+    }, (ifRight) {
+      return state.copyWith(state: StateSummaryViewCubit.export);
+    });
+  }
+
+  SummaryViewCubitState _handelSave(Either<Failure, Unit> fold) {
     return fold.fold((ifLeft) {
       return state.copyWith(state: StateSummaryViewCubit.saveError);
     }, (ifRight) {

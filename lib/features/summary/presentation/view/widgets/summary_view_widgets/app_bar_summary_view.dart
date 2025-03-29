@@ -1,11 +1,9 @@
-import 'package:business_tools/core/constant/app_routes_name.dart';
 import 'package:business_tools/features/summary/data/models/export_type_mod.dart';
 import 'package:business_tools/features/summary/data/source/static/summary_static_data.dart';
 import 'package:business_tools/features/summary/presentation/bloc/summary_view_bloc/summary_view_bloc.dart';
 import 'package:business_tools/features/summary/presentation/bloc/summary_view_cubit/cubit/summary_view_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class AppBarSummaryView extends StatelessWidget {
   const AppBarSummaryView({super.key});
@@ -17,9 +15,7 @@ class AppBarSummaryView extends StatelessWidget {
       builder: (context, state) {
         bool isReady = state.state == ViewSummaryStates.successGetSummary;
         return AppBar(
-          leading: BackButton(
-            onPressed: () => context.pushReplacement(AppRouteName.summaryHome),
-          ),
+          leading: BackButton(onPressed: () => context.read<SummaryViewCubit>().save(state)),
           actions: [
             _popButton(context, isReady, state),
             _iconWidget(

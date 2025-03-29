@@ -1,3 +1,4 @@
+import 'package:business_tools/core/constant/app_routes_name.dart';
 import 'package:business_tools/core/functions/copy_text.dart';
 import 'package:business_tools/features/summary/presentation/bloc/cubit/summary_setup_cubit.dart';
 import 'package:business_tools/features/summary/presentation/bloc/summary_view_bloc/summary_view_bloc.dart';
@@ -47,12 +48,25 @@ class SummaryView extends StatelessWidget {
             if (state.state == StateSummaryViewCubit.reSummary) {
               context.pop();
             }
+            if (state.state == StateSummaryViewCubit.save || state.state == StateSummaryViewCubit.saveError) {
+              context.go(AppRouteName.summaryHome);
+            }
           },
         ),
       ],
-      child: Scaffold(
-        appBar: PreferredSize(preferredSize: Size(double.maxFinite, 50), child: _appBar()), // _appBar(context),
-        body: _body(context),
+      child: BlocBuilder<SummaryViewBloc, SummaryViewState>(
+        buildWhen: (previous, current) => 2 == 3,
+        builder: (context, state) {
+          return PopScope(
+              canPop: false,
+              onPopInvokedWithResult: (didPop, result) {
+                context.read<SummaryViewCubit>().save(state);
+              },
+              child: Scaffold(
+                appBar: PreferredSize(preferredSize: Size(double.maxFinite, 50), child: _appBar()), // _appBar(context),
+                body: _body(context),
+              ));
+        },
       ),
     );
   }
