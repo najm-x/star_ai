@@ -1,5 +1,8 @@
 import 'package:business_tools/core/constant/app_routes_name.dart';
+import 'package:business_tools/features/summary/data/models/summary_store_mod.dart';
+import 'package:business_tools/features/summary/presentation/bloc/summary_home_cubit/summary_home_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:uicons/uicons.dart';
 
@@ -29,8 +32,26 @@ class SummaryHome extends StatelessWidget {
   }
 
   Widget _body() {
-    return Center(
-      child: Text("لا يوجد هنا شيء لعرض بعد "),
+    return BlocBuilder<SummaryHomeCubit, SummaryHomeState>(
+      builder: (context, state) {
+        return state.status == SummaryHomeStatus.fetchDone
+            ? _buildItems(state.summaries!)
+            : Center(
+                child: Text("لايوجد هنا شيء"),
+              );
+      },
+    );
+  }
+
+  Widget _buildItems(List<SummaryStoreMod> summary) {
+    return ListView.builder(
+      itemCount: summary.length,
+      itemBuilder: (context, index) {
+        SummaryStoreMod value = summary[index];
+        return ListTile(
+          title: Text(value.vdTitle),
+        );
+      },
     );
   }
 
