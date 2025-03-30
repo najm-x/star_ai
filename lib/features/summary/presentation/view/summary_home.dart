@@ -1,6 +1,7 @@
 import 'package:business_tools/core/constant/app_routes_name.dart';
 import 'package:business_tools/features/summary/data/models/summary_store_mod.dart';
 import 'package:business_tools/features/summary/presentation/bloc/summary_home_cubit/summary_home_cubit.dart';
+import 'package:business_tools/features/summary/presentation/view/widgets/summary_home_widgets/vd_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -48,9 +49,8 @@ class SummaryHome extends StatelessWidget {
       itemCount: summary.length,
       itemBuilder: (context, index) {
         SummaryStoreMod value = summary[index];
-        return ListTile(
-          title: Text(value.vdTitle),
-        );
+        print(value.vdImage);
+        return VdCardWidget(vdImage: value.vdImage, vdTitle: value.vdTitle);
       },
     );
   }

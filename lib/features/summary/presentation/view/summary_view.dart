@@ -61,7 +61,7 @@ class SummaryView extends StatelessWidget {
           return PopScope(
               canPop: false,
               onPopInvokedWithResult: (didPop, result) {
-                context.read<SummaryViewCubit>().save();
+                !didPop ? context.read<SummaryViewCubit>().save() : {};
               },
               child: Scaffold(
                 appBar: PreferredSize(preferredSize: Size(double.maxFinite, 50), child: _appBar()), // _appBar(context),

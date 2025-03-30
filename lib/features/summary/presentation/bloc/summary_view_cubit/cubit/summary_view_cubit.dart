@@ -35,6 +35,7 @@ class SummaryViewCubit extends Cubit<SummaryViewCubitState> {
   }
 
   Future<void> save() async {
+    print("SAVE SAVE");
     emit(state.copyWith(state: StateSummaryViewCubit.loading));
     if (data == null || data?.summaryMod == null) {
       emit(state.copyWith(state: StateSummaryViewCubit.save));
