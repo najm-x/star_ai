@@ -7,8 +7,8 @@ class AddSummaryUc {
 
   AddSummaryUc({required this.summaryRepo});  
   Future<Either<Failure, Unit>> call(
-      String vdTitle, String vdUrl, String vdLang, String summary) async{
-         return await summaryRepo.addSummary(vdTitle, vdUrl, vdLang, summary)  ; 
+      String vdTitle, String vdUrl, String vdLang, String summary , String vdImage ) async{
+         return await summaryRepo.addSummary(vdTitle, vdUrl, vdLang, summary , vdImage)  ; 
       }
       
 

@@ -42,7 +42,7 @@ class SummaryViewCubit extends Cubit<SummaryViewCubitState> {
     }
 
     var fold = await addSummaryUc.call(data?.vdInfoMod?.vdTitle ?? "", data?.vdInfoMod?.vdUrl ?? "", data?.lang ?? "",
-        data?.summaryMod?.summary ?? "");
+        data?.summaryMod?.summary ?? "", data?.vdInfoMod?.vdImage ?? '');
     emit(_handelSave(fold));
   }
 

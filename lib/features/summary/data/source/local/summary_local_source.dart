@@ -4,7 +4,7 @@ import 'package:business_tools/features/summary/data/models/summary_store_mod.da
 import 'package:dartz/dartz.dart';
 
 abstract class SummaryLocalSource {
-  Future<Unit> addSummary(String vdTitle, String vdUrl, String vdLang, String summary);
+  Future<Unit> addSummary(String vdTitle, String vdUrl, String vdLang, String summary , String vdImage);
   Future<List<SummaryStoreMod>> fetchListSummaries();
   Future<SummaryStoreMod> getSummaryStored(int id);
 }
@@ -14,10 +14,10 @@ class SummaryLocalSourceImp implements SummaryLocalSource {
 
   SummaryLocalSourceImp({required this.sqLiteHelper});
   @override
-  Future<Unit> addSummary(String vdTitle, String vdUrl, String vdLang, String summary) async {
+  Future<Unit> addSummary(String vdTitle, String vdUrl, String vdLang, String summary , String vdImage,) async {
     try {
       await sqLiteHelper.insert(SqliteKeys.summary.summaryTable,
-          SummaryStoreMod(summary: summary, vdLang: vdLang, vdTitle: vdTitle, vdUrl: vdUrl, id: null).toMap());
+          SummaryStoreMod(summary: summary, vdLang: vdLang, vdTitle: vdTitle, vdUrl: vdUrl, vdImage: vdImage ,id: null).toMap());
       return unit;
     } catch (e) {
       throw UnimplementedError();

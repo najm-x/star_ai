@@ -48,9 +48,9 @@ class SummaryRepoImp implements SummaryRepo {
   }
 
   @override
-  Future<Either<Failure, Unit>> addSummary(String vdTitle, String vdUrl, String vdLang, String summary) async {
+  Future<Either<Failure, Unit>> addSummary(String vdTitle, String vdUrl, String vdLang, String summary , String vdImage) async {
     try {
-      return right(await localSource.addSummary(vdTitle, vdUrl, vdLang, summary));
+      return right(await localSource.addSummary(vdTitle, vdUrl, vdLang, summary ,  vdImage,));
     } catch (e) {
       return left(SaveFailure());
     }

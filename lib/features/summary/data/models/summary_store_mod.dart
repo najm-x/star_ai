@@ -3,7 +3,7 @@ import 'package:business_tools/features/summary/domain/entities/summary_store_en
 
 class SummaryStoreMod extends SummaryStoreEntity {
   const SummaryStoreMod(
-      {required super.vdTitle, required super.vdUrl, required super.vdLang, required super.summary, required super.id});
+      {required super.vdTitle, required super.vdUrl, required super.vdLang, required super.summary, required super.id, required super.vdImage});
   Map<String, Object?> toMap() {
     return {
       SqliteKeys.summary.vdTitleColumn: vdTitle,
@@ -19,6 +19,6 @@ class SummaryStoreMod extends SummaryStoreEntity {
         vdUrl: json[SqliteKeys.summary.vdUrlColumn].toString(),
         vdLang: json[SqliteKeys.summary.vdLangColumn].toString(),
         summary: json[SqliteKeys.summary.summaryContentColumn].toString(),
-        id: json[SqliteKeys.summary.id].toString());
+        id: json[SqliteKeys.summary.id].toString(), vdImage: json[SqliteKeys.summary.vdImageColumn].toString() );
   }
 }

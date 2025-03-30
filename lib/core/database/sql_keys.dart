@@ -9,6 +9,7 @@ class Summary {
   String get vdUrlColumn => 'vdUrl';
   String get vdTitleColumn => "vdTitle";
   String get vdLangColumn => "vdLang";
+  String get vdImageColumn => "vdImage";
   String get summaryContentColumn => "summaryContent";
 
   const Summary();
