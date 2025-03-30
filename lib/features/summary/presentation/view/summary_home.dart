@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:uicons/uicons.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class SummaryHome extends StatelessWidget {
   const SummaryHome({super.key});
@@ -35,23 +36,39 @@ class SummaryHome extends StatelessWidget {
   Widget _body() {
     return BlocBuilder<SummaryHomeCubit, SummaryHomeState>(
       builder: (context, state) {
-        return state.status == SummaryHomeStatus.fetchDone
-            ? _buildItems(state.summaries!)
-            : Center(
-                child: Text("لايوجد هنا شيء"),
-              );
+        return AnimatedSwitcher(
+          duration: Durations.medium3,
+          child: state.status == SummaryHomeStatus.fetchDone
+              ? _buildItems(state.summaries!, () => context.read<SummaryHomeCubit>().fetch())
+              : state.status == SummaryHomeStatus.loading
+                  ? Center(
+                      key: ValueKey("2"),
+                      child: SpinKitWave(
+                        color: Theme.of(context).colorScheme.outlineVariant,
+                        size: 30,
+                      ),
+                    )
+                  : Center(
+                      key: ValueKey("3"),
+                      child: Text("لايوجد هنا شيء"),
+                    ),
+        );
       },
     );
   }
 
-  Widget _buildItems(List<SummaryStoreMod> summary) {
-    return ListView.builder(
-      itemCount: summary.length,
-      itemBuilder: (context, index) {
-        SummaryStoreMod value = summary[index];
-        print(value.vdImage);
-        return VdCardWidget(vdImage: value.vdImage, vdTitle: value.vdTitle);
-      },
+  Widget _buildItems(List<SummaryStoreMod> summary, Future<void> Function() onRefresh) {
+    return RefreshIndicator(
+      key: ValueKey("1"),
+      onRefresh: onRefresh,
+      child: ListView.builder(
+        itemCount: summary.length,
+        itemBuilder: (context, index) {
+          SummaryStoreMod value = summary[index];
+
+          return VdCardWidget(vdImage: value.vdImage, vdTitle: value.vdTitle);
+        },
+      ),
     );
   }
 

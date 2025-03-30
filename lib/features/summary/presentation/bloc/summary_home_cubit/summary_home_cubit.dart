@@ -13,7 +13,7 @@ class SummaryHomeCubit extends Cubit<SummaryHomeState> {
   SummaryHomeCubit({required this.fetchSummariesUs}) : super(SummaryHomeState());
   Future<void> fetch() async {
     emit(state.copyWith(status: SummaryHomeStatus.loading));
-
+    await Future.delayed(Duration(seconds: 3));
     var fold = await fetchSummariesUs.call();
     emit(_handelFetch(fold));
   }

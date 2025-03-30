@@ -56,7 +56,7 @@ class SummaryRemoteSourceImp implements SummaryRemoteSource {
         text += " ${element.text}";
       }
       yt.close();
-      return VdInfoMod(vdUrl: vdId, vdText: text, vdTitle: info.title , vdImage: info.thumbnails.lowResUrl);
+      return VdInfoMod(vdUrl: vdId, vdText: text, vdTitle: info.title , vdImage: info.thumbnails.highResUrl);
     } catch (e) {
       throw ClosedCaptionException();
     }
