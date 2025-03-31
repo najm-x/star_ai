@@ -1,7 +1,9 @@
+import 'package:business_tools/core/constant/app_routes_name.dart';
 import 'package:business_tools/features/summary/presentation/bloc/summary_home_cubit/summary_home_cubit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class VdCardWidget extends StatelessWidget {
   final String vdImage;
@@ -11,48 +13,51 @@ class VdCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      spacing: 0,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Row(
-            children: [
-              Container(
-                decoration: BoxDecoration(
+    return InkWell(
+      onTap: () =>  context.push(AppRouteName.summaryView , extra: id),
+      child: Column(
+        spacing: 0,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.grey,
+                      boxShadow: [BoxShadow(color: Colors.black45, blurRadius: 8, offset: Offset(0, 5))]),
+                  child: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    color: Colors.grey,
-                    boxShadow: [BoxShadow(color: Colors.black45, blurRadius: 8, offset: Offset(0, 5))]),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: CachedNetworkImage(height: 95, width: 130, fit: BoxFit.cover, imageUrl: vdImage),
-                ),
-              ),
-              Expanded(
-                  child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    vdTitle,
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),
+                    child: CachedNetworkImage(height: 95, width: 130, fit: BoxFit.cover, imageUrl: vdImage),
                   ),
                 ),
-              )),
-              IconButton(
-                  onPressed: ()=>context.read<SummaryHomeCubit>().deleteSummary(id),
-                  icon: Icon(
-                    Icons.more_vert_rounded,
-                    color: Colors.grey,
-                  ))
-            ],
+                Expanded(
+                    child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      vdTitle,
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                )),
+                IconButton(
+                    onPressed: ()=>context.read<SummaryHomeCubit>().deleteSummary(id),
+                    icon: Icon(
+                      Icons.delete_rounded,
+                      color: Colors.grey,
+                    ))
+              ],
+            ),
           ),
-        ),
-        Divider()
-      ],
+          Divider()
+        ],
+      ),
     );
   }
 }

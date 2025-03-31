@@ -16,9 +16,17 @@ class GetSummaryEvent extends SummaryViewEvent {
   List<Object> get props => [data,textOfVd , titleVd];
 }
 class GetVdInfoEvent extends SummaryViewEvent {
-  final String vdUrl ; 
-  const GetVdInfoEvent({required this.vdUrl});
+  final String vdUrl ;
+  final String vdLang ;
+  const GetVdInfoEvent({required this.vdUrl, required this.vdLang});
 
   @override
   List<Object> get props => [vdUrl];
+}
+class GetSummaryStoredEvent extends SummaryViewEvent {
+  final int id ; 
+  const GetSummaryStoredEvent({required this.id});
+
+  @override
+  List<Object> get props => [id];
 }

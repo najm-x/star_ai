@@ -243,7 +243,7 @@ GoRoute _summaryViewRoute() {
             providers: [
               BlocProvider(
                 create: (context) =>
-                    id.sl<SummaryViewBloc>()..add(GetVdInfoEvent(vdUrl: (state.extra as SummarySetupState).vdUrl)),
+                    id.sl<SummaryViewBloc>(),
               ),
               BlocProvider(
                 create: (context) => id.sl<SummaryViewCubit>(),

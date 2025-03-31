@@ -12,7 +12,7 @@ class VideoViewWidget extends StatelessWidget {
     return BlocBuilder<SummaryViewBloc, SummaryViewState>(builder: (context, state) {
       String videoID = VideoId.parseVideoId(state.vdInfoMod?.vdUrl ?? "") ?? "";
       print(videoID);
-      return state.state == ViewSummaryStates.successGetSummary
+      return state.state == ViewSummaryStates.successGetSummary || state.state == ViewSummaryStates.successGetSummaryStored
           ? _containerWidget(
               YoutubePlayer(
   controller: YoutubePlayerController.fromVideoId(

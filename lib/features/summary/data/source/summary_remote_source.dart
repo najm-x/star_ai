@@ -56,7 +56,7 @@ class SummaryRemoteSourceImp implements SummaryRemoteSource {
         text += " ${element.text}";
       }
       yt.close();
-      return VdInfoMod(vdUrl: vdId, vdText: text, vdTitle: info.title , vdImage: info.thumbnails.highResUrl);
+      return VdInfoMod(vdUrl: vdId, vdText: text, vdTitle: info.title, vdImage: info.thumbnails.highResUrl);
     } catch (e) {
       throw ClosedCaptionException();
     }
@@ -81,15 +81,13 @@ class SummaryRemoteSourceImp implements SummaryRemoteSource {
   Future<String> _createPdf(String summary, String title, String lang) async {
     final Directory tempDir = await getTemporaryDirectory();
     final pdf = pw.Document();
-    print("+++++++++++++$lang");
-    pdf.addPage(pw.Page(
+    List<String> parag = summary.split('\n');
+    pdf.addPage(pw.MultiPage(
         textDirection: lang.contains("عرب") ? pw.TextDirection.rtl : null,
         theme: pw.ThemeData.withFont(base: pw.Font.ttf(await rootBundle.load('assets/fonts/Cairo-Medium.ttf'))),
         pageFormat: PdfPageFormat.a4,
         build: (pw.Context context) {
-          return pw.Center(
-            child: pw.Text(summary),
-          ); // Center
+          return parag.map((toElement) => pw.Text(toElement)).toList(); // Center
         }));
     // Page
     Uint8List content = await pdf.save();

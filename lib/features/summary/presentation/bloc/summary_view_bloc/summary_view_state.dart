@@ -1,6 +1,6 @@
 part of 'summary_view_bloc.dart';
 
-enum ViewSummaryStates { init, loading, successGetVdInfo, successGetSummary, errorGetVdInfo, erroretSummary }
+enum ViewSummaryStates { init, loading, successGetVdInfo, successGetSummary, errorGetVdInfo, erroretSummary , successGetSummaryStored , errorGetSummaryStored   }
 
 class SummaryViewState extends Equatable {
   final VdInfoMod? vdInfoMod;

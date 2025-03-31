@@ -11,9 +11,9 @@ class AppBarSummaryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SummaryViewBloc, SummaryViewState>(
-      buildWhen: (previous, current) => current.state == ViewSummaryStates.successGetSummary,
+      buildWhen: (previous, current) => current.state == ViewSummaryStates.successGetSummary || current.state == ViewSummaryStates.successGetSummaryStored,
       builder: (context, state) {
-        bool isReady = state.state == ViewSummaryStates.successGetSummary;
+        bool isReady = state.state == ViewSummaryStates.successGetSummary || state.state == ViewSummaryStates.successGetSummaryStored;
         return AppBar(
           leading: BackButton(onPressed: () => context.read<SummaryViewCubit>().save()),
           actions: [
@@ -23,7 +23,7 @@ class AppBarSummaryView extends StatelessWidget {
                 iconData: Icons.refresh_rounded,
                 isReady: isReady),
             _iconWidget(
-                onPressed: () => context.read<SummaryViewCubit>().copyText(context.read<SummaryViewBloc>().summary),
+                onPressed: () => context.read<SummaryViewCubit>().copyText(state.summaryMod?.summary??""),
                 iconData: Icons.copy_rounded,
                 isReady: isReady),
           ],

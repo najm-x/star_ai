@@ -17,7 +17,14 @@ class SummaryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SummarySetupState data = GoRouterState.of(context).extra as SummarySetupState;
+    SummarySetupState? data;
+    if (GoRouterState.of(context).extra is! SummarySetupState) {
+      context.read<SummaryViewBloc>().add(GetSummaryStoredEvent(id: GoRouterState.of(context).extra as int));
+    } else {
+      data = GoRouterState.of(context).extra as SummarySetupState;
+      context.read<SummaryViewBloc>().add(GetVdInfoEvent(vdUrl: (data).vdUrl, vdLang: data.lang));
+      print(data.lang + "++++++++++++++++++++++++");
+    }
     return MultiBlocListener(
       listeners: [
         BlocListener<SummaryViewBloc, SummaryViewState>(
@@ -25,7 +32,7 @@ class SummaryView extends StatelessWidget {
             context.read<SummaryViewCubit>().data = state;
             if (state.state == ViewSummaryStates.successGetVdInfo) {
               context.read<SummaryViewBloc>().add(GetSummaryEvent(
-                  data: data, textOfVd: state.vdInfoMod!.vdText, titleVd: state.vdInfoMod?.vdTitle ?? ""));
+                  data: data!, textOfVd: state.vdInfoMod!.vdText, titleVd: state.vdInfoMod?.vdTitle ?? ""));
             }
             if (state.state == ViewSummaryStates.errorGetVdInfo || state.state == ViewSummaryStates.erroretSummary) {
               ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
@@ -83,7 +90,10 @@ class SummaryView extends StatelessWidget {
         children: [
           BlocBuilder<SummaryViewBloc, SummaryViewState>(
             builder: (context, state) {
-              return state.state == ViewSummaryStates.successGetSummary ? SizedBox() : LinearProgressIndicator();
+              return state.state == ViewSummaryStates.successGetSummary ||
+                      state.state == ViewSummaryStates.successGetSummaryStored
+                  ? SizedBox()
+                  : LinearProgressIndicator();
             },
           ),
           VideoViewWidget(),
