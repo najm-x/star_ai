@@ -1,10 +1,13 @@
+import 'package:business_tools/features/summary/presentation/bloc/summary_home_cubit/summary_home_cubit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class VdCardWidget extends StatelessWidget {
   final String vdImage;
   final String vdTitle;
-  const VdCardWidget({super.key, required this.vdImage, required this.vdTitle});
+  final int id ; 
+  const VdCardWidget({super.key, required this.vdImage, required this.vdTitle, required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +43,7 @@ class VdCardWidget extends StatelessWidget {
                 ),
               )),
               IconButton(
-                  onPressed: () {},
+                  onPressed: ()=>context.read<SummaryHomeCubit>().deleteSummary(id),
                   icon: Icon(
                     Icons.more_vert_rounded,
                     color: Colors.grey,

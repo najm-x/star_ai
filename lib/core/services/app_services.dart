@@ -29,6 +29,7 @@ import 'package:business_tools/features/summary/data/source/local/summary_local_
 import 'package:business_tools/features/summary/data/source/summary_remote_source.dart';
 import 'package:business_tools/features/summary/domain/repositories/summary_repo.dart';
 import 'package:business_tools/features/summary/domain/usecase/add_summary_uc.dart';
+import 'package:business_tools/features/summary/domain/usecase/delete_summaey_uc.dart';
 import 'package:business_tools/features/summary/domain/usecase/export_uc.dart';
 import 'package:business_tools/features/summary/domain/usecase/fetch_summaries_us.dart';
 import 'package:business_tools/features/summary/domain/usecase/summary_uc.dart';
@@ -208,7 +209,7 @@ void _initSummaryFeature() {
   sl.registerFactory(() => SummarySetupCubit());
   sl.registerFactory(() => SummaryViewCubit(exportUc: sl(), addSummaryUc: sl()));
   sl.registerFactory(() => SummaryViewBloc(summaryUc: sl(), vdInfoExctractUs: sl()));
-  sl.registerFactory(() => SummaryHomeCubit(fetchSummariesUs: sl()));
+  sl.registerFactory(() => SummaryHomeCubit(fetchSummariesUs: sl(), deleteSummaeyUc: sl()));
 
   // Use Cases
   sl.registerLazySingleton(() => SummaryUc(summaryRepo: sl()));
@@ -216,6 +217,7 @@ void _initSummaryFeature() {
   sl.registerLazySingleton(() => ExportUc(summaryRepo: sl()));
   sl.registerLazySingleton(() => AddSummaryUc(summaryRepo: sl()));
   sl.registerLazySingleton(() => FetchSummariesUs(summaryRepo: sl()));
+  sl.registerLazySingleton(() => DeleteSummaeyUc(summaryRepo: sl()));
 
   // Repository
   sl.registerLazySingleton<SummaryRepo>(() => SummaryRepoImp(remoteSource: sl(), localSource: sl()));

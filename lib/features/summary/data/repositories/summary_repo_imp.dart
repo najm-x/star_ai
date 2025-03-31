@@ -48,9 +48,16 @@ class SummaryRepoImp implements SummaryRepo {
   }
 
   @override
-  Future<Either<Failure, Unit>> addSummary(String vdTitle, String vdUrl, String vdLang, String summary , String vdImage) async {
+  Future<Either<Failure, Unit>> addSummary(
+      String vdTitle, String vdUrl, String vdLang, String summary, String vdImage) async {
     try {
-      return right(await localSource.addSummary(vdTitle, vdUrl, vdLang, summary ,  vdImage,));
+      return right(await localSource.addSummary(
+        vdTitle,
+        vdUrl,
+        vdLang,
+        summary,
+        vdImage,
+      ));
     } catch (e) {
       return left(SaveFailure());
     }
@@ -69,6 +76,15 @@ class SummaryRepoImp implements SummaryRepo {
   Future<Either<Failure, SummaryStoreEntity>> getSummaryStored(int id) async {
     try {
       return right(await localSource.getSummaryStored(id));
+    } catch (e) {
+      return left(EmptyFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> deleteSummary(int id) async {
+    try {
+      return right(await localSource.deleteSummary(id));
     } catch (e) {
       return left(EmptyFailure());
     }

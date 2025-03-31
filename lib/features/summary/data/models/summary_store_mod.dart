@@ -25,7 +25,7 @@ class SummaryStoreMod extends SummaryStoreEntity {
         vdUrl: json[SqliteKeys.summary.vdUrlColumn].toString(),
         vdLang: json[SqliteKeys.summary.vdLangColumn].toString(),
         summary: json[SqliteKeys.summary.summaryContentColumn].toString(),
-        id: json[SqliteKeys.summary.id].toString(),
+        id: json[SqliteKeys.summary.id] as int,
         vdImage: json[SqliteKeys.summary.vdImageColumn].toString());
   }
 }

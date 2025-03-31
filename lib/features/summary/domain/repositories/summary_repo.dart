@@ -13,4 +13,7 @@ abstract class SummaryRepo {
   Future<Either<Failure, List<SummaryStoreEntity>>> fetchListSummaries();
   Future<Either<Failure, Unit>> addSummary(String vdTitle, String vdUrl, String vdLang, String summary , String vdImage);
   Future<Either<Failure, SummaryStoreEntity>> getSummaryStored(int id);
+  Future<Either<Failure, Unit>> deleteSummary(int id);
+
+
 }

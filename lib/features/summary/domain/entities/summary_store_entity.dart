@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class SummaryStoreEntity extends Equatable {
-  final String? id;
+  final int? id;
   final String vdTitle;
   final String vdUrl;
   final String vdLang;

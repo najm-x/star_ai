@@ -66,7 +66,7 @@ class SummaryHome extends StatelessWidget {
         itemBuilder: (context, index) {
           SummaryStoreMod value = summary[index];
 
-          return VdCardWidget(vdImage: value.vdImage, vdTitle: value.vdTitle);
+          return VdCardWidget(vdImage: value.vdImage, vdTitle: value.vdTitle , id: value.id!,);
         },
       ),
     );

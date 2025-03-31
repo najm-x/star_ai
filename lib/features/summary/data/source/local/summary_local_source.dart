@@ -7,6 +7,7 @@ abstract class SummaryLocalSource {
   Future<Unit> addSummary(String vdTitle, String vdUrl, String vdLang, String summary , String vdImage);
   Future<List<SummaryStoreMod>> fetchListSummaries();
   Future<SummaryStoreMod> getSummaryStored(int id);
+  Future<Unit> deleteSummary (int id) ;
 }
 
 class SummaryLocalSourceImp implements SummaryLocalSource {
@@ -51,6 +52,16 @@ class SummaryLocalSourceImp implements SummaryLocalSource {
       }
 
       return SummaryStoreMod.fromJson(data[0]);
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
+  
+  @override
+  Future<Unit> deleteSummary(int id)  async{
+       try {
+      await sqLiteHelper.delete(SqliteKeys.summary.summaryTable, '${SqliteKeys.summary.id}=?', [id]);
+      return unit;
     } catch (e) {
       throw UnimplementedError();
     }
