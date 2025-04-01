@@ -10,18 +10,16 @@ class AdsBannerWidget extends StatelessWidget {
   final AdSize? adSize;
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AdsBloc, AdsState>(
-      listener: (context, state) {
-        print(state.runtimeType);
-      },
+    return BlocBuilder<AdsBloc, AdsState>(
+      buildWhen: (previous, current) => current is AdBannerSuccess,
       builder: (context, state) {
         return SafeArea(
           child: SizedBox(
               width: (adSize ?? AdSize.banner).width.toDouble(),
               height: (adSize ?? AdSize.banner).height.toDouble(),
-              child: state is AdBannerSuccess || state is InterstitialAdSuccess || state is InterstitialAdoading || state is InterstitialAdError
-                  ?  AdWidget(ad: context.read<AdsBloc>().bannerAd!)
-                  : Add(height: (adSize ?? AdSize.banner).height.toDouble()) ),
+              child: state is AdBannerSuccess
+                  ? AdWidget(ad: context.read<AdsBloc>().bannerAd!)
+                  : Add(height: (adSize ?? AdSize.banner).height.toDouble())),
         );
       },
     );

@@ -13,11 +13,16 @@ class SummaryBody extends StatelessWidget {
       builder: (context, state) {
         return BlocBuilder<SummaryViewCubit, SummaryViewCubitState>(
           builder: (context, state2) {
-            return Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Directionality(
-                  textDirection: state2.textLtR ? TextDirection.rtl : TextDirection.ltr,
-                  child: MarkdownBody(selectable: true, data: state.summaryMod?.summary ?? "")),
+            return Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Directionality(
+                      textDirection: state2.textLtR ? TextDirection.rtl : TextDirection.ltr,
+                      child: MarkdownBody(selectable: true, data: state.summaryMod?.summary ?? "")),
+                ),
+                SizedBox(height: 150,)
+              ],
             );
           },
         );

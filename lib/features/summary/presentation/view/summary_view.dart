@@ -1,5 +1,7 @@
 import 'package:business_tools/core/constant/app_routes_name.dart';
 import 'package:business_tools/core/functions/copy_text.dart';
+import 'package:business_tools/features/ads/presentation/bloc/bloc/ads_bloc.dart';
+import 'package:business_tools/features/ads/presentation/widgets/ads_banner_widget.dart';
 import 'package:business_tools/features/summary/presentation/bloc/cubit/summary_setup_cubit.dart';
 import 'package:business_tools/features/summary/presentation/bloc/summary_view_bloc/summary_view_bloc.dart';
 import 'package:business_tools/features/summary/presentation/bloc/summary_view_cubit/cubit/summary_view_cubit.dart';
@@ -11,6 +13,7 @@ import 'package:business_tools/features/summary/presentation/view/widgets/summar
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class SummaryView extends StatefulWidget {
   const SummaryView({super.key});
@@ -54,7 +57,7 @@ class _SummaryViewState extends State<SummaryView> {
           },
         ),
         BlocListener<SummaryViewCubit, SummaryViewCubitState>(
-          listener: (context, state) {
+          listener: (context, state) async {
             if (state.state == StateSummaryViewCubit.copy) {
               copyText(state.summary);
               ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
@@ -68,6 +71,7 @@ class _SummaryViewState extends State<SummaryView> {
             }
             if (state.state == StateSummaryViewCubit.save || state.state == StateSummaryViewCubit.saveError) {
               context.go(AppRouteName.summaryHome);
+              await context.read<AdsBloc>().interstitialAd?.show();
             }
           },
         ),
@@ -81,6 +85,13 @@ class _SummaryViewState extends State<SummaryView> {
                 !didPop ? context.read<SummaryViewCubit>().save() : {};
               },
               child: Scaffold(
+                bottomSheet: Container(
+                  width: double.maxFinite,
+                  color: Colors.white,
+                  child: AdsBannerWidget(
+                    adSize: AdSize.largeBanner,
+                  ),
+                ),
                 appBar: PreferredSize(preferredSize: Size(double.maxFinite, 50), child: _appBar()), // _appBar(context),
                 body: _body(context),
               ));

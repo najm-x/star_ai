@@ -72,19 +72,17 @@ class SummaryHome extends StatelessWidget {
           child: RefreshIndicator(
             key: ValueKey("1"),
             onRefresh: onRefresh,
-            child: Expanded(
-              child: ListView.builder(
-                itemCount: summary.length,
-                itemBuilder: (context, index) {
-                  SummaryStoreMod value = summary[index];
+            child: ListView.builder(
+              itemCount: summary.length,
+              itemBuilder: (context, index) {
+                SummaryStoreMod value = summary[index];
 
-                  return VdCardWidget(
-                    vdImage: value.vdImage,
-                    vdTitle: value.vdTitle,
-                    id: value.id!,
-                  );
-                },
-              ),
+                return VdCardWidget(
+                  vdImage: value.vdImage,
+                  vdTitle: value.vdTitle,
+                  id: value.id!,
+                );
+              },
             ),
           ),
         ),

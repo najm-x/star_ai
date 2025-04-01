@@ -36,7 +36,6 @@ class AdsBloc extends Bloc<AdsEvent, AdsState> {
   }
 
   Future<void> _rewardedAdEvent(RewardedAdEvent event, Emitter<AdsState> emit) async {
-    print("sssssssss");
     emit(RewardedAdLoading());
     var failureOrDone = await rewardedAdUc();
     emit(_rewardedAdEventHandel(failureOrDone));

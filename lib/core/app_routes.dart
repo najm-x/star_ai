@@ -242,12 +242,14 @@ GoRoute _summaryViewRoute() {
       builder: (context, state) => MultiBlocProvider(
             providers: [
               BlocProvider(
-                create: (context) =>
-                    id.sl<SummaryViewBloc>(),
+                create: (context) => id.sl<SummaryViewBloc>(),
               ),
               BlocProvider(
                 create: (context) => id.sl<SummaryViewCubit>(),
               ),
+              BlocProvider(
+                create: (context) => id.sl<AdsBloc>()..add(BannerAdEvent(size: AdSize.largeBanner))..add(InterstitialAdEvent()),
+              )
             ],
             child: const SummaryView(),
           ));
