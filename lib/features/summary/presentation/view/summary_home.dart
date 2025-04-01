@@ -58,17 +58,37 @@ class SummaryHome extends StatelessWidget {
   }
 
   Widget _buildItems(List<SummaryStoreMod> summary, Future<void> Function() onRefresh) {
-    return RefreshIndicator(
-      key: ValueKey("1"),
-      onRefresh: onRefresh,
-      child: ListView.builder(
-        itemCount: summary.length,
-        itemBuilder: (context, index) {
-          SummaryStoreMod value = summary[index];
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            "LAST TIME",
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
+          ),
+        ),
+        Expanded(
+          child: RefreshIndicator(
+            key: ValueKey("1"),
+            onRefresh: onRefresh,
+            child: Expanded(
+              child: ListView.builder(
+                itemCount: summary.length,
+                itemBuilder: (context, index) {
+                  SummaryStoreMod value = summary[index];
 
-          return VdCardWidget(vdImage: value.vdImage, vdTitle: value.vdTitle , id: value.id!,);
-        },
-      ),
+                  return VdCardWidget(
+                    vdImage: value.vdImage,
+                    vdTitle: value.vdTitle,
+                    id: value.id!,
+                  );
+                },
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 

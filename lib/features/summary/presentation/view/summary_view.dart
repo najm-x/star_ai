@@ -12,19 +12,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class SummaryView extends StatelessWidget {
+class SummaryView extends StatefulWidget {
   const SummaryView({super.key});
+
+  @override
+  State<SummaryView> createState() => _SummaryViewState();
+}
+
+class _SummaryViewState extends State<SummaryView> {
+  int itemBuild = 0;
 
   @override
   Widget build(BuildContext context) {
     SummarySetupState? data;
-    if (GoRouterState.of(context).extra is! SummarySetupState) {
-      context.read<SummaryViewBloc>().add(GetSummaryStoredEvent(id: GoRouterState.of(context).extra as int));
-    } else {
-      data = GoRouterState.of(context).extra as SummarySetupState;
-      context.read<SummaryViewBloc>().add(GetVdInfoEvent(vdUrl: (data).vdUrl, vdLang: data.lang));
-      print(data.lang + "++++++++++++++++++++++++");
+    if (itemBuild == 0) {
+      if (GoRouterState.of(context).extra is! SummarySetupState) {
+        context.read<SummaryViewBloc>().add(GetSummaryStoredEvent(id: GoRouterState.of(context).extra as int));
+      } else {
+        data = GoRouterState.of(context).extra as SummarySetupState;
+        context.read<SummaryViewBloc>().add(GetVdInfoEvent(vdUrl: (data).vdUrl, vdLang: data.lang));
+      }
+      itemBuild++;
     }
+
     return MultiBlocListener(
       listeners: [
         BlocListener<SummaryViewBloc, SummaryViewState>(

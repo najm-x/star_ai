@@ -4,10 +4,10 @@ import 'package:business_tools/features/summary/data/models/summary_store_mod.da
 import 'package:dartz/dartz.dart';
 
 abstract class SummaryLocalSource {
-  Future<Unit> addSummary(String vdTitle, String vdUrl, String vdLang, String summary , String vdImage);
+  Future<Unit> addSummary(String vdTitle, String vdUrl, String vdLang, String summary, String vdImage);
   Future<List<SummaryStoreMod>> fetchListSummaries();
   Future<SummaryStoreMod> getSummaryStored(int id);
-  Future<Unit> deleteSummary (int id) ;
+  Future<Unit> deleteSummary(int id);
 }
 
 class SummaryLocalSourceImp implements SummaryLocalSource {
@@ -15,10 +15,23 @@ class SummaryLocalSourceImp implements SummaryLocalSource {
 
   SummaryLocalSourceImp({required this.sqLiteHelper});
   @override
-  Future<Unit> addSummary(String vdTitle, String vdUrl, String vdLang, String summary , String vdImage,) async {
+  Future<Unit> addSummary(
+    String vdTitle,
+    String vdUrl,
+    String vdLang,
+    String summary,
+    String vdImage,
+  ) async {
+    List<Map<String, Object?>> data = await sqLiteHelper
+        .getQuery(SqliteKeys.summary.summaryTable, '${SqliteKeys.summary.summaryContentColumn}=?', [summary]);
+    if ((data.isNotEmpty)) {
+      return unit;
+    }
     try {
-      await sqLiteHelper.insert(SqliteKeys.summary.summaryTable,
-          SummaryStoreMod(summary: summary, vdLang: vdLang, vdTitle: vdTitle, vdUrl: vdUrl, vdImage: vdImage ,id: null).toMap());
+      await sqLiteHelper.insert(
+          SqliteKeys.summary.summaryTable,
+          SummaryStoreMod(summary: summary, vdLang: vdLang, vdTitle: vdTitle, vdUrl: vdUrl, vdImage: vdImage, id: null)
+              .toMap());
       return unit;
     } catch (e) {
       throw UnimplementedError();
@@ -56,10 +69,10 @@ class SummaryLocalSourceImp implements SummaryLocalSource {
       throw UnimplementedError();
     }
   }
-  
+
   @override
-  Future<Unit> deleteSummary(int id)  async{
-       try {
+  Future<Unit> deleteSummary(int id) async {
+    try {
       await sqLiteHelper.delete(SqliteKeys.summary.summaryTable, '${SqliteKeys.summary.id}=?', [id]);
       return unit;
     } catch (e) {

@@ -11,19 +11,24 @@ class AppBarSummaryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SummaryViewBloc, SummaryViewState>(
-      buildWhen: (previous, current) => current.state == ViewSummaryStates.successGetSummary || current.state == ViewSummaryStates.successGetSummaryStored,
+      buildWhen: (previous, current) =>
+          current.state == ViewSummaryStates.successGetSummary ||
+          current.state == ViewSummaryStates.successGetSummaryStored,
       builder: (context, state) {
-        bool isReady = state.state == ViewSummaryStates.successGetSummary || state.state == ViewSummaryStates.successGetSummaryStored;
+        bool isReady = state.state == ViewSummaryStates.successGetSummary ||
+            state.state == ViewSummaryStates.successGetSummaryStored;
         return AppBar(
           leading: BackButton(onPressed: () => context.read<SummaryViewCubit>().save()),
           actions: [
             _popButton(context, isReady, state),
+            state.state == ViewSummaryStates.successGetSummary
+                ? _iconWidget(
+                    onPressed: () => context.read<SummaryViewCubit>().reSummary(),
+                    iconData: Icons.refresh_rounded,
+                    isReady: isReady)
+                : SizedBox(),
             _iconWidget(
-                onPressed: () => context.read<SummaryViewCubit>().reSummary(),
-                iconData: Icons.refresh_rounded,
-                isReady: isReady),
-            _iconWidget(
-                onPressed: () => context.read<SummaryViewCubit>().copyText(state.summaryMod?.summary??""),
+                onPressed: () => context.read<SummaryViewCubit>().copyText(state.summaryMod?.summary ?? ""),
                 iconData: Icons.copy_rounded,
                 isReady: isReady),
           ],
