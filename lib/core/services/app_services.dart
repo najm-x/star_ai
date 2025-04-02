@@ -72,7 +72,7 @@ GetIt sl = GetIt.instance;
 Future<void> init() async {
   // ** Core Dependencies **
   final sharedPreferences = await SharedPreferences.getInstance();
-  sl.registerLazySingleton(() => sharedPreferences);
+  sl.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
   sl.registerLazySingleton(() => CustomSnakBar());
 
   // ** Home Feature **

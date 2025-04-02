@@ -7,4 +7,6 @@ class SharedKey {
   static const String isSpellCheckerShowed= "isSpellCheckerShowed" ;
   static const String isTextExtractShowed= "isTextExtractShowed" ;
   static const String langCode= "langCode" ;
+  static const String adsShow= "adsShow" ;
+
 }
