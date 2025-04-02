@@ -59,7 +59,7 @@ class VdCardWidget extends StatelessWidget {
                     onPressed: () => context.read<SummaryHomeCubit>().deleteSummary(id),
                     icon: Icon(
                       Icons.delete_rounded,
-                      color: Colors.grey.shade400,
+                      color: Theme.of(context).colorScheme.error,
                     ))
               ],
             ),

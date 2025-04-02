@@ -1,4 +1,5 @@
 import 'package:business_tools/core/constant/app_routes_name.dart';
+import 'package:business_tools/core/public/widgets/title_app_bar.dart';
 import 'package:business_tools/features/summary/data/models/summary_store_mod.dart';
 import 'package:business_tools/features/summary/presentation/bloc/summary_home_cubit/summary_home_cubit.dart';
 import 'package:business_tools/features/summary/presentation/view/widgets/summary_home_widgets/vd_card_widget.dart';
@@ -16,14 +17,14 @@ class SummaryHome extends StatelessWidget {
     return Scaffold(
       floatingActionButton: _floatActionButton(context),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
-      appBar: _appBar(),
+      appBar: _appBar(context),
       body: _body(),
     );
   }
 
-  AppBar _appBar() {
+  AppBar _appBar(BuildContext context) {
     return AppBar(
-      title: const Text('تلخيص اليوتيوب'),
+      title: TitleAppBar(iconData: UIcons.regularRounded.video_plus, text: "Summary"),
       actions: [
         Padding(
           padding: const EdgeInsets.all(8.0),
