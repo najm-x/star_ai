@@ -24,48 +24,65 @@ class VdCardWidget extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Row(
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.grey.shade600,
-                      boxShadow: [BoxShadow(color: Colors.black45, blurRadius: 8, offset: Offset(0, 5))]),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: CachedNetworkImage(
-                      height: 95,
-                      width: 130,
-                      fit: BoxFit.cover,
-                      imageUrl: vdImage,
-                      errorWidget: (context, url, error) => Center(
-                        child: Icon(UIcons.regularRounded.file_video),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                    child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      vdTitle,
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                )),
-                IconButton(
-                    onPressed: () => context.read<SummaryHomeCubit>().deleteSummary(id),
-                    icon: Icon(
-                      Icons.delete_rounded,
-                      color: Theme.of(context).colorScheme.error,
-                    ))
+                _buildImageContainer(),
+                _buildTitle(context),
+                _buildDeleteButton(context),
               ],
             ),
           ),
-          Divider()
+          const Divider(),
         ],
+      ),
+    );
+  }
+
+  Widget _buildImageContainer() {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        color: Colors.grey.shade600,
+        boxShadow: const [
+          BoxShadow(color: Colors.black45, blurRadius: 8, offset: Offset(0, 5)),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: CachedNetworkImage(
+          height: 95,
+          width: 130,
+          fit: BoxFit.cover,
+          imageUrl: vdImage,
+          errorWidget: (context, url, error) =>  Center(
+            child: Icon(UIcons.regularRounded.file_video),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTitle(BuildContext context) {
+    return Expanded(
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            vdTitle,
+            textAlign: TextAlign.center,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDeleteButton(BuildContext context) {
+    return IconButton(
+      onPressed: () => context.read<SummaryHomeCubit>().deleteSummary(id),
+      icon: Icon(
+        Icons.delete_rounded,
+        color: Theme.of(context).colorScheme.error,
       ),
     );
   }

@@ -27,9 +27,11 @@ class SummaryHome extends StatelessWidget {
       title: TitleAppBar(iconData: UIcons.regularRounded.video_plus, text: "Summary"),
       actions: [
         Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Icon(UIcons.regularStraight.info),
-        )
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: IconButton(
+              onPressed: () => context.push(AppRouteName.howToUse),
+              icon: Icon(UIcons.boldRounded.info),
+            ))
       ],
     );
   }

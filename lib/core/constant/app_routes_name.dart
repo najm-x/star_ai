@@ -14,6 +14,8 @@ class AppRouteName {
   static String summaryHome = '/summaryHome';
   static String summarySetup = '/summarySetup';
   static String summaryView = '/summaryView';
+  static String howToUse = '/howToUse';
+
 
 
 

@@ -20,6 +20,7 @@ import 'package:business_tools/features/summary/presentation/bloc/cubit/summary_
 import 'package:business_tools/features/summary/presentation/bloc/summary_home_cubit/summary_home_cubit.dart';
 import 'package:business_tools/features/summary/presentation/bloc/summary_view_bloc/summary_view_bloc.dart';
 import 'package:business_tools/features/summary/presentation/bloc/summary_view_cubit/cubit/summary_view_cubit.dart';
+import 'package:business_tools/features/summary/presentation/view/how_to_use_page.dart';
 import 'package:business_tools/features/summary/presentation/view/summary_home.dart';
 import 'package:business_tools/features/summary/presentation/view/summary_setup.dart';
 import 'package:business_tools/features/summary/presentation/view/summary_view.dart';
@@ -45,7 +46,7 @@ import 'package:business_tools/core/services/app_services.dart' as id;
 final goRouter = GoRouter(
   initialLocation: AppRouteName.summaryHome,
   routes: [
-    // _mainGoRoute(),
+    _mainGoRoute(),
     _chooseTransTypeRoute(),
     _homeRoute(),
     _videoTranslatorRoute(),
@@ -60,7 +61,8 @@ final goRouter = GoRouter(
     _languageRoute(),
     _summryHomeRoute(),
     _summrySetupRoute(),
-    _summaryViewRoute()
+    _summaryViewRoute(),
+    _howToUseRoute()
   ],
 );
 
@@ -248,9 +250,15 @@ GoRoute _summaryViewRoute() {
                 create: (context) => id.sl<SummaryViewCubit>(),
               ),
               BlocProvider(
-                create: (context) => id.sl<AdsBloc>()..add(BannerAdEvent(size: AdSize.largeBanner))..add(InterstitialAdEvent()),
+                create: (context) => id.sl<AdsBloc>()
+                  ..add(BannerAdEvent(size: AdSize.largeBanner))
+                  ..add(InterstitialAdEvent()),
               )
             ],
             child: const SummaryView(),
           ));
+}
+
+GoRoute _howToUseRoute() {
+  return GoRoute(path: AppRouteName.howToUse, builder: (context, state) => HowToUsePage());
 }
