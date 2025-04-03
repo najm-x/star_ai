@@ -49,7 +49,7 @@ class SummaryLocalSourceImp implements SummaryLocalSource {
       for (var summary in data) {
         listSummary.add(SummaryStoreMod.fromJson(summary));
       }
-      return listSummary;
+      return listSummary.reversed.toList();
     } catch (e) {
       throw UnimplementedError();
     }

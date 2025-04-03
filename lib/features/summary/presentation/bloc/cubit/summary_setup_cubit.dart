@@ -5,6 +5,7 @@ import 'package:business_tools/core/services/app_services.dart';
 import 'package:business_tools/features/summary/data/source/static/summary_static_data.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'summary_setup_state.dart';
@@ -43,4 +44,15 @@ class SummarySetupCubit extends Cubit<SummarySetupState> {
     emit(state.copyWith(vdUrl: textco.text, state: StateSetUp.done));
     emit(state.copyWith(vdUrl: textco.text, state: StateSetUp.init));
   }
+  Future<void> getCopedText() async{
+   final str =  await Clipboard.getData("text/plain") ;
+    emit(state.copyWith(state: StateSetUp.loading));
+    textco.text = str?.text??"" ;
+    emit(state.copyWith(vdUrl: textco.text, state: StateSetUp.getCopedText));
+
+    
+    }
+
+
+    
 }

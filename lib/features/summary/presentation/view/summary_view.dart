@@ -1,5 +1,6 @@
 import 'package:business_tools/core/constant/app_routes_name.dart';
 import 'package:business_tools/core/functions/copy_text.dart';
+import 'package:business_tools/core/public/dialogs/show_api_key_dialog.dart';
 import 'package:business_tools/features/ads/presentation/bloc/bloc/ads_bloc.dart';
 import 'package:business_tools/features/ads/presentation/widgets/ads_banner_widget.dart';
 import 'package:business_tools/features/summary/presentation/bloc/cubit/summary_setup_cubit.dart';
@@ -47,12 +48,15 @@ class _SummaryViewState extends State<SummaryView> {
               context.read<SummaryViewBloc>().add(GetSummaryEvent(
                   data: data!, textOfVd: state.vdInfoMod!.vdText, titleVd: state.vdInfoMod?.vdTitle ?? ""));
             }
-            if (state.state == ViewSummaryStates.errorGetVdInfo || state.state == ViewSummaryStates.erroretSummary) {
+            if (state.state == ViewSummaryStates.errorGetVdInfo) {
               ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
                 content: Text("ERROR: WE CAN'T CREATE SUNNARY FOR THIS VIDEO"),
                 backgroundColor: Theme.of(context).colorScheme.error,
                 duration: Duration(seconds: 5),
               ));
+            }
+            if (state.state == ViewSummaryStates.erroretSummary) {
+              showApiKeyDialog(context) ;
             }
           },
         ),

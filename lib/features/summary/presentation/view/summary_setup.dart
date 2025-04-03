@@ -1,14 +1,12 @@
-import 'package:business_tools/core/constant/app_routes_name.dart';
 import 'package:business_tools/core/public/widgets/text_form_filed_cu.dart';
 import 'package:business_tools/features/extract/presentation/widgets/drop_down_widget.dart';
 import 'package:business_tools/features/summary/data/source/static/summary_static_data.dart';
 import 'package:business_tools/features/summary/presentation/bloc/cubit/summary_setup_cubit.dart';
 import 'package:business_tools/features/summary/presentation/view/widgets/summary_setup/slider_setup.dart';
 import 'package:business_tools/features/summary/presentation/view/widgets/summary_setup/title_setup.dart';
+import 'package:business_tools/features/summary/presentation/view/widgets/summary_setup/vlidate_button_setup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:uicons/uicons.dart';
 
 class SummarySetup extends StatelessWidget {
   const SummarySetup({super.key});
@@ -20,7 +18,7 @@ class SummarySetup extends StatelessWidget {
 
   AppBar _appBar() {
     return AppBar(
-      title: const Text('تجهيز'),
+      title: const Text('Setup'),
     );
   }
 
@@ -37,38 +35,18 @@ class SummarySetup extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  TextFormFieldCu(
-                    hint: "Video Url",
-                    isCenter: true,
-                    textEditingController: context.read<SummarySetupCubit>().textco,
-                  ),
+                  _textFormFiledBuilder(),
                   Divider(),
-                  TitleSetup(title: "summary type"),
+                  TitleSetup(title: "Summary Type"),
                   _typesBuilder(),
                   Divider(),
-                  TitleSetup(title: "summary size"),
+                  TitleSetup(title: "Summary size"),
                   SliderSetup(),
                   Divider(),
-                  TitleSetup(title: "language"),
+                  TitleSetup(title: "Language"),
                   _changeLange(),
                   Divider(),
-                  BlocListener<SummarySetupCubit, SummarySetupState>(
-                    listener: (context, state) {
-                      if (state.state == StateSetUp.error) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("data")));
-                      }
-                      if (state.state == StateSetUp.done) {
-                        context.push(AppRouteName.summaryView, extra: state);
-                      }
-                    },
-                    child: Center(
-                      child: FilledButton.icon(
-                        onPressed: () => context.read<SummarySetupCubit>().validateButton(),
-                        label: Text("Summary"),
-                        icon: Icon(UIcons.regularStraight.magic_wand),
-                      ),
-                    ),
-                  )
+                  VlidateButtonSetup()
                 ],
               ),
             ),
@@ -110,6 +88,26 @@ class SummarySetup extends StatelessWidget {
           width: double.maxFinite,
           onSelected: (lang) => context.read<SummarySetupCubit>().changeLang(lang),
           initVlaue: state.lang,
+        );
+      },
+    );
+  }
+
+  Widget _textFormFiledBuilder() {
+    return BlocBuilder<SummarySetupCubit, SummarySetupState>(
+      buildWhen: (previous, current) => current.state == StateSetUp.getCopedText,
+      builder: (context, state) {
+        return TextFormFieldCu(
+          hint: "Video Url",
+          isCenter: true,
+          icon: IconButton(
+              onPressed: () => context.read<SummarySetupCubit>().getCopedText(),
+              icon: Icon(
+                Icons.content_paste_go_rounded,
+                size: 25,
+                color: Theme.of(context).colorScheme.secondary,
+              )),
+          textEditingController: context.read<SummarySetupCubit>().textco,
         );
       },
     );

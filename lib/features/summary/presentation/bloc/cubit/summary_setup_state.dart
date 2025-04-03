@@ -1,6 +1,6 @@
 part of 'summary_setup_cubit.dart';
 
-enum StateSetUp { init, loading, done, error, changeType, changSzie, changeLang }
+enum StateSetUp { init, loading, done, error, changeType, changSzie, changeLang , getCopedText }
 
 class SummarySetupState extends Equatable {
   final String vdUrl;
