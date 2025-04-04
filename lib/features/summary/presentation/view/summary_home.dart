@@ -2,6 +2,7 @@ import 'package:business_tools/core/constant/app_routes_name.dart';
 import 'package:business_tools/core/public/widgets/title_app_bar.dart';
 import 'package:business_tools/features/summary/data/models/summary_store_mod.dart';
 import 'package:business_tools/features/summary/presentation/bloc/summary_home_cubit/summary_home_cubit.dart';
+import 'package:business_tools/features/summary/presentation/view/widgets/summary_home_widgets/empty_video_summary.dart';
 import 'package:business_tools/features/summary/presentation/view/widgets/summary_home_widgets/vd_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,6 +25,7 @@ class SummaryHome extends StatelessWidget {
 
   AppBar _appBar(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: false,
       title: TitleAppBar(iconData: UIcons.regularRounded.video_plus, text: "Summary"),
       actions: [
         Padding(
@@ -53,7 +55,7 @@ class SummaryHome extends StatelessWidget {
                     )
                   : Center(
                       key: ValueKey("3"),
-                      child: Text("لايوجد هنا شيء"),
+                      child: EmptyVideoSummary(),
                     ),
         );
       },

@@ -44,7 +44,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:business_tools/core/services/app_services.dart' as id;
 
 final goRouter = GoRouter(
-  initialLocation: AppRouteName.summaryHome,
+  initialLocation: AppRouteName.home,
   routes: [
     _mainGoRoute(),
     _chooseTransTypeRoute(),
