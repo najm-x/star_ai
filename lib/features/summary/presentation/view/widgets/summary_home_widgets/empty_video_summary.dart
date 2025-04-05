@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class EmptyVideoSummary extends StatelessWidget {
   const EmptyVideoSummary({super.key});
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final appLocalization = AppLocalizations.of(context)! ;
 
     return Center(
       child: Padding(
@@ -21,7 +22,7 @@ class EmptyVideoSummary extends StatelessWidget {
             ),
             const SizedBox(height: 24.0),
             Text(
-              'قائمتك فارغة حالياً',
+             appLocalization.emptySummary,
               style: textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
@@ -29,7 +30,7 @@ class EmptyVideoSummary extends StatelessWidget {
             ),
             const SizedBox(height: 16.0),
             Text(
-              'لم تقم بتلخيص أي فيديو بعد.\nابدأ الآن بالضغط على زر الإضافة (+) في الأسفل.',
+              appLocalization.startAddSummary,
               style: textTheme.bodyLarge?.copyWith(
                 color: Colors.grey[700],
                 height: 1.4,
@@ -38,7 +39,7 @@ class EmptyVideoSummary extends StatelessWidget {
             ),
             const SizedBox(height: 12.0),
             Text(
-              'لمعرفة المزيد حول كيفية استخدام التطبيق، اضغط على أيقونة المعلومات (ⓘ) في أعلى الشاشة.',
+             appLocalization.infoIntheAppBar,
               style: textTheme.bodyMedium?.copyWith(
                 color: Colors.grey[700],
                 height: 1.4,

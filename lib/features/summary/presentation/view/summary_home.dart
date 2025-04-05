@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:uicons/uicons.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SummaryHome extends StatelessWidget {
   const SummaryHome({super.key});
@@ -26,7 +27,7 @@ class SummaryHome extends StatelessWidget {
   AppBar _appBar(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
-      title: TitleAppBar(iconData: UIcons.regularRounded.video_plus, text: "Summary"),
+      title: TitleAppBar(iconData: UIcons.regularRounded.video_plus, text: AppLocalizations.of(context)!.videoTranslator),
       actions: [
         Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),

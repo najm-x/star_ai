@@ -4,28 +4,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:uicons/uicons.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class VlidateButtonSetup extends StatelessWidget {
-const VlidateButtonSetup({ super.key });
+  const VlidateButtonSetup({super.key});
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return BlocListener<SummarySetupCubit, SummarySetupState>(
-                    listener: (context, state) {
-                      if (state.state == StateSetUp.error) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("data")));
-                      }
-                      if (state.state == StateSetUp.done) {
-                        context.push(AppRouteName.summaryView, extra: state);
-                      }
-                    },
-                    child: Center(
-                      child: FilledButton.icon(
-                        onPressed: () => context.read<SummarySetupCubit>().validateButton(),
-                        label: Text("Summary"),
-                        icon: Icon(UIcons.regularStraight.magic_wand),
-                      ),
-                    ),
-                  );
+      listener: (context, state) {
+        if (state.state == StateSetUp.error) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("data")));
+        }
+        if (state.state == StateSetUp.done) {
+          context.push(AppRouteName.summaryView, extra: state);
+        }
+      },
+      child: Center(
+        child: FilledButton.icon(
+          onPressed: () => context.read<SummarySetupCubit>().validateButton(),
+          label: Text(AppLocalizations.of(context)!.summarying),
+          icon: Icon(UIcons.regularStraight.magic_wand),
+        ),
+      ),
+    );
   }
 }

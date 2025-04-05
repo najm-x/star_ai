@@ -7,18 +7,19 @@ import 'package:business_tools/features/summary/presentation/view/widgets/summar
 import 'package:business_tools/features/summary/presentation/view/widgets/summary_setup/vlidate_button_setup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SummarySetup extends StatelessWidget {
   const SummarySetup({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(resizeToAvoidBottomInset: false, appBar: _appBar(), body: _body(context));
+    return Scaffold(resizeToAvoidBottomInset: false, appBar: _appBar(context), body: _body(context));
   }
 
-  AppBar _appBar() {
+  AppBar _appBar(BuildContext context) {
     return AppBar(
-      title: const Text('Setup'),
+      title: Text(AppLocalizations.of(context)!.setup),
     );
   }
 
@@ -37,13 +38,13 @@ class SummarySetup extends StatelessWidget {
                 children: [
                   _textFormFiledBuilder(),
                   Divider(),
-                  TitleSetup(title: "Summary Type"),
+                  TitleSetup(title: AppLocalizations.of(context)!.summaryType),
                   _typesBuilder(),
                   Divider(),
-                  TitleSetup(title: "Summary size"),
+                  TitleSetup(title: AppLocalizations.of(context)!.summarySize),
                   SliderSetup(),
                   Divider(),
-                  TitleSetup(title: "Language"),
+                  TitleSetup(title: AppLocalizations.of(context)!.lang),
                   _changeLange(),
                   Divider(),
                   VlidateButtonSetup()
@@ -98,7 +99,7 @@ class SummarySetup extends StatelessWidget {
       buildWhen: (previous, current) => current.state == StateSetUp.getCopedText,
       builder: (context, state) {
         return TextFormFieldCu(
-          hint: "Video Url",
+          hint: AppLocalizations.of(context)!.enterVdUrl,
           isCenter: true,
           icon: IconButton(
               onPressed: () => context.read<SummarySetupCubit>().getCopedText(),

@@ -16,7 +16,7 @@ class SettingsPage extends StatelessWidget {
   }
 
   PreferredSizeWidget _buildAppBar(BuildContext context) {
-    return AppBar(title: const Text("Setting"));
+    return AppBar(title: Text(AppLocalizations.of(context)!.setting));
   }
 
   Widget _buildBody(BuildContext context) {
@@ -59,7 +59,7 @@ class SettingsPage extends StatelessWidget {
   Widget _buildLanguageTile(BuildContext context) {
     return ListTile(
       leading: const Icon(Icons.language),
-      title: const Text('تغيير اللغة'),
+      title: Text(AppLocalizations.of(context)!.changeLang),
       onTap: () => context.push(AppRouteName.languagePage),
     );
   }
@@ -67,7 +67,7 @@ class SettingsPage extends StatelessWidget {
   Widget _buildApiKeyTile(BuildContext context) {
     return ListTile(
       leading: const Icon(Icons.vpn_key),
-      title: const Text('تغيير API Key'),
+      title: Text(AppLocalizations.of(context)!.changeApiKey),
       onTap: () => context.push(AppRouteName.addApiKeyPage),
     );
   }
@@ -75,7 +75,7 @@ class SettingsPage extends StatelessWidget {
   Widget _buildAboutTile(BuildContext context) {
     return ListTile(
       leading: const Icon(Icons.info),
-      title: const Text('حول التطبيق'),
+      title: Text(AppLocalizations.of(context)!.aboutApp),
       onTap: () {
         showAboutDialog(
           context: context,
