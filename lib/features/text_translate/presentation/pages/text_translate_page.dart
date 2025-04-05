@@ -28,12 +28,12 @@ class _TextTranslatePageState extends State<TextTranslatePage> {
 
   @override
   Widget build(BuildContext context) {
+    
     return ShowCaseWidget(
       builder: (context) {
         myContext = context;
         return Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: AppColors.onPrimary,
           floatingActionButton: _floatingActionButton(),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           appBar: _appBar(),

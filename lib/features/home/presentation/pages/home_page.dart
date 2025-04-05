@@ -18,14 +18,14 @@ class HomePage extends StatelessWidget {
               onTap: (value) {
                 context.read<HomeCubit>().changePage(value);
               },
-              currentIndex: context.read<HomeCubit>().slectedPage,
+              currentIndex: state.selectedPage,
               items: [
                 BottomNavigationBarItem(
                     icon: Icon(
                       UIcons.regularRounded.home,
                     ),
                     label: "Home"),
-                BottomNavigationBarItem(icon: Icon(UIcons.regularRounded.home), label: "home"),
+                BottomNavigationBarItem(icon: Icon(UIcons.regularRounded.settings), label: "Setting"),
               ]);
         },
       ),
@@ -39,6 +39,7 @@ class HomePage extends StatelessWidget {
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         return PageView.builder(
+          physics: NeverScrollableScrollPhysics(),
           allowImplicitScrolling: true,
           controller: context.read<HomeCubit>().pageController,
           itemCount: context.read<HomeCubit>().pages.length,

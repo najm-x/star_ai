@@ -39,7 +39,7 @@ class WelcomePage extends StatelessWidget {
           Text(
             applang.desWelcomOnBoarding,
             style: textTheme.titleMedium?.copyWith(
-              color: colorScheme.onBackground.withOpacity(0.8),
+              color: colorScheme.onSurface.withOpacity(0.8),
             ),
           ),
           SizedBox(

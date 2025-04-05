@@ -48,7 +48,8 @@ class MyApp extends StatelessWidget {
             },
             theme: ThemeData(
               fontFamily: "Cairo",
-              colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary, primary: AppColors.primary),
+              colorScheme: ColorScheme.fromSeed(
+                  seedColor: AppColors.primary, primary: AppColors.primary, brightness: Brightness.dark),
               useMaterial3: true,
             ),
           );

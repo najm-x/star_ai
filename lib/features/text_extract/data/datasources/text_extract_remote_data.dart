@@ -43,7 +43,6 @@ class TextExtractRemoteDataImp extends TextExtractRemoteData {
 
   @override
   Future<String> pickImage() async {
-    print("object2");
     FilePickerResult? filePicker = await FilePicker.platform.pickFiles(type: FileType.image, allowCompression: false);
     if (filePicker == null) throw EmptyPathException();
     return filePicker.files.first.path!;

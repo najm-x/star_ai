@@ -11,22 +11,22 @@ class StaticData {
   List<DrawerModel> drawerData = [
     DrawerModel(
         title: AppLocalizations.of(context)!.videoTranslator,
-        description: "",
+        description: AppLocalizations.of(context)!.desYtTrans,
         iconData: UIcons.regularRounded.magic_wand,
         route: AppRouteName.summaryHome),
     DrawerModel(
         title: AppLocalizations.of(context)!.textTranslator,
-        description: "",
+        description: AppLocalizations.of(context)!.destextTrans,
         iconData: Icons.translate_rounded,
         route: AppRouteName.textTranslatorPage),
     DrawerModel(
         title: AppLocalizations.of(context)!.spellChecker,
-        description: "",
+        description: AppLocalizations.of(context)!.desSpellChecking,
         iconData: Icons.spellcheck_rounded,
         route: AppRouteName.spellCheckerPage),
     DrawerModel(
         title: AppLocalizations.of(context)!.textextract,
-        description: "",
+        description: AppLocalizations.of(context)!.desTextExtract,
         iconData: Icons.image_search_rounded,
         route: AppRouteName.textExtractPage),
   ];
