@@ -24,8 +24,9 @@ class HomePage extends StatelessWidget {
                     icon: Icon(
                       UIcons.regularRounded.home,
                     ),
-                    label: "Home"),
-                BottomNavigationBarItem(icon: Icon(UIcons.regularRounded.settings), label: "Setting"),
+                    label: AppLocalizations.of(context)!.home),
+                BottomNavigationBarItem(
+                    icon: Icon(UIcons.regularRounded.settings), label: AppLocalizations.of(context)!.setting),
               ]);
         },
       ),

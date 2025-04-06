@@ -2,7 +2,7 @@ import 'package:business_tools/features/language/data/models/languages_model.dar
 
 class StaticDataLanguage {
   static List<LanguagesModel> languages = [
-    LanguagesModel(lang: "العربية",       code: "ar"),
+    LanguagesModel(lang: "العربية",       code:  "ar"),
     LanguagesModel(lang: "English",        code: "en"),
     LanguagesModel(lang: "中國語",          code: "zh"),
     LanguagesModel(lang: "हिन्दी",           code: "hi"),
