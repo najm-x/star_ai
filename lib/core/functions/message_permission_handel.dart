@@ -9,7 +9,7 @@ Future<String> messagePremissionHandel(BuildContext context) async {
   AndroidDeviceInfo androidDeviceInfo = await deviceInfoPlugin.androidInfo;
   if (Platform.isAndroid && androidDeviceInfo.version.sdkInt > 29) {
     // ignore: use_build_context_synchronously
-    return AppLocalizations.of(context)!.permissionRequiresA11;
+    return AppLocalizations.of(context)!.permissionRequires;
   } else {
     // ignore: use_build_context_synchronously
     return AppLocalizations.of(context)!.permissionRequires;

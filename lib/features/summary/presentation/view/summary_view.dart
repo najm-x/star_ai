@@ -56,7 +56,7 @@ class _SummaryViewState extends State<SummaryView> {
               ));
             }
             if (state.state == ViewSummaryStates.erroretSummary) {
-              showApiKeyDialog(context) ;
+              showApiKeyDialog(context);
             }
           },
         ),
@@ -89,9 +89,8 @@ class _SummaryViewState extends State<SummaryView> {
                 !didPop ? context.read<SummaryViewCubit>().save() : {};
               },
               child: Scaffold(
-                bottomSheet: Container(
+                bottomSheet: SizedBox(
                   width: double.maxFinite,
-                  color: Colors.white,
                   child: AdsBannerWidget(
                     adSize: AdSize.largeBanner,
                   ),

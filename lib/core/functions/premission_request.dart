@@ -7,7 +7,7 @@ Future<void> requsetPremission() async {
   final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
   AndroidDeviceInfo androidDeviceInfo = await deviceInfoPlugin.androidInfo;
   if (Platform.isAndroid && androidDeviceInfo.version.sdkInt > 29) {
-    await Permission.manageExternalStorage.request();
+    await Permission.storage.request();
   } else {
     await Permission.storage.request();
   }

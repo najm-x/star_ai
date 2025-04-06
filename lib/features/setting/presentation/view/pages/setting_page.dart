@@ -1,5 +1,6 @@
 import 'package:business_tools/core/constant/app_images.dart';
 import 'package:business_tools/core/constant/app_routes_name.dart';
+import 'package:business_tools/core/functions/open_url.dart';
 import 'package:business_tools/features/language/presentation/bloc/cubit/language_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -121,12 +122,69 @@ class SettingsPage extends StatelessWidget {
       onTap: () {
         showAboutDialog(
           context: context,
-          applicationName: 'اسم التطبيق',
-          applicationVersion: '1.0.0',
-          applicationLegalese: 'حقوق النشر © 2025',
-          children: [const Text('هذا التطبيق تم تطويره بواسطة المطور فلان.')],
+          applicationName: AppLocalizations.of(context)!.appName,
+          applicationVersion: '1.2.0',
+          applicationLegalese: '© 2025',
+          children: [
+            Text(
+              AppLocalizations.of(context)!.appCreator,
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 16),
+            Wrap(
+              spacing: 16,
+              runSpacing: 16,
+              alignment: WrapAlignment.center,
+              children: [
+                _ContactIcon(
+                  icon: Icons.email,
+                  label: 'Gmail',
+                  url: 'mailto:nagm113nagm@gmail.com',
+                ),
+                _ContactIcon(
+                  icon: Icons.chat,
+                  label: 'Telegram',
+                  url: 'https://t.me/Nagm_nagm',
+                ),
+                _ContactIcon(
+                  icon: Icons.code,
+                  label: 'GitHub',
+                  url: 'https://github.com/najm-flutter',
+                ),
+              ],
+            ),
+          ],
         );
       },
+    );
+  }
+}
+
+class _ContactIcon extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final String url;
+
+  const _ContactIcon({
+    required this.icon,
+    required this.label,
+    required this.url,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () async {
+        openUrl(url);
+      },
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 32),
+          SizedBox(height: 4),
+          Text(label),
+        ],
+      ),
     );
   }
 }

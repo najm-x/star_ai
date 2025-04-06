@@ -44,9 +44,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:business_tools/core/services/app_services.dart' as id;
 
 final goRouter = GoRouter(
-  initialLocation: AppRouteName.home,
+  initialLocation: AppRouteName.onBoarding,
   routes: [
-    _mainGoRoute(),
+    _checkGoRoute(),
+    // _mainGoRoute(),
     _chooseTransTypeRoute(),
     _homeRoute(),
     _videoTranslatorRoute(),
@@ -67,6 +68,16 @@ final goRouter = GoRouter(
 );
 
 GoRoute _mainGoRoute() {
+  return GoRoute(
+    path: AppRouteName.checkPage,
+    builder: (context, state) => BlocProvider(
+      create: (context) => id.sl<CheckCubit>()..check(),
+      child: const CheckPage(),
+    ),
+  );
+}
+
+GoRoute _checkGoRoute() {
   return GoRoute(
     path: AppRouteName.checkPage,
     builder: (context, state) => BlocProvider(
