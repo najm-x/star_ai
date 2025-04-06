@@ -1,43 +1,35 @@
-import 'dart:io';
 
-import 'package:business_tools/core/functions/message_permission_handel.dart';
-import 'package:business_tools/core/functions/premission_request.dart';
-import 'package:business_tools/core/public/widgets/dialog_permission.dart';
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Future<bool> checkPermission(BuildContext context) async {
-  bool isGranted;
-  final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
-  AndroidDeviceInfo androidDeviceInfo = await deviceInfoPlugin.androidInfo;
-  if (Platform.isAndroid && androidDeviceInfo.version.sdkInt > 29) {
-    isGranted = await Permission.manageExternalStorage.isGranted;
-  } else {
-    isGranted = await Permission.storage.isGranted;
-  }
+  // bool isGranted;
+  // final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
+  // AndroidDeviceInfo androidDeviceInfo = await deviceInfoPlugin.androidInfo;
+  // if (Platform.isAndroid && androidDeviceInfo.version.sdkInt > 29) {
+  //   isGranted = await Permission.manageExternalStorage.isGranted;
+  // } else {
+  //   isGranted = await Permission.storage.isGranted;
+  // }
 
-  if (isGranted) {
-    return isGranted;
-  }
-  // ignore: use_build_context_synchronously
-  String permissionMessage = await messagePremissionHandel(context);
-  showDialog(
-    // ignore: use_build_context_synchronously
-    context: context,
-    builder: (context) {
-      return DialogPermission(
-        title: AppLocalizations.of(context)!.accessRequired,
-        permissionMessage: permissionMessage,
-        iconData: Icons.folder_rounded,
-        onPressed: () async {
-          context.pop();
-          await requsetPremission();
-        },
-      );
-    },
-  );
-  return false;
+  // if (isGranted) {
+  //   return isGranted;
+  // }
+  // // ignore: use_build_context_synchronously
+  // String permissionMessage = await messagePremissionHandel(context);
+  // showDialog(
+  //   // ignore: use_build_context_synchronously
+  //   context: context,
+  //   builder: (context) {
+  //     return DialogPermission(
+  //       title: AppLocalizations.of(context)!.accessRequired,
+  //       permissionMessage: permissionMessage,
+  //       iconData: Icons.folder_rounded,
+  //       onPressed: () async {
+  //         context.pop();
+  //         await requsetPremission();
+  //       },
+  //     );
+  //   },
+  // );
+  return true;
 }
