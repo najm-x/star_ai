@@ -1,5 +1,6 @@
 import 'package:business_tools/core/constant/app_images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HowToUsePage extends StatelessWidget {
   const HowToUsePage({super.key});
@@ -9,7 +10,7 @@ class HowToUsePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('How to Use'),
+        title: Text(AppLocalizations.of(context)!.howToUseTitle),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
@@ -18,19 +19,27 @@ class HowToUsePage extends StatelessWidget {
           spacing: 20,
           children: [
             InstructionText(
-              text:
-                  'Welcome to the How to Use page! This guide will show you how to get started with video summarization.',
+              text: AppLocalizations.of(context)!.welcomeText,
             ),
             SizedBox(height: 4.0),
-            MethodTitle(title: '1: Copy Link'),
-            InstructionText(text: '1. Tap "Share" button below the video on the app or webpage.'),
+            MethodTitle(
+              title: AppLocalizations.of(context)!.step1Title,
+            ),
+            InstructionText(
+              text: AppLocalizations.of(context)!.step1Instruction1,
+            ),
             InstructionImage(imagePath: AppImages.share),
-            InstructionText(text: '2. Select "Copy Link".'),
+            InstructionText(
+              text: AppLocalizations.of(context)!.step1Instruction2,
+            ),
             InstructionImage(imagePath: AppImages.copy),
-            InstructionText(text: '3. Tap on the "Add" icon to add a new summarization.'),
+            InstructionText(
+              text: AppLocalizations.of(context)!.step1Instruction3,
+            ),
             InstructionImage(imagePath: AppImages.add),
             InstructionText(
-                text: '4. Paste the video link, select the type of summary, its size, and the language you prefer.'),
+              text: AppLocalizations.of(context)!.step1Instruction4,
+            ),
             InstructionImage(imagePath: AppImages.summary),
           ],
         ),

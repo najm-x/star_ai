@@ -1,3 +1,4 @@
+import 'package:business_tools/core/constant/app_routes_name.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -28,7 +29,7 @@ class CardHomeWidget extends StatelessWidget {
       color: colorScheme.surface,
       clipBehavior: Clip.antiAlias,
       child: InkWell(
-        onTap: () => context.push(routeName),
+        onTap: () =>  routeName == AppRouteName.summaryHome? context.go(routeName):context.push(routeName),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Row(

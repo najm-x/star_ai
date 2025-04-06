@@ -17,9 +17,9 @@ class SummaryHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      canPop: false,
-        onPopInvokedWithResult: (didPop, result) {
-         context.go(AppRouteName.home);
+        canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+          context.go(AppRouteName.home);
         },
         child: Scaffold(
           floatingActionButton: _floatActionButton(context),
