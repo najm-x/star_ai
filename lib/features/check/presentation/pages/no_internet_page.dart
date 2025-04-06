@@ -1,3 +1,4 @@
+import 'package:business_tools/core/constant/app_routes_name.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -28,7 +29,7 @@ class NoInternetPage extends StatelessWidget {
             height: 20,
           ),
           OutlinedButton(
-              onPressed: () => context.pushReplacement('/'), child: Text(AppLocalizations.of(context)!.tryAgain))
+              onPressed: () => context.go(AppRouteName.checkPage), child: Text(AppLocalizations.of(context)!.tryAgain))
         ],
       ),
     );

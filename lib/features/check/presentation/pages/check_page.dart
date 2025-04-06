@@ -4,6 +4,7 @@ import 'package:business_tools/features/check/presentation/bloc/check/check_cubi
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CheckPage extends StatelessWidget {
   const CheckPage({super.key});
@@ -20,13 +21,17 @@ class CheckPage extends StatelessWidget {
             context.pushReplacement(AppRouteName.onBoarding);
           }
           if (state.status == CheckStatus.apiKeyWorking) {
-            context.pushReplacement(AppRouteName.onBoarding);
+            context.go(AppRouteName.onBoarding);
+            ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
+              content: Text(AppLocalizations.of(context)!.appWorkDone),
+              backgroundColor: Theme.of(context).colorScheme.secondary,
+            ));
           }
           if (state.status == CheckStatus.apiKeyDontWorking) {
             context.pushReplacement(AppRouteName.addApiKeyPage);
           }
         },
-        child: const Center(child:  Loading()),
+        child: const Center(child: Loading()),
       ),
     );
   }

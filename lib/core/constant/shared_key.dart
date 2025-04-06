@@ -8,5 +8,7 @@ class SharedKey {
   static const String isTextExtractShowed= "isTextExtractShowed" ;
   static const String langCode= "langCode" ;
   static const String adsShow= "adsShow" ;
+  static const String themeName= "themeName" ;
+
 
 }

@@ -16,18 +16,24 @@ class SummaryHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: _floatActionButton(context),
-      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
-      appBar: _appBar(context),
-      body: _body(),
-    );
+    return PopScope(
+      canPop: false,
+        onPopInvokedWithResult: (didPop, result) {
+         context.go(AppRouteName.home);
+        },
+        child: Scaffold(
+          floatingActionButton: _floatActionButton(context),
+          floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+          appBar: _appBar(context),
+          body: _body(),
+        ));
   }
 
   AppBar _appBar(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
-      title: TitleAppBar(iconData: UIcons.regularRounded.video_plus, text: AppLocalizations.of(context)!.videoTranslator),
+      title:
+          TitleAppBar(iconData: UIcons.regularRounded.video_plus, text: AppLocalizations.of(context)!.videoTranslator),
       actions: [
         Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),

@@ -68,7 +68,7 @@ final goRouter = GoRouter(
 
 GoRoute _mainGoRoute() {
   return GoRoute(
-    path: '/',
+    path: AppRouteName.checkPage,
     builder: (context, state) => BlocProvider(
       create: (context) => id.sl<CheckCubit>()..check(),
       child: const CheckPage(),

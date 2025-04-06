@@ -15,6 +15,8 @@ class AppRouteName {
   static String summarySetup = '/summarySetup';
   static String summaryView = '/summaryView';
   static String howToUse = '/howToUse';
+  static String checkPage = '/checkPage';
+
 
 
 

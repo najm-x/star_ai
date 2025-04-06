@@ -1,6 +1,6 @@
 part of 'language_cubit.dart';
 
-enum LanguageStatus { init, success }
+enum LanguageStatus { init, success, successChangTheme }
 
 final class LanguageState extends Equatable {
   final LanguageStatus status;

@@ -1,8 +1,11 @@
 import 'package:business_tools/core/constant/app_images.dart';
 import 'package:business_tools/core/constant/app_routes_name.dart';
+import 'package:business_tools/features/language/presentation/bloc/cubit/language_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
+import 'package:uicons/uicons.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -27,8 +30,10 @@ class SettingsPage extends StatelessWidget {
           _buildProfileSection(context),
           const Divider(),
           _buildLanguageTile(context),
-          _buildApiKeyTile(context),
+          _buildThemeTile(context),
           _buildAboutTile(context),
+          Spacer(),
+          _buildTrubleShotting(context),
         ],
       ),
     );
@@ -64,11 +69,48 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-  Widget _buildApiKeyTile(BuildContext context) {
+  Widget _buildThemeTile(BuildContext context) {
     return ListTile(
-      leading: const Icon(Icons.vpn_key),
-      title: Text(AppLocalizations.of(context)!.changeApiKey),
-      onTap: () => context.push(AppRouteName.addApiKeyPage),
+      leading: const Icon(Icons.style),
+      title: Text(AppLocalizations.of(context)!.changTheme),
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              content: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ListTile(
+                      leading: const Icon(Icons.sunny),
+                      title: Text(AppLocalizations.of(context)!.light),
+                      onTap: () {
+                        context.read<LanguageCubit>().changeTheme("light");
+                      }),
+                  ListTile(
+                      leading: Icon(UIcons.regularStraight.moon),
+                      title: Text(AppLocalizations.of(context)!.dark),
+                      onTap: () {
+                        context.read<LanguageCubit>().changeTheme("dark");
+                      })
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  Widget _buildTrubleShotting(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 20),
+        child: FilledButton(
+            onPressed: () => context.push(AppRouteName.checkPage),
+            child: Text(AppLocalizations.of(context)!.trubleShotting)),
+      ),
     );
   }
 

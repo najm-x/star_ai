@@ -14,4 +14,10 @@ class LanguageCubit extends Cubit<LanguageState> {
     await sl<SharedPreferences>().setString(SharedKey.langCode, langCode);
     emit(state.copyWith(status: LanguageStatus.success, value: langCode));
   }
+
+  changeTheme(String themeName) async {
+    emit(state.copyWith(status: LanguageStatus.init));
+    await sl<SharedPreferences>().setString(SharedKey.themeName, themeName);
+    emit(state.copyWith(status: LanguageStatus.successChangTheme));
+  }
 }

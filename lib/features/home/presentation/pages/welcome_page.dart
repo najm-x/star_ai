@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 import 'package:business_tools/features/home/data/datasource/static/static_data.dart';
 import 'package:business_tools/features/home/data/models/drawer_model.dart';
 import 'package:business_tools/features/home/presentation/widgets/card_home_widget.dart';
@@ -29,7 +28,7 @@ class WelcomePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Welcome...!',
+            AppLocalizations.of(context)!.welcome,
             style: textTheme.headlineMedium?.copyWith(
               color: colorScheme.primary,
               fontWeight: FontWeight.bold,
@@ -67,6 +66,4 @@ class WelcomePage extends StatelessWidget {
       ),
     );
   }
-
-  
 }

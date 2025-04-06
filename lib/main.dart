@@ -1,10 +1,12 @@
 import 'package:business_tools/core/app_routes.dart';
 import 'package:business_tools/core/constant/app_colors.dart';
+import 'package:business_tools/core/constant/shared_key.dart';
 import 'package:business_tools/core/functions/handel_supported_locales.dart';
 import 'package:business_tools/features/language/presentation/bloc/cubit/language_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:upgrader/upgrader.dart';
 import 'core/services/app_services.dart' as id;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -39,7 +41,7 @@ class MyApp extends StatelessWidget {
                 navigatorKey: goRouter.routerDelegate.navigatorKey,
                 upgrader: Upgrader(
                     minAppVersion: "1.0.0",
-                    durationUntilAlertAgain: const Duration(seconds: 3),
+                    durationUntilAlertAgain: const Duration(seconds: 30),
                     storeController: UpgraderStoreController(
                         onAndroid: () =>
                             UpgraderAppcastStore(appcastURL: "https://najm-flutter.github.io/Todo-flutter/new.xml"))),
@@ -49,7 +51,13 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               fontFamily: "Cairo",
               colorScheme: ColorScheme.fromSeed(
-                  seedColor: AppColors.primary, primary: AppColors.primary, brightness: Brightness.dark),
+                  seedColor: AppColors.primary,
+                  primary: AppColors.primary,
+                  brightness: id.sl<SharedPreferences>().getString(SharedKey.themeName) == null
+                      ? Brightness.dark
+                      : id.sl<SharedPreferences>().getString(SharedKey.themeName) == "dark"
+                          ? Brightness.dark
+                          : Brightness.light),
               useMaterial3: true,
             ),
           );
