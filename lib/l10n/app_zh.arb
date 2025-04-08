@@ -3,7 +3,6 @@
     "appName": "STAR AI",
     "home": "首页",
     "extract": "提取",
-    "videoTranslator": "视频翻译",
     "textTranslator": "文本翻译",
     "spellChecker": "拼写检查",
     "textextract": "提取文本",
@@ -51,7 +50,6 @@
     "titleWelcomOnBoarding": "欢迎使用 [STAR AI]！",
     "desWelcomOnBoarding": "了解我们的智能工具如何帮助您轻松高效地完成任务。",
     "titleYtTrans": "YouTube 视频翻译",
-    "desYtTrans": "借助人工智能自动翻译功能，克服语言障碍，翻译 YouTube 视频。",
     "titletextTrans": "文本翻译",
     "destextTrans": "使用我们支持人工智能的工具，快速准确地将您的文本翻译成多种语言",
     "titleSpellChecking": "拼写检查",
@@ -133,5 +131,7 @@
     "step1Instruction2": "2. 选择“复制链接”。",
     "step1Instruction3": "3. 点击“添加”图标以添加新的摘要。",
     "step1Instruction4": "4. 粘贴视频链接，选择摘要类型和大小，以及您喜欢的语言。",
-    "appCreator": "此应用程序由Najm Al-Din开发。如果您遇到任何问题或有改进应用程序的建议，我们很乐意通过以下方式收到您的来信:"
+    "appCreator": "此应用程序由Najm Al-Din开发。如果您遇到任何问题或有改进应用程序的建议，我们很乐意通过以下方式收到您的来信:" , 
+    "videoTranslator": "YouTube 摘要",
+  "desYtTrans": "无需观看完整视频，即可快速了解任何 YouTube 视频的要点摘要。"
 }

@@ -3,7 +3,6 @@
   "appName": "STAR AI",
   "home": "Startseite",
   "extract": "Extrahieren",
-  "videoTranslator": "Video-Übersetzer",
   "textTranslator": "Text-Übersetzer",
   "spellChecker": "Rechtschreibprüfung",
   "textextract": "Text extrahieren",
@@ -51,7 +50,6 @@
   "titleWelcomOnBoarding": "Willkommen bei [STAR AI]!",
   "desWelcomOnBoarding": "Entdecken Sie, wie unsere intelligenten Tools Ihnen helfen können, Ihre Aufgaben einfach und effizient zu erledigen.",
   "titleYtTrans": "YouTube-Videoübersetzung",
-  "desYtTrans": "Überwinden Sie Sprachbarrieren und übersetzen Sie YouTube-Videos mit automatischen KI-gestützten Übersetzungen.",
   "titletextTrans": "Textübersetzung",
   "destextTrans": "Übersetzen Sie Ihre Texte schnell und genau in mehrere Sprachen mit unseren KI-gestützten Tools.",
   "titleSpellChecking": "Rechtschreibprüfung",
@@ -102,7 +100,7 @@
   "translate": "Übersetzen",
   "errorShowAds": "Beim Laden der Anzeige ist ein Fehler aufgetreten. Bitte laden Sie die Seite neu.",
   "uploadFile": "Datei hochladen",
-  "translateExtracted": "Die Übersetzung wird aus der Datei extrahiert" , 
+  "translateExtracted": "Die Übersetzung wird aus der Datei extrahiert",
   "setting": "Einstellungen",
   "changeLang": "Sprache ändern",
   "aboutApp": "Über die App",
@@ -133,6 +131,7 @@
   "step1Instruction2": "2. Wählen Sie \"Link kopieren\".",
   "step1Instruction3": "3. Tippen Sie auf das Symbol \"Hinzufügen\", um eine neue Zusammenfassung hinzuzufügen.",
   "step1Instruction4": "4. Fügen Sie den Videolink ein, wählen Sie den Zusammenfassungstyp und die Größe sowie die gewünschte Sprache aus.",
-  "appCreator": "Diese Anwendung wurde von Najm Al-Din entwickelt. Wenn Sie auf Probleme stoßen oder Vorschläge zur Verbesserung der Anwendung haben, können Sie sich gerne über folgende Adresse an uns wenden:"
-
+  "appCreator": "Diese Anwendung wurde von Najm Al-Din entwickelt. Wenn Sie auf Probleme stoßen oder Vorschläge zur Verbesserung der Anwendung haben, können Sie sich gerne über folgende Adresse an uns wenden:",
+  "videoTranslator": "YouTube-Zusammenfasser",
+  "desYtTrans": "Erhalten Sie eine schnelle Zusammenfassung der wichtigsten Punkte in jedem YouTube-Video, ohne das ganze Video ansehen zu müssen."
 }

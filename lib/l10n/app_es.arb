@@ -3,7 +3,6 @@
   "appName": "STAR AI",
   "home": "Inicio",
   "extract": "Extraer",
-  "videoTranslator": "Traductor de Video",
   "textTranslator": "Traductor de Texto",
   "spellChecker": "Corrector Ortográfico",
   "textextract": "Extraer Texto",
@@ -51,7 +50,6 @@
   "titleWelcomOnBoarding": "¡Bienvenido a [STAR AI]!",
   "desWelcomOnBoarding": "Descubre cómo nuestras herramientas inteligentes pueden ayudarte a realizar tus tareas de forma fácil y eficiente.",
   "titleYtTrans": "Traducción de Vídeos de YouTube",
-  "desYtTrans": "Supera la barrera del idioma y traduce vídeos de YouTube con subtítulos automáticos generados por IA.",
   "titletextTrans": "Traducción de Texto",
   "destextTrans": "Traduce tus textos a múltiples idiomas con rapidez y precisión utilizando nuestras herramientas potenciadas por IA.",
   "titleSpellChecking": "Revisión Ortográfica",
@@ -133,6 +131,8 @@
   "step1Instruction2": "2. Elige \"Copiar enlace\".",
   "step1Instruction3": "3. Toca el icono \"Agregar\" para agregar un nuevo resumen.",
   "step1Instruction4": "4. Pega el enlace del video, elige el tipo y tamaño del resumen, y el idioma que prefieras.",
-  "appCreator": "Esta aplicación fue desarrollada por Najm Al-Din. Si encuentras algún problema o tienes sugerencias para mejorar la aplicación, estaremos encantados de saber de ti a través de:"
+  "appCreator": "Esta aplicación fue desarrollada por Najm Al-Din. Si encuentras algún problema o tienes sugerencias para mejorar la aplicación, estaremos encantados de saber de ti a través de:", 
+   "videoTranslator": "यूट्यूब सारांशक",
+  "desYtTrans": "पूरा वीडियो देखे बिना किसी भी यूट्यूब वीडियो के मुख्य बिंदुओं का त्वरित सारांश प्राप्त करें।"
 
 }

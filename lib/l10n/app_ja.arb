@@ -3,7 +3,6 @@
   "appName": "STAR AI",
   "home": "ホーム",
   "extract": "抽出",
-  "videoTranslator": "動画翻訳",
   "textTranslator": "テキスト翻訳",
   "spellChecker": "スペルチェッカー",
   "textextract": "テキスト抽出",
@@ -51,7 +50,6 @@
   "titleWelcomOnBoarding": "[STAR AI]へようこそ！",
   "desWelcomOnBoarding": "私たちのスマートツールが、あなたのタスクを簡単かつ効率的に完了させる方法をご覧ください。",
   "titleYtTrans": "YouTube動画翻訳",
-  "desYtTrans": "言語の壁を乗り越え、AIによる自動翻訳でYouTube動画を翻訳しましょう。",
   "titletextTrans": "テキスト翻訳",
   "destextTrans": "AIを搭載したツールを使用して、テキストを複数の言語に迅速かつ正確に翻訳します。",
   "titleSpellChecking": "スペルチェック",
@@ -133,5 +131,7 @@
   "step1Instruction2": "2. 「リンクをコピー」を選択します。",
   "step1Instruction3": "3. 「追加」アイコンをタップして、新しい要約を追加します。",
   "step1Instruction4": "4. ビデオのリンクを貼り付け、要約のタイプとサイズ、および希望する言語を選択します。",
-  "appCreator": "このアプリケーションはNajm Al-Dinによって開発されました。問題が発生した場合や、アプリケーションを改善するための提案がある場合は、以下までご連絡ください。"
+  "appCreator": "このアプリケーションはNajm Al-Dinによって開発されました。問題が発生した場合や、アプリケーションを改善するための提案がある場合は、以下までご連絡ください。" , 
+  "videoTranslator": "YouTubeサマライザー",
+  "desYtTrans": "YouTubeビデオ全体のキーポイントを視聴しなくてもすばやく要約できます。"
 }

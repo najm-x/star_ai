@@ -3,7 +3,6 @@
   "appName": "STAR AI",
   "home": "Início",
   "extract": "Extrair",
-  "videoTranslator": "Tradutor de Vídeo",
   "textTranslator": "Tradutor de Texto",
   "spellChecker": "Verificador Ortográfico",
   "textextract": "Extrair Texto",
@@ -51,7 +50,6 @@
   "titleWelcomOnBoarding": "Bem-vindo ao [STAR AI]!",
   "desWelcomOnBoarding": "Descubra como nossas ferramentas inteligentes podem ajudar você a realizar suas tarefas com facilidade e eficiência.",
   "titleYtTrans": "Tradução de Vídeos do YouTube",
-  "desYtTrans": "Supere a barreira do idioma e traduza vídeos do YouTube com legendas automáticas geradas por IA.",
   "titletextTrans": "Tradução de Texto",
   "destextTrans": "Traduza seus textos para vários idiomas com rapidez e precisão usando nossas ferramentas baseadas em IA.",
   "titleSpellChecking": "Verificação Ortográfica",
@@ -102,7 +100,7 @@
   "translate": "Traduzir",
   "errorShowAds": "Ocorreu um erro ao carregar o anúncio. Recarregue a página.",
   "uploadFile": "Carregar arquivo",
-  "translateExtracted": "A tradução está sendo extraída do arquivo" , 
+  "translateExtracted": "A tradução está sendo extraída do arquivo",
   "setting": "Configurações",
   "changeLang": "Mudar idioma",
   "aboutApp": "Sobre o aplicativo",
@@ -133,6 +131,7 @@
   "step1Instruction2": "2. Escolha \"Copiar link\".",
   "step1Instruction3": "3. Toque no ícone \"Adicionar\" para adicionar um novo resumo.",
   "step1Instruction4": "4. Cole o link do vídeo, escolha o tipo e tamanho do resumo e o idioma de sua preferência.",
-  "appCreator": "Este aplicativo foi desenvolvido por Najm Al-Din. Se você encontrar algum problema ou tiver sugestões para melhorar o aplicativo, ficaremos felizes em ouvir de você através de:"
-
+  "appCreator": "Este aplicativo foi desenvolvido por Najm Al-Din. Se você encontrar algum problema ou tiver sugestões para melhorar o aplicativo, ficaremos felizes em ouvir de você através de:",
+  "videoTranslator": "Resumidor de YouTube",
+  "desYtTrans": "Obtenha um resumo rápido dos pontos-chave de qualquer vídeo do YouTube, sem ter que assistir a ele por completo."
 }

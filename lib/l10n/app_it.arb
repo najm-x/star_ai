@@ -3,7 +3,6 @@
   "appName": "STAR AI",
   "home": "Home",
   "extract": "Estrai",
-  "videoTranslator": "Traduttore Video",
   "textTranslator": "Traduttore Testo",
   "spellChecker": "Correttore Ortografico",
   "textextract": "Estrazione Testo",
@@ -51,7 +50,6 @@
   "titleWelcomOnBoarding": "Benvenuto in [STAR AI]!",
   "desWelcomOnBoarding": "Scopri come i nostri strumenti intelligenti possono aiutarti a svolgere le tue attività con facilità ed efficienza.",
   "titleYtTrans": "Traduzione Video YouTube",
-  "desYtTrans": "Supera la barriera linguistica e traduci i video di YouTube con traduzioni automatiche basate sull'intelligenza artificiale.",
   "titletextTrans": "Traduzione Testo",
   "destextTrans": "Traduci i tuoi testi in più lingue in modo rapido e accurato con i nostri strumenti basati sull'intelligenza artificiale.",
   "titleSpellChecking": "Controllo Ortografico",
@@ -133,5 +131,7 @@
   "step1Instruction2": "2. Scegli \"Copia link\".",
   "step1Instruction3": "3. Tocca l'icona \"Aggiungi\" per aggiungere un nuovo riassunto.",
   "step1Instruction4": "4. Incolla il link del video, scegli il tipo e le dimensioni del riassunto e la lingua che preferisci.",
-  "appCreator": "Questa applicazione è stata sviluppata da Najm Al-Din. Se riscontri problemi o hai suggerimenti per migliorare l'applicazione, saremo lieti di ricevere tue notizie tramite:"
+  "appCreator": "Questa applicazione è stata sviluppata da Najm Al-Din. Se riscontri problemi o hai suggerimenti per migliorare l'applicazione, saremo lieti di ricevere tue notizie tramite:" , 
+    "videoTranslator": "Riassuntore di YouTube",
+  "desYtTrans": "Ottieni un riepilogo rapido dei punti chiave di qualsiasi video di YouTube, senza doverlo guardare per intero."
 }
