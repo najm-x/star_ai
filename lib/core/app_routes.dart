@@ -47,7 +47,6 @@ final goRouter = GoRouter(
   initialLocation: AppRouteName.onBoarding,
   routes: [
     _checkGoRoute(),
-    // _mainGoRoute(),
     _chooseTransTypeRoute(),
     _homeRoute(),
     _videoTranslatorRoute(),
@@ -67,15 +66,6 @@ final goRouter = GoRouter(
   ],
 );
 
-GoRoute _mainGoRoute() {
-  return GoRoute(
-    path: AppRouteName.checkPage,
-    builder: (context, state) => BlocProvider(
-      create: (context) => id.sl<CheckCubit>()..check(),
-      child: const CheckPage(),
-    ),
-  );
-}
 
 GoRoute _checkGoRoute() {
   return GoRoute(

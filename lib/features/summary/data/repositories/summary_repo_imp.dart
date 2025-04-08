@@ -1,5 +1,6 @@
 import 'package:business_tools/core/errors/exceptions.dart';
 import 'package:business_tools/core/errors/failure.dart';
+import 'package:business_tools/core/functions/check_internet.dart';
 import 'package:business_tools/features/summary/data/models/export_type_mod.dart';
 import 'package:business_tools/features/summary/data/source/local/summary_local_source.dart';
 import 'package:business_tools/features/summary/data/source/summary_remote_source.dart';
@@ -17,6 +18,9 @@ class SummaryRepoImp implements SummaryRepo {
   @override
   Future<Either<Failure, SummaryEntity>> summary(
       String text, String lang, String typeSummary, String lengthSummary, String titleVd) async {
+    if (!(await checkInternet())) {
+      return left(InternetFailure()) ; 
+    }
     try {
       final response = await remoteSource.summary(text, lang, typeSummary, lengthSummary, titleVd);
       return right(response);
@@ -30,6 +34,9 @@ class SummaryRepoImp implements SummaryRepo {
 
   @override
   Future<Either<Failure, VdInfoEntity>> vdInfoEctract(String vdId) async {
+    if (!(await checkInternet())) {
+      return left(InternetFailure()) ; 
+    }
     try {
       final response = await remoteSource.vdInfoEctract(vdId);
       return right(response);

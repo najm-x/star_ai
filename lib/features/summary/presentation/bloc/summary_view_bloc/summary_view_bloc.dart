@@ -35,7 +35,7 @@ class SummaryViewBloc extends Bloc<SummaryViewEvent, SummaryViewState> {
   }
 
   SummaryViewState _getVdSubtitleHndeling(Either<Failure, VdInfoEntity> fold) {
-    return fold.fold((ifLeft) => state.copyWith(state: ViewSummaryStates.errorGetVdInfo),
+    return fold.fold((ifLeft) => state.copyWith(state: ifLeft is InternetFailure ? ViewSummaryStates.networkError : ViewSummaryStates.errorGetVdInfo),
         (ifRight) => state.copyWith(state: ViewSummaryStates.successGetVdInfo, vdInfoMod: ifRight as VdInfoMod));
   }
 
@@ -47,7 +47,7 @@ class SummaryViewBloc extends Bloc<SummaryViewEvent, SummaryViewState> {
   }
 
   SummaryViewState _getSummaryHndeling(Either<Failure, SummaryEntity> fold) {
-    return fold.fold((ifLeft) => state.copyWith(state: ViewSummaryStates.erroretSummary),
+    return fold.fold((ifLeft) => state.copyWith(state: ifLeft is InternetFailure ? ViewSummaryStates.networkError : ViewSummaryStates.erroretSummary),
         (ifRight) => state.copyWith(state: ViewSummaryStates.successGetSummary, summaryMod: ifRight as SummaryMod));
   }
 

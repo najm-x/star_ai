@@ -1,6 +1,7 @@
 import 'package:business_tools/core/constant/app_routes_name.dart';
 import 'package:business_tools/core/functions/copy_text.dart';
 import 'package:business_tools/core/public/dialogs/show_api_key_dialog.dart';
+import 'package:business_tools/core/public/dialogs/show_no_internet_dialog.dart';
 import 'package:business_tools/features/ads/presentation/bloc/bloc/ads_bloc.dart';
 import 'package:business_tools/features/ads/presentation/widgets/ads_banner_widget.dart';
 import 'package:business_tools/features/summary/presentation/bloc/cubit/summary_setup_cubit.dart';
@@ -34,9 +35,12 @@ class _SummaryViewState extends State<SummaryView> {
         context.read<SummaryViewBloc>().add(GetSummaryStoredEvent(id: GoRouterState.of(context).extra as int));
       } else {
         data = GoRouterState.of(context).extra as SummarySetupState;
+       
         context.read<SummaryViewBloc>().add(GetVdInfoEvent(vdUrl: (data).vdUrl, vdLang: data.lang));
       }
-      itemBuild++;
+      setState(() {
+        itemBuild++;
+      });
     }
 
     return MultiBlocListener(
@@ -50,13 +54,16 @@ class _SummaryViewState extends State<SummaryView> {
             }
             if (state.state == ViewSummaryStates.errorGetVdInfo) {
               ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
-                content: Text("ERROR: WE CAN'T CREATE SUNNARY FOR THIS VIDEO"),
+                content: Text("ERROR: WE CAN'T CREATE SUMMARY FOR THIS VIDEO"),
                 backgroundColor: Theme.of(context).colorScheme.error,
                 duration: Duration(seconds: 5),
               ));
             }
             if (state.state == ViewSummaryStates.erroretSummary) {
               showApiKeyDialog(context);
+            }
+            if (state.state == ViewSummaryStates.networkError) {
+              showNoInternetDialog(context);
             }
           },
         ),

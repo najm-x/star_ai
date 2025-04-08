@@ -1,7 +1,7 @@
 import 'package:business_tools/features/summary/presentation/bloc/summary_view_cubit/cubit/summary_view_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class ChangeTextLtRWidget extends StatelessWidget {
   const ChangeTextLtRWidget({super.key});
 
@@ -14,7 +14,7 @@ class ChangeTextLtRWidget extends StatelessWidget {
           children: [
             Divider(),
             ListTile(
-              title: Text("Text Direction"),
+              title: Text(AppLocalizations.of(context)!.textDirection),
               trailing: Switch(
                 value: state.textLtR,
                 onChanged: (value) {

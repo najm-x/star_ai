@@ -1,4 +1,3 @@
-import 'package:business_tools/core/constant/app_colors.dart';
 import 'package:business_tools/features/ads/presentation/widgets/ads_banner_widget.dart';
 import 'package:business_tools/features/text_translate/presentation/bloc/cubit/text_trans_cubit.dart';
 import 'package:business_tools/features/text_translate/presentation/widgets/floating_action_button.dart';
