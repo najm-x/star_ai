@@ -14,7 +14,7 @@ class SataticDataOnboarding {
         decoration: AppLocalizations.of(context)!.desWelcomOnBoarding),
     OnBoardingModel(
         image: AppImages.translateVideo,
-        title: AppLocalizations.of(context)!.titleYtTrans,
+        title: AppLocalizations.of(context)!.videoTranslator,
         decoration: AppLocalizations.of(context)!.desYtTrans),
     OnBoardingModel(
         image: AppImages.translateText,

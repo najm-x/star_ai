@@ -40,11 +40,10 @@ class MyApp extends StatelessWidget {
               return UpgradeAlert(
                 navigatorKey: goRouter.routerDelegate.navigatorKey,
                 upgrader: Upgrader(
-                    minAppVersion: "1.0.0",
-                    durationUntilAlertAgain: const Duration(seconds: 30),
+                    durationUntilAlertAgain: Duration(days: 1),
                     storeController: UpgraderStoreController(
                         onAndroid: () =>
-                            UpgraderAppcastStore(appcastURL: "https://najm-flutter.github.io/Todo-flutter/new.xml"))),
+                            UpgraderPlayStore())),
                 child: child,
               );
             },
