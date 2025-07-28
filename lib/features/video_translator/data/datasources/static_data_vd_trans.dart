@@ -3,7 +3,7 @@ import 'package:business_tools/core/constant/app_routes_name.dart';
 import 'package:business_tools/core/constant/types_validate.dart';
 import 'package:business_tools/features/video_translator/data/models/vd_type_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:business_tools/l10n/app_localizations.dart';
 
 class StaticDataVdTrans {
   static String fghfgh = '''

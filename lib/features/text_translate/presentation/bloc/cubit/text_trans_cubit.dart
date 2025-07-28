@@ -10,7 +10,7 @@ import 'package:business_tools/features/text_translate/domain/usecases/trans_tex
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:business_tools/l10n/app_localizations.dart';
 part 'text_trans_state.dart';
 
 class TextTransCubit extends Cubit<TextTransState> {
@@ -101,7 +101,7 @@ class TextTransCubit extends Cubit<TextTransState> {
   }
 
   showCase(BuildContext mycontext) {
-    showCaseInit(mycontext, SharedKey.isTextTransShowed,[one , tow , three , four]) ;
+    showCaseInit(mycontext, SharedKey.isTextTransShowed, [one, tow, three, four]);
   }
 
   @override

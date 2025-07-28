@@ -7,7 +7,7 @@ import 'package:business_tools/features/summary/presentation/view/widgets/summar
 import 'package:business_tools/features/summary/presentation/view/widgets/summary_setup/vlidate_button_setup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:business_tools/l10n/app_localizations.dart';
 
 class SummarySetup extends StatelessWidget {
   const SummarySetup({super.key});

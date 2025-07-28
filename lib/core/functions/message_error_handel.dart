@@ -1,8 +1,8 @@
 import 'package:business_tools/core/errors/failure.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:business_tools/l10n/app_localizations.dart';
 
-String messageErrorHandel(Failure failure , BuildContext context) {
+String messageErrorHandel(Failure failure, BuildContext context) {
   switch (failure.runtimeType) {
     case EmptyPathFailure():
       return AppLocalizations.of(context)!.emptyFilePath;

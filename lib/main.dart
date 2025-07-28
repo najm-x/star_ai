@@ -9,7 +9,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:upgrader/upgrader.dart';
 import 'core/services/app_services.dart' as id;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:business_tools/l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,9 +41,7 @@ class MyApp extends StatelessWidget {
                 navigatorKey: goRouter.routerDelegate.navigatorKey,
                 upgrader: Upgrader(
                     durationUntilAlertAgain: Duration(days: 1),
-                    storeController: UpgraderStoreController(
-                        onAndroid: () =>
-                            UpgraderPlayStore())),
+                    storeController: UpgraderStoreController(onAndroid: () => UpgraderPlayStore())),
                 child: child,
               );
             },

@@ -2,7 +2,7 @@ import 'package:business_tools/features/home/presentation/bloc/cubit/home_cubit.
 import 'package:business_tools/features/home/presentation/widgets/drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:business_tools/l10n/app_localizations.dart';
 import 'package:uicons/uicons.dart';
 
 class HomePage extends StatelessWidget {

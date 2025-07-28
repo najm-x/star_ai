@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:business_tools/core/app_routes.dart' ;
+import 'package:business_tools/core/app_routes.dart';
 import 'package:business_tools/core/errors/failure.dart';
 import 'package:business_tools/core/functions/message_error_handel.dart';
 import 'package:business_tools/features/video_translator/domain/entities/vd_translate_entities.dart';
@@ -11,14 +11,13 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:business_tools/l10n/app_localizations.dart';
 part 'vd_download_event.dart';
 part 'vd_download_state.dart';
 
-
 class VdDownloadBloc extends Bloc<VdDownloadEvent, VdDownloadState> {
   final DownloadTransUc downloadTransUc;
-  BuildContext context = goRouter.routerDelegate.navigatorKey.currentContext! ;
+  BuildContext context = goRouter.routerDelegate.navigatorKey.currentContext!;
   VdDownloadBloc({required this.downloadTransUc}) : super(const VdDownloadState()) {
     on<VdDownloadEvent>(_vdDownloadEvent);
   }
@@ -38,7 +37,7 @@ class VdDownloadBloc extends Bloc<VdDownloadEvent, VdDownloadState> {
 
   VdDownloadState _vdDownloadState(Either<Failure, Unit> failureOrDone) {
     return failureOrDone.fold(
-        (failure) => state.copyWith(status: VdDownloadStatus.error, messageError: messageErrorHandel(failure , context)),
+        (failure) => state.copyWith(status: VdDownloadStatus.error, messageError: messageErrorHandel(failure, context)),
         (done) => state.copyWith(
             status: VdDownloadStatus.success, messageSuccess: AppLocalizations.of(context)!.doneSaveFile));
   }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:business_tools/features/home/data/datasource/static/static_data.dart';
 import 'package:business_tools/features/home/data/models/drawer_model.dart';
 import 'package:business_tools/features/home/presentation/widgets/card_home_widget.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:business_tools/l10n/app_localizations.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});

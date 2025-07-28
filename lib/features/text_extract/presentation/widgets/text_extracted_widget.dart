@@ -3,7 +3,7 @@ import 'package:business_tools/core/public/custom_snak_bar.dart';
 import 'package:business_tools/features/text_extract/presentation/bloc/bloc/text_extract_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:business_tools/l10n/app_localizations.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
 class TextExtractedWidget extends StatelessWidget {

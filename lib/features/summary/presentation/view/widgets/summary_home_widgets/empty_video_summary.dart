@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:business_tools/l10n/app_localizations.dart';
+
 class EmptyVideoSummary extends StatelessWidget {
   const EmptyVideoSummary({super.key});
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final appLocalization = AppLocalizations.of(context)! ;
+    final appLocalization = AppLocalizations.of(context)!;
 
     return Center(
       child: Padding(
@@ -22,7 +23,7 @@ class EmptyVideoSummary extends StatelessWidget {
             ),
             const SizedBox(height: 24.0),
             Text(
-             appLocalization.emptySummary,
+              appLocalization.emptySummary,
               style: textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
@@ -39,7 +40,7 @@ class EmptyVideoSummary extends StatelessWidget {
             ),
             const SizedBox(height: 12.0),
             Text(
-             appLocalization.infoIntheAppBar,
+              appLocalization.infoIntheAppBar,
               style: textTheme.bodyMedium?.copyWith(
                 color: Colors.grey[700],
                 height: 1.4,

@@ -3,7 +3,7 @@ import 'package:business_tools/core/constant/app_routes_name.dart';
 import 'package:business_tools/features/home/data/models/drawer_model.dart';
 import 'package:flutter/material.dart';
 import 'package:uicons/uicons.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:business_tools/l10n/app_localizations.dart';
 
 class StaticData {
   static BuildContext context = goRouter.routerDelegate.navigatorKey.currentContext!;

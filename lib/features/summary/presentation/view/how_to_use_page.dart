@@ -1,6 +1,6 @@
 import 'package:business_tools/core/constant/app_images.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:business_tools/l10n/app_localizations.dart';
 
 class HowToUsePage extends StatelessWidget {
   const HowToUsePage({super.key});

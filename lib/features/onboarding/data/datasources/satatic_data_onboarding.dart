@@ -2,10 +2,10 @@ import 'package:business_tools/core/app_routes.dart';
 import 'package:business_tools/core/constant/app_images.dart';
 import 'package:business_tools/features/onboarding/data/models/on_boarding_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:business_tools/l10n/app_localizations.dart';
 
 class SataticDataOnboarding {
-  static   BuildContext context = goRouter.routerDelegate.navigatorKey.currentContext! ;
+  static BuildContext context = goRouter.routerDelegate.navigatorKey.currentContext!;
 
   static List<OnBoardingModel> onBoardingData = [
     OnBoardingModel(

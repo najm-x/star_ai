@@ -3,7 +3,7 @@ import 'package:business_tools/features/extract/presentation/widgets/drop_down_w
 import 'package:business_tools/features/text_translate/presentation/bloc/cubit/text_trans_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:business_tools/l10n/app_localizations.dart';
 import 'package:showcaseview/showcaseview.dart';
 
 class TranslateOptionWidgetTexr extends StatelessWidget {
@@ -35,7 +35,6 @@ class TranslateOptionWidgetTexr extends StatelessWidget {
             Showcase(
               key: context.read<TextTransCubit>().tow,
               description: AppLocalizations.of(context)!.chooselangToTransText,
-              
               child: Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
@@ -50,14 +49,16 @@ class TranslateOptionWidgetTexr extends StatelessWidget {
                         DropDownlangWidget(
                           title: AppLocalizations.of(context)!.translateFrom,
                           onSelected: (langSelected) {
-                            context.read<TextTransCubit>()
+                            context
+                                .read<TextTransCubit>()
                                 .onSelectedLang(langSelected, AppLocalizations.of(context)!.translateFrom);
                           },
                         ),
                         DropDownlangWidget(
                           title: AppLocalizations.of(context)!.translateTo,
                           onSelected: (langSelected) {
-                            context.read<TextTransCubit>()
+                            context
+                                .read<TextTransCubit>()
                                 .onSelectedLang(langSelected, AppLocalizations.of(context)!.translateTo);
                           },
                         )

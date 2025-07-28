@@ -10,8 +10,7 @@ import 'package:business_tools/features/spell_checker/domain/usecases/spell_text
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
+import 'package:business_tools/l10n/app_localizations.dart';
 part 'spell_checker_state.dart';
 
 class SpellCheckerCubit extends Cubit<SpellCheckerState> {
@@ -64,7 +63,7 @@ class SpellCheckerCubit extends Cubit<SpellCheckerState> {
     emit(state.copyWith(status: SpellCheckerStatus.changeLtR));
   }
 
-  showCase(BuildContext myContext){
+  showCase(BuildContext myContext) {
     showCaseInit(myContext, SharedKey.isSpellCheckerShowed, [one, tow]);
   }
 

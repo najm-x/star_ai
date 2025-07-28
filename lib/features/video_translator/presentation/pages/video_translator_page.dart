@@ -7,7 +7,7 @@ import 'package:business_tools/features/video_translator/presentation/widgets/tr
 import 'package:business_tools/features/video_translator/presentation/widgets/video_translate/pick_file_widget.dart';
 import 'package:business_tools/features/video_translator/presentation/widgets/video_translate/transelate_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:business_tools/l10n/app_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:showcaseview/showcaseview.dart';

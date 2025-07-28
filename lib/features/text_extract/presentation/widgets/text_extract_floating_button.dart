@@ -1,8 +1,8 @@
 import 'package:business_tools/features/text_extract/presentation/bloc/bloc/text_extract_bloc.dart';
+import 'package:business_tools/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:showcaseview/showcaseview.dart';
-import'package:flutter_gen/gen_l10n/app_localizations.dart' ;
 
 class TextExtractFloatingButton extends StatelessWidget {
   const TextExtractFloatingButton({super.key});

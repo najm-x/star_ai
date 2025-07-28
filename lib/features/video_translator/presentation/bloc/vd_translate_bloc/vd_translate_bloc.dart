@@ -17,7 +17,7 @@ import 'package:business_tools/features/video_translator/domain/usecases/vd_tran
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:business_tools/l10n/app_localizations.dart';
 part 'vd_translate_event.dart';
 part 'vd_translate_state.dart';
 
@@ -84,7 +84,8 @@ class VdTranslateBloc extends Bloc<VdTranslateEvent, VdTranslateState> {
   }
 
   Future<void> _getTransFromFiletEvent(GetTransFromFiletEvent event, Emitter<VdTranslateState> emit) async {
-    emit(state.copyWith(status: VdTranslateStatus.loading, infoLoading: AppLocalizations.of(context)!.translateExtracted));
+    emit(state.copyWith(
+        status: VdTranslateStatus.loading, infoLoading: AppLocalizations.of(context)!.translateExtracted));
     await Future.delayed(const Duration(seconds: 2));
     var failureOrDone = await getTransFromFileUc.call(event.filePath);
 

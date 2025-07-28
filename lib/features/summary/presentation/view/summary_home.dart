@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:uicons/uicons.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:business_tools/l10n/app_localizations.dart';
 
 class SummaryHome extends StatelessWidget {
   const SummaryHome({super.key});
@@ -18,7 +18,7 @@ class SummaryHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopScope(
         canPop: false,
-      onPopInvokedWithResult: (didPop, result) {
+        onPopInvokedWithResult: (didPop, result) {
           context.go(AppRouteName.home);
         },
         child: Scaffold(

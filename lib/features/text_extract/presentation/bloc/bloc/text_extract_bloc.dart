@@ -11,7 +11,7 @@ import 'package:business_tools/features/text_extract/domain/usecases/pick_image_
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:business_tools/l10n/app_localizations.dart';
 part 'text_extract_event.dart';
 part 'text_extract_state.dart';
 
@@ -21,8 +21,8 @@ class TextExtractBloc extends Bloc<TextExtractEvent, TextExtractState> {
   final CropImageUc cropImageUc;
   String path = '';
   BuildContext context = goRouter.routerDelegate.navigatorKey.currentContext!;
- final one =GlobalKey() ;
- final tow =GlobalKey() ;
+  final one = GlobalKey();
+  final tow = GlobalKey();
   TextExtractBloc({
     required this.extractTextUc,
     required this.pickImageUc,
@@ -42,7 +42,8 @@ class TextExtractBloc extends Bloc<TextExtractEvent, TextExtractState> {
       emit(_extractTextFromImagestate(failurOrDone));
     } else {
       emit(state.copyWith(status: TextExtractStatus.init));
-      emit(state.copyWith(status: TextExtractStatus.errorPickImage, messageError: AppLocalizations.of(context)!.chooseImage));
+      emit(state.copyWith(
+          status: TextExtractStatus.errorPickImage, messageError: AppLocalizations.of(context)!.chooseImage));
     }
   }
 
@@ -68,28 +69,25 @@ class TextExtractBloc extends Bloc<TextExtractEvent, TextExtractState> {
     return failurOrDone.fold(
         (failure) => state.copyWith(
             status: TextExtractStatus.errorTextExtract, messageError: messageErrorHandel(failure, context)),
-        (done) =>
-            state.copyWith(status: TextExtractStatus.successTextExtract, value: done.text));
+        (done) => state.copyWith(status: TextExtractStatus.successTextExtract, value: done.text));
   }
 
   TextExtractState _pickImageState(Either<Failure, String> failurOrDone) {
     return failurOrDone.fold(
         (failure) => state.copyWith(
             status: TextExtractStatus.errorPickImage, messageError: messageErrorHandel(failure, context)),
-        (done) => state.copyWith(
-            status: TextExtractStatus.successPickImage, value: done /*image Path*/));
+        (done) => state.copyWith(status: TextExtractStatus.successPickImage, value: done /*image Path*/));
   }
 
   TextExtractState _cropImageEventState(Either<Failure, String> failurOrDone) {
     return failurOrDone.fold(
         (failure) => state.copyWith(
             status: TextExtractStatus.errorCropImage, messageError: messageErrorHandel(failure, context)),
-        (done) => state.copyWith(
-            status: TextExtractStatus.successCropImage, value: done /*image Path*/));
+        (done) => state.copyWith(status: TextExtractStatus.successCropImage, value: done /*image Path*/));
   }
 
   //
-  showCase (BuildContext myContext){
-    showCaseInit(myContext, SharedKey.isTextExtractShowed, [one , tow]) ;
+  showCase(BuildContext myContext) {
+    showCaseInit(myContext, SharedKey.isTextExtractShowed, [one, tow]);
   }
 }

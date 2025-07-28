@@ -7,7 +7,7 @@ import 'package:business_tools/features/video_translator/domain/entities/vd_tran
 import 'package:business_tools/features/video_translator/presentation/bloc/vd_download_bloc/vd_download_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:business_tools/l10n/app_localizations.dart';
 
 class DownloadWidget extends StatelessWidget {
   const DownloadWidget({super.key, required this.translation, required this.videoUrl});

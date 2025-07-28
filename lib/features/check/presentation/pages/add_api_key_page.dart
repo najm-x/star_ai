@@ -1,8 +1,7 @@
 import 'package:business_tools/core/public/widgets/info_widget.dart';
 import 'package:business_tools/features/check/presentation/widgets/step_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
+import 'package:business_tools/l10n/app_localizations.dart';
 
 class AddApiKeyPage extends StatelessWidget {
   const AddApiKeyPage({super.key});
@@ -11,7 +10,7 @@ class AddApiKeyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body:  Padding(
+      body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -24,7 +23,7 @@ class AddApiKeyPage extends StatelessWidget {
               AppLocalizations.of(context)!.enterApiKey,
               textAlign: TextAlign.center,
             ),
-            const Expanded(child:  StepWidget())
+            const Expanded(child: StepWidget())
           ],
         ),
       ),

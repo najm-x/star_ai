@@ -6,13 +6,12 @@ import 'package:business_tools/core/services/app_services.dart' show sl;
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
+import 'package:business_tools/l10n/app_localizations.dart';
 part 'add_api_key_state.dart';
 
 class AddApiKeyCubit extends Cubit<AddApiKeyState> {
   int currentStep = 0;
-    BuildContext context = goRouter.routerDelegate.navigatorKey.currentContext!;
+  BuildContext context = goRouter.routerDelegate.navigatorKey.currentContext!;
 
   final TextEditingController textEditingCO = TextEditingController();
   AddApiKeyCubit() : super(const AddApiKeyState());
@@ -44,7 +43,7 @@ class AddApiKeyCubit extends Cubit<AddApiKeyState> {
       emit(state.copyWith(status: AddApiKeyStatus.success));
     } else {
       // ignore: use_build_context_synchronously
-      emit(state.copyWith(status: AddApiKeyStatus.error, messageError:AppLocalizations.of(context)!.apikeyDontWork));
+      emit(state.copyWith(status: AddApiKeyStatus.error, messageError: AppLocalizations.of(context)!.apikeyDontWork));
     }
   }
 

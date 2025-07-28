@@ -6,7 +6,7 @@ import 'package:business_tools/features/text_translate/presentation/widgets/tran
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:showcaseview/showcaseview.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:business_tools/l10n/app_localizations.dart';
 
 class TextTranslatePage extends StatefulWidget {
   const TextTranslatePage({super.key});
@@ -27,7 +27,6 @@ class _TextTranslatePageState extends State<TextTranslatePage> {
 
   @override
   Widget build(BuildContext context) {
-    
     return ShowCaseWidget(
       builder: (context) {
         myContext = context;
